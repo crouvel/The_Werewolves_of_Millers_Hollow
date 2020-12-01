@@ -1,0 +1,40 @@
+package model.dao.factory;
+
+import java.util.*;
+
+/**
+ * @author Tiffany Dumaire
+ */
+public class FactoryDAOMySQL extends AbstractFactoryDAO {
+
+    /**
+     * Default constructor
+     */
+    public FactoryDAOMySQL() {
+    }
+
+    /**
+     * 
+     */
+    protected Connection connection;
+
+    /**
+     * 
+     */
+    private static Connection connection = null;
+
+
+    /**
+     * @return
+     */
+    public Connection getConnection() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public abstract UserDAO createUserDAO();
+
+}
