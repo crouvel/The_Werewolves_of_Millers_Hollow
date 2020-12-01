@@ -1,0 +1,46 @@
+package gui.controller;
+
+import java.util.*;
+
+/**
+ * @author Tiffany Dumaire
+ */
+public class LoginController {
+
+    /**
+     * Default constructor
+     */
+    public LoginController() {
+    }
+
+    /**
+     * 
+     */
+    private TextField email;
+
+    /**
+     * 
+     */
+    private TextField password;
+
+    /**
+     * 
+     */
+    private Text message;
+
+
+    /**
+     * @param event
+     */
+    public void goToRegister(ActionEvent event) {
+        // TODO implement here
+    }
+
+    /**
+     * @param event
+     */
+    public void handleLogin(ActionEvent event) {
+        // TODO implement here
+    }
+
+}
