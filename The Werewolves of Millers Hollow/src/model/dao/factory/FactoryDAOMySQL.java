@@ -1,7 +1,6 @@
 package model.dao.factory;
 
 import java.sql.Connection;
-import java.util.*;
 
 import model.dao.mysql.UserDAO;
 

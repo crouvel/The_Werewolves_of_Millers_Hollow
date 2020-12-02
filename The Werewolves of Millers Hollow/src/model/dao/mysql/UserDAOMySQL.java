@@ -1,7 +1,5 @@
 package model.dao.mysql;
 
-import java.util.*;
-
 import businesslogic.systemelement.User;
 
 /**
@@ -29,6 +27,10 @@ public class UserDAOMySQL extends UserDAO{
      */
     public User getUserByEmail(String email) {
     	return null;
+    }
+    
+    public boolean exist(String email) {
+    	return false;
     }
 
 }
