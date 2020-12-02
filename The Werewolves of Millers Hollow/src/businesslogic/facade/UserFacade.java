@@ -1,8 +1,8 @@
 package businesslogic.facade;
 
-import java.util.*;
-
 import businesslogic.systemelement.User;
+import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.UserDAO;
 
 /**
  * @author Tiffany Dumaire
@@ -37,8 +37,7 @@ public class UserFacade {
      * @return
      */
     public User register(String email, String password) {
-        // TODO implement here
-        return null;
+        return login(email, password);
     }
 
     /**
