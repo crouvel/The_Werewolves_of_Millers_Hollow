@@ -1,19 +1,15 @@
 package businesslogic.facade;
 
-import java.util.*;
+import java.sql.SQLException;
 
 import businesslogic.systemelement.User;
+import model.dao.factory.FactoryDAOMySQL;
+import model.dao.mysql.UserDAO;
 
 /**
  * @author Tiffany Dumaire
  */
 public class UserFacade {
-
-    /**
-     * Default constructor
-     */
-    public UserFacade() {
-    }
 
     /**
      * 
@@ -25,44 +21,43 @@ public class UserFacade {
      * @param email 
      * @param password 
      * @return
+     * @throws SQLException 
      */
-    public User login(String email, String password) {
-        // TODO implement here
-        return null;
+    public User login(String email, String password) throws SQLException {
+    	UserDAO userDAOMySQL = FactoryDAOMySQL.getInstance().createUserDAO();
+        return userDAOMySQL.getUserByLogin(email,password);
     }
 
     /**
      * @param email 
      * @param password 
      * @return
+     * @throws SQLException 
      */
-    public User register(String email, String password) {
-        // TODO implement here
-        return null;
+    public User register(String email, String password) throws SQLException {
+        //@Not Implemented    	
+    	return currentUser;
     }
 
     /**
      * @return
      */
     public User getCurrentUser() {
-        // TODO implement here
-        return null;
+        return currentUser;
     }
 
     /**
      * @return
      */
     public int getCurrentUserId() {
-        // TODO implement here
-        return 0;
+        return currentUser.getId();
     }
 
     /**
      * @return
      */
     public String getCurrentUserEmail() {
-        // TODO implement here
-        return "";
+        return currentUser.getEmail();
     }
 
 }

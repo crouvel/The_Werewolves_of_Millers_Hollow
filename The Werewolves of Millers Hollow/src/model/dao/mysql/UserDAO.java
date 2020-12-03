@@ -1,6 +1,6 @@
 package model.dao.mysql;
 
-import java.util.*;
+import java.sql.SQLException;
 
 import businesslogic.systemelement.User;
 
@@ -26,7 +26,24 @@ public abstract class UserDAO{
     /**
      * @param email 
      * @return
+     * @throws SQLException 
      */
-    public abstract User getUserByEmail(String email);
+    public abstract User getUserByEmail(String email) throws SQLException;
+    
+    /**
+     * @param email 
+     * @param password
+     * @return
+     * @throws SQLException 
+     */
+    public abstract User getUserByLogin(String email,String password) throws SQLException;
+    
+    /**
+     * 
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
+    public abstract boolean exist(String email) throws SQLException;
 
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdministratorMenuController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/backgroundMenu.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="70.0" layoutY="47.0" opacity="0.74" prefHeight="626.0" prefWidth="1140.0" style="-fx-background-color: #404040; -fx-border-radius: 30px; -fx-border-width: 10px; -fx-border-color: #262626; -fx-background-radius: 35px;" />
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="539.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/logoCircle.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1013.0" layoutY="78.0" mnemonicParsing="false" onAction="#signOut" opacity="0.82" prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: red; -fx-background-radius: 30px;" text="Sign out" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button layoutX="103.0" layoutY="78.0" mnemonicParsing="false" onAction="#viewProfile" opacity="0.82" prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: #808080; -fx-background-radius: 30px;" text="     Profile" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="23.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="105.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/wolf.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="738.0" layoutY="414.0" mnemonicParsing="false" onAction="#manageReports" opacity="0.82" prefHeight="96.0" prefWidth="341.0" style="-fx-background-color: #25488e; -fx-background-radius: 30px;" text="Manage Reports" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="31.0" />
+         </font>
+      </Button>
+      <Button layoutX="198.0" layoutY="414.0" mnemonicParsing="false" onAction="#createAnAdministratorAccount" opacity="0.82" prefHeight="96.0" prefWidth="341.0" style="-fx-background-color: #25488e; -fx-background-radius: 30px;" text="Create an&#10;Administrator Account" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="23.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
