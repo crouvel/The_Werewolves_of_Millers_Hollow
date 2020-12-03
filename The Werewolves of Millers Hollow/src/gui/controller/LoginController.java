@@ -35,13 +35,13 @@ public class LoginController implements Initializable {
 		try {
 			user = userFacade.login(mail,pwd);
 		}catch(SQLException e) {
-			infoBox("Veuillez entrer un identifiant et une adresse correcte", null, "Failed");
+			infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect or missing information");
             return;
 		}
-		if(user.isAdmin()) {
-			goToAdministratorMenu(getClass().getResource("../AdministratorMenuView.fxml"),user);
+		if(user.isAdmin()==1) {
+			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
 		}else {
-			goToPlayerMenu(getClass().getResource("../PlayerMenuView.fxml"),user);
+			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class LoginController implements Initializable {
 	
 	
 	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+        Alert alert = new Alert(AlertType.ERROR);
         alert.setContentText(message);
         alert.setTitle(title);
         alert.setHeaderText(head);
