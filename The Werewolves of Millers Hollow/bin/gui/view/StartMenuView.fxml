@@ -33,7 +33,7 @@
             <Font name="Copperplate Gothic Bold" size="47.0" />
          </font>
       </Button>
-      <Button layoutX="395.0" layoutY="399.0" mnemonicParsing="false" opacity="0.68" prefHeight="89.0" prefWidth="490.0" style="-fx-background-color: #255fdb;" text="Create an account" textFill="WHITE">
+      <Button layoutX="395.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleRegister" opacity="0.68" prefHeight="89.0" prefWidth="490.0" style="-fx-background-color: #255fdb;" text="Create an account" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="33.0" />
          </font>
