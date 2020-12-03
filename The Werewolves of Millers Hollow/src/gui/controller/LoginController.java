@@ -9,8 +9,10 @@ import java.util.ResourceBundle;
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.facade.UserFacade;
 import businesslogic.systemelement.User;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -36,7 +38,11 @@ public class LoginController implements Initializable {
 			infoBox("Veuillez entrer un identifiant et une adresse correcte", null, "Failed");
             return;
 		}
-		TheWerewolvesOfMillersHollow.setScene(user,getClass().getResource("../PlayerMenuView.fxml"));
+		if(user.isAdmin()) {
+			goToAdministratorMenu(getClass().getResource("../AdministratorMenuView.fxml"),user);
+		}else {
+			goToPlayerMenu(getClass().getResource("../PlayerMenuView.fxml"),user);
+		}
 	}
 	
 	@FXML
@@ -59,4 +65,18 @@ public class LoginController implements Initializable {
         alert.setHeaderText(head);
         alert.showAndWait();
     }
+	
+	public void goToAdministratorMenu(URL resources,User user) throws IOException {
+		FXMLLoader loader = new FXMLLoader(resources);
+        AdministratorMenuController administrator = loader.<AdministratorMenuController>getController();
+        administrator.setCurrentUser(user);
+        TheWerewolvesOfMillersHollow.setScene(resources);
+	}
+	
+	public void goToPlayerMenu(URL resources,User user) throws IOException {
+		FXMLLoader loader = new FXMLLoader(resources);
+        PlayerMenuController player = loader.<PlayerMenuController>getController();
+        player.setCurrentUser(user);
+        TheWerewolvesOfMillersHollow.setScene(resources);
+	}	
 }

@@ -3,6 +3,9 @@ package gui.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import businesslogic.systemelement.User;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +20,8 @@ public class PlayerMenuController implements Initializable {
 	
 	@FXML
 	private TextField password;
+	
+	private User currentUser;
 	
 	public PlayerMenuController() {
        
@@ -73,4 +78,14 @@ public class PlayerMenuController implements Initializable {
         alert.setHeaderText(head);
         alert.showAndWait();
     }
+
+
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
 }
