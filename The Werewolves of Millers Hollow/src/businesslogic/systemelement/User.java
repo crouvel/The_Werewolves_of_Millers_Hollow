@@ -1,6 +1,5 @@
 package businesslogic.systemelement;
 
-import java.util.*;
 
 /**
  * @author Tiffany Dumaire
@@ -10,7 +9,11 @@ public class User {
     /**
      * Default constructor
      */
-    public User() {
+    public User(int userId,String email, String password,boolean isAdmin) {
+    	this.userId=userId;
+    	this.email=email;
+    	this.password=password;
+    	this.isAdmin=isAdmin;
     }
 
     /**
@@ -27,48 +30,54 @@ public class User {
      * 
      */
     private String password;
-
+    
     /**
      * 
      */
-    private String username;
+    private boolean isAdmin;
 
     /**
      * @return
      */
     public int getId() {
-        // TODO implement here
-        return 0;
+        return this.userId;
     }
 
     /**
      * @return
      */
     public String getEmail() {
-        // TODO implement here
-        return "";
+        return this.email;
     }
 
     /**
      * @param email
      */
     public void setEmail(String email) {
-        // TODO implement here
+    	this.email=email;
     }
 
     /**
      * @return
      */
     public String getPassword() {
-        // TODO implement here
-        return "";
+        return this.password;
     }
 
     /**
      * @param password
      */
     public void setPassword(String password) {
-        // TODO implement here
+    	this.password=password;
     }
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+    
 
 }
