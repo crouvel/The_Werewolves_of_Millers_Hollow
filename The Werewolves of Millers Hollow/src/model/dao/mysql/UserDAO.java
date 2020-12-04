@@ -3,19 +3,17 @@ package model.dao.mysql;
 import java.sql.SQLException;
 
 import businesslogic.systemelement.User;
-
 /**
  * @author Tiffany Dumaire
  */
-public abstract class UserDAO{
+public abstract class UserDAO {
 
     /**
      * Default constructor
      */
     public UserDAO() {
+    
     }
-
-
 
     /**
      * @param userId 

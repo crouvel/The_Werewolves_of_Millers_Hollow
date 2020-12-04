@@ -9,7 +9,7 @@ public class User {
     /**
      * Default constructor
      */
-    public User(int userId,String email, String password,boolean isAdmin) {
+    public User(int userId,String email, String password,int isAdmin) {
     	this.userId=userId;
     	this.email=email;
     	this.password=password;
@@ -34,7 +34,7 @@ public class User {
     /**
      * 
      */
-    private boolean isAdmin;
+    private int isAdmin;
 
     /**
      * @return
@@ -71,11 +71,11 @@ public class User {
     	this.password=password;
     }
 
-	public boolean isAdmin() {
+	public int isAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
     
