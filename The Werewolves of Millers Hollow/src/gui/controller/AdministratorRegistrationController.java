@@ -1,43 +1,32 @@
 package gui.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.TheWerewolvesOfMillersHollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.Alert.AlertType;
 
-
-public class ReportABugController  implements Initializable{
+public class AdministratorRegistrationController  implements Initializable{
 	
 	@FXML
-	private TextField subject;
+	private TextField emailAdmin;
 	
 	@FXML
-	private TextField imageLink;
+	private PasswordField passwordAdmin;
 	
 	@FXML
-	private TextArea description;
-	
-	@FXML
-	void sendBugReport(ActionEvent event) throws IOException {
+	void createAdministratorAccount(ActionEvent event) {
 		
 	}
 	
 	@FXML
-	void cancelAction(ActionEvent event) throws IOException {
+	void returnAdministratorMenu(ActionEvent event) {
 		
-	}
-	
-	@FXML
-	void returnPlayerMenu(ActionEvent event) throws IOException {
-		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../PlayerMenuView.fxml"));
 	}
 	
 	public static void infoBox(String message, String head, String title){
@@ -53,5 +42,4 @@ public class ReportABugController  implements Initializable{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -10,7 +13,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.ReportABugController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -50,7 +53,7 @@
             <Font name="Verdana" size="20.0" />
          </font>
       </Text>
-      <TextField layoutX="399.0" layoutY="219.0" promptText="Subject..." style="-fx-background-color: rgb(138,138,138,0.7);">
+      <TextField fx:id="subject" layoutX="400.0" layoutY="219.0" promptText="Subject..." style="-fx-background-color: rgb(138,138,138,0.7);">
          <font>
             <Font name="Verdana Italic" size="20.0" />
          </font>
@@ -58,5 +61,28 @@
             <Insets />
          </opaqueInsets>
       </TextField>
+      <TextField fx:id="imageLink" layoutX="400.0" layoutY="281.0" prefHeight="39.0" prefWidth="470.0" promptText="Url image link..." style="-fx-background-color: rgb(138,138,138,0.7);">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextArea fx:id="description" layoutX="400.0" layoutY="342.0" opacity="0.8" prefHeight="159.0" prefWidth="470.0" promptText="Context...">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="460.0" layoutY="525.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: rgb(204, 0, 0,0.8);" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="660.0" layoutY="525.0" mnemonicParsing="false" onAction="#sendBugReport" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: rgb(80, 184, 46,0.8);" text="Send" textFill="WHITE">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

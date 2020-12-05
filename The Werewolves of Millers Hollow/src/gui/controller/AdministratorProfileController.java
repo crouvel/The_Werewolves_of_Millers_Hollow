@@ -1,5 +1,6 @@
 package gui.controller;
 
+import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,37 +11,44 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
 
+public class AdministratorProfileController  implements Initializable{
+	
+	@FXML
+	private TextField adminEmail;
 
-public class ReportABugController  implements Initializable{
+	@FXML
+	private TextField adminPassword;
 	
 	@FXML
-	private TextField subject;
+	void returnAdministratorMenu(ActionEvent event) throws IOException{
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminMenuView.fxml"));	
+	}
 	
 	@FXML
-	private TextField imageLink;
-	
-	@FXML
-	private TextArea description;
-	
-	@FXML
-	void sendBugReport(ActionEvent event) throws IOException {
+	void saveModifications(ActionEvent event) {
 		
 	}
 	
 	@FXML
-	void cancelAction(ActionEvent event) throws IOException {
+	void deleteAdministratorAccount(ActionEvent event) {
 		
 	}
 	
 	@FXML
-	void returnPlayerMenu(ActionEvent event) throws IOException {
-		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../PlayerMenuView.fxml"));
+	void modifyAdministratorEmail(ActionEvent event) {
+		
 	}
+	
+	@FXML
+	void modifyAdministratorPassword(ActionEvent event) {
+		
+	}
+	
+	//METHOD AJOUTEE
 	
 	public static void infoBox(String message, String head, String title){
+        //A CUSTOMISER
         Alert alert = new Alert(AlertType.ERROR);
         alert.setContentText(message);
         alert.setTitle(title);
@@ -53,5 +61,5 @@ public class ReportABugController  implements Initializable{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }
