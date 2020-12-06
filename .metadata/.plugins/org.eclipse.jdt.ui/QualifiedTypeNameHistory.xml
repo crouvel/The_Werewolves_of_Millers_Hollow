@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.awt.TextField"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
-    <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="businesslogic.systemelement.User"/>
     <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
-    <fullyQualifiedTypeName name="model.dao.factory.AbstractFactoryDAO"/>
-    <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
+    <fullyQualifiedTypeName name="com.sun.prism.Image"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.DatePicker"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
     <fullyQualifiedTypeName name="javafx.scene.Parent"/>
+    <fullyQualifiedTypeName name="javafx.scene.Scene"/>
+    <fullyQualifiedTypeName name="businesslogic.systemelement.User"/>
+    <fullyQualifiedTypeName name="model.dao.factory.AbstractFactoryDAO"/>
+    <fullyQualifiedTypeName name="util.ConnectionUtil"/>
+    <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
+    <fullyQualifiedTypeName name="application.TheWerewolvesOfMillersHollow"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="model.dao.factory.FactoryDAOMySQL"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.UserDAOMySQL"/>
+    <fullyQualifiedTypeName name="java.awt.Image"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
 </qualifiedTypeNameHistroy>

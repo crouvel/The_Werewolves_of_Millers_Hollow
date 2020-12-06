@@ -3,7 +3,7 @@ package businesslogic.facade;
 import java.sql.SQLException;
 
 import businesslogic.systemelement.User;
-import model.dao.factory.FactoryDAOMySQL;
+import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.UserDAO;
 
 /**
@@ -24,8 +24,9 @@ public class UserFacade {
      * @throws SQLException 
      */
     public User login(String email, String password) throws SQLException {
-    	UserDAO userDAOMySQL = FactoryDAOMySQL.getInstance().createUserDAO();
-        return userDAOMySQL.getUserByLogin(email,password);
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	UserDAO userDAO  = factoryTest.createUserDAO();
+        return userDAO.getUserByLogin(email,password);
     }
 
     /**
