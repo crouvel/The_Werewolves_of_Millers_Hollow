@@ -55,11 +55,12 @@ public class LoginController implements Initializable {
 		
 	}
 	
-	//Methodes ajoutees
+	//Methode ajoute
 	
 	
 	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
+        //A CUSTOMISER
+		Alert alert = new Alert(AlertType.ERROR);
         alert.setContentText(message);
         alert.setTitle(title);
         alert.setHeaderText(head);
