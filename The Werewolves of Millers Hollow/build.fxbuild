@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
+  <deploy height="720" width="1280" packagingFormat="exe">
+    <application name="The Werewolves of Millers Hollow" mainclass="application.TheWerewolvesOfMillersHollow" version="1.0" toolkit="fx"/>
+    <info title="The Werewolves of Millers Hollow" vendor="NoName"/>
+  </deploy>
+  <signjar/>
+</anttasks:AntTask>
