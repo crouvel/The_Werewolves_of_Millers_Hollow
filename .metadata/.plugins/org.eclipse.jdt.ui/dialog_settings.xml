@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\tiffa\Desktop\IG4 COURS SEMESTRE 7\SE&amp;P - Project\Déroulement projet"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\clare\Desktop\jarr"/>
 	<item key="org.eclipse.jdt.ui.last.external.project" value="C:\Users\tiffa\Desktop\Test"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
@@ -89,5 +89,8 @@
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
 			<item value="C:\Users\tiffa\Desktop\IG4 COURS SEMESTRE 7\SE&amp;P - Project\Déroulement projet\Test\Test.jar"/>
 		</list>
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item key="pageIndex" value="2"/>
 	</section>
 </section>
