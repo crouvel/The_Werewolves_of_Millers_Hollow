@@ -1,5 +1,11 @@
+/**
+ * 
+ */
 package model.dao.mysql;
 
+/**
+ * 
+ */
 import java.sql.SQLException;
 
 import businesslogic.systemelement.User;

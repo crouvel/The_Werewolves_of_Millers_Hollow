@@ -21,6 +21,9 @@ public abstract class AbstractFactoryDAO {
      */
     private static Connection connection=null;
 
+    /**
+     * 
+     */
     public AbstractFactoryDAO() {
     	if(getConnection()==null) {
     	    connection=ConnectionUtil.connectionDatabase();

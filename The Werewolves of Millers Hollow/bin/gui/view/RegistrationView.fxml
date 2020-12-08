@@ -84,7 +84,7 @@
             <Font name="Copperplate Gothic Bold" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="79.0" layoutY="589.0" mnemonicParsing="false" onAction="#returnMenu" opacity="0.84" style="-fx-background-color: #2828a4;" text="Start" textFill="WHITE">
+      <Button layoutX="79.0" layoutY="589.0" mnemonicParsing="false" onAction="#returnStartMenu" opacity="0.84" style="-fx-background-color: #2828a4;" text="Start" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="22.0" />
          </font>

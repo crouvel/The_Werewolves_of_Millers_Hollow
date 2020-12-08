@@ -48,18 +48,18 @@
                   <Font name="Copperplate Gothic Bold" size="30.0" />
                </font>
             </Text>
-            <Button layoutX="462.0" layoutY="49.0" mnemonicParsing="false" onAction="#goToJoinAGame" style="-fx-background-color: #e6e6e6;" text="Join a game">
+            <Button layoutX="463.0" layoutY="41.0" mnemonicParsing="false" onAction="#joinAGame" prefHeight="47.0" prefWidth="210.0" style="-fx-background-color: #e6e6e6;" text="Join a game">
                <font>
-                  <Font name="Copperplate Gothic Bold" size="25.0" />
+                  <Font name="Copperplate Gothic Bold" size="20.0" />
                </font>
             </Button>
-            <TableView fx:id="tableOfGame" layoutX="40.0" layoutY="174.0" prefHeight="378.0" prefWidth="611.0">
-              <columns>
-                <TableColumn prefWidth="296.0" text="Game" />
-                <TableColumn minWidth="0.0" prefWidth="161.0" text="Number of players" />
-                  <TableColumn prefWidth="153.0" text="Join" />
-              </columns>
-            </TableView>
+            <ListView fx:id="availableGames" layoutX="40.0" layoutY="163.0" prefHeight="360.0" prefWidth="634.0" />
+            <Button layoutX="464.0" layoutY="528.0" mnemonicParsing="false" onAction="#selectAGame" prefHeight="47.0" prefWidth="210.0" text="Select a game">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="gameId" layoutX="265.0" layoutY="41.0" prefHeight="47.0" prefWidth="186.0" promptText="Game id..." />
          </children></Pane>
    </children>
 </Pane>

@@ -1,5 +1,11 @@
+/**
+ * 
+ */
 package model.dao.mysql;
 
+/**
+ * 
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +51,9 @@ public class UserDAOMySQL extends UserDAO{
     	}
     }
     
+    /**
+     * 
+     */
     public boolean exist(String email) throws SQLException {
 		//Search the User by his email in the database.
     	String sqlRequest = "SELECT COUNT(*) FROM User WHERE email=?";

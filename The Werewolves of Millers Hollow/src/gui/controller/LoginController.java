@@ -1,6 +1,11 @@
+/**
+ * package gui.controller
+ */
 package gui.controller;
 
-
+/**
+ * 
+ */
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -12,20 +17,40 @@ import businesslogic.systemelement.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
+/**
+ * 
+ * @author Tiffany Dumaire
+ *
+ */
 public class LoginController implements Initializable {
 	
+	//FXML Attributes
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField email;
 	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField password;
 	
+	//FXML Methods
+	
+	/**
+	 * 
+	 * @param event
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	@FXML
 	void login(ActionEvent event) throws SQLException, IOException {
 		String mail = email.getText();
@@ -45,19 +70,24 @@ public class LoginController implements Initializable {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnMenu(ActionEvent event) throws IOException {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-	}
 	
 	//Methode ajoute
 	
-	
+	/**
+	 * Open an info box.
+	 * @param message
+	 * @param head
+	 * @param title
+	 */
 	public static void infoBox(String message, String head, String title){
         //A CUSTOMISER
 		Alert alert = new Alert(AlertType.ERROR);
@@ -67,17 +97,12 @@ public class LoginController implements Initializable {
         alert.showAndWait();
     }
 	
-	public void goToAdministratorMenu(URL resources,User user) throws IOException {
-		FXMLLoader loader = new FXMLLoader(resources);
-        AdministratorMenuController administrator = loader.<AdministratorMenuController>getController();
-        administrator.setCurrentUser(user);
-        TheWerewolvesOfMillersHollow.setScene(resources);
+	/**
+	 * 
+	 */
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 	}
 	
-	public void goToPlayerMenu(URL resources,User user) throws IOException {
-		FXMLLoader loader = new FXMLLoader(resources);
-        PlayerMenuController player = loader.<PlayerMenuController>getController();
-        player.setCurrentUser(user);
-        TheWerewolvesOfMillersHollow.setScene(resources);
-	}	
 }

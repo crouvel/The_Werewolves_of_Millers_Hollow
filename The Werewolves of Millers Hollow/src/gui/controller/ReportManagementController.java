@@ -4,20 +4,20 @@
 package gui.controller;
 
 /**
- * Imported libraries and classes.
+ * Imported libraries/classes
  */
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.systemelement.Game;
+import businesslogic.systemelement.BugReport;
+import businesslogic.systemelement.PlayerReport;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 /**
@@ -25,52 +25,47 @@ import javafx.scene.control.Alert.AlertType;
  * @author Tiffany Dumaire
  *
  */
-public class SelectAndJoinGameController  implements Initializable {
-	
-	//FXML Attributes
-	
+public class ReportManagementController implements Initializable {
 	/**
-	 * Attribute uses for choose the gameId.
+	 * Attribute containing a list of player reports.
 	 */
 	@FXML
-	private TextField gameId;
+	private ListView<PlayerReport> playerReports;
 	
 	/**
-	 * Attribute containing the list of available games.
+	 * Attribute containing a list of bug reports. 
 	 */
 	@FXML
-	private ListView<Game> availableGames;
-	
-	//FXML Methods
+	private ListView<BugReport> bugReports;
 	
 	/**
-	 * Allows the player to join a game selected in the list of available games.
+	 * Returns the administrator to the view where he can see the preview of the bug report selected in the list bugReports.
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void joinAGame(ActionEvent event) throws IOException {
+	void checkBugReport(ActionEvent event) throws IOException{
 		
 	}
 	
 	/**
-	 * Allows the player to join a game by his gameId.
+	 * Returns the administrator to the view where he can see the preview of the bug report selected in the list bugReports.
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void selectAGame(ActionEvent event) throws IOException {
+	void checkPlayerReport(ActionEvent event) throws IOException{
 		
 	}
 	
 	/**
-	 * Returns the player to the player menu.
+	 * Returns the administrator to the administrator menu.
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void returnPlayerMenu(ActionEvent event) throws IOException{
-		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+	void returnAdministratorMenu(ActionEvent event) throws IOException{
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));	
 	}
 	
 	//Added Methods
@@ -89,10 +84,11 @@ public class SelectAndJoinGameController  implements Initializable {
         alert.showAndWait();
     }
 
+	/**
+	 * 
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
-
 }
