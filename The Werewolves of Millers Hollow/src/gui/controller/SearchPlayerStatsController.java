@@ -11,56 +11,110 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.systemelement.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
 
 /**
  * 
  * @author Tiffany Dumaire
  *
  */
-public class ReportABugController  implements Initializable{
+public class SearchPlayerStatsController  implements Initializable{
+	
+	//FXML Attributes
 	
 	/**
-	 * Attribute uses to define the bug report's subject.
+	 * 
 	 */
 	@FXML
-	private TextField subject;
+	private ListView<Player> playersList;
 	
 	/**
-	 * Attribute uses to define a bug report's image url link.
+	 * 
 	 */
 	@FXML
-	private TextField imageLink;
+	private TextField usernameSearch;
 	
 	/**
-	 * Attribute uses to define the bug report's description.
+	 * 
 	 */
 	@FXML
-	private TextArea description;
+	private TextField playerSearch;
 	
 	/**
-	 * Allows the player to send a bug report.
+	 * 
+	 */
+	@FXML
+	private TextField winSearch;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private TextField lostSearch;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private RadioButton minPlayed;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private RadioButton maxPlayed;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private RadioButton minWin;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private RadioButton maxWin;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private RadioButton minLost;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private RadioButton maxLost;
+	
+	//FXML Methods
+	
+	/**
+	 * Allows the player to refine the research.
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void sendBugReport(ActionEvent event) throws IOException {
+	void startResearch(ActionEvent event) throws IOException {
 		
 	}
 	
 	/**
-	 * Allows the player to erase the field of the bug report's form.
+	 * Returns the player to the selected player's statistics view .
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void cancelAction(ActionEvent event) throws IOException {
+	void viewPlayerStats(ActionEvent event) throws IOException {
 		
 	}
 	
