@@ -1,5 +1,11 @@
+/**
+ * package gui.controller
+ */
 package gui.controller;
 
+/**
+ * Imported libraries and classes
+ */
 import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
@@ -12,41 +18,87 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * 
+ * @author Tiffany Dumaire
+ *
+ */
 public class AdministratorProfileController  implements Initializable{
 	
+	//FXML Attributes
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField adminEmail;
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField adminPassword;
 	
+	//FXML Methods
+	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnAdministratorMenu(ActionEvent event) throws IOException{
-		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminMenuView.fxml"));	
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));	
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
-	void saveModifications(ActionEvent event) {
+	void saveModifications(ActionEvent event) throws IOException {
 		
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
-	void deleteAdministratorAccount(ActionEvent event) {
+	void deleteAdministratorAccount(ActionEvent event) throws IOException {
 		
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
-	void modifyAdministratorEmail(ActionEvent event) {
+	void modifyAdministratorEmail(ActionEvent event) throws IOException{
 		
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
-	void modifyAdministratorPassword(ActionEvent event) {
+	void modifyAdministratorPassword(ActionEvent event) throws IOException {
 		
 	}
 	
-	//METHOD AJOUTEE
+	//Added Methods
 	
+	/**
+	 * 
+	 * @param message
+	 * @param head
+	 * @param title
+	 */
 	public static void infoBox(String message, String head, String title){
         //A CUSTOMISER
         Alert alert = new Alert(AlertType.ERROR);
@@ -55,7 +107,10 @@ public class AdministratorProfileController  implements Initializable{
         alert.setHeaderText(head);
         alert.showAndWait();
     }
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

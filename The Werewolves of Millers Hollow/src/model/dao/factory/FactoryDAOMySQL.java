@@ -1,5 +1,11 @@
+/**
+ * 
+ */
 package model.dao.factory;
 
+/**
+ * 
+ */
 import java.sql.SQLException;
 import model.dao.mysql.UserDAO;
 import model.dao.mysql.UserDAOMySQL;

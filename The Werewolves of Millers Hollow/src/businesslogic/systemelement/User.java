@@ -71,10 +71,18 @@ public class User {
     	this.password=password;
     }
 
+    /**
+     * 
+     * @return
+     */
 	public int isAdmin() {
 		return isAdmin;
 	}
-
+	
+	/**
+	 * 
+	 * @param isAdmin
+	 */
 	public void setAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}

@@ -1,5 +1,11 @@
+/**
+ * 
+ */
 package application;
 	
+/**
+ * 
+ */
 import java.io.IOException;
 import java.net.URL;
 
@@ -11,16 +17,32 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Tiffany Dumaire
+ *
+ */
 public class TheWerewolvesOfMillersHollow extends Application {
 	
+	/**
+	 * 
+	 */
 	private static Stage stage = null;
 
+	/**
+	 * 
+	 * @param resources
+	 * @throws IOException
+	 */
     public static void setScene(URL resources) throws IOException {
         Parent root = FXMLLoader.load(resources);
         Scene scene = new Scene(root);
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
 	
+    /**
+     * 
+     */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -40,6 +62,10 @@ public class TheWerewolvesOfMillersHollow extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

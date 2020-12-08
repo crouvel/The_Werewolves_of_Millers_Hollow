@@ -114,7 +114,6 @@
             <Font name="Copperplate Gothic Bold" size="25.0" />
          </font>
       </Button>
-      <TextField fx:id="dateOfBirth" layoutX="450.0" layoutY="385.0" prefHeight="47.0" prefWidth="422.0" promptText="date of birth..." />
       <TextField fx:id="gender" layoutX="450.0" layoutY="445.0" prefHeight="47.0" prefWidth="422.0" promptText="gender..." />
       <TextField fx:id="country" layoutX="450.0" layoutY="505.0" prefHeight="47.0" prefWidth="422.0" promptText="country..." />
       <Button layoutX="900.0" layoutY="505.0" mnemonicParsing="false" onAction="#modifyCountry" opacity="0.8" prefHeight="42.0" prefWidth="180.0" style="-fx-background-color: #a6a6a6;" text="modify" textAlignment="CENTER" textFill="#4747d1">
@@ -122,5 +121,6 @@
             <Font name="Copperplate Gothic Bold" size="25.0" />
          </font>
       </Button>
+      <DatePicker fx:id="dateOfBirth" layoutX="450.0" layoutY="385.0" prefHeight="47.0" prefWidth="422.0" />
    </children>
 </Pane>
