@@ -49,7 +49,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
 			primaryStage.setResizable(false);
 			TheWerewolvesOfMillersHollow.stage=primaryStage;
 			primaryStage.setTitle("The Werewolves Of Millers Hollow");
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/view/FriendManagementView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/view/StartMenuView.fxml"));
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

@@ -71,7 +71,7 @@ public class PlayerMenuController implements Initializable {
 	 */
 	@FXML
 	void searchPlayerStat(ActionEvent event) throws IOException{
-		
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/SearchPlayerStatsView.fxml"));	
 	}
 	
 	/**
