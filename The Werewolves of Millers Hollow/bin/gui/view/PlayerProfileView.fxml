@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="536.0" fitWidth="684.0" layoutX="360.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/wolf_background.png" />
+            <Image url="@../../image/wolf_background.png" />
          </image>
       </ImageView>
       <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnPlayerMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
@@ -34,7 +34,7 @@
                   <Shadow height="5.0" radius="1.25" width="2.0" />
                </effect>
                <image>
-                  <Image url="@../../../image/iconMenu.png" />
+                  <Image url="@../../image/iconMenu.png" />
                </image>
             </ImageView>
          </graphic>
