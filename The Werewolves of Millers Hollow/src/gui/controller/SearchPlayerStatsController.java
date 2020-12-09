@@ -46,7 +46,7 @@ public class SearchPlayerStatsController  implements Initializable{
 	 * 
 	 */
 	@FXML
-	private TextField playerSearch;
+	private TextField playedSearch;
 	
 	/**
 	 * 

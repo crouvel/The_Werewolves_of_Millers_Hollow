@@ -13,12 +13,12 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="900.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/backgroundMiddle.png" />
+            <Image url="@../../image/backgroundMiddle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="720.0" fitWidth="900.0" layoutX="637.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/backgroundMiddle.png" />
+            <Image url="@../../image/backgroundMiddle.png" />
          </image>
       </ImageView>
       <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnPlayerMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
@@ -38,7 +38,7 @@
                   <Shadow height="5.0" radius="1.25" width="2.0" />
                </effect>
                <image>
-                  <Image url="@../../../image/iconMenu.png" />
+                  <Image url="@../../image/iconMenu.png" />
                </image>
             </ImageView>
          </graphic>
@@ -85,32 +85,32 @@
                <children>
                   <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/wolf.png" />
+                        <Image url="@../../image/wolf.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="479.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/hunter.png" />
+                        <Image url="@../../image/hunter.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="68.0" fitWidth="70.0" layoutX="380.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/cupid.png" />
+                        <Image url="@../../image/cupid.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="302.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/littleGirl.png" />
+                        <Image url="@../../image/littleGirl.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="60.0" fitWidth="90.0" layoutX="214.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/fortuneTeller.png" />
+                        <Image url="@../../image/fortuneTeller.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="110.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/witch.png" />
+                        <Image url="@../../image/witch.png" />
                      </image>
                   </ImageView>
                   <Slider fx:id="numberOfWerewolves" blockIncrement="1.0" layoutX="10.0" layoutY="88.0" majorTickUnit="1.0" max="8.0" min="1.0" minorTickCount="0" prefHeight="36.0" prefWidth="78.0" showTickLabels="true" showTickMarks="true" value="1.0" />
