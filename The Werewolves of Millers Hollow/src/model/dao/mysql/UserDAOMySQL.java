@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import businesslogic.systemelement.User;
+import businesslogic.domain.User;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
@@ -75,9 +75,7 @@ public class UserDAOMySQL extends UserDAO{
     	request.setString(1, email);
     	request.setString(2, password);
     	ResultSet resultSet = request.executeQuery();
-    	//Return the User if he exists.
     	boolean exist = resultSet.first();
-    	//resultSet.wasNull()||!
     	if(exist){
     		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
     	}

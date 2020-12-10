@@ -12,9 +12,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.User;
 import businesslogic.facade.UserFacade;
-import businesslogic.systemelement.User;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

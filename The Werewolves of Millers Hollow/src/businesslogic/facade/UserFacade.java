@@ -8,7 +8,7 @@ package businesslogic.facade;
  */
 import java.sql.SQLException;
 
-import businesslogic.systemelement.User;
+import businesslogic.domain.User;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.UserDAO;
 

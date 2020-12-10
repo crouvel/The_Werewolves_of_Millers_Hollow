@@ -8,7 +8,7 @@ package model.dao.mysql;
  */
 import java.sql.SQLException;
 
-import businesslogic.systemelement.User;
+import businesslogic.domain.User;
 /**
  * @author Tiffany Dumaire
  */
