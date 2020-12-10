@@ -76,17 +76,13 @@ public class UserDAOMySQL extends UserDAO{
     	request.setString(2, password);
     	ResultSet resultSet = request.executeQuery();
     	//Return the User if he exists.
-    	System.out.println(resultSet.first());
-    	if(resultSet.wasNull()||!resultSet.first()){
-    		System.out.println(resultSet.first());
-    		return null;
+    	boolean exist = resultSet.first();
+    	//resultSet.wasNull()||!
+    	if(exist){
+    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
     	}
     	else{
-    		System.out.println(resultSet.first());
-    		System.out.println(resultSet.getString("email"));
-    		System.out.println(resultSet.getString("password"));
-    		System.out.println(resultSet.getInt("isAdmin"));
-    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
+    		return null;
     	}
 	}
 }

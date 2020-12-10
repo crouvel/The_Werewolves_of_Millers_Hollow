@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.FriendManagementController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/friendsListBackground.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="781.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font name="Verdana Bold" size="16.0" />
+         </font>
+      </Text>
+      <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnPlayerMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
+         <effect>
+            <Lighting diffuseConstant="1.54" specularConstant="1.23" specularExponent="24.39" surfaceScale="1.86">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <Shadow height="5.0" radius="1.25" width="2.0" />
+               </effect>
+               <image>
+                  <Image url="@../../../image/iconMenu.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="addFriendUsername" layoutX="769.0" layoutY="368.0" prefHeight="31.0" prefWidth="135.0" promptText="username..." />
+      <TableView fx:id="friendsList" layoutX="265.0" layoutY="67.0" prefHeight="342.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="friend" prefWidth="199.0" text="Friends List" />
+        </columns>
+      </TableView>
+      <TableView fx:id="sent" layoutX="31.0" layoutY="127.0" prefHeight="135.0" prefWidth="135.0">
+         <columns>
+            <TableColumn fx:id="sentRequest" prefWidth="134.0" text="Sent Request" />
+         </columns>
+      </TableView>
+      <TableView fx:id="receive" layoutX="13.0" layoutY="307.0" prefHeight="135.0" prefWidth="164.0">
+         <columns>
+            <TableColumn fx:id="receivedRequest" prefWidth="163.0" text="Received Request" />
+         </columns>
+      </TableView>
+      <Button layoutX="63.0" layoutY="269.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="13.0" layoutY="446.0" mnemonicParsing="false" onAction="#accept" style="-fx-background-color: rgb(46, 184, 46,0.8);" text="Accept" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="99.0" layoutY="447.0" mnemonicParsing="false" onAction="#refuse" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Refuse" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="272.0" layoutY="417.0" mnemonicParsing="false" onAction="#deleteFriend" prefHeight="31.0" prefWidth="186.0" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Delete friend" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="909.0" layoutY="367.0" mnemonicParsing="false" onAction="#sendCurrentRequest" prefHeight="31.0" prefWidth="64.0" style="-fx-background-color: rgb(46, 184, 46,0.8);" text="Send">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="975.0" layoutY="368.0" mnemonicParsing="false" onAction="#cancelCurrentRequest" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Cancel">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

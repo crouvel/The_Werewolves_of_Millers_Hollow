@@ -31,8 +31,12 @@ public class UserFacade {
      */
     public User login(String email, String password) throws SQLException {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
-    	UserDAO userDAO  = factoryTest.createUserDAO();
-        return userDAO.getUserByLogin(email,password);
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getUserByLogin(email,password);
+    	}catch(SQLException e) {
+    		return null;
+    	}
     }
 
     /**
