@@ -12,9 +12,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.User;
 import businesslogic.facade.UserFacade;
-import businesslogic.systemelement.User;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,20 +54,31 @@ public class LoginController implements Initializable {
 	void login(ActionEvent event) throws SQLException, IOException {
 		String mail = email.getText();
 		String pwd = password.getText();
-		UserFacade userFacade = new UserFacade();
-		User user;
-		try {
-			user = userFacade.login(mail,pwd);
-		}catch(SQLException e) {
-			infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect or missing information");
-            return;
-		}
-		if(user.isAdmin()==1) {
-			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
+		if(mail.isBlank() && pwd.isBlank()) {
+			infoBox("Please enter an email address and a password.","Missing email address and password","Missing informations");
 		}else {
-			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
-		}
+			if(mail.isBlank()) {
+				infoBox("Please enter an email address.","Missing email address","Missing information");
+			}else {
+				if(pwd.isBlank()) {
+					infoBox("Please enter a password.","Missing password","Missing information");
+				}else {
+					UserFacade userFacade = new UserFacade();
+					User user=userFacade.login(mail,pwd);
+					if (user != null) {
+						if(user.isAdmin()==1) {
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
+						}else {
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+						}
+					}else {
+						infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
+					}
+				}
+			}
+		}		
 	}
+		
 	
 	/**
 	 * 
@@ -90,7 +100,7 @@ public class LoginController implements Initializable {
 	 */
 	public static void infoBox(String message, String head, String title){
         //A CUSTOMISER
-		Alert alert = new Alert(AlertType.ERROR);
+		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText(message);
         alert.setTitle(title);
         alert.setHeaderText(head);

@@ -1,4 +1,4 @@
-package businesslogic.systemelement;
+package businesslogic.domain;
 
 public class BugReport extends Report{
 

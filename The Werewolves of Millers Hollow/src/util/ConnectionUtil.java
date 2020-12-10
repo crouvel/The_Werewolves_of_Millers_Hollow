@@ -15,7 +15,6 @@ public class ConnectionUtil {
             String user = "projetsep";
             String pwd = "ProjetSEP-2020";
             Connection connection = DriverManager.getConnection(url, user, pwd);
-            System.out.println("Connection status"+pwd);
             return connection;
         }
         catch(Exception e)

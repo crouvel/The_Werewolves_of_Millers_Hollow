@@ -11,8 +11,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.systemelement.BugReport;
-import businesslogic.systemelement.PlayerReport;
+import businesslogic.domain.BugReport;
+import businesslogic.domain.PlayerReport;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
