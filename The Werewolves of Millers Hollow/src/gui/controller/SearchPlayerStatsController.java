@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.systemelement.Player;
+import businesslogic.domain.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,7 +46,7 @@ public class SearchPlayerStatsController  implements Initializable{
 	 * 
 	 */
 	@FXML
-	private TextField playerSearch;
+	private TextField playedSearch;
 	
 	/**
 	 * 

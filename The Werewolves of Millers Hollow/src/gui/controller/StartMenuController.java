@@ -4,7 +4,7 @@
 package gui.controller;
 
 /**
- * 
+ * Imported libraries and classes.
  */
 import java.io.IOException;
 import java.net.URL;
@@ -14,7 +14,6 @@ import application.TheWerewolvesOfMillersHollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 
 /**
  * 
@@ -22,20 +21,6 @@ import javafx.scene.control.TextField;
  *
  */
 public class StartMenuController implements Initializable {
-	
-	//FXML Attributes
-	
-	/**
-	 * 
-	 */
-	@FXML
-	private TextField email;
-	
-	/**
-	 * 
-	 */
-	@FXML
-	private TextField password;
 
 	//FXML Methods
 	

@@ -11,8 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.systemelement.User;
-
+import businesslogic.domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

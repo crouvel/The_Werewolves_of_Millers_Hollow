@@ -1,10 +1,10 @@
 /**
- * 
+ * package application.
  */
 package application;
 	
 /**
- * 
+ * Imported libraries and classes.
  */
 import java.io.IOException;
 import java.net.URL;
@@ -25,12 +25,12 @@ import javafx.stage.Stage;
 public class TheWerewolvesOfMillersHollow extends Application {
 	
 	/**
-	 * 
+	 * Attribute containing the current stage of the application.
 	 */
 	private static Stage stage = null;
 
 	/**
-	 * 
+	 * Allows the application to change scene.
 	 * @param resources
 	 * @throws IOException
 	 */
@@ -42,6 +42,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
 	
     /**
      * 
+     * @param primaryStage
      */
 	@Override
 	public void start(Stage primaryStage) {
@@ -55,7 +56,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreen(false);
-			primaryStage.getIcons().add(new Image(("file:../../image/logo.png")));
+			primaryStage.getIcons().add(new Image(("@../../image/logo.png")));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
