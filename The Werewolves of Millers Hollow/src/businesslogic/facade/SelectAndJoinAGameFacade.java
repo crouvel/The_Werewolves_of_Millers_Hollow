@@ -18,7 +18,7 @@ public class SelectAndJoinAGameFacade {
     /**
      * 
      */
-    private Set<Game> availableGames;
+    private ArrayList<Game> availableGames;
 
 
     /**
@@ -34,8 +34,7 @@ public class SelectAndJoinAGameFacade {
      * @return
      */
     public ArrayList<Game> getGamesList() {
-        // TODO implement here
-        return null;
+        return this.availableGames;
     }
 
 }

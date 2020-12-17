@@ -1,6 +1,5 @@
 package chat.com.lloseng.ocsf.server;
 
-
 /**
  * 
  */
@@ -82,7 +81,7 @@ public abstract class AbstractServer {
      * @return
      */
     public final void setPort(int port) {
-        // TODO implement here
+    	this.port = port;
     }
 
     /**
@@ -90,7 +89,7 @@ public abstract class AbstractServer {
      * @return
      */
     public final void setTimeout(int timeout) {
-        // TODO implement here
+    	this.timeout = timeout;
     }
 
     /**
@@ -171,7 +170,6 @@ public abstract class AbstractServer {
      * @return
      */
     public final int getNumberOfClients() {
-        // TODO implement here
         return 0;
     }
 
@@ -179,8 +177,7 @@ public abstract class AbstractServer {
      * @return
      */
     public final int getPort() {
-        // TODO implement here
-        return 0;
+        return this.port;
     }
 
     /**

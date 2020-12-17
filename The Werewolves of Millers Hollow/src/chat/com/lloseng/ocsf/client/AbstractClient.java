@@ -1,6 +1,6 @@
 package chat.com.lloseng.ocsf.client;
+
 import java.net.InetAddress;
-import java.util.*;
 
 /**
  * 
@@ -59,23 +59,21 @@ public abstract class AbstractClient {
      * @return
      */
     public final void setPort(int port) {
-        // TODO implement here
+    	this.port = port;
     }
 
     /**
      * @return
      */
     public final int getPort() {
-        // TODO implement here
-        return 0;
+        return this.port;
     }
 
     /**
      * @return
      */
     public final String getHost() {
-        // TODO implement here
-        return "";
+        return this.host;
     }
 
     /**
@@ -83,7 +81,7 @@ public abstract class AbstractClient {
      * @return
      */
     public final void setHost(String host) {
-        // TODO implement here
+        this.host = host;
     }
 
     /**

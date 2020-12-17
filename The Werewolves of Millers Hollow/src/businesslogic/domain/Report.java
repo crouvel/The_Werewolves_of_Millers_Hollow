@@ -1,7 +1,5 @@
 package businesslogic.domain;
 
-import java.util.*;
-
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
@@ -29,16 +27,14 @@ public class Report {
      * @return
      */
     public int getReportId() {
-        // TODO implement here
-        return 0;
+        return this.reportId;
     }
 
     /**
      * @return
      */
     public String getDescription() {
-        // TODO implement here
-        return "";
+        return this.description;
     }
 
 }

@@ -19,7 +19,7 @@ public class ReportManagementFacade {
     /**
      * 
      */
-    private Report reportsList;
+    private ArrayList<Report> reportsList;
 
 
     /**
@@ -34,16 +34,14 @@ public class ReportManagementFacade {
      * @return
      */
     public ArrayList<Report> getReportsList() {
-        // TODO implement here
-        return null;
+        return this.reportsList;
     }
 
     /**
      * @return
      */
     public Report getcurrentReportInView() {
-        // TODO implement here
-        return null;
+        return this.currentReportInView;
     }
 
     /**
