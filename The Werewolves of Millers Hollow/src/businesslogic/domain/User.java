@@ -14,6 +14,7 @@ public class User {
     	this.email=email;
     	this.password=password;
     	this.isAdmin=isAdmin;
+    	this.isLockedAccount = false;
     }
 
     /**
@@ -35,6 +36,11 @@ public class User {
      * 
      */
     private int isAdmin;
+    
+    /**
+     * 
+     */
+    public boolean isLockedAccount;
 
     /**
      * @return
@@ -86,6 +92,21 @@ public class User {
 	public void setAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	
+    /**
+     * @return
+     */
+    public boolean isLockedAccount() {
+        // TODO implement here
+        return false;
+    }
+
+    /**
+     * @param isLocked
+     */
+    public void setIsLockedAccount(boolean isLocked) {
+        // TODO implement here
+    }
     
 
 }

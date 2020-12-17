@@ -4,7 +4,7 @@
 package gui.controller;
 
 /**
- * 
+ * Imported classes and libraries.
  */
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +45,7 @@ public class LoginController implements Initializable {
 	//FXML Methods
 	
 	/**
-	 * 
+	 * Allows the user to log in using their email and password.
 	 * @param event
 	 * @throws SQLException
 	 * @throws IOException

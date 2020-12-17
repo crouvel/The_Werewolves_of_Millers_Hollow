@@ -3,6 +3,9 @@
  */
 package gui.controller;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
