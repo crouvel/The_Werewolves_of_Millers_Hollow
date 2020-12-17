@@ -1,7 +1,5 @@
 package model.dao.mysql;
 
-import java.util.*;
-
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */

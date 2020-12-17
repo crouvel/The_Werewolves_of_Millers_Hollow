@@ -1,4 +1,5 @@
 package chat.client;
+
 import java.util.*;
 import businesslogic.domain.PlayerInGame;
 
@@ -72,5 +73,19 @@ public class ChatGameClient implements Observer {
     public void connectionException(Exception exception) {
         // TODO implement here
     }
+
+	/**
+	 * @return the currentPlayerInGame
+	 */
+	public PlayerInGame getCurrentPlayerInGame() {
+		return currentPlayerInGame;
+	}
+
+	/**
+	 * @param currentPlayerInGame the currentPlayerInGame to set
+	 */
+	public void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
+		this.currentPlayerInGame = currentPlayerInGame;
+	}
 
 }

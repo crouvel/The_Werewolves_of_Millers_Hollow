@@ -1,6 +1,5 @@
 package businesslogic.facade;
 
-import java.util.*;
 import businesslogic.domain.Administrator;
 
 /**
@@ -31,5 +30,25 @@ public class BlockAPlayerFacade {
         // TODO implement here
         return false;
     }
+
+
+
+
+	/**
+	 * @return the currentAdmin
+	 */
+	public Administrator getCurrentAdmin() {
+		return currentAdmin;
+	}
+
+
+
+
+	/**
+	 * @param currentAdmin the currentAdmin to set
+	 */
+	public void setCurrentAdmin(Administrator currentAdmin) {
+		this.currentAdmin = currentAdmin;
+	}
 
 }

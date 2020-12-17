@@ -1,6 +1,5 @@
 package businesslogic.facade;
 
-import java.util.*;
 import businesslogic.domain.Report;
 
 /**
@@ -32,5 +31,23 @@ public class ReportABugFacade {
         // TODO implement here
         return false;
     }
+
+
+
+	/**
+	 * @return the report
+	 */
+	public Report getReport() {
+		return report;
+	}
+
+
+
+	/**
+	 * @param report the report to set
+	 */
+	public void setReport(Report report) {
+		this.report = report;
+	}
 
 }

@@ -1,6 +1,5 @@
 package businesslogic.domain;
 
-import java.util.*;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -27,8 +26,28 @@ public class PlayerReport extends Report {
      * @return
      */
     public String getUsernameOfBadPlayer() {
-        // TODO implement here
-        return "";
+        return this.usernameOfBadPlayer;
     }
+
+	/**
+	 * @param usernameOfBadPlayer the usernameOfBadPlayer to set
+	 */
+	public void setUsernameOfBadPlayer(String usernameOfBadPlayer) {
+		this.usernameOfBadPlayer = usernameOfBadPlayer;
+	}
+
+	/**
+	 * @return the reportType
+	 */
+	public PlayerReportType getReportType() {
+		return reportType;
+	}
+
+	/**
+	 * @param reportType the reportType to set
+	 */
+	public void setReportType(PlayerReportType reportType) {
+		this.reportType = reportType;
+	}
 
 }

@@ -15,17 +15,12 @@ public class GameFacade {
     public GameFacade() {
     }
 
-
-
-
-
-
     /**
      * 
      */
     private Game currentGame;
 
-
+    private PlayerInGame currentPlayerInGame;
     /**
      * @param badPlayerUsername 
      * @param reason 
@@ -61,24 +56,21 @@ public class GameFacade {
      * @return
      */
     public PlayerInGame getCurrentPlayerInGame() {
-        // TODO implement here
-        return null;
+        return this.currentPlayerInGame;
     }
 
     /**
      * @return
      */
     public String getCurrentPlayerInGameUsername() {
-        // TODO implement here
-        return "";
+        return this.currentPlayerInGame.getUsername();
     }
 
     /**
      * @return
      */
     public int getGameId() {
-        // TODO implement here
-        return 0;
+        return this.currentGame.getGame_id();
     }
 
     /**

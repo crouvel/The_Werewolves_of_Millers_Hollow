@@ -83,4 +83,18 @@ public class GameManagementFacade {
         return false;
     }
 
+	/**
+	 * @return the currentGame
+	 */
+	public Game getCurrentGame() {
+		return currentGame;
+	}
+
+	/**
+	 * @param currentGame the currentGame to set
+	 */
+	public void setCurrentGame(Game currentGame) {
+		this.currentGame = currentGame;
+	}
+
 }

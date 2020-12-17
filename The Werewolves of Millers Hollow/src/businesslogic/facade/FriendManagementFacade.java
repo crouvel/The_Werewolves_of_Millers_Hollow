@@ -75,16 +75,14 @@ public class FriendManagementFacade {
      * @return
      */
     public Player getCurrentPlayer() {
-        // TODO implement here
-        return null;
+        return this.currentPlayer;
     }
 
     /**
      * @return
      */
     public String getCurrentPlayerUsername() {
-        // TODO implement here
-        return "";
+        return this.currentPlayer.getUsername();
     }
 
     /**

@@ -104,7 +104,9 @@ public class EchoServerGame implements Observer {
         // TODO implement here
     }
 
-	@Override
+	/**
+	 * 
+	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
