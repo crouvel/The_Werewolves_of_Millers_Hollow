@@ -33,7 +33,22 @@ public class Player extends User {
      * 
      */
     private Gender gender;
-
+    
+    /**
+     * 
+     */
+    private int playedGames;
+    
+    /**
+     * 
+     */
+    private int wonGames;
+    
+    /**
+     * 
+     */
+    private int lostGames;
+    
     /**
      * 
      */
@@ -86,6 +101,48 @@ public class Player extends User {
     public void setCountry() {
         // TODO implement here
     }
+
+	/**
+	 * @return the winGames
+	 */
+	public int getWonGames() {
+		return wonGames;
+	}
+
+	/**
+	 * @param winGames the winGames to set
+	 */
+	public void setWonGames(int wonGames) {
+		this.wonGames = wonGames;
+	}
+
+	/**
+	 * @return the playedGames
+	 */
+	public int getPlayedGames() {
+		return playedGames;
+	}
+
+	/**
+	 * @param playedGames the playedGames to set
+	 */
+	public void setPlayedGames(int playedGames) {
+		this.playedGames = playedGames;
+	}
+
+	/**
+	 * @return the lostGames
+	 */
+	public int getLostGames() {
+		return lostGames;
+	}
+
+	/**
+	 * @param lostGames the lostGames to set
+	 */
+	public void setLostGames(int lostGames) {
+		this.lostGames = lostGames;
+	}
 
 
 }
