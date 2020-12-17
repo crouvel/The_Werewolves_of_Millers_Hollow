@@ -8,7 +8,6 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
@@ -20,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import util.HashPassword;
 
 /**
  * 
@@ -47,11 +47,10 @@ public class LoginController implements Initializable {
 	/**
 	 * Allows the user to log in using their email and password.
 	 * @param event
-	 * @throws SQLException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
 	@FXML
-	void login(ActionEvent event) throws SQLException, IOException {
+	void login(ActionEvent event) throws Exception {
 		String mail = email.getText();
 		String pwd = password.getText();
 		if(mail.isBlank() && pwd.isBlank()) {
@@ -64,7 +63,7 @@ public class LoginController implements Initializable {
 					infoBox("Please enter a password.","Missing password","Missing information");
 				}else {
 					UserFacade userFacade = new UserFacade();
-					User user=userFacade.login(mail,pwd);
+					User user=userFacade.login(mail,HashPassword.hashPassword(pwd));
 					if (user != null) {
 						if(user.isAdmin()==1) {
 							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
