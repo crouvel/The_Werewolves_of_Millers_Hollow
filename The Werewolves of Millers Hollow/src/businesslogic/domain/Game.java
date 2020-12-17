@@ -168,6 +168,20 @@ public class Game {
 	}
 
 	/**
+	 * @return the availableGame
+	 */
+	public boolean isAvailableGame() {
+		return availableGame;
+	}
+
+	/**
+	 * @param availableGame the availableGame to set
+	 */
+	public void setAvailableGame(boolean availableGame) {
+		this.availableGame = availableGame;
+	}
+
+	/**
      * 
      */
     private int game_id;
@@ -222,5 +236,9 @@ public class Game {
      * 
      */
     private Phase currentPhase;
-
+    
+    /**
+     * 
+     */
+    private boolean availableGame;
 }
