@@ -4,7 +4,7 @@
 package gui.controller;
 
 /**
- * Imported libraries/classes
+ * Imported libraries and classes
  */
 import java.io.IOException;
 import java.net.URL;

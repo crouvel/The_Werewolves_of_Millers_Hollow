@@ -1,8 +1,11 @@
 /**
- * 
+ * package gui.controller
  */
 package gui.controller;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 /**
  * 

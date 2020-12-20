@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/friendsListBackground.png" />
+            <Image url="@../../image/friendsListBackground.png" />
          </image>
       </ImageView>
       <Text layoutX="781.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
@@ -37,7 +37,7 @@
                   <Shadow height="5.0" radius="1.25" width="2.0" />
                </effect>
                <image>
-                  <Image url="@../../../image/iconMenu.png" />
+                  <Image url="@../../image/iconMenu.png" />
                </image>
             </ImageView>
          </graphic>
