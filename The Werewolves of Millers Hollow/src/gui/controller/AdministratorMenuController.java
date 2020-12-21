@@ -8,10 +8,12 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.domain.User;
+import businesslogic.domain.Administrator;
+import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,7 +30,7 @@ public class AdministratorMenuController  implements Initializable{
 	/**
 	 * Attribute containing the current user (Administrator connected)
 	 */
-	private User currentUser;
+	private static Administrator currentAdmin;
 
 	//FXML Methods
 	
@@ -76,19 +78,17 @@ public class AdministratorMenuController  implements Initializable{
 	//Added Methods
 	
 	/**
-	 * Getter of currentUser.
-	 * @return the current user 
+	 * @return the currentAdmin
 	 */
-	public User getCurrentUser() {
-		return currentUser;
+	public static Administrator getCurrentAdmin() throws IOException {
+		return currentAdmin;
 	}
 
 	/**
-	 * Setter of currentUser.
-	 * @param user : new value of currentUser.
+	 * @param currentAdmin the currentAdmin to set
 	 */
-	public void setCurrentUser(User user) {
-		this.currentUser = user;
+	public static void setCurrentAdmin(Administrator currentAdmin) throws IOException {
+		AdministratorMenuController.currentAdmin = currentAdmin;
 	}
 
 	/**
@@ -96,8 +96,13 @@ public class AdministratorMenuController  implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		UserFacade userFacade = new UserFacade();
+		try {
+			currentAdmin = userFacade.getAdmin(LoginController.getCurrentUser());
+			System.out.println(currentAdmin.getEmail());
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}	
 	}
 
 }

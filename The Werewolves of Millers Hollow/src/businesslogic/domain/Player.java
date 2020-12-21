@@ -18,7 +18,7 @@ public class Player extends User {
     	super(userId,email,password,isAdmin);
     	this.username = "";
     	this.dateOfBirth = null;
-    	this.gender = Gender.MALE;
+    	this.gender = "MALE";
     	this.country = "";
     	this.playedGames = 0;
     	this.wonGames = 0;
@@ -38,7 +38,7 @@ public class Player extends User {
      * @param gender
      * @param country
      */
-    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country) {
+    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, String gender, String country) {
     	super(userId,email,password,isAdmin);
     	this.username = username;
     	this.dateOfBirth = dateOfBirth;
@@ -65,7 +65,7 @@ public class Player extends User {
      * @param wonGames
      * @param lostGames
      */
-    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country,int playedGames,int wonGames, int lostGames) {
+    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, String gender, String country,int playedGames,int wonGames, int lostGames) {
     	this(userId,email,password,isAdmin,username,dateOfBirth,gender,country);
     	this.playedGames = playedGames;
     	this.wonGames = wonGames;
@@ -90,7 +90,7 @@ public class Player extends User {
      * @param friendList
      * @param invitedFriends
      */
-    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country,int playedGames,int wonGames, int lostGames,ArrayList<Player> friendList,ArrayList<Player> invitedFriends) {
+    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, String gender, String country,int playedGames,int wonGames, int lostGames,ArrayList<Player> friendList,ArrayList<Player> invitedFriends) {
     	this(userId,email,password,isAdmin,username,dateOfBirth,gender,country,playedGames,wonGames,lostGames);
     	this.setFriendsList(friendList);
     	this.setInvitedPlayer(invitedFriends);
@@ -114,7 +114,7 @@ public class Player extends User {
     /**
      * Attribute corresponds to the gender.
      */
-    private Gender gender;
+    private String gender;
     
     /**
      * Attribute corresponds to the number of played games.
@@ -166,7 +166,7 @@ public class Player extends User {
     /**
      * @return the gender of the player
      */
-    public Gender getGender() {
+    public String getGender() {
         return this.gender;
     }
 

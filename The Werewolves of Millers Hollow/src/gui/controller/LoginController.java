@@ -42,6 +42,12 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField password;
 	
+	//Attributes
+	/**
+	 * 
+	 */
+	private static User currentUser;
+	
 	//FXML Methods
 	
 	/**
@@ -66,9 +72,9 @@ public class LoginController implements Initializable {
 					User user=userFacade.login(mail,HashPassword.hashPassword(pwd));
 					if (user != null) {
 						if(user.isAdmin()==1) {
-							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
+							TheWerewolvesOfMillersHollow.goToAdminMenu(user,getClass().getResource("../view/AdministratorMenuView.fxml"));
 						}else {
-							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+							TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
 						}
 					}else {
 						infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
@@ -111,7 +117,23 @@ public class LoginController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
+	}
+
+
+	/**
+	 * @return the currentUser
+	 */
+	public static User getCurrentUser() throws IOException {
+		return currentUser;
+	}
+
+
+	/**
+	 * @param currentUser the currentUser to set
+	 */
+	public static void setCurrentUser(User currentUser) throws IOException {
+		LoginController.currentUser = currentUser;
 	}
 	
 }

@@ -1,5 +1,5 @@
 /**
- * package gui.controller
+ * @package gui.controller
  */
 package gui.controller;
 
@@ -8,10 +8,12 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.domain.Player;
+import businesslogic.facade.FriendManagementFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,19 +41,22 @@ public class FriendManagementController implements Initializable {
 	 * Attribute containing the player's friends list.
 	 */
 	@FXML
-	private ListView<Player> friendsList;
+	private ListView<String> friendsList;
 	
 	/**
 	 * Attribute containing the player's sent friend requests.
 	 */
 	@FXML
-	private ListView<Player> sent;
+	private ListView<String> sent;
 	
 	/**
 	 * Attribute containing the player's received friend requests.
 	 */
 	@FXML
-	private ListView<Player> receive;
+	private ListView<String> receive;
+	
+	//Other Attributes
+	
 	
 	//FXML Methods
 	
@@ -146,7 +151,27 @@ public class FriendManagementController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-			
+		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+		ArrayList<String> sentRequests;
+		ArrayList<String> receivedRequests;
+		ArrayList<String> friendList;
+		try {
+			sentRequests = friendManagementFacade.getSentFriendRequests(PlayerMenuController.getCurrentPlayer().getUsername());
+			for(String i : sentRequests) {
+				sent.getItems().add(i);
+			}
+			receivedRequests = friendManagementFacade.getReceivedFriendRequests(PlayerMenuController.getCurrentPlayer().getUsername());
+			for(String i : receivedRequests) {
+				receive.getItems().add(i);
+			}
+			friendList = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
+			for(String i : friendList) {
+				friendsList.getItems().add(i);
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

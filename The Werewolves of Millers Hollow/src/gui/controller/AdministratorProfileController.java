@@ -6,7 +6,6 @@ package gui.controller;
 /**
  * Imported libraries and classes
  */
-import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextField;
 
 /**
  * 
@@ -108,13 +108,15 @@ public class AdministratorProfileController  implements Initializable{
         alert.showAndWait();
     }
 	
-	/**
-	 * 
-	 */
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+	public void initialize(URL arg0, ResourceBundle arg1) {		
+		try {
+			adminEmail.setText(AdministratorMenuController.getCurrentAdmin().getEmail());
+			adminPassword.setText(AdministratorMenuController.getCurrentAdmin().getPassword());	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

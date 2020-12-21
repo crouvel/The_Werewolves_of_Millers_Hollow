@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import businesslogic.domain.User;
+import businesslogic.domain.Administrator;
 import businesslogic.domain.Player;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.UserDAO;
@@ -44,6 +45,27 @@ public class UserFacade {
     	}
     }
 
+    public Player getPlayer(User user) throws SQLException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getPlayer(user);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
+    }
+    
+    public Administrator getAdmin(User user) throws SQLException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getAdmin(user);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
+    }
+    
+    
     /**
      * 
      * @param email 

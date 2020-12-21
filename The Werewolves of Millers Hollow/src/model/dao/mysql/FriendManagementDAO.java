@@ -1,7 +1,7 @@
 package model.dao.mysql;
 
+import java.sql.SQLException;
 import java.util.*;
-import businesslogic.domain.Player;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -17,14 +17,16 @@ public abstract class FriendManagementDAO {
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract ArrayList<Player> getReceivedFriendRequests(String username);
+    public abstract ArrayList<String> getReceivedFriendRequests(String username) throws SQLException;
 
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract ArrayList<Player> getFriendList(String username);
+    public abstract ArrayList<String> getFriendList(String username) throws SQLException;
 
     /**
      * @param username1 
@@ -57,8 +59,9 @@ public abstract class FriendManagementDAO {
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract ArrayList<Player> getRequestSent(String username);
+    public abstract ArrayList<String> getRequestSent(String username) throws SQLException;
 
     /**
      * @param username1 
