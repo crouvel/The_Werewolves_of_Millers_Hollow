@@ -41,7 +41,8 @@ public class AdministratorMenuController  implements Initializable{
 	 */
 	@FXML
 	void signOut(ActionEvent event) throws IOException {
-		//A Compléter
+		LoginController.setCurrentUser(null);
+		AdministratorMenuController.setCurrentAdmin(null);
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
 	

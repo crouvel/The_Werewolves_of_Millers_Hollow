@@ -2,7 +2,6 @@ package businesslogic.facade;
 
 import java.sql.SQLException;
 import java.util.*;
-import businesslogic.domain.Player;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.FriendManagementDAO;
 
@@ -12,18 +11,19 @@ import model.dao.mysql.FriendManagementDAO;
 public class FriendManagementFacade {
 
     /**
-     * 
-     */
-    private Player currentPlayer;
-
-    /**
      * @param username1 
      * @param username2 
      * @return
      */
     public boolean sendRequest(String username1, String username2) {
-    	// TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();	
+    		return friendManagementDAO.sendFriendRequest(username1,username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}  
     }
 
     /**
@@ -32,8 +32,14 @@ public class FriendManagementFacade {
      * @return
      */
     public boolean acceptFriendRequest(String username1, String username2) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();	
+    		return friendManagementDAO.addFriendInList(username1,username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}
     }
 
     /**
@@ -42,8 +48,14 @@ public class FriendManagementFacade {
      * @return
      */
     public boolean cancelFriendRequest(String username1, String username2) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();	
+    		return friendManagementDAO.deleteRequest(username1,username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	} 
     }
 
     /**
@@ -52,8 +64,14 @@ public class FriendManagementFacade {
      * @return
      */
     public boolean deleteFriend(String username1, String username2) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();	
+    		return friendManagementDAO.deleteFromFriendList(username1,username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}  
     }
 
     /**
@@ -62,22 +80,14 @@ public class FriendManagementFacade {
      * @return
      */
     public boolean refuseFriendRequest(String username1, String username2) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @return
-     */
-    public Player getCurrentPlayer() {
-        return this.currentPlayer;
-    }
-
-    /**
-     * @return
-     */
-    public String getCurrentPlayerUsername() {
-        return this.currentPlayer.getUsername();
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();	
+    		return friendManagementDAO.refuseRequest(username1,username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}
     }
 
     /**
@@ -86,10 +96,10 @@ public class FriendManagementFacade {
      * @throws SQLException
      */
     public ArrayList<String> getFriendList(String username) throws SQLException{
-    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
-    		FriendManagementDAO frienManagementDAO  = factoryTest.createFriendManagementDAO();
-    		return frienManagementDAO.getFriendList(username);
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();
+    		return friendManagementDAO.getFriendList(username);
     	}catch(SQLException e) {
     		return null;
     	}    	
@@ -101,10 +111,10 @@ public class FriendManagementFacade {
      * @throws SQLException
      */
     public ArrayList<String> getReceivedFriendRequests(String username) throws SQLException {
-    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
-    		FriendManagementDAO frienManagementDAO  = factoryTest.createFriendManagementDAO();
-    		return frienManagementDAO.getReceivedFriendRequests(username);
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();
+    		return friendManagementDAO.getReceivedFriendRequests(username);
     	}catch(SQLException e) {
     		return null;
     	}   
@@ -116,10 +126,10 @@ public class FriendManagementFacade {
      * @throws SQLException
      */
     public ArrayList<String> getSentFriendRequests(String username) throws SQLException {
-    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
-    		FriendManagementDAO frienManagementDAO  = factoryTest.createFriendManagementDAO();
-    		return frienManagementDAO.getRequestSent(username);
+    		FriendManagementDAO friendManagementDAO  = factory.createFriendManagementDAO();
+    		return friendManagementDAO.getRequestSent(username);
     	}catch(SQLException e) {
     		return null;
     	}   

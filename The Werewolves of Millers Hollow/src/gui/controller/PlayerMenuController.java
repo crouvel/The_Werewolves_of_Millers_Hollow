@@ -99,7 +99,8 @@ public class PlayerMenuController implements Initializable {
 	 */
 	@FXML
 	void signOut(ActionEvent event) throws IOException {
-		//à terminer
+		LoginController.setCurrentUser(null);
+		PlayerMenuController.setCurrentPlayer(null);		
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
 	

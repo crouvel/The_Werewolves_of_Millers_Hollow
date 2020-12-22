@@ -32,29 +32,33 @@ public abstract class FriendManagementDAO {
      * @param username1 
      * @param username2 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean deleteRequest(String username1, String username2);
+    public abstract boolean deleteRequest(String username1, String username2) throws SQLException;
 
     /**
      * @param username1 
      * @param username2 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean deleteFromFriendList(String username1, String username2);
+    public abstract boolean deleteFromFriendList(String username1, String username2) throws SQLException;
 
     /**
      * @param username1 
      * @param username2 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean refuseRequest(String username1, String username2);
+    public abstract boolean refuseRequest(String username1, String username2) throws SQLException;
 
     /**
      * @param username1 
      * @param username2 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean addFriendInList(String username1, String username2);
+    public abstract boolean addFriendInList(String username1, String username2) throws SQLException;
 
     /**
      * @param username 
@@ -67,7 +71,8 @@ public abstract class FriendManagementDAO {
      * @param username1 
      * @param username2 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean sendFriendRequest(String username1, String username2);
+    public abstract boolean sendFriendRequest(String username1, String username2) throws SQLException;
 
 }
