@@ -68,27 +68,32 @@ public abstract class AbstractFactoryDAO {
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract ReportDAO createReportDAO();
+    public abstract ReportDAO createReportDAO() throws SQLException;
 
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract GameManagementDAO createGameManagementDAO();
+    public abstract GameManagementDAO createGameManagementDAO() throws SQLException;
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract PlayerInGameDAO createPlayerInGameDAO();
+    public abstract PlayerInGameDAO createPlayerInGameDAO() throws SQLException;
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract FriendManagementDAO createFriendManagementDAO();
+    public abstract FriendManagementDAO createFriendManagementDAO() throws SQLException;
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract SelectAndJoinAGameDAO createSelectAndJoinAGameDAO();
+    public abstract SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() throws SQLException;
 }
