@@ -8,16 +8,17 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.domain.User;
+import businesslogic.domain.Player;
+import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
 
 /**
  * 
@@ -25,23 +26,11 @@ import javafx.scene.control.TextField;
  *
  */
 public class PlayerMenuController implements Initializable {
-	
+		
 	/**
 	 * 
 	 */
-	@FXML
-	private TextField email;
-	
-	/**
-	 * 
-	 */
-	@FXML
-	private TextField password;
-	
-	/**
-	 * 
-	 */
-	private User currentUser;	
+	private static Player currentPlayer;	
 	
 	/**
 	 * 
@@ -110,16 +99,9 @@ public class PlayerMenuController implements Initializable {
 	 */
 	@FXML
 	void signOut(ActionEvent event) throws IOException {
-		//à terminer
+		LoginController.setCurrentUser(null);
+		PlayerMenuController.setCurrentPlayer(null);		
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
-	}
-	
-	/**
-	 * @param arg0
-	 * @param arg1
-	 */
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
 	}
 	
 	//Added Methods
@@ -142,15 +124,25 @@ public class PlayerMenuController implements Initializable {
 	 * Getter of currentUser attribute.
 	 * @return
 	 */
-	public User getCurrentUser() {
-		return currentUser;
+	public static Player getCurrentPlayer() throws IOException{
+		return PlayerMenuController.currentPlayer;
 	}
 
 	/**
 	 * Setter of currentUser attribute.
 	 * @param currentUser
 	 */
-	public void setCurrentUser(User currentUser) {
-		this.currentUser = currentUser;
+	public static void setCurrentPlayer(Player currentPlayer) throws IOException{
+		PlayerMenuController.currentPlayer = currentPlayer;
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		UserFacade userFacade = new UserFacade();
+		try {
+			currentPlayer = userFacade.getPlayer(LoginController.getCurrentUser());
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
