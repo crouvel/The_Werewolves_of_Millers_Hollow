@@ -1,6 +1,10 @@
 package businesslogic.facade;
 
+import java.sql.SQLException;
+
 import businesslogic.domain.Game;
+import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.FriendManagementDAO;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -65,8 +69,8 @@ public class GameManagementFacade {
      * @return
      */
     public boolean kickPlayerOfTheGame(int game_id, String username) {
-        // TODO implement here
-        return false;
+    	
+    		return false;
     }
 
     /**

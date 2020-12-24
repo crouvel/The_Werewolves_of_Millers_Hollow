@@ -1,5 +1,7 @@
 package model.dao.mysql;
 
+import java.sql.SQLException;
+
 import businesslogic.domain.Game;
 
 /**
@@ -20,13 +22,13 @@ public abstract class GameManagementDAO {
      * @param status 
      * @return
      */
-    public abstract Game createGame(int numberOfPlayers, String status);
+    public abstract boolean createGame(int numberOfPlayers, boolean status) throws SQLException;
 
     /**
      * @param game_id 
      * @return
      */
-    public abstract Game getGame(int game_id);
+    public abstract Game getGame(int game_id) throws SQLException;
 
     /**
      * @param numberOfWerewolves 
@@ -37,33 +39,33 @@ public abstract class GameManagementDAO {
      * @param hasHunter 
      * @return
      */
-    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter);
+    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public abstract boolean inviteFriendToPlay(int game_id, String username);
+    public abstract boolean inviteFriendToPlay(int game_id, String username1, String username2) throws SQLException;
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public abstract boolean cancelRequest(int game_id, String username);
+    public abstract boolean cancelRequest(int game_id, String username1, String username2) throws SQLException;
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public abstract boolean kickPlayerOutOfTheGame(int game_id, String username);
+    public abstract boolean kickPlayerOutOfTheGame(int game_id, String username) throws SQLException;
 
     /**
      * @param game_id 
      * @return
      */
-    public abstract boolean deleteGame(int game_id);
+    public abstract boolean deleteGame(int game_id) throws SQLException;
 
 }

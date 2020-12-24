@@ -8,9 +8,7 @@ public class Game {
     /**
      * Default constructor
      */
-    public Game() {
-    }
-
+  
     /**
      * 
      * @return
@@ -19,7 +17,25 @@ public class Game {
 		return hasHunter;
 	}
 
-    /**
+    public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
+			boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
+			Phase currentPhase, boolean availableGame) {
+		super();
+		this.game_id = game_id;
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+	}
+
+	/**
      * 
      * @param hasHunter
      */
