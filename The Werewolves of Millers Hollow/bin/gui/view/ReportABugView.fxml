@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/dayBackground.png" />
+            <Image url="@../../../image/dayBackground.png" />
          </image>
       </ImageView>
       <Pane layoutX="318.0" layoutY="50.0" opacity="0.57" prefHeight="566.0" prefWidth="644.0" style="-fx-background-color: black; -fx-background-radius: 50px;" />
@@ -25,7 +25,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/iconMenu.png" />
+                  <Image url="@../../../image/iconMenu.png" />
                </image>
                <effect>
                   <Shadow height="5.0" radius="1.25" width="2.0" />

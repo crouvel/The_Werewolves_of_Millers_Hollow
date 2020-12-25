@@ -13,13 +13,13 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/backgroundMenu.jpg" />
+            <Image url="@../../../image/backgroundMenu.jpg" />
          </image>
       </ImageView>
       <Pane layoutX="70.0" layoutY="47.0" opacity="0.74" prefHeight="626.0" prefWidth="1140.0" style="-fx-background-color: #404040; -fx-border-radius: 30px; -fx-border-width: 10px; -fx-border-color: #262626; -fx-background-radius: 35px;" />
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="540.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/logoCircle.png" />
+            <Image url="@../../../image/logoCircle.png" />
          </image>
       </ImageView>
       <Button layoutX="1012.0" layoutY="78.0" mnemonicParsing="false" onAction="#signOut" opacity="0.82" prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: red; -fx-background-radius: 30px;" text="Sign out" textFill="WHITE">
@@ -34,7 +34,7 @@
       </Button>
       <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="107.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/wolf.png" />
+            <Image url="@../../../image/wolf.png" />
          </image>
       </ImageView>
       <Button layoutX="210.0" layoutY="319.0" mnemonicParsing="false" onAction="#createAGame" opacity="0.82" prefHeight="96.0" prefWidth="341.0" style="-fx-background-color: #25488e; -fx-background-radius: 30px;" text="Create a game" textAlignment="CENTER" textFill="WHITE">
@@ -61,7 +61,7 @@
          <graphic>
             <ImageView fitHeight="91.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/friendsList.png" />
+                  <Image url="@../../../image/friendsList.png" />
                </image>
             </ImageView>
          </graphic>

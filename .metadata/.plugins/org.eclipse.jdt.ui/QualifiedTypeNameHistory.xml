@@ -28,8 +28,4 @@
     <fullyQualifiedTypeName name="model.dao.mysql.UserDAOMySQL"/>
     <fullyQualifiedTypeName name="java.awt.Image"/>
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
-    <fullyQualifiedTypeName name="model.dao.mysql.GameManagementDAO"/>
-    <fullyQualifiedTypeName name="businesslogic.facade.GameManagementFacade"/>
-    <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
-    <fullyQualifiedTypeName name="businesslogic.domain.Phase"/>
 </qualifiedTypeNameHistroy>

@@ -11,12 +11,12 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="656.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/backgroundMiddle.png" />
+            <Image url="@../../../image/backgroundMiddle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="720.0" fitWidth="656.0" layoutX="640.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/backgroundMiddle.png" />
+            <Image url="@../../../image/backgroundMiddle.png" />
          </image>
       </ImageView>
       <Pane layoutX="278.0" layoutY="56.0" opacity="0.37" prefHeight="609.0" prefWidth="732.0" style="-fx-background-color: #6666ff;">
@@ -84,7 +84,7 @@
             <Font name="Copperplate Gothic Bold" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="79.0" layoutY="589.0" mnemonicParsing="false" onAction="#returnStartMenu" opacity="0.84" style="-fx-background-color: #2828a4;" text="Start" textFill="WHITE">
+      <Button layoutX="79.0" layoutY="589.0" mnemonicParsing="false" onAction="#returnMenu" opacity="0.84" style="-fx-background-color: #2828a4;" text="Start" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="22.0" />
          </font>

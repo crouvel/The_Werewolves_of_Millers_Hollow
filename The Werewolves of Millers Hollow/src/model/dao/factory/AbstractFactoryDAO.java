@@ -1,15 +1,9 @@
-/**
- * package model.dao.factory
- */
 package model.dao.factory;
 
-/**
- * Imported classes and libraries.
- */
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import model.dao.mysql.*;
+import model.dao.mysql.UserDAO;
 import util.ConnectionUtil;
 
 /**
@@ -27,9 +21,6 @@ public abstract class AbstractFactoryDAO {
      */
     private static Connection connection=null;
 
-    /**
-     * 
-     */
     public AbstractFactoryDAO() {
     	if(getConnection()==null) {
     	    connection=ConnectionUtil.connectionDatabase();
@@ -66,34 +57,4 @@ public abstract class AbstractFactoryDAO {
      */
     public abstract UserDAO createUserDAO() throws SQLException;
 
-    /**
-     * @return
-     * @throws SQLException 
-     */
-    public abstract ReportDAO createReportDAO() throws SQLException;
-
-
-    /**
-     * @return
-     * @throws SQLException 
-     */
-    public abstract GameManagementDAO createGameManagementDAO() throws SQLException;
-
-    /**
-     * @return
-     * @throws SQLException 
-     */
-    public abstract PlayerInGameDAO createPlayerInGameDAO() throws SQLException;
-
-    /**
-     * @return
-     * @throws SQLException 
-     */
-    public abstract FriendManagementDAO createFriendManagementDAO() throws SQLException;
-
-    /**
-     * @return
-     * @throws SQLException 
-     */
-    public abstract SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() throws SQLException;
 }
