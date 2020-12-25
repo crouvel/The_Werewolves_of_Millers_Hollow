@@ -1,19 +1,8 @@
-/**
- * package model.dao.mysql
- */
 package model.dao.mysql;
 
-/**
- * Imported classes and libraries.
- */
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Report;
-import model.dao.factory.AbstractFactoryDAO;
 import businesslogic.domain.PlayerReport;
-import businesslogic.domain.PlayerReportType;
 import businesslogic.domain.BugReport;
 
 /**
@@ -39,50 +28,23 @@ public class ReportDAOMySQL extends ReportDAO {
 
     /**
      * @return
-     * @throws SQLException 
      */
-    public ArrayList<BugReport> getBugReports() throws SQLException{
-    	String sqlRequest="SELECT * FROM Report";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	ResultSet resultSet = request.executeQuery();
-    	ArrayList<BugReport> bugReports = new ArrayList<BugReport>();
-        while (resultSet.next()) {
-            if(resultSet.getInt("isBugReport")==1) {
-            	bugReports.add(new BugReport(resultSet.getInt("reportId"),resultSet.getString("subject"),resultSet.getString("description"),resultSet.getString("attachementLink")));
-            }
-        }
-        return bugReports;    
+    public ArrayList<BugReport> getBugReports(){
+    	return new ArrayList<BugReport>();
     }
 
     /**
      * @return
      */
-    public ArrayList<PlayerReport> getPlayerReports() throws SQLException{
-    	String sqlRequest="SELECT * FROM Report";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	ResultSet resultSet = request.executeQuery();
-    	ArrayList<PlayerReport> playerReports = new ArrayList<PlayerReport>();
-        while (resultSet.next()) {
-            if(resultSet.getInt("isBugReport")==0) {
-            	playerReports.add(new PlayerReport(resultSet.getInt("reportId"),resultSet.getString("description"),PlayerReportType.get(resultSet.getString("subject"))));
-            }
-        }
-        return playerReports;
+    public ArrayList<PlayerReport> getPlayerReports(){
+    	return new ArrayList<PlayerReport>();
     }
 
-	/**
+    /**
      * @return
-     * @throws SQLException 
      */
-    public ArrayList<Report> getReports() throws SQLException{
-    	String sqlRequest="SELECT * FROM Report";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	ResultSet resultSet = request.executeQuery();
-    	ArrayList<Report> reports = new ArrayList<Report>();
-        while (resultSet.next()) {
-            reports.add(new Report(resultSet.getInt("reportId"),resultSet.getString("description")));
-        }
-        return reports;
+    public ArrayList<Report> getReports(){
+    	return new ArrayList<Report>();
     }
     
     
@@ -90,49 +52,40 @@ public class ReportDAOMySQL extends ReportDAO {
      * @param reportId 
      * @return
      */
-    public BugReport getBugReportById(int reportId) throws SQLException{
-    	return null;
+    public BugReport getBugReportById(int reportId) {
+    	return new BugReport();
     }
 
     /**
      * @param reportId 
      * @return
      */
-    public PlayerReport getPlayerReportById(int reportId) throws SQLException{
-    	return null;
+    public PlayerReport getPlayerReportById(int reportId) {
+    	return new PlayerReport();
     }
 
     /**
      * @param reportId 
      * @return
      */
-    public Report getReportById(int reportId) throws SQLException{
-    	return null;
-    }
-
-    /**
-     * @param reportId 
-     * @return
-     * @throws SQLException 
-     */
-    public boolean existsReport(int reportId) throws SQLException {
-    	String sqlRequest = "SELECT * FROM Report WHERE reportId=?";
-    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setInt(1, reportId);
-    	ResultSet resultSet = request.executeQuery();
-    	return resultSet.first();
+    public Report getReportById(int reportId) {
+    	return new Report();
     }
 
     /**
      * @param reportId 
      * @return
      */
-    public boolean deleteReport(int reportId) throws SQLException{
-    	String sqlRequest="DELETE FROM Report WHERE reportId=?";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setInt(1, reportId);
-        request.executeUpdate();
-        return !existsReport(reportId);
+    public boolean existsReport(int reportId) {
+    	return true;
+    }
+
+    /**
+     * @param reportId 
+     * @return
+     */
+    public boolean deleteReport(int reportId) {
+    	return true;
     }
 
     /**
@@ -141,7 +94,7 @@ public class ReportDAOMySQL extends ReportDAO {
      * @param description 
      * @return
      */
-    public boolean createPlayerReport(String badPlayerUsername, String reason, String description) throws SQLException{
+    public boolean createPlayerReport(String badPlayerUsername, String reason, String description) {
     	return true;
     }
 

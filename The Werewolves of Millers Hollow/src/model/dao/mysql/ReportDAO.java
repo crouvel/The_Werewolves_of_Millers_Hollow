@@ -1,6 +1,5 @@
 package model.dao.mysql;
 
-import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Report;
 import businesslogic.domain.PlayerReport;
@@ -15,8 +14,12 @@ public abstract class ReportDAO {
      * Default constructor
      */
     public ReportDAO() {
- 
     }
+
+
+
+
+
 
     /**
      * @param subject 
@@ -28,61 +31,55 @@ public abstract class ReportDAO {
 
     /**
      * @return
-     * @throws SQLException 
      */
-    public abstract ArrayList<BugReport> getBugReports() throws SQLException;
+    public abstract ArrayList<BugReport> getBugReports();
 
     /**
      * @return
-     * @throws SQLException 
      */
-    public abstract ArrayList<PlayerReport> getPlayerReports() throws SQLException;
+    public abstract ArrayList<PlayerReport> getPlayerReports();
 
     /**
      * @return
-     * @throws SQLException 
      */
-    public abstract ArrayList<Report> getReports() throws SQLException;
+    public abstract ArrayList<Report> getReports();
 
     /**
      * @param reportId 
      * @return
      */
-    public abstract BugReport getBugReportById(int reportId) throws SQLException;
+    public abstract BugReport getBugReportById(int reportId);
 
     /**
      * @param reportId 
      * @return
      */
-    public abstract PlayerReport getPlayerReportById(int reportId) throws SQLException;
+    public abstract PlayerReport getPlayerReportById(int reportId);
 
     /**
      * @param reportId 
      * @return
      */
-    public abstract Report getReportById(int reportId) throws SQLException;
+    public abstract Report getReportById(int reportId);
 
     /**
      * @param reportId 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean existsReport(int reportId) throws SQLException;
+    public abstract boolean existsReport(int reportId);
 
     /**
      * @param reportId 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean deleteReport(int reportId) throws SQLException;
+    public abstract boolean deleteReport(int reportId);
 
     /**
      * @param badPlayerUsername 
      * @param reason 
      * @param description 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean createPlayerReport(String badPlayerUsername, String reason, String description) throws SQLException;
+    public abstract boolean createPlayerReport(String badPlayerUsername, String reason, String description);
 
 }

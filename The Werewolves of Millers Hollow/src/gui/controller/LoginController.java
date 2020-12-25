@@ -9,18 +9,17 @@ package gui.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import util.HashPassword;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.User;
 import businesslogic.facade.UserFacade;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import util.HashPassword;
 
 /**
  * 
@@ -83,7 +82,8 @@ public class LoginController implements Initializable {
 				}
 			}
 		}		
-	}		
+	}
+		
 	
 	/**
 	 * 
@@ -104,6 +104,7 @@ public class LoginController implements Initializable {
 	 * @param title
 	 */
 	public static void infoBox(String message, String head, String title){
+        //A CUSTOMISER
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText(message);
         alert.setTitle(title);
@@ -119,12 +120,14 @@ public class LoginController implements Initializable {
 		
 	}
 
+
 	/**
 	 * @return the currentUser
 	 */
 	public static User getCurrentUser() throws IOException {
 		return currentUser;
 	}
+
 
 	/**
 	 * @param currentUser the currentUser to set

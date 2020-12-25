@@ -6,19 +6,12 @@ package businesslogic.domain;
  */
 public class BugReport extends Report {
 
-	/**
-	 * 
-	 * @param reportId
-	 * @param subject
-	 * @param description
-	 * @param attachment
-	 */
-    public BugReport(int reportId, String subject, String description, String attachment) {
-    	super(reportId,description);
-    	this.subject=subject;
-    	this.attachment=attachment;
+    /**
+     * Default constructor
+     */
+    public BugReport() {
     }
-    
+
     /**
      * 
      */
@@ -30,9 +23,10 @@ public class BugReport extends Report {
     private String attachment;
 
     /**
-     * @return 
+     * @return
      */
     public String getSubject() {
+        // TODO implement here
         return this.subject;
     }
 
@@ -40,19 +34,8 @@ public class BugReport extends Report {
      * @return
      */
     public String getAttachment() {
+        // TODO implement here
         return this.attachment;
     }
-    
-    /**
-     * 
-     * @return 
-     */
-    public String toString() {
-    	if(attachment != null) {
-    		return getReportId() + " : " + getSubject() + " (with attached file)";
-    	}
-		return getReportId() + " : " + getSubject() + " (without attached file)";
-	}
-
 
 }

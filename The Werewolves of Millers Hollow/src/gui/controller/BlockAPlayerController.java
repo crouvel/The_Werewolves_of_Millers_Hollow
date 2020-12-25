@@ -7,12 +7,13 @@ package gui.controller;
  * Imported classes and libraries.
  */
 import java.io.IOException;
+/**
+ * 
+ */
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.facade.BlockAPlayerFacade;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,24 +45,7 @@ public class BlockAPlayerController implements Initializable {
 	 */
 	@FXML
 	void blockAPlayer(ActionEvent event) throws IOException{
-		String username = usernameForBlock.getText();
-		if(username.isBlank()) {
-			infoBox("Please enter a username before block an account.","Missing username","Missing Information");
-		}
-		BlockAPlayerFacade blockaplayerFacade = new BlockAPlayerFacade();
-		boolean exists = blockaplayerFacade.existsPlayer(username);
-		if(exists) {
-			boolean isDone = blockaplayerFacade.blockAPlayer(username);
-			if(isDone) {
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
-			}
-			else {
-				infoBox("We encounter a problem during the process. Try later.","Problem during block","Encountered problem");
-			}
-		}
-		else {
-			infoBox("This username not exist.","Incorrect username","Incorrect Information");
-		}
+		
 	}
 	
 	/**
@@ -95,6 +79,7 @@ public class BlockAPlayerController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
 		
 	}
 
