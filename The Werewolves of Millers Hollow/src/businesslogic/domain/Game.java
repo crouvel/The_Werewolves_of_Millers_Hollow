@@ -3,8 +3,10 @@ package businesslogic.domain;
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
-public class Game {
 
+
+public class Game {
+	private static int nbgames = 0;
     /**
      * Default constructor
      */
@@ -13,13 +15,19 @@ public class Game {
      * 
      * @return
      */
-    public boolean isHasHunter() {
+    public int isHasHunter() {
 		return hasHunter;
 	}
 
-    public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
-			boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
-			Phase currentPhase, boolean availableGame) {
+    public Game() {
+    
+    	nbgames ++;
+    }
+    
+    
+    public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
+    		int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,
+			Phase currentPhase, int availableGame) {
 		super();
 		this.game_id = game_id;
 		this.numberOfPlayers = numberOfPlayers;
@@ -33,41 +41,45 @@ public class Game {
 		this.finish = finish;
 		this.currentPhase = currentPhase;
 		this.availableGame = availableGame;
+		nbgames = getNbgames() + 1;
 	}
 
+    public Game(int numberOfWerewolves, int status) {
+    	nbgames ++;
+    }
 	/**
      * 
      * @param hasHunter
      */
-	public void setHasHunter(boolean hasHunter) {
+	public void setHasHunter(int hasHunter) {
 		this.hasHunter = hasHunter;
 	}
 
 	/**
 	 * @return the hasFortuneTeller
 	 */
-	public boolean isHasFortuneTeller() {
+	public int isHasFortuneTeller() {
 		return hasFortuneTeller;
 	}
 
 	/**
 	 * @param hasFortuneTeller the hasFortuneTeller to set
 	 */
-	public void setHasFortuneTeller(boolean hasFortuneTeller) {
+	public void setHasFortuneTeller(int hasFortuneTeller) {
 		this.hasFortuneTeller = hasFortuneTeller;
 	}
 
 	/**
 	 * @return the finish
 	 */
-	public boolean isFinish() {
+	public int isFinish() {
 		return finish;
 	}
 
 	/**
 	 * @param finish the finish to set
 	 */
-	public void setFinish(boolean finish) {
+	public void setFinish(int finish) {
 		this.finish = finish;
 	}
 
@@ -116,14 +128,14 @@ public class Game {
 	/**
 	 * @return the status
 	 */
-	public boolean isStatus() {
+	public int isStatus() {
 		return status;
 	}
 
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -144,57 +156,61 @@ public class Game {
 	/**
 	 * @return the hasWitch
 	 */
-	public boolean isHasWitch() {
+	public int isHasWitch() {
 		return hasWitch;
 	}
 
 	/**
 	 * @param hasWitch the hasWitch to set
 	 */
-	public void setHasWitch(boolean hasWitch) {
+	public void setHasWitch(int hasWitch) {
 		this.hasWitch = hasWitch;
 	}
 
 	/**
 	 * @return the hasLittleGirl
 	 */
-	public boolean isHasLittleGirl() {
+	public int isHasLittleGirl() {
 		return hasLittleGirl;
 	}
 
 	/**
 	 * @param hasLittleGirl the hasLittleGirl to set
 	 */
-	public void setHasLittleGirl(boolean hasLittleGirl) {
+	public void setHasLittleGirl(int hasLittleGirl) {
 		this.hasLittleGirl = hasLittleGirl;
 	}
 
 	/**
 	 * @return the hasCupid
 	 */
-	public boolean isHasCupid() {
+	public int isHasCupid() {
 		return hasCupid;
 	}
 
 	/**
 	 * @param hasCupid the hasCupid to set
 	 */
-	public void setHasCupid(boolean hasCupid) {
+	public void setHasCupid(int hasCupid) {
 		this.hasCupid = hasCupid;
 	}
 
 	/**
 	 * @return the availableGame
 	 */
-	public boolean isAvailableGame() {
+	public int isAvailableGame() {
 		return availableGame;
 	}
 
 	/**
 	 * @param availableGame the availableGame to set
 	 */
-	public void setAvailableGame(boolean availableGame) {
+	public void setAvailableGame(int availableGame) {
 		this.availableGame = availableGame;
+	}
+
+	public static int getNbgames() {
+		return nbgames;
 	}
 
 	/**
@@ -210,7 +226,7 @@ public class Game {
     /**
      * 
      */
-    private boolean status;
+    private int status;
 
     /**
      * 
@@ -220,32 +236,32 @@ public class Game {
     /**
      * 
      */
-    private boolean hasWitch;
+    private int hasWitch;
 
     /**
      * 
      */
-    private boolean hasLittleGirl;
+    private int hasLittleGirl;
 
     /**
      * 
      */
-    private boolean hasCupid;
+    private int hasCupid;
 
     /**
      * 
      */
-    private boolean hasHunter;
+    private int hasHunter;
 
     /**
      * 
      */
-    private boolean hasFortuneTeller;
+    private int hasFortuneTeller;
 
     /**
      * 
      */
-    private boolean finish;
+    private int finish;
 
 
     /**
@@ -256,5 +272,5 @@ public class Game {
     /**
      * 
      */
-    private boolean availableGame;
+    private int availableGame;
 }

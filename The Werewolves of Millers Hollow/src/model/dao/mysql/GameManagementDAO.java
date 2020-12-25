@@ -3,6 +3,7 @@ package model.dao.mysql;
 import java.sql.SQLException;
 
 import businesslogic.domain.Game;
+import businesslogic.domain.Phase;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -15,14 +16,15 @@ public abstract class GameManagementDAO {
     public GameManagementDAO() {
     }
 
+    
 
-
+   
     /**
      * @param numberOfPlayers 
      * @param status 
      * @return
      */
-    public abstract boolean createGame(int numberOfPlayers, boolean status) throws SQLException;
+    public abstract boolean createGame(int nbplayers, int status) throws SQLException;
 
     /**
      * @param game_id 
@@ -39,7 +41,7 @@ public abstract class GameManagementDAO {
      * @param hasHunter 
      * @return
      */
-    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
+    public abstract boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException;
 
     /**
      * @param game_id 

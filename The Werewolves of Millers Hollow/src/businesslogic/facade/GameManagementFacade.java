@@ -3,8 +3,9 @@ package businesslogic.facade;
 import java.sql.SQLException;
 
 import businesslogic.domain.Game;
+import businesslogic.domain.Phase;
 import model.dao.factory.AbstractFactoryDAO;
-import model.dao.mysql.FriendManagementDAO;
+import model.dao.mysql.GameManagementDAO;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -20,18 +21,26 @@ public class GameManagementFacade {
     /**
      * 
      */
-    private Game currentGame;
+    private static Game currentGame;
 
 
 
+
+    
     /**
      * @param numberOfPlayers 
      * @param status 
      * @return
      */
-    public Game createGame(int numberOfPlayers, String status) {
-        // TODO implement here
-        return null;
+    public boolean createGame(int nbplayers, int status) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.createGame(nbplayers, status);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}    
     }
 
     /**
@@ -39,8 +48,14 @@ public class GameManagementFacade {
      * @return
      */
     public boolean deleteGame(int game_id) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.deleteGame(game_id);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}  
     }
 
     /**
@@ -48,19 +63,30 @@ public class GameManagementFacade {
      * @param username 
      * @return
      */
-    public boolean inviteFriendToPlay(int game_id, String username) {
-        // TODO implement here
-        return false;
-    }
+    public boolean inviteFriendToPlay(int game_id, String username1, String username2) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.inviteFriendToPlay(game_id, username1, username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}      }
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public boolean cancelRequest(int game_id, String username) {
-        // TODO implement here
-        return false;
+    public boolean cancelRequest(int game_id, String username1, String username2) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.cancelRequest(game_id, username1, username2);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}    
     }
 
     /**
@@ -69,8 +95,14 @@ public class GameManagementFacade {
      * @return
      */
     public boolean kickPlayerOfTheGame(int game_id, String username) {
-    	
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.kickPlayerOutOfTheGame(game_id, username);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
     		return false;
+    	}    
     }
 
     /**
@@ -82,23 +114,29 @@ public class GameManagementFacade {
      * @param hasHunter 
      * @return
      */
-    public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
-        // TODO implement here
-        return false;
+    public boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.modifyRole(numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	}   
     }
 
 	/**
 	 * @return the currentGame
 	 */
-	public Game getCurrentGame() {
-		return currentGame;
+	public static Game getCurrentGame() {
+		return GameManagementFacade.currentGame;
 	}
 
 	/**
 	 * @param currentGame the currentGame to set
 	 */
 	public void setCurrentGame(Game currentGame) {
-		this.currentGame = currentGame;
+		GameManagementFacade.currentGame = currentGame;
 	}
 
 }

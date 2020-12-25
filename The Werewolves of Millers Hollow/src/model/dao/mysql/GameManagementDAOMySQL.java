@@ -1,5 +1,6 @@
 package model.dao.mysql;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +8,6 @@ import java.util.ArrayList;
 
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
-import businesslogic.domain.User;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
@@ -27,15 +27,30 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param status 
      * @return
      */
-    public boolean createGame(int numberOfPlayers, boolean status) throws SQLException{
-        String sqlRequest="INSERT INTO Game(numberOfPlayers, status) VALUES (?,?)";
+    
+	
+	
+	
+	public boolean createGame(int nbplayers, int status) throws SQLException{
+		
+		new Game(nbplayers, status);
+		String sqlRequest = "INSERT INTO Game(gameId, numberOfPlayers, status, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter, finish, currentPhase, availableGame) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-		request.setInt(2, numberOfPlayers);
-    	request.setBoolean(3, status);
-        request.executeUpdate();
-        ResultSet resultSet = request.executeQuery();
-        int game_id = resultSet.getInt(1);
-        return existsGame(game_id);
+		request.setInt(1, Game.getNbgames());
+		request.setInt(2, nbplayers);
+		request.setInt(3, status);
+		request.setInt(4, 0);
+		request.setInt(5, 0);
+		request.setInt(6, 0);
+		request.setInt(7, 0);
+		request.setInt(8, 0);
+		request.setInt(9, 0);
+		request.setInt(10, 0);
+		request.setString(11, Phase.NIGHT.name());
+		request.setInt(12, 0);
+		request.executeUpdate();
+       
+        return existsGame(Game.getNbgames());
     }
 
     /**
@@ -49,8 +64,8 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
-    		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getBoolean("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getBoolean("hasWitch"),resultSet.getBoolean("hasLittleGirl"), 
-    				resultSet.getBoolean("hasCupid"), resultSet.getBoolean("hasHunter"), resultSet.getBoolean("hasFortuneTeller"), resultSet.getBoolean("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getBoolean("availableGame"));
+    		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getInt("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getInt("hasWitch"),resultSet.getInt("hasLittleGirl"), 
+    				resultSet.getInt("hasCupid"), resultSet.getInt("hasHunter"), resultSet.getInt("hasFortuneTeller"), resultSet.getInt("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getInt("availableGame"));
     	}
     	else{
     		return null;
@@ -68,7 +83,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param hasHunter 
      * @return
      */
-    public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
+    public boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
     	
     	
     	return true;
