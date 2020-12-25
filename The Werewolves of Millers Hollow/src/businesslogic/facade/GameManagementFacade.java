@@ -2,9 +2,12 @@ package businesslogic.facade;
 
 import businesslogic.domain.Game;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import businesslogic.domain.Phase;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.GameManagementDAO;
+=======
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 
@@ -97,6 +100,7 @@ public class GameManagementFacade {
      */
     public boolean kickPlayerOfTheGame(int game_id, String username) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
@@ -105,6 +109,10 @@ public class GameManagementFacade {
     		e.getStackTrace();
     		return false;
     	}    
+=======
+        // TODO implement here
+        return false;
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
         // TODO implement here
         return false;

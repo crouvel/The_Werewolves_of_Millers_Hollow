@@ -23,7 +23,11 @@ public abstract class GameManagementDAO {
      * @return
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public abstract boolean createGame(int nbplayers, int status) throws SQLException;
+=======
+    public abstract Game createGame(int numberOfPlayers, String status);
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
     public abstract Game createGame(int numberOfPlayers, String status);
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
@@ -44,7 +48,11 @@ public abstract class GameManagementDAO {
      * @return
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public abstract boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException;
+=======
+    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter);
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
     public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter);
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management

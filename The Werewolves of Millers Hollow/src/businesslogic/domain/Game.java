@@ -22,6 +22,7 @@ public class Game {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Game() {
     
     	nbgames ++;
@@ -51,6 +52,9 @@ public class Game {
     	nbgames ++;
     }
 	/**
+=======
+    /**
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
     /**
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management

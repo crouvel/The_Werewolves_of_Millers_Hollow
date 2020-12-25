@@ -1,6 +1,7 @@
 package model.dao.mysql;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,9 @@ import java.util.ArrayList;
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
 import model.dao.factory.AbstractFactoryDAO;
+=======
+import businesslogic.domain.Game;
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
 import businesslogic.domain.Game;
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
@@ -30,6 +34,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param status 
      * @return
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
     
 	
@@ -59,12 +64,17 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     public Game createGame(int numberOfPlayers, String status) {
     	return new Game();
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
+=======
+    public Game createGame(int numberOfPlayers, String status) {
+    	return new Game();
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
     }
 
     /**
      * @param game_id 
      * @return
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
     public Game getGame(int game_id) throws SQLException{
     	String sqlRequest="SELECT * FROM Game WHERE gameId=?";
@@ -85,6 +95,10 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     public Game getGame(int game_id) {
     	return new Game();
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
+=======
+    public Game getGame(int game_id) {
+    	return new Game();
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
     }
 
     /**
@@ -97,9 +111,13 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @return
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
     	
     	
+=======
+    public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 =======
     public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
 >>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
