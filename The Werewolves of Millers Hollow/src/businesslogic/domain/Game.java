@@ -20,13 +20,6 @@ public class Game {
     public int isHasHunter() {
 		return hasHunter;
 	}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Game() {
-    
-    	nbgames ++;
-    }
     
     
     public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
@@ -48,16 +41,6 @@ public class Game {
 		nbgames = getNbgames() + 1;
 	}
 
-    public Game(int numberOfWerewolves, int status) {
-    	nbgames ++;
-    }
-	/**
-=======
-    /**
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-=======
-    /**
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
      * 
      * @param hasHunter
      */

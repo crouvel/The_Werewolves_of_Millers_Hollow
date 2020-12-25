@@ -1,7 +1,5 @@
 package model.dao.mysql;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,12 +9,6 @@ import java.util.ArrayList;
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
 import model.dao.factory.AbstractFactoryDAO;
-=======
-import businesslogic.domain.Game;
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-=======
-import businesslogic.domain.Game;
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -34,8 +26,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param status 
      * @return
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     
 	
 	
@@ -60,69 +51,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.executeUpdate();
        
         return existsGame(Game.getNbgames());
-=======
-    public Game createGame(int numberOfPlayers, String status) {
-    	return new Game();
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-=======
-    public Game createGame(int numberOfPlayers, String status) {
-    	return new Game();
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-    }
-
-    /**
-     * @param game_id 
-     * @return
-     */
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Game getGame(int game_id) throws SQLException{
-    	String sqlRequest="SELECT * FROM Game WHERE gameId=?";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setInt(1, game_id);
-    	ResultSet resultSet = request.executeQuery();
-    	boolean exist = resultSet.first();
-    	if(exist){
-    		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getInt("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getInt("hasWitch"),resultSet.getInt("hasLittleGirl"), 
-    				resultSet.getInt("hasCupid"), resultSet.getInt("hasHunter"), resultSet.getInt("hasFortuneTeller"), resultSet.getInt("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getInt("availableGame"));
-    	}
-    	else{
-    		return null;
-    	}
-        
-    	
-=======
-    public Game getGame(int game_id) {
-    	return new Game();
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-=======
-    public Game getGame(int game_id) {
-    	return new Game();
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-    }
-
-    /**
-     * @param numberOfWerewolves 
-     * @param hasWitch 
-     * @param hasFortuneTeller 
-     * @param hasLittleGirl 
-     * @param hasCupid 
-     * @param hasHunter 
-     * @return
-     */
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
-    	
-    	
-=======
-    public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-=======
-    public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
->>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
-    	return true;
-    }
 
     /**
      * @param game_id 
