@@ -8,12 +8,10 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.domain.Administrator;
-import businesslogic.facade.UserFacade;
+import businesslogic.domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +28,7 @@ public class AdministratorMenuController  implements Initializable{
 	/**
 	 * Attribute containing the current user (Administrator connected)
 	 */
-	private static Administrator currentAdmin;
+	private User currentUser;
 
 	//FXML Methods
 	
@@ -41,8 +39,7 @@ public class AdministratorMenuController  implements Initializable{
 	 */
 	@FXML
 	void signOut(ActionEvent event) throws IOException {
-		LoginController.setCurrentUser(null);
-		AdministratorMenuController.setCurrentAdmin(null);
+		//A Compléter
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
 	
@@ -79,17 +76,19 @@ public class AdministratorMenuController  implements Initializable{
 	//Added Methods
 	
 	/**
-	 * @return the currentAdmin
+	 * Getter of currentUser.
+	 * @return the current user 
 	 */
-	public static Administrator getCurrentAdmin() throws IOException {
-		return currentAdmin;
+	public User getCurrentUser() {
+		return currentUser;
 	}
 
 	/**
-	 * @param currentAdmin the currentAdmin to set
+	 * Setter of currentUser.
+	 * @param user : new value of currentUser.
 	 */
-	public static void setCurrentAdmin(Administrator currentAdmin) throws IOException {
-		AdministratorMenuController.currentAdmin = currentAdmin;
+	public void setCurrentUser(User user) {
+		this.currentUser = user;
 	}
 
 	/**
@@ -97,13 +96,8 @@ public class AdministratorMenuController  implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		UserFacade userFacade = new UserFacade();
-		try {
-			currentAdmin = userFacade.getAdmin(LoginController.getCurrentUser());
-			System.out.println(currentAdmin.getEmail());
-		} catch (SQLException | IOException e) {
-			e.printStackTrace();
-		}	
+		// TODO Auto-generated method stub
+		
 	}
 
 }

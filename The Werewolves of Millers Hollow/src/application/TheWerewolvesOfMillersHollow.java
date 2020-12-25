@@ -9,8 +9,6 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 
-import businesslogic.domain.User;
-import gui.controller.LoginController;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
@@ -64,30 +62,6 @@ public class TheWerewolvesOfMillersHollow extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void goToAdminMenu(User admin, URL resource) throws IOException {
-		try {
-			LoginController.setCurrentUser(admin);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        FXMLLoader loader = new FXMLLoader(resource);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        TheWerewolvesOfMillersHollow.stage.setScene(scene);
-    }
-	
-	public static void goToPlayerMenu(User player, URL resource) throws IOException {
-		try {
-			LoginController.setCurrentUser(player);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        FXMLLoader loader = new FXMLLoader(resource);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        TheWerewolvesOfMillersHollow.stage.setScene(scene);
-    }
 	
 	/**
 	 * 

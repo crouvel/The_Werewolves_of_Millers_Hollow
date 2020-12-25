@@ -3,7 +3,6 @@ package model.dao.mysql;
 import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.User;
-import businesslogic.domain.Administrator;
 import businesslogic.domain.Player;
 
 /**
@@ -133,21 +132,5 @@ public abstract class UserDAO {
         // TODO implement here
         return null;
     }
-
-    /**
-     * 
-     * @param user
-     * @return
-     * @throws SQLException 
-     */
-	public abstract Player getPlayer(User user) throws SQLException;
-
-	/**
-	 * 
-	 * @param user
-	 * @return
-	 * @throws SQLException
-	 */
-	public abstract Administrator getAdmin(User user) throws SQLException;
 
 }

@@ -43,17 +43,32 @@
          </graphic>
       </Button>
       <TextField fx:id="addFriendUsername" layoutX="769.0" layoutY="368.0" prefHeight="31.0" prefWidth="135.0" promptText="username..." />
-      <Button fx:id="cancel" layoutX="63.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Cancel" textFill="WHITE">
+      <TableView fx:id="friendsList" layoutX="265.0" layoutY="67.0" prefHeight="342.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="friend" prefWidth="199.0" text="Friends List" />
+        </columns>
+      </TableView>
+      <TableView fx:id="sent" layoutX="31.0" layoutY="127.0" prefHeight="135.0" prefWidth="135.0">
+         <columns>
+            <TableColumn fx:id="sentRequest" prefWidth="134.0" text="Sent Request" />
+         </columns>
+      </TableView>
+      <TableView fx:id="receive" layoutX="13.0" layoutY="307.0" prefHeight="135.0" prefWidth="164.0">
+         <columns>
+            <TableColumn fx:id="receivedRequest" prefWidth="163.0" text="Received Request" />
+         </columns>
+      </TableView>
+      <Button layoutX="63.0" layoutY="269.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="accept" layoutX="13.0" layoutY="450.0" mnemonicParsing="false" style="-fx-background-color: rgb(46, 184, 46,0.8);" text="Accept" textFill="WHITE">
+      <Button layoutX="13.0" layoutY="446.0" mnemonicParsing="false" onAction="#accept" style="-fx-background-color: rgb(46, 184, 46,0.8);" text="Accept" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="refuse" layoutX="99.0" layoutY="450.0" mnemonicParsing="false" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Refuse" textFill="WHITE">
+      <Button layoutX="99.0" layoutY="447.0" mnemonicParsing="false" onAction="#refuse" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Refuse" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
@@ -68,40 +83,10 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="cancelCurrentRequest" layoutX="975.0" layoutY="368.0" mnemonicParsing="false" onAction="#cancelCurrentRequest" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Cancel">
+      <Button layoutX="975.0" layoutY="368.0" mnemonicParsing="false" onAction="#cancelCurrentRequest" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: rgb(184, 46, 46,0.8);" text="Cancel">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Button>
-      <ListView fx:id="friendsList" layoutX="265.0" layoutY="95.0" prefHeight="315.0" prefWidth="200.0" style="-fx-background-color: rgb(255,255,255,0.6);" />
-      <ListView fx:id="sent" layoutX="33.0" layoutY="138.0" prefHeight="119.0" prefWidth="135.0" style="-fx-background-color: rgb(255,255,255,0.6);" />
-      <ListView fx:id="receive" layoutX="14.0" layoutY="338.0" prefHeight="105.0" prefWidth="162.0" style="-fx-background-color: rgb(255,255,255,0.6);" />
-      <Pane layoutX="33.0" layoutY="86.0" prefHeight="52.0" prefWidth="135.0" style="-fx-background-color: rgb(0,0,0,0.6);">
-         <children>
-            <Text fill="WHITE" layoutX="6.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sended friend &#10;requests" textAlignment="CENTER">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane layoutX="14.0" layoutY="301.0" prefHeight="37.0" prefWidth="162.0" style="-fx-background-color: rgb(0,0,0,0.6);">
-         <children>
-            <Text fill="WHITE" layoutX="13.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Received friend &#10;requests" textAlignment="CENTER">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane layoutX="265.0" layoutY="58.0" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: rgb(0,0,0,0.8);">
-         <children>
-            <Text fill="WHITE" layoutX="7.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends List" textAlignment="CENTER" wrappingWidth="97.91748046875">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
    </children>
 </Pane>

@@ -1,7 +1,7 @@
 package model.dao.mysql;
 
-import java.sql.SQLException;
 import java.util.*;
+import businesslogic.domain.Player;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -17,62 +17,54 @@ public abstract class FriendManagementDAO {
     /**
      * @param username 
      * @return
-     * @throws SQLException 
      */
-    public abstract ArrayList<String> getReceivedFriendRequests(String username) throws SQLException;
+    public abstract ArrayList<Player> getReceivedFriendRequests(String username);
 
     /**
      * @param username 
      * @return
-     * @throws SQLException 
      */
-    public abstract ArrayList<String> getFriendList(String username) throws SQLException;
+    public abstract ArrayList<Player> getFriendList(String username);
 
     /**
      * @param username1 
      * @param username2 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean deleteRequest(String username1, String username2) throws SQLException;
+    public abstract boolean deleteRequest(String username1, String username2);
 
     /**
      * @param username1 
      * @param username2 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean deleteFromFriendList(String username1, String username2) throws SQLException;
+    public abstract boolean deleteFromFriendList(String username1, String username2);
 
     /**
      * @param username1 
      * @param username2 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean refuseRequest(String username1, String username2) throws SQLException;
+    public abstract boolean refuseRequest(String username1, String username2);
 
     /**
      * @param username1 
      * @param username2 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean addFriendInList(String username1, String username2) throws SQLException;
+    public abstract boolean addFriendInList(String username1, String username2);
 
     /**
      * @param username 
      * @return
-     * @throws SQLException 
      */
-    public abstract ArrayList<String> getRequestSent(String username) throws SQLException;
+    public abstract ArrayList<Player> getRequestSent(String username);
 
     /**
      * @param username1 
      * @param username2 
      * @return
-     * @throws SQLException 
      */
-    public abstract boolean sendFriendRequest(String username1, String username2) throws SQLException;
+    public abstract boolean sendFriendRequest(String username1, String username2);
 
 }

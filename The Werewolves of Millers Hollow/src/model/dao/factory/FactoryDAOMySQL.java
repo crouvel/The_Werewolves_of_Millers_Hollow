@@ -32,35 +32,35 @@ public class FactoryDAOMySQL extends AbstractFactoryDAO {
     /**
      * @return
      */
-    public ReportDAO createReportDAO() throws SQLException {
+    public ReportDAO createReportDAO() {
     	return new ReportDAOMySQL();
     }
 
     /**
      * @return
      */
-    public GameManagementDAO createGameManagementDAO() throws SQLException {
+    public GameManagementDAO createGameManagementDAO() {
     	return new GameManagementDAOMySQL() ;
     }
 
     /**
      * @return
      */
-    public PlayerInGameDAO createPlayerInGameDAO() throws SQLException {
+    public PlayerInGameDAO createPlayerInGameDAO(){
     	return new PlayerInGameDAOMySQL() ;
     }
 
     /**
      * @return
      */
-    public FriendManagementDAO createFriendManagementDAO() throws SQLException {
+    public FriendManagementDAO createFriendManagementDAO() {
     	return new FriendManagementDAOMySQL();
     }
 
     /**
      * @return
      */
-    public SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() throws SQLException {
+    public SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() {
     	return new SelectAndJoinAGameDAOMySQL();
     }
 

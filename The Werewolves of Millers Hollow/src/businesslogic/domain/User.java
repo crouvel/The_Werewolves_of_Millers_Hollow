@@ -16,7 +16,6 @@ public class User {
     	this.isAdmin=isAdmin;
     	this.isLockedAccount = false;
     }
-    
 
     /**
      * 

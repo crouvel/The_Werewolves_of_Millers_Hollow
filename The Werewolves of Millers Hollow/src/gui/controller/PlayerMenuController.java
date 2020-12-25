@@ -8,20 +8,24 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+<<<<<<< HEAD
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
 import businesslogic.domain.Player;
 import businesslogic.facade.GameManagementFacade;
 import businesslogic.facade.UserFacade;
+=======
+import businesslogic.domain.User;
+>>>>>>> parent of 89ef92a... Merge pull request #19 from tiffany-dumaire/Tiffany
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextField;
 
 /**
  * 
@@ -29,11 +33,23 @@ import javafx.scene.control.Alert.AlertType;
  *
  */
 public class PlayerMenuController implements Initializable {
-		
+	
 	/**
 	 * 
 	 */
-	private static Player currentPlayer;	
+	@FXML
+	private TextField email;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private TextField password;
+	
+	/**
+	 * 
+	 */
+	private User currentUser;	
 	
 	/**
 	 * 
@@ -105,9 +121,16 @@ public class PlayerMenuController implements Initializable {
 	 */
 	@FXML
 	void signOut(ActionEvent event) throws IOException {
-		LoginController.setCurrentUser(null);
-		PlayerMenuController.setCurrentPlayer(null);		
+		//à terminer
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
+	}
+	
+	/**
+	 * @param arg0
+	 * @param arg1
+	 */
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 	}
 	
 	//Added Methods
@@ -130,25 +153,15 @@ public class PlayerMenuController implements Initializable {
 	 * Getter of currentUser attribute.
 	 * @return
 	 */
-	public static Player getCurrentPlayer() throws IOException{
-		return PlayerMenuController.currentPlayer;
+	public User getCurrentUser() {
+		return currentUser;
 	}
 
 	/**
 	 * Setter of currentUser attribute.
 	 * @param currentUser
 	 */
-	public static void setCurrentPlayer(Player currentPlayer) throws IOException{
-		PlayerMenuController.currentPlayer = currentPlayer;
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		UserFacade userFacade = new UserFacade();
-		try {
-			currentPlayer = userFacade.getPlayer(LoginController.getCurrentUser());
-		} catch (SQLException | IOException e) {
-			e.printStackTrace();
-		}
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
 	}
 }

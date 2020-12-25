@@ -158,16 +158,8 @@ public class PlayerProfileController  implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		try {
-			username.setText(PlayerMenuController.getCurrentPlayer().getUsername());
-			playerEmail.setText(PlayerMenuController.getCurrentPlayer().getEmail());
-			playerPassword.setText(PlayerMenuController.getCurrentPlayer().getPassword());
-			//dateOfBirth
-			gender.setText(PlayerMenuController.getCurrentPlayer().getGender());
-			country.setText(PlayerMenuController.getCurrentPlayer().getCountry());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		
 	}
 
 }

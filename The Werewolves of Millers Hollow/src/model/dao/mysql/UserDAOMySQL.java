@@ -10,8 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import businesslogic.domain.Administrator;
-import businesslogic.domain.Player;
 import businesslogic.domain.User;
 import model.dao.factory.AbstractFactoryDAO;
 
@@ -158,45 +156,4 @@ public class UserDAOMySQL extends UserDAO{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-    /**
-     * 
-     * @param user
-     * @return
-     * @throws SQLException 
-     */
-	public Player getPlayer(User user) throws SQLException {
-		String sqlRequest="SELECT * FROM Player WHERE userId=?";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setInt(1, user.getId());
-    	ResultSet resultSet = request.executeQuery();
-    	boolean exist = resultSet.first();
-    	if(exist){
-    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),resultSet.getString("gender"),resultSet.getString("country"));
-    	}
-    	else{
-    		return null;
-    	}
-	}
-
-	/**
-     * 
-     * @param user
-     * @return
-     * @throws SQLException 
-     */
-	public Administrator getAdmin(User user) throws SQLException {
-		String sqlRequest="SELECT * FROM User WHERE userId=?";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setInt(1, user.getId());
-    	ResultSet resultSet = request.executeQuery();
-    	boolean exist = resultSet.first();
-    	if(exist){
-    		return new Administrator(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin());
-    	}
-    	else{
-    		return null;
-    	}
-	}
-
 }
