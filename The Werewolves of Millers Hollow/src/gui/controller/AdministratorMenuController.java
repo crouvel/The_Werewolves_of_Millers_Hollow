@@ -100,7 +100,6 @@ public class AdministratorMenuController  implements Initializable{
 		UserFacade userFacade = new UserFacade();
 		try {
 			currentAdmin = userFacade.getAdmin(LoginController.getCurrentUser());
-			System.out.println(currentAdmin.getEmail());
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}	

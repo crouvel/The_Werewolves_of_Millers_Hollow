@@ -9,7 +9,9 @@ public class PlayerReport extends Report {
     /**
      * Default constructor
      */
-    public PlayerReport() {
+    public PlayerReport(int reportId,String description,PlayerReportType reportType) {
+    	super(reportId,description);
+    	this.reportType = reportType;
     }
 
     /**
@@ -42,12 +44,23 @@ public class PlayerReport extends Report {
 	public PlayerReportType getReportType() {
 		return reportType;
 	}
+	
+	public String getReportTypeString() {
+		return reportType.getName();
+	}
 
 	/**
 	 * @param reportType the reportType to set
 	 */
 	public void setReportType(PlayerReportType reportType) {
 		this.reportType = reportType;
+	}
+	
+	/**
+	 * @return 
+	 */
+	public String toString() {
+		return getReportId()+" : "+getReportType().getName();
 	}
 
 }

@@ -6,9 +6,13 @@ package businesslogic.domain;
 public class Report {
 
     /**
-     * Default constructor
+     * 
+     * @param reportId
+     * @param description
      */
-    public Report() {
+    public Report(int reportId,String description) {
+    	this.reportId=reportId;
+    	this.description=description;
     }
 
     /**

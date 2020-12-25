@@ -1,7 +1,15 @@
+/**
+ * package businesslogic.facade
+ */
 package businesslogic.facade;
 
+/**
+ * Imported classes and libraries.
+ */
+import java.sql.SQLException;
 import java.util.*;
-import businesslogic.domain.Report;
+import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.ReportDAO;
 import businesslogic.domain.BugReport;
 import businesslogic.domain.PlayerReport;
 
@@ -11,46 +19,11 @@ import businesslogic.domain.PlayerReport;
 public class ReportManagementFacade {
 
     /**
-     * Default constructor
-     */
-    public ReportManagementFacade() {
-    }
-
-    /**
-     * 
-     */
-    private ArrayList<Report> reportsList;
-
-
-    /**
-     * 
-     */
-    private Report currentReportInView;
-
-
-
-
-    /**
-     * @return
-     */
-    public ArrayList<Report> getReportsList() {
-        return this.reportsList;
-    }
-
-    /**
-     * @return
-     */
-    public Report getcurrentReportInView() {
-        return this.currentReportInView;
-    }
-
-    /**
      * @param reportId 
      * @return
      */
     public BugReport checkBugReport(int reportId) {
-        // TODO implement here
-        return null;
+    	return null;
     }
 
     /**
@@ -66,16 +39,26 @@ public class ReportManagementFacade {
      * @return
      */
     public ArrayList<BugReport> showBugReports() {
-        // TODO implement here
-        return null;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		ReportDAO reportDAO  = factory.createReportDAO();
+    		return reportDAO.getBugReports();
+    	}catch(SQLException e) {
+    		return null;
+    	}   
     }
 
     /**
      * @return
      */
     public ArrayList<PlayerReport> showPlayerReports() {
-        // TODO implement here
-        return null;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		ReportDAO reportDAO  = factory.createReportDAO();
+    		return reportDAO.getPlayerReports();
+    	}catch(SQLException e) {
+    		return null;
+    	}  
     }
 
     /**
@@ -83,8 +66,29 @@ public class ReportManagementFacade {
      * @return
      */
     public boolean deleteReport(int reportId) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		ReportDAO reportDAO  = factory.createReportDAO();
+    		return reportDAO.deleteReport(reportId);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	} 
+    }
+    
+    /**
+     * @param reportId 
+     * @return
+     */
+    public boolean existsReport(int reportId) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		ReportDAO reportDAO  = factory.createReportDAO();
+    		return reportDAO.existsReport(reportId);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return false;
+    	} 
     }
 
 }
