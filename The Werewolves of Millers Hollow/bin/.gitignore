@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 /gui/
 /model/
 /businesslogic/
+=======
+/application/
+/businesslogic/
+/gui/
+/model/
+/util/
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management

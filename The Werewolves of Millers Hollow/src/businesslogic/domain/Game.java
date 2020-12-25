@@ -10,7 +10,9 @@ public class Game {
     /**
      * Default constructor
      */
-  
+    public Game() {
+    }
+
     /**
      * 
      * @return
@@ -19,6 +21,7 @@ public class Game {
 		return hasHunter;
 	}
 
+<<<<<<< HEAD
     public Game() {
     
     	nbgames ++;
@@ -48,6 +51,9 @@ public class Game {
     	nbgames ++;
     }
 	/**
+=======
+    /**
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
      * 
      * @param hasHunter
      */

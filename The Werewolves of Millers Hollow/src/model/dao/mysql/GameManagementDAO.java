@@ -1,7 +1,5 @@
 package model.dao.mysql;
 
-import java.sql.SQLException;
-
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
 
@@ -24,13 +22,17 @@ public abstract class GameManagementDAO {
      * @param status 
      * @return
      */
+<<<<<<< HEAD
     public abstract boolean createGame(int nbplayers, int status) throws SQLException;
+=======
+    public abstract Game createGame(int numberOfPlayers, String status);
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 
     /**
      * @param game_id 
      * @return
      */
-    public abstract Game getGame(int game_id) throws SQLException;
+    public abstract Game getGame(int game_id);
 
     /**
      * @param numberOfWerewolves 
@@ -41,33 +43,37 @@ public abstract class GameManagementDAO {
      * @param hasHunter 
      * @return
      */
+<<<<<<< HEAD
     public abstract boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException;
+=======
+    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter);
+>>>>>>> parent of 3326ad8... kick player out of game + invite friend to play + begin game management
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public abstract boolean inviteFriendToPlay(int game_id, String username1, String username2) throws SQLException;
+    public abstract boolean inviteFriendToPlay(int game_id, String username);
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public abstract boolean cancelRequest(int game_id, String username1, String username2) throws SQLException;
+    public abstract boolean cancelRequest(int game_id, String username);
 
     /**
      * @param game_id 
      * @param username 
      * @return
      */
-    public abstract boolean kickPlayerOutOfTheGame(int game_id, String username) throws SQLException;
+    public abstract boolean kickPlayerOutOfTheGame(int game_id, String username);
 
     /**
      * @param game_id 
      * @return
      */
-    public abstract boolean deleteGame(int game_id) throws SQLException;
+    public abstract boolean deleteGame(int game_id);
 
 }
