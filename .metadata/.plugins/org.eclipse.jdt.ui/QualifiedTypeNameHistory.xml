@@ -32,4 +32,5 @@
     <fullyQualifiedTypeName name="businesslogic.facade.GameManagementFacade"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Phase"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
 </qualifiedTypeNameHistroy>
