@@ -6,8 +6,11 @@ package businesslogic.domain;
 
 
 public class Game {
-	private static int nbgames;
-    /**
+	public static int nbgames;
+    
+	
+	
+	/**
      * Default constructor
      */
   
@@ -29,7 +32,7 @@ public class Game {
     		int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,
 			Phase currentPhase, int availableGame) {
 		super();
-		this.game_id = game_id;
+		Game.game_id = game_id;
 		this.numberOfPlayers = numberOfPlayers;
 		this.status = status;
 		this.numberOfWerewolves = numberOfWerewolves;
@@ -100,15 +103,15 @@ public class Game {
 	/**
 	 * @return the game_id
 	 */
-	public int getGame_id() {
-		return this.game_id;
+	public static int getGame_id() {
+		return game_id;
 	}
 
 	/**
 	 * @param game_id the game_id to set
 	 */
-	public void setGame_id(int game_id) {
-		this.game_id = game_id;
+	public static void setGame_id(int game_id) {
+		Game.game_id = game_id;
 	}
 
 	/**
@@ -216,7 +219,7 @@ public class Game {
 	/**
      * 
      */
-    private int game_id;
+    private static int game_id;
 
     /**
      * 

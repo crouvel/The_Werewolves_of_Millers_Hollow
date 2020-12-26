@@ -116,7 +116,7 @@ public class GameManagementController implements Initializable {
 	
 	private static Game currentGame;
 	@FXML
-	void generateGameId(ActionEvent event) throws IOException{
+	void generateGameId(ActionEvent event) throws IOException{ //marche
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		int status;
 		if (publicGame.isSelected()) {
@@ -157,7 +157,8 @@ public class GameManagementController implements Initializable {
 			infoBox("Please select a player before try to delete.","Missing Player.","Missing informations");
 		}else {
 			GameManagementFacade gameManagementFacade = new GameManagementFacade();
-			boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),username);
+			GameManagementController.getCurrentGame();
+			boolean isDone = gameManagementFacade.kickPlayerOfTheGame(Game.getGame_id(),username);
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 			}else {
@@ -181,7 +182,8 @@ public class GameManagementController implements Initializable {
 				infoBox("This player is already in the invited friends list.","Incorrect action", "Incorrect information");
 			}else {
 				GameManagementFacade gameManagementFacade = new GameManagementFacade();
-				boolean isDone=gameManagementFacade.inviteFriendToPlay(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend.getUsername());
+				GameManagementController.getCurrentGame();
+				boolean isDone=gameManagementFacade.inviteFriendToPlay(Game.getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend.getUsername());
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 				}else {
@@ -206,7 +208,8 @@ public class GameManagementController implements Initializable {
 				infoBox("This player is already in the invite friends list.","Incorrect action", "Incorrect information");
 			}else {
 				GameManagementFacade gameManagementFacade = new GameManagementFacade();
-				boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend.getUsername());
+				GameManagementController.getCurrentGame();
+				boolean isDone=gameManagementFacade.cancelRequest(Game.getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend.getUsername());
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 				}else {
@@ -225,7 +228,8 @@ public class GameManagementController implements Initializable {
 	void returnPlayerMenu(ActionEvent event) throws IOException{
 		
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
+			GameManagementController.getCurrentGame();
+			boolean isDone = gameManagementFacade.deleteGame(Game.getGame_id());
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 			}else {
