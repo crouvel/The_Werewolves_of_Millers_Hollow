@@ -121,7 +121,7 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void startGame(ActionEvent event) throws IOException{
-		
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));	
 	}
 	
 	/**

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.awt.TextArea"/>
-    <fullyQualifiedTypeName name="java.awt.TextField"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextInputDialog"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
@@ -12,14 +9,10 @@
     <fullyQualifiedTypeName name="businesslogic.systemelement.BugReport"/>
     <fullyQualifiedTypeName name="businesslogic.systemelement.Game"/>
     <fullyQualifiedTypeName name="javafx.scene.control.RadioButton"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
     <fullyQualifiedTypeName name="businesslogic.systemelement.Player"/>
     <fullyQualifiedTypeName name="javafx.scene.text.TextFlow"/>
-    <fullyQualifiedTypeName name="application.TheWerewolvesOfMillersHollow"/>
-    <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
     <fullyQualifiedTypeName name="java.net.InetAddress"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="util.HashPassword"/>
@@ -43,7 +36,6 @@
     <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
     <fullyQualifiedTypeName name="gui.controller.LoginController"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Administrator"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="model.dao.mysql.ReportDAO"/>
     <fullyQualifiedTypeName name="javafx.scene.control.skin.VirtualFlow"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Cell"/>
@@ -60,4 +52,12 @@
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
     <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
+    <fullyQualifiedTypeName name="application.TheWerewolvesOfMillersHollow"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
 </qualifiedTypeNameHistroy>
