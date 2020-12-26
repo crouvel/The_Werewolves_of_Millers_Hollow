@@ -43,14 +43,16 @@ public abstract class UserDAO {
     /**
      * @param email 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean existsByEmail(String email);
+    public abstract boolean existsByEmail(String email) throws SQLException;
 
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean existsUsername(String username);
+    public abstract boolean existsUsername(String username) throws SQLException;
 
     /**
      * @param email 
@@ -74,8 +76,9 @@ public abstract class UserDAO {
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean updateBlockPlayer(String username);
+    public abstract boolean updateBlockPlayer(String username) throws SQLException;
 
     /**
      * @param username 

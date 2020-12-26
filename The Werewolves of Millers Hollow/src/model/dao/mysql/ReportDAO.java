@@ -1,5 +1,6 @@
 package model.dao.mysql;
 
+import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Report;
 import businesslogic.domain.PlayerReport;
@@ -31,18 +32,21 @@ public abstract class ReportDAO {
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract ArrayList<BugReport> getBugReports();
+    public abstract ArrayList<BugReport> getBugReports() throws SQLException;
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract ArrayList<PlayerReport> getPlayerReports();
+    public abstract ArrayList<PlayerReport> getPlayerReports() throws SQLException;
 
     /**
      * @return
+     * @throws SQLException 
      */
-    public abstract ArrayList<Report> getReports();
+    public abstract ArrayList<Report> getReports() throws SQLException;
 
     /**
      * @param reportId 
@@ -65,21 +69,24 @@ public abstract class ReportDAO {
     /**
      * @param reportId 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean existsReport(int reportId);
+    public abstract boolean existsReport(int reportId) throws SQLException;
 
     /**
      * @param reportId 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean deleteReport(int reportId);
+    public abstract boolean deleteReport(int reportId) throws SQLException;
 
     /**
      * @param badPlayerUsername 
      * @param reason 
      * @param description 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean createPlayerReport(String badPlayerUsername, String reason, String description);
+    public abstract boolean createPlayerReport(String badPlayerUsername, String reason, String description) throws SQLException;
 
 }

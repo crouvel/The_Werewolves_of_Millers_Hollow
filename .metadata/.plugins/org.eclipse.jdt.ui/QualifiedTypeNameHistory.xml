@@ -43,7 +43,6 @@
     <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
     <fullyQualifiedTypeName name="gui.controller.LoginController"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Administrator"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="model.dao.mysql.ReportDAO"/>
     <fullyQualifiedTypeName name="javafx.scene.control.skin.VirtualFlow"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
     <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

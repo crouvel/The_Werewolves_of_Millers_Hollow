@@ -1,9 +1,6 @@
-/.classpath
-/.project
 /application/
 /businesslogic/
 /chat/
 /gui/
-/image/
 /model/
 /util/
