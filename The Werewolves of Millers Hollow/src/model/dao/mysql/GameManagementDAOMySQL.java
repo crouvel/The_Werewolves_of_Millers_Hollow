@@ -33,7 +33,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 	
 	public boolean createGame(int nbplayers, int status) throws SQLException{
 		
-		new Game(nbplayers, status);
+		new Game(Game.getNbgames() + 1, nbplayers, status, 0,0,0,0,0,0,0, Phase.NIGHT, 0);
 		String sqlRequest = "INSERT INTO Game(gameId, numberOfPlayers, status, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter, finish, currentPhase, availableGame) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
 		request.setInt(1, Game.getNbgames());

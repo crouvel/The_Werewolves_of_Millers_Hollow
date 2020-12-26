@@ -6,7 +6,7 @@ package businesslogic.domain;
 
 
 public class Game {
-	private static int nbgames = 0;
+	private static int nbgames;
     /**
      * Default constructor
      */
@@ -41,7 +41,7 @@ public class Game {
 		this.finish = finish;
 		this.currentPhase = currentPhase;
 		this.availableGame = availableGame;
-		nbgames = getNbgames() + 1;
+		nbgames++;
 	}
 
     public Game(int numberOfWerewolves, int status) {
@@ -101,7 +101,7 @@ public class Game {
 	 * @return the game_id
 	 */
 	public int getGame_id() {
-		return game_id;
+		return this.game_id;
 	}
 
 	/**

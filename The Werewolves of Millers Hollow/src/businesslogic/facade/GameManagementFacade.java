@@ -21,7 +21,7 @@ public class GameManagementFacade {
     /**
      * 
      */
-    private static Game currentGame;
+    
 
 
 
@@ -128,15 +128,6 @@ public class GameManagementFacade {
 	/**
 	 * @return the currentGame
 	 */
-	public static Game getCurrentGame() {
-		return GameManagementFacade.currentGame;
-	}
-
-	/**
-	 * @param currentGame the currentGame to set
-	 */
-	public void setCurrentGame(Game currentGame) {
-		GameManagementFacade.currentGame = currentGame;
-	}
+	
 
 }

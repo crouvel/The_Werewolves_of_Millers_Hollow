@@ -1,7 +1,3 @@
-/application/
-/businesslogic/
-/chat/
-/gui/
-/image/
 /model/
-/util/
+/businesslogic/
+/gui/
