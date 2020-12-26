@@ -41,7 +41,7 @@ public abstract class GameManagementDAO {
      * @param hasHunter 
      * @return
      */
-    public abstract boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException;
+    public abstract boolean modifyRole(int game_id, int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException;
 
     /**
      * @param game_id 
