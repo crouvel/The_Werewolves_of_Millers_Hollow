@@ -114,11 +114,11 @@ public class GameManagementFacade {
      * @param hasHunter 
      * @return
      */
-    public boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
+    public boolean modifyRole(int game_id, int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
-    		return gameManagementDAO.modifyRole(numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter);
+    		return gameManagementDAO.modifyRole(game_id, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter);
     	}catch(SQLException e) {
     		e.getStackTrace();
     		return false;

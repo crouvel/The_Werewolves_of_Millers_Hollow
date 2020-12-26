@@ -12,9 +12,7 @@ import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
-import businesslogic.domain.Phase;
 import businesslogic.domain.Player;
-import businesslogic.facade.FriendManagementFacade;
 import businesslogic.facade.GameManagementFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -142,7 +140,14 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void startGame(ActionEvent event) throws IOException{
-		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+		
+		GameManagementFacade gameManagementFacade = new GameManagementFacade();
+		boolean isDone = gameManagementFacade.modifyRole(Game.getGame_id(),(int)numberOfWerewolves.getValue(),(int)hasWitch.getValue(),(int)hasFortuneTeller.getValue(),(int)hasLittleGirl.getValue(),(int)hasCupid.getValue(),(int)hasHunter.getValue());
+		if(isDone) {		
+			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+		}else {
+			infoBox("Please retry to start the game later.","Incorrect information.", "Connection problem");
+		}
 	}
 	
 	/**

@@ -39,7 +39,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setInt(1, Game.getNbgames());
 		request.setInt(2, nbplayers);
 		request.setInt(3, status);
-		request.setInt(4, 0);
+		request.setInt(4, 1);
 		request.setInt(5, 0);
 		request.setInt(6, 0);
 		request.setInt(7, 0);
@@ -83,12 +83,35 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param hasHunter 
      * @return
      */
-    public boolean modifyRole(int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
+    public boolean modifyRole(int game_id, int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException {
+    	String sqlRequest="UPDATE Game SET numberOfWerewolves=?, hasWitch=?, hasLittleGirl=?, hasCupid=?, hasHunter=?, hasFortuneTeller=? WHERE gameId=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setInt(7, game_id);
+		request.setInt(1, numberOfWerewolves);
+    	request.setInt(2, hasWitch);
+    	request.setInt(3, hasLittleGirl);
+    	request.setInt(4, hasCupid);
+    	request.setInt(5, hasHunter);
+    	request.setInt(6, hasFortuneTeller);
+        request.executeUpdate();
+        return existsGamewithParams(game_id, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter);
     	
     	
-    	return true;
     }
 
+    public boolean existsGamewithParams(int game_id, int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException {
+    	String sqlRequest="(SELECT * FROM Game WHERE gameId=? AND numberOfWerewolves=? AND hasWitch=? AND hasLittleGirl=? AND hasCupid=? AND hasHunter=? AND hasFortuneTeller=?)";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1, game_id);
+    	request.setInt(2, numberOfWerewolves);
+    	request.setInt(3, hasWitch);
+    	request.setInt(4, hasLittleGirl);
+    	request.setInt(5, hasCupid);
+    	request.setInt(6, hasHunter);
+    	request.setInt(7, hasFortuneTeller);
+    	ResultSet resultSet = request.executeQuery();
+    	return resultSet.first();
+    }
     /**
      * @param game_id 
      * @param username 
@@ -107,9 +130,9 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     private boolean existsGameRequest(int game_id, String username1, String username2) throws SQLException{
     	String sqlRequest="SELECT * FROM GameRequest WHERE requesterUsername=? AND invitedUsername=? AND gamId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-		request.setInt(1, game_id);
-		request.setString(2, username1);
-    	request.setString(3, username2);
+		request.setInt(3, game_id);
+		request.setString(1, username1);
+    	request.setString(2, username2);
     	ResultSet resultSet = request.executeQuery();
     	return resultSet.first();
 	}
@@ -122,9 +145,9 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     public boolean cancelRequest(int game_id, String username1, String username2) throws SQLException{
     	String sqlRequest="DELETE FROM GameRequest WHERE requesterUsername=? AND invitedUsername=? AND gamId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-		request.setInt(1, game_id);
-		request.setString(2, username1);
-    	request.setString(3, username2);
+		request.setInt(3, game_id);
+		request.setString(1, username1);
+    	request.setString(2, username2);
         request.executeUpdate();
         return !existsGameRequest(game_id,username1,username2);
     }
@@ -144,7 +167,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     }
 
     private boolean existsPlayerInGame(String username, int game_id) throws SQLException {
-    	String sqlRequest="(SELECT * FROM PlayerInGame WHERE gameId=? and username=?)";
+    	String sqlRequest="SELECT * FROM PlayerInGame WHERE gameId=? and username=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
     	request.setString(2, username);
