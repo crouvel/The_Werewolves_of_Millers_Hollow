@@ -161,6 +161,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
         request.executeUpdate();
+        Game.nbgames -= 1;
         return !existsGame(game_id);
     	
     }
