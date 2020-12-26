@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
+   <children>
+      <ImageView fitHeight="536.0" fitWidth="684.0" layoutX="360.0" layoutY="73.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/wolf_background.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="286.0" layoutY="93.0" opacity="0.39" prefHeight="444.0" prefWidth="739.0" style="-fx-background-color: #2828a4;">
+         <children>
+            <Pane prefHeight="89.0" prefWidth="739.0" style="-fx-background-color: #141452;" />
+         </children>
+      </Pane>
+      <Text fill="WHITE" layoutX="526.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="72.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="312.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="26.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="312.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="26.0" />
+         </font>
+      </Text>
+      <TextField fx:id="email" layoutX="608.0" layoutY="273.0" prefHeight="55.0" prefWidth="350.0" promptText="Email address..." />
+      <Button layoutX="465.0" layoutY="456.0" mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="350.0" style="-fx-background-color: #255fdb;" text="Sign in" textFill="WHITE">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="79.0" layoutY="574.0" mnemonicParsing="false" onAction="#returnMenu" opacity="0.84" style="-fx-background-color: #2828a4;" text="Start" textFill="WHITE">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="22.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="password" layoutX="608.0" layoutY="370.0" prefHeight="55.0" prefWidth="350.0" promptText="Password..." />
+   </children>
+</Pane>

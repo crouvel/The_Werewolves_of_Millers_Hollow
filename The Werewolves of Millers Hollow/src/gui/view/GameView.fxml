@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.GameController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/dayBackground.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="640.0" layoutY="53.0" prefHeight="573.0" prefWidth="578.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;">
+         <children>
+            <TextArea layoutX="23.0" layoutY="14.0" prefHeight="471.0" prefWidth="532.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="104.0" layoutY="115.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;" />
+   </children>
+</Pane>
