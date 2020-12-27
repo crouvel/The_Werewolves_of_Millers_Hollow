@@ -23,8 +23,6 @@ public class Player extends User {
     	this.playedGames = 0;
     	this.wonGames = 0;
     	this.lostGames = 0;
-    	this.setFriendsList(new ArrayList<Player>());
-    	this.setInvitedPlayer(new ArrayList<Player>());
     }
     
     /**
@@ -47,8 +45,6 @@ public class Player extends User {
     	this.playedGames = 0;
     	this.wonGames = 0;
     	this.lostGames = 0;
-    	this.setFriendsList(new ArrayList<Player>());
-    	this.setInvitedPlayer(new ArrayList<Player>());
     }
     
     /**
@@ -70,30 +66,6 @@ public class Player extends User {
     	this.playedGames = playedGames;
     	this.wonGames = wonGames;
     	this.lostGames = lostGames;
-    	this.setFriendsList(new ArrayList<Player>());
-    	this.setInvitedPlayer(new ArrayList<Player>());
-    }
-    
-    /**
-     * 
-     * @param userId
-     * @param email
-     * @param password
-     * @param isAdmin
-     * @param username
-     * @param dateOfBirth
-     * @param gender
-     * @param country
-     * @param playedGames
-     * @param wonGames
-     * @param lostGames
-     * @param friendList
-     * @param invitedFriends
-     */
-    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, String gender, String country,int playedGames,int wonGames, int lostGames,ArrayList<Player> friendList,ArrayList<Player> invitedFriends) {
-    	this(userId,email,password,isAdmin,username,dateOfBirth,gender,country,playedGames,wonGames,lostGames);
-    	this.setFriendsList(friendList);
-    	this.setInvitedPlayer(invitedFriends);
     }
 
     /**
@@ -130,17 +102,6 @@ public class Player extends User {
      * Attribute corresponds to the number of lost games.
      */
     private int lostGames;
-    
-    /**
-     * Attribute corresponds to the friend list.
-     */
-    private ArrayList<Player> friendsList;
-
-    /**
-     * Attribute corresponds to the invited player list.
-     */
-    private ArrayList<Player> invitedPlayer;
-
 
     /**
      * @return the username of the player
@@ -225,34 +186,5 @@ public class Player extends User {
 	public void setLostGames(int lostGames) {
 		this.lostGames = lostGames;
 	}
-
-	/**
-	 * @return the friendsList
-	 */
-	public ArrayList<Player> getFriendsList() {
-		return friendsList;
-	}
-
-	/**
-	 * @param friendsList the friendsList to set
-	 */
-	public void setFriendsList(ArrayList<Player> friendsList) {
-		this.friendsList = friendsList;
-	}
-
-	/**
-	 * @return the invitedPlayer
-	 */
-	public ArrayList<Player> getInvitedPlayer() {
-		return invitedPlayer;
-	}
-
-	/**
-	 * @param invitedPlayer the invitedPlayer to set
-	 */
-	public void setInvitedPlayer(ArrayList<Player> invitedPlayer) {
-		this.invitedPlayer = invitedPlayer;
-	}
-
 
 }

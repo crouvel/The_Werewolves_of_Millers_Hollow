@@ -83,8 +83,7 @@ public class LoginController implements Initializable {
 			}
 		}		
 	}
-		
-	
+
 	/**
 	 * 
 	 * @param event
@@ -104,7 +103,6 @@ public class LoginController implements Initializable {
 	 * @param title
 	 */
 	public static void infoBox(String message, String head, String title){
-        //A CUSTOMISER
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText(message);
         alert.setTitle(title);
@@ -120,14 +118,12 @@ public class LoginController implements Initializable {
 		
 	}
 
-
 	/**
 	 * @return the currentUser
 	 */
 	public static User getCurrentUser() throws IOException {
 		return currentUser;
 	}
-
 
 	/**
 	 * @param currentUser the currentUser to set

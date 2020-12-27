@@ -28,6 +28,21 @@ public class UserDAOMySQL extends UserDAO{
 
     /**
      * 
+     * @param email 
+     * @return
+     * @throws SQLException
+     */
+    public int getUserIdByUsername(String username) throws SQLException {
+		String sqlRequest="SELECT * FROM Player WHERE username=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, username);
+    	ResultSet resultSet = request.executeQuery();
+    	resultSet.first();
+    	return resultSet.getInt("userId");
+    }
+    
+    /**
+     * 
      * @param userId 
      * @return
      * @throws SQLException
@@ -57,14 +72,16 @@ public class UserDAOMySQL extends UserDAO{
     
     /**
      * 
-     * @param email
-     * @return true if the User to which the email belongs in parameter exists, else false.
+     * @param user
+     * @return true if the User belongs in parameter exists, else false.
      * @throws SQLException
      */
-    public boolean exist(String email) throws SQLException {
-    	String sqlRequest = "SELECT COUNT(*) FROM User WHERE email=?";
+    public boolean exist(User user) throws SQLException {
+    	String sqlRequest = "SELECT * FROM User WHERE email=? AND userId=? AND password=? AND ";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setString(1, email);
+    	request.setString(1, user.getEmail());
+    	request.setInt(2, user.getId());
+    	request.setString(3, user.getPassword());
     	ResultSet resultSet = request.executeQuery();
     	return resultSet.first();
     }
@@ -94,19 +111,27 @@ public class UserDAOMySQL extends UserDAO{
 	/**
      * @param email 
      * @return
+     * @throws SQLException
      */
-	public boolean existsByEmail(String email) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existsByEmail(String email) throws SQLException {
+		String sqlRequest = "SELECT * FROM User WHERE email=?";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, email);
+    	ResultSet resultSet = request.executeQuery();
+    	return resultSet.first();
 	}
 
 	/**
      * @param username 
      * @return
+	 * @throws SQLException 
      */
-	public boolean existsUsername(String username) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existsUsername(String username) throws SQLException {
+		String sqlRequest = "SELECT * FROM Player WHERE username=?";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, username);
+    	ResultSet resultSet = request.executeQuery();
+    	return resultSet.first();
 	}
 
 	/**
@@ -141,10 +166,21 @@ public class UserDAOMySQL extends UserDAO{
     /**
      * @param username 
      * @return
+     * @throws SQLException
      */
-	public boolean updateBlockPlayer(String username) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateBlockPlayer(String username) throws SQLException {
+		try {
+			String sqlRequest = "UPDATE User SET isLockedAccount=? WHERE userId=?";
+			int a = getUserIdByUsername(username);
+	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+	    	request.setBoolean(1, true);
+	    	request.setInt(2, a);
+	    	request.executeUpdate();
+	    	return true;
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}
 	}
 
     /**

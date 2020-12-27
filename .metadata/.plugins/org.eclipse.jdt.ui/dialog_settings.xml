@@ -20,6 +20,7 @@
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
+		<item key="configure_problem_severity_dialog_id" value="false"/>
 	</section>
 	<section name="NewClassWizardPage">
 		<item key="create_constructor" value="false"/>
@@ -55,6 +56,7 @@
 		<item key="FinalModifier" value="false"/>
 		<item key="SynchronizedModifier" value="false"/>
 		<item key="Comments" value="false"/>
+		<item key="VisibilityModifier" value="1"/>
 	</section>
 	<section name="DialogBounds_OverrideMethodDialog">
 		<item key="DIALOG_X_ORIGIN" value="640"/>
@@ -64,17 +66,17 @@
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="SelfEncapsulateFieldWizard">
-		<item key="GenerateJavadoc" value="false"/>
+		<item key="GenerateJavadoc" value="true"/>
 	</section>
 	<section name="RenameInformationPopup">
 	</section>
 	<section name="JarPackageWizard">
 		<item key="JarPackageWizardPage.EXPORT_CLASS_FILES" value="true"/>
 		<item key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER" value="false"/>
-		<item key="JarPackageWizardPage.EXPORT_JAVA_FILES" value="false"/>
-		<item key="JarPackageWizardPage.REFACTORINGS" value="false"/>
+		<item key="JarPackageWizardPage.EXPORT_JAVA_FILES" value="true"/>
+		<item key="JarPackageWizardPage.REFACTORINGS" value="true"/>
 		<item key="JarPackageWizardPage.COMPRESS" value="true"/>
-		<item key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES" value="false"/>
+		<item key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES" value="true"/>
 		<item key="JarPackageWizardPage.OVERWRITE" value="false"/>
 		<item key="jarOptionsWizardPage.EXPORT_WARNINGS" value="true"/>
 		<item key="jarOptionsWizardPage.EXPORT_ERRORS" value="true"/>

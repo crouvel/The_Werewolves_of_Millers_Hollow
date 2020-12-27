@@ -25,6 +25,8 @@
     <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="application.TheWerewolvesOfMillersHollow"/>
     <listAttribute key="org.eclipse.jdt.launching.MODULEPATH"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="The Werewolves of Millers Hollow"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-Dfile.encoding=Cp1252"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="The Werewolves of Millers Hollow"/>
     <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="--module-path &quot;C:\Users\clare\Downloads\javafx-sdk-13.0.1-20201203T094716Z-001\javafx-sdk-13.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml"/>
 </launchConfiguration>
