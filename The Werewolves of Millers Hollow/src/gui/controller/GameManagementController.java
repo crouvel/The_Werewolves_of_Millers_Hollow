@@ -119,10 +119,11 @@ public class GameManagementController implements Initializable {
 		int status;
 		if (publicGame.isSelected()) {
 			status = 1;
+		}if(privateGame.isSelected()) {
+			status = 0;
 		}else {
 			status = 0;
 		}
-		
 		boolean isDone = gameManagementFacade.createGame((int)numberOfPlayers.getValue(), status);
 		if(isDone) {		
 			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
