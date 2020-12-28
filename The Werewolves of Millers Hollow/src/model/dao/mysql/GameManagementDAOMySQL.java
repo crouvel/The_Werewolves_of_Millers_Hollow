@@ -201,10 +201,11 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param game_id 
      * @return
      */
-    public boolean deleteGame(int game_id) throws SQLException{
-    	String sqlRequest="DELETE FROM Game WHERE gameId=?";
+    public boolean deleteGame(int game_id, String username) throws SQLException{
+    	String sqlRequest="DELETE FROM Game WHERE gameId=? AND creatorUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
+    	request.setString(2, username);
         request.executeUpdate();
         return !existsGame(game_id);
     	
@@ -230,28 +231,34 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 	 * @return the gameGenerated
 	 */
 	
-    public ArrayList<String> getInvitedFriend(String username) throws SQLException{
-    	String sqlRequest="SELECT * FROM GameRequest WHERE requesterUsername=?";
+    public ArrayList<String> getInvitedFriend(int gameId, String username) throws SQLException{
+    	String sqlRequest="SELECT * FROM GameRequest WHERE requesterUsername=? AND gamId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setString(1, username);
+    	request.setInt(2, gameId);
     	ResultSet resultSet = request.executeQuery();
     	ArrayList<String> invited = new ArrayList<String>();
-        while (resultSet.next()) {
+    	while (resultSet.next()) {
             invited.add(resultSet.getString("invitedUsername"));
-        }
+    	}
         return invited;
     }
 
-    public ArrayList<String> getPlayer(int gameId) throws SQLException{
+   
+	public ArrayList<String> getPlayer(int gameId) throws SQLException{
     	String sqlRequest="SELECT * FROM PlayerInGame WHERE gameId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, gameId);
     	ResultSet resultSet = request.executeQuery();
-    	ArrayList<String> invited = new ArrayList<String>();
-        while (resultSet.next()) {
-            invited.add(resultSet.getString("username"));
-        }
-        return invited;
+    	ArrayList<String> players = new ArrayList<String>();
+    	
+    	while (resultSet.next()) {
+            players.add(resultSet.getString("username"));
+    	}
+            return players;
+    
     }
 
-}
+    }
+    
+    

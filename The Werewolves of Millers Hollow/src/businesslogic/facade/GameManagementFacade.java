@@ -49,11 +49,11 @@ public class GameManagementFacade {
      * @param game_id 
      * @return
      */
-    public boolean deleteGame(int game_id) {
+    public boolean deleteGame(int game_id, String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
-    		return gameManagementDAO.deleteGame(game_id);
+    		return gameManagementDAO.deleteGame(game_id, username);
     	}catch(SQLException e) {
     		e.getStackTrace();
     		return false;
@@ -143,11 +143,11 @@ public class GameManagementFacade {
      * @return
      * @throws SQLException
      */
-    public ArrayList<String> getInvitedFriendList(String username) throws SQLException{
+    public ArrayList<String> getInvitedFriendList(int gameId, String username) throws SQLException{
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
-    		return gameManagementDAO.getInvitedFriend(username);
+    		return gameManagementDAO.getInvitedFriend(gameId, username);
     	}catch(SQLException e) {
     		return null;
     	}    	

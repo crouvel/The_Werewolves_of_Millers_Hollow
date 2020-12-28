@@ -69,11 +69,11 @@ public abstract class GameManagementDAO {
      * @param game_id 
      * @return
      */
-    public abstract boolean deleteGame(int game_id) throws SQLException;
+    public abstract boolean deleteGame(int game_id, String username) throws SQLException;
 
     public abstract Game getGameByCreator( String creator) throws SQLException;
     
-    public abstract ArrayList<String> getInvitedFriend(String username) throws SQLException;
+    public abstract ArrayList<String> getInvitedFriend(int gameId, String username) throws SQLException;
     
     
     public abstract ArrayList<String> getPlayer(int gameId) throws SQLException;
