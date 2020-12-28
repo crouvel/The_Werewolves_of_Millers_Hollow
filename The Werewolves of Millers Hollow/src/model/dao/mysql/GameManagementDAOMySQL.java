@@ -13,12 +13,17 @@ import model.dao.factory.AbstractFactoryDAO;
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
+
+
+
 public class GameManagementDAOMySQL extends GameManagementDAO {
 
     /**
      * Default constructor
      */
     
+	private static boolean GameGenerated = false;
+	
 	public GameManagementDAOMySQL() {
     }
 
@@ -49,7 +54,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setString(11, Phase.NIGHT.name());
 		request.setInt(12, 0);
 		request.executeUpdate();
-       
+		GameGenerated = true;
         return existsGame(Game.getNbgames());
     }
 
@@ -196,6 +201,13 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     	ResultSet resultSet = request.executeQuery();
     	return resultSet.first();
     }
+
+	/**
+	 * @return the gameGenerated
+	 */
+	public static boolean isGameGenerated() {
+		return GameGenerated;
+	}
 
 
 

@@ -23,6 +23,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
+import model.dao.mysql.GameManagementDAOMySQL;
 
 public class GameManagementController implements Initializable {
 	
@@ -121,14 +122,18 @@ public class GameManagementController implements Initializable {
 			status = 1;
 		}if(privateGame.isSelected()) {
 			status = 0;
+		}if(publicGame.isSelected() && privateGame.isSelected()) {
+			status = 1;
+			infoBox("Game was set public, privacy wrongly defined. Regenerate the game with the right privacy if you want to change it.","Incorrect information.", "Game set public");
 		}else {
-			status = 0;
+			status = 1;
+			infoBox("Please retry to create a game later.","Incorrect information.", "Connection problem");
 		}
 		boolean isDone = gameManagementFacade.createGame((int)numberOfPlayers.getValue(), status);
 		if(isDone) {		
 			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 		}else {
-			infoBox("Please retry to create a game later.","Incorrect information.", "Connection problem");
+			infoBox("Game was set public, privacy wrongly defined. Regenerate the game with the right privacy if you want to change it.","Incorrect information.", "Game set public");
 		}
 		
 		
@@ -233,6 +238,7 @@ public class GameManagementController implements Initializable {
 	@FXML
 	void returnPlayerMenu(ActionEvent event) throws IOException{
 		
+		if(GameManagementDAOMySQL.isGameGenerated()) {
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 			GameManagementController.getCurrentGame();
 			boolean isDone = gameManagementFacade.deleteGame(Game.getGame_id());
@@ -242,6 +248,11 @@ public class GameManagementController implements Initializable {
 				infoBox("Retry to cancel the game creation later.","Incorrect information.", "Connection problem");
 			}		
 			
+	}else {
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+	}
+	
+	
 	}
 	
 	//Added Methods
@@ -271,7 +282,7 @@ public class GameManagementController implements Initializable {
 	}
 
 	public static Game getCurrentGame() {
-		return currentGame;
+		return GameManagementController.currentGame;
 	}
 
 	public static void setCurrentGame(Game currentGame) {
