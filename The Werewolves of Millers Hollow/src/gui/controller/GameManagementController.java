@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
 import businesslogic.domain.Player;
+import businesslogic.domain.PlayerInGame;
 import businesslogic.facade.FriendManagementFacade;
 import businesslogic.facade.GameManagementFacade;
 import javafx.event.ActionEvent;
@@ -30,7 +31,12 @@ import javafx.scene.text.Text;
 import model.dao.mysql.GameManagementDAOMySQL;
 
 public class GameManagementController implements Initializable {
-
+	
+	//Attributes
+	private static Game currentGame;
+	
+	private static PlayerInGame currentPlayerInGame;
+	
 	//FXML Attributes
 
 	/**
@@ -378,6 +384,35 @@ public class GameManagementController implements Initializable {
 			e3.printStackTrace();
 		}
 	}
+
+	/**
+	 * @return the currentPlayerInGame
+	 */
+	public static PlayerInGame getCurrentPlayerInGame() {
+		return currentPlayerInGame;
+	}
+
+	/**
+	 * @param currentPlayerInGame the currentPlayerInGame to set
+	 */
+	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
+		GameManagementController.currentPlayerInGame = currentPlayerInGame;
+	}
+
+	/**
+	 * @return the currentGame
+	 */
+	public static Game getCurrentGame() {
+		return currentGame;
+	}
+
+	/**
+	 * @param currentGame the currentGame to set
+	 */
+	public static void setCurrentGame(Game currentGame) {
+		GameManagementController.currentGame = currentGame;
+	}
+		
 
 
 

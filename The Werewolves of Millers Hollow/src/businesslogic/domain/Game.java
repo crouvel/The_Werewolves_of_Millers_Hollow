@@ -15,6 +15,23 @@ public class Game {
      */
   
     /**
+
+	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,Phase currentPhase, boolean availableGame, String creatorUsername) {
+		this.game_id = game_id;
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+		this.setCreatorUsername(creatorUsername);
+	}
+    /**
      * 
      * @return
      */
@@ -229,6 +246,26 @@ public class Game {
 	public void setAvailableGame(int availableGame) {
 		this.availableGame = availableGame;
 	}
+	
+	/**
+	 * @return the creatorUsername
+	 */
+	public String getCreatorUsername() {
+		return creatorUsername;
+	}
+	/**
+	 * @param creatorUsername the creatorUsername to set
+	 */
+	public void setCreatorUsername(String creatorUsername) {
+		this.creatorUsername = creatorUsername;
+	}
+	
+	/**
+	 * 
+	 */
+	public String toString() {
+		return creatorUsername;
+	}
 
 
 
@@ -292,4 +329,6 @@ public class Game {
      * 
      */
     private int availableGame;
+    private boolean availableGame;
+    private String creatorUsername;
 }

@@ -18,25 +18,27 @@ public class Player extends User {
     	super(userId,email,password,isAdmin);
     	this.username = "";
     	this.dateOfBirth = null;
-    	this.gender = "MALE";
+    	this.gender = Gender.MALE;
     	this.country = "";
     	this.playedGames = 0;
     	this.wonGames = 0;
     	this.lostGames = 0;
+    	this.status = 1;
     }
     
-    /**
-     * 
-     * @param userId
-     * @param email
-     * @param password
-     * @param isAdmin
-     * @param username
-     * @param dateOfBirth
-     * @param gender
-     * @param country
-     */
-    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, String gender, String country) {
+   /**
+    * 
+    * @param userId
+    * @param email
+    * @param password
+    * @param isAdmin
+    * @param username
+    * @param dateOfBirth
+    * @param gender
+    * @param country
+    * @param status
+    */
+    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country,int status) {
     	super(userId,email,password,isAdmin);
     	this.username = username;
     	this.dateOfBirth = dateOfBirth;
@@ -45,6 +47,7 @@ public class Player extends User {
     	this.playedGames = 0;
     	this.wonGames = 0;
     	this.lostGames = 0;
+    	this.status = status;
     }
     
     /**
@@ -60,9 +63,10 @@ public class Player extends User {
      * @param playedGames
      * @param wonGames
      * @param lostGames
+     * @param status
      */
-    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, String gender, String country,int playedGames,int wonGames, int lostGames) {
-    	this(userId,email,password,isAdmin,username,dateOfBirth,gender,country);
+    public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country,int playedGames,int wonGames, int lostGames,int status) {
+    	this(userId,email,password,isAdmin,username,dateOfBirth,gender,country,status);
     	this.playedGames = playedGames;
     	this.wonGames = wonGames;
     	this.lostGames = lostGames;
@@ -86,7 +90,7 @@ public class Player extends User {
     /**
      * Attribute corresponds to the gender.
      */
-    private String gender;
+    private Gender gender;
     
     /**
      * Attribute corresponds to the number of played games.
@@ -102,7 +106,12 @@ public class Player extends User {
      * Attribute corresponds to the number of lost games.
      */
     private int lostGames;
-
+    
+    /**
+     * 1 if public, 0 if private
+     */
+    private int status;
+    
     /**
      * @return the username of the player
      */
@@ -127,7 +136,7 @@ public class Player extends User {
     /**
      * @return the gender of the player
      */
-    public String getGender() {
+    public Gender getGender() {
         return this.gender;
     }
 
@@ -185,6 +194,20 @@ public class Player extends User {
 	 */
 	public void setLostGames(int lostGames) {
 		this.lostGames = lostGames;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public int isStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

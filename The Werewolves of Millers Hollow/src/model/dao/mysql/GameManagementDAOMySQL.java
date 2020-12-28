@@ -32,10 +32,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param status 
      * @return
      */
-    
-	
-	
-	
 	public boolean createGame(int nbplayers, int status, String creator) throws SQLException{
 		
 		new Game(nbplayers, status, 0,0,0,0,0,0,0, Phase.NIGHT, 0);
@@ -66,8 +62,8 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     	String sqlRequest="SELECT * FROM Game WHERE gameId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
-    	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
+    	ResultSet resultSet = request.executeQuery();
     	if(exist){
     		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getInt("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getInt("hasWitch"),resultSet.getInt("hasLittleGirl"), 
     				resultSet.getInt("hasCupid"), resultSet.getInt("hasHunter"), resultSet.getInt("hasFortuneTeller"), resultSet.getInt("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getInt("availableGame"));
