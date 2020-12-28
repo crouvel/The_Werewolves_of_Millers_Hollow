@@ -241,9 +241,11 @@ public class GameManagementController implements Initializable {
 	void returnPlayerMenu(ActionEvent event) throws IOException{
 		
 		if(GameManagementController.getCurrentGame() != null) {
-		GameManagementFacade gameManagementFacade = new GameManagementFacade();
+			
+			GameManagementFacade gameManagementFacade = new GameManagementFacade();
 			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
 			if(isDone) {		
+				GameManagementController.setCurrentGame(null);
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 			}else {
 				infoBox("Retry to cancel the game creation later.","Incorrect information.", "Connection problem");
