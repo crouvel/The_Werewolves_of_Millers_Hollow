@@ -1,82 +1,135 @@
+/**
+ * package gui.controller
+ */
 package gui.controller;
 
-
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.User;
 import businesslogic.facade.UserFacade;
-import businesslogic.systemelement.User;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import util.HashPassword;
 
+/**
+ * 
+ * @author Tiffany Dumaire
+ *
+ */
 public class LoginController implements Initializable {
 	
+	//FXML Attributes
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField email;
 	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField password;
 	
+	//Attributes
+	/**
+	 * 
+	 */
+	private static User currentUser;
+	
+	//FXML Methods
+	
+	/**
+	 * Allows the user to log in using their email and password.
+	 * @param event
+	 * @throws Exception 
+	 */
 	@FXML
-	void login(ActionEvent event) throws SQLException, IOException {
+	void login(ActionEvent event) throws Exception {
 		String mail = email.getText();
 		String pwd = password.getText();
-		UserFacade userFacade = new UserFacade();
-		User user;
-		try {
-			user = userFacade.login(mail,pwd);
-		}catch(SQLException e) {
-			infoBox("Veuillez entrer un identifiant et une adresse correcte", null, "Failed");
-            return;
-		}
-		if(user.isAdmin()) {
-			goToAdministratorMenu(getClass().getResource("../AdministratorMenuView.fxml"),user);
+		if(mail.isBlank() && pwd.isBlank()) {
+			infoBox("Please enter an email address and a password.","Missing email address and password","Missing informations");
 		}else {
-			goToPlayerMenu(getClass().getResource("../PlayerMenuView.fxml"),user);
-		}
+			if(mail.isBlank()) {
+				infoBox("Please enter an email address.","Missing email address","Missing information");
+			}else {
+				if(pwd.isBlank()) {
+					infoBox("Please enter a password.","Missing password","Missing information");
+				}else {
+					UserFacade userFacade = new UserFacade();
+					User user=userFacade.login(mail,HashPassword.hashPassword(pwd));
+					if (user != null) {
+						if(user.isAdmin()==1) {
+							TheWerewolvesOfMillersHollow.goToAdminMenu(user,getClass().getResource("../view/AdministratorMenuView.fxml"));
+						}else {
+							TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
+						}
+					}else {
+						infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
+					}
+				}
+			}
+		}		
 	}
-	
+
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnMenu(ActionEvent event) throws IOException {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-	}
 	
-	//Methodes ajoutees
+	//Methode ajoute
 	
-	
+	/**
+	 * Open an info box.
+	 * @param message
+	 * @param head
+	 * @param title
+	 */
 	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText(message);
         alert.setTitle(title);
         alert.setHeaderText(head);
         alert.showAndWait();
     }
 	
-	public void goToAdministratorMenu(URL resources,User user) throws IOException {
-		FXMLLoader loader = new FXMLLoader(resources);
-        AdministratorMenuController administrator = loader.<AdministratorMenuController>getController();
-        administrator.setCurrentUser(user);
-        TheWerewolvesOfMillersHollow.setScene(resources);
+	/**
+	 * 
+	 */
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+	}
+
+	/**
+	 * @return the currentUser
+	 */
+	public static User getCurrentUser() throws IOException {
+		return currentUser;
+	}
+
+	/**
+	 * @param currentUser the currentUser to set
+	 */
+	public static void setCurrentUser(User currentUser) throws IOException {
+		LoginController.currentUser = currentUser;
 	}
 	
-	public void goToPlayerMenu(URL resources,User user) throws IOException {
-		FXMLLoader loader = new FXMLLoader(resources);
-        PlayerMenuController player = loader.<PlayerMenuController>getController();
-        player.setCurrentUser(user);
-        TheWerewolvesOfMillersHollow.setScene(resources);
-	}	
 }

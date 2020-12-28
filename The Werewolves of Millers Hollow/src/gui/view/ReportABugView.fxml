@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.ReportABugController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/dayBackground.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="318.0" layoutY="50.0" opacity="0.57" prefHeight="566.0" prefWidth="644.0" style="-fx-background-color: black; -fx-background-radius: 50px;" />
+      <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnPlayerMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/iconMenu.png" />
+               </image>
+               <effect>
+                  <Shadow height="5.0" radius="1.25" width="2.0" />
+               </effect>
+            </ImageView>
+         </graphic>
+         <effect>
+            <Lighting diffuseConstant="1.54" specularConstant="1.23" specularExponent="24.39" surfaceScale="1.86">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Text fill="WHITE" layoutX="470.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report a bug">
+         <font>
+            <Font name="Verdana Bold" size="47.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="405.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please describe the issue you are experiencing">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="subject" layoutX="400.0" layoutY="219.0" promptText="Subject..." style="-fx-background-color: rgb(138,138,138,0.7);">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextField fx:id="imageLink" layoutX="400.0" layoutY="281.0" prefHeight="39.0" prefWidth="470.0" promptText="Url image link..." style="-fx-background-color: rgb(138,138,138,0.7);">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextArea fx:id="description" layoutX="400.0" layoutY="342.0" opacity="0.8" prefHeight="159.0" prefWidth="470.0" promptText="Context...">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="460.0" layoutY="525.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: rgb(204, 0, 0,0.8);" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="660.0" layoutY="525.0" mnemonicParsing="false" onAction="#sendBugReport" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: rgb(80, 184, 46,0.8);" text="Send" textFill="WHITE">
+         <font>
+            <Font name="Verdana Italic" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

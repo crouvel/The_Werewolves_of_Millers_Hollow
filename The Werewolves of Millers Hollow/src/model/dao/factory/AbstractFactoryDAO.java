@@ -1,6 +1,16 @@
+/**
+ * package model.dao.factory
+ */
 package model.dao.factory;
 
-import model.dao.mysql.UserDAO;
+/**
+ * Imported classes and libraries.
+ */
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import model.dao.mysql.*;
+import util.ConnectionUtil;
 
 /**
  * @author Tiffany Dumaire
@@ -8,35 +18,82 @@ import model.dao.mysql.UserDAO;
 public abstract class AbstractFactoryDAO {
 
     /**
-     * Default constructor
-     */
-    public AbstractFactoryDAO() {
-    }
-
-    /**
      * 
      */
     public static AbstractFactoryDAO instance = null;
 
+    /**
+     * 
+     */
+    private static Connection connection=null;
 
+    /**
+     * 
+     */
+    public AbstractFactoryDAO() {
+    	if(getConnection()==null) {
+    	    connection=ConnectionUtil.connectionDatabase();
+    	}
+    }
+    
+    /**
+     * @return
+     */
+    public static Connection getConnection() {
+        return AbstractFactoryDAO.connection;
+    }
+    
+    
     /**
      * @return
      */
     public static AbstractFactoryDAO getInstance() {
-        // TODO implement here
-        return null;
+    	if(instance==null) {
+    		instance = new FactoryDAOMySQL();
+    	}
+        return instance;
     }
 
     /**
      * @param factory
      */
     public void setInstance(AbstractFactoryDAO factory) {
-        // TODO implement here
+        instance=factory;
     }
 
     /**
      * @return
      */
-    public abstract UserDAO createUserDAO();
+    public abstract UserDAO createUserDAO() throws SQLException;
 
+    /**
+     * @return
+     * @throws SQLException 
+     */
+    public abstract ReportDAO createReportDAO() throws SQLException;
+
+
+    /**
+     * @return
+     * @throws SQLException 
+     */
+    public abstract GameManagementDAO createGameManagementDAO() throws SQLException;
+
+    /**
+     * @return
+     * @throws SQLException 
+     */
+    public abstract PlayerInGameDAO createPlayerInGameDAO() throws SQLException;
+
+    /**
+     * @return
+     * @throws SQLException 
+     */
+    public abstract FriendManagementDAO createFriendManagementDAO() throws SQLException;
+
+    /**
+     * @return
+     * @throws SQLException 
+     */
+    public abstract SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() throws SQLException;
 }

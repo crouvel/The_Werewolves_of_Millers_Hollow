@@ -1,9 +1,13 @@
+/**
+ * package model.dao.factory
+ */
 package model.dao.factory;
 
-import java.sql.Connection;
-
-import model.dao.mysql.UserDAO;
-import util.ConnectionUtil;
+/**
+ * Imported classes and libraries.
+ */
+import java.sql.SQLException;
+import model.dao.mysql.*;
 
 /**
  * @author Tiffany Dumaire
@@ -14,29 +18,50 @@ public class FactoryDAOMySQL extends AbstractFactoryDAO {
      * Default constructor
      */
     public FactoryDAOMySQL() {
-    	if(connection==null) {
-    		connection=ConnectionUtil.connectionDatabase();
-    	}
-    }
-
-    /**
-     * 
-     */
-    private static Connection connection=null;
-
-    /**
-     * @return
-     */
-    public static Connection getConnection() {
-    	Connection getStaticConnectionAttribute = FactoryDAOMySQL.connection;
-        return getStaticConnectionAttribute;
+    	super();
     }
 
     /**
      * @return
+     * @throws SQLException
      */
-    public UserDAO createUserDAO() {
-    	return null;
+    public UserDAO createUserDAO() throws SQLException {
+		return new UserDAOMySQL();
+    }
+    
+    /**
+     * @return
+     */
+    public ReportDAO createReportDAO() throws SQLException {
+    	return new ReportDAOMySQL();
+    }
+
+    /**
+     * @return
+     */
+    public GameManagementDAO createGameManagementDAO() throws SQLException {
+    	return new GameManagementDAOMySQL() ;
+    }
+
+    /**
+     * @return
+     */
+    public PlayerInGameDAO createPlayerInGameDAO() throws SQLException {
+    	return new PlayerInGameDAOMySQL() ;
+    }
+
+    /**
+     * @return
+     */
+    public FriendManagementDAO createFriendManagementDAO() throws SQLException {
+    	return new FriendManagementDAOMySQL();
+    }
+
+    /**
+     * @return
+     */
+    public SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() throws SQLException {
+    	return new SelectAndJoinAGameDAOMySQL();
     }
 
 }
