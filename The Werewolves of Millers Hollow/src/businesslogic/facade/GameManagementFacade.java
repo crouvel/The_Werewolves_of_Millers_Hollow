@@ -1,10 +1,12 @@
 package businesslogic.facade;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
 import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.FriendManagementDAO;
 import model.dao.mysql.GameManagementDAO;
 
 /**
@@ -136,5 +138,52 @@ public class GameManagementFacade {
     	}  
 	}
 	
+	/**
+     * @param username 
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<String> getInvitedFriendList(String username) throws SQLException{
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
+    		return gameManagementDAO.getInvitedFriend(username);
+    	}catch(SQLException e) {
+    		return null;
+    	}    	
+    }
 
+    /**
+     * @param username 
+     * @return
+     * @throws SQLException
+     */
+    /*public ArrayList<String> getInviteFriendList(String username) throws SQLException {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
+    		return gameManagementDAO.getInviteFriend(username);
+    	}catch(SQLException e) {
+    		return null;
+    	}   
+    }*/
+    
+    /**
+     * @param username 
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<String> getPlayerList(int game_id) throws SQLException {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
+    		return gameManagementDAO.getPlayer(game_id);
+    	}catch(SQLException e) {
+    		return null;
+    	}   
+    }
+
+	
+	
+	
 }

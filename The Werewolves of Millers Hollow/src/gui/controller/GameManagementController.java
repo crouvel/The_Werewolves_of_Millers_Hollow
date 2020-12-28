@@ -8,11 +8,14 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
 import businesslogic.domain.Player;
+import businesslogic.facade.FriendManagementFacade;
 import businesslogic.facade.GameManagementFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,19 +61,19 @@ public class GameManagementController implements Initializable {
 	 * Attribute uses to store the invited friends list of the player.
 	 */
 	@FXML
-	private ListView<Player> invitedFriends;
+	private ListView<String> invitedFriends;
 	
 	/**
 	 * Attribute uses to store (the friends list - the invited friends list) of the player.
 	 */
 	@FXML
-	private ListView<Player> inviteFriends;
+	private ListView<String> inviteFriends;
 	
 	/**
 	 * Attribute uses to store the list of players which are in the game.
 	 */
 	@FXML
-	private ListView<Player> listPlayers;
+	private ListView<String> listPlayers;
 	
 	/**
 	 * Attribute uses to define the number of Werewolves.
@@ -165,7 +168,7 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void kickPlayerOutOfGame(ActionEvent event) throws IOException{
-		String username = listPlayers.getSelectionModel().getSelectedItem().getUsername();
+		String username = listPlayers.getSelectionModel().getSelectedItem();
 		if(username==null) {
 			infoBox("Please select a player before try to delete.","Missing Player.","Missing informations");
 		}else {
@@ -187,8 +190,8 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void sendGameRequest(ActionEvent event) throws IOException{
-		Player invFriend = inviteFriends.getSelectionModel().getSelectedItem();
-		if(invFriend.getUsername().isBlank()) {
+		String invFriend = inviteFriends.getSelectionModel().getSelectedItem();
+		if(invFriend.isBlank()) {
 			infoBox("Please select a friend to invite.","Missing friend","Missing informations");
 		}else {
 			if(invitedFriends.getItems().contains(invFriend)) {
@@ -196,7 +199,7 @@ public class GameManagementController implements Initializable {
 			}else {
 				GameManagementFacade gameManagementFacade = new GameManagementFacade();
 				GameManagementController.getCurrentGame();
-				boolean isDone=gameManagementFacade.inviteFriendToPlay(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend.getUsername());
+				boolean isDone=gameManagementFacade.inviteFriendToPlay(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend);
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 				}else {
@@ -213,8 +216,8 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void cancelGameRequest(ActionEvent event) throws IOException{
-		Player invitedFriend = invitedFriends.getSelectionModel().getSelectedItem();
-		if(invitedFriend.getUsername().isBlank()) {
+		String invitedFriend = invitedFriends.getSelectionModel().getSelectedItem();
+		if(invitedFriend.isBlank()) {
 			infoBox("Please select a friend to cancel sent invitation.","Missing friend","Missing informations");
 		}else {
 			if(inviteFriends.getItems().contains(invitedFriend)) {
@@ -222,7 +225,7 @@ public class GameManagementController implements Initializable {
 			}else {
 				GameManagementFacade gameManagementFacade = new GameManagementFacade();
 				GameManagementController.getCurrentGame();
-				boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend.getUsername());
+				boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend);
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 				}else {
@@ -276,22 +279,51 @@ public class GameManagementController implements Initializable {
 	/**
 	 * 
 	 */
-	@Override
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		/*ArrayList<String> invited;
+		ArrayList<String> invite;
+		ArrayList<String> players;
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-		statusGroup = new ToggleGroup();
-		privateGame.setToggleGroup(statusGroup);
-		publicGame.setToggleGroup(statusGroup);
+		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 		try {
-			if (GameManagementController.getCurrentGame() != null) {
-				gameId.setText(GameManagementController.getCurrentGame().getGame_id() + "");
+			Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
+			players = gameManagementFacade.getPlayerList(game.getGame_id());
+			for(String i : players) {
+				listPlayers.getItems().add(i);
 			}
-		} catch (IOException e) {
+
+		
+		
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		statusGroup = new ToggleGroup();
+		privateGame.setToggleGroup(statusGroup);
+		publicGame.setToggleGroup(statusGroup);
+		
+		
+		try {
+			invited = gameManagementFacade.getInvitedFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
+			for(String i : invited) {
+				invitedFriends.getItems().add(i);
+			}
+			invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
+			for(String i : invite) {
+				inviteFriends.getItems().add(i);
+			}
+					} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}*/
+		
 	}
+	
+	
 
 	public static Game getCurrentGame() throws IOException {
 		return GameManagementController.currentGame;

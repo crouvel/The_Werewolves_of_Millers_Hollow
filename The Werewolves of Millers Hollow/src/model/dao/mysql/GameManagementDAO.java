@@ -1,6 +1,7 @@
 package model.dao.mysql;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
@@ -71,4 +72,11 @@ public abstract class GameManagementDAO {
     public abstract boolean deleteGame(int game_id) throws SQLException;
 
     public abstract Game getGameByCreator( String creator) throws SQLException;
+    
+    public abstract ArrayList<String> getInvitedFriend(String username) throws SQLException;
+    
+    
+    public abstract ArrayList<String> getPlayer(int gameId) throws SQLException;
+    
+    
 }

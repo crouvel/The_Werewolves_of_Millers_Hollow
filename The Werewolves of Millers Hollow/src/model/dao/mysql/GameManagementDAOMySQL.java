@@ -230,8 +230,28 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 	 * @return the gameGenerated
 	 */
 	
+    public ArrayList<String> getInvitedFriend(String username) throws SQLException{
+    	String sqlRequest="SELECT * FROM GameRequest WHERE requesterUsername=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, username);
+    	ResultSet resultSet = request.executeQuery();
+    	ArrayList<String> invited = new ArrayList<String>();
+        while (resultSet.next()) {
+            invited.add(resultSet.getString("invitedUsername"));
+        }
+        return invited;
+    }
 
-
-
+    public ArrayList<String> getPlayer(int gameId) throws SQLException{
+    	String sqlRequest="SELECT * FROM PlayerInGame WHERE gameId=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1, gameId);
+    	ResultSet resultSet = request.executeQuery();
+    	ArrayList<String> invited = new ArrayList<String>();
+        while (resultSet.next()) {
+            invited.add(resultSet.getString("username"));
+        }
+        return invited;
+    }
 
 }
