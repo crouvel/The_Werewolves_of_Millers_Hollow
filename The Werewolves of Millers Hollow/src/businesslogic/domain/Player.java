@@ -26,17 +26,18 @@ public class Player extends User {
     	this.status = 1;
     }
     
-    /**
-     * 
-     * @param userId
-     * @param email
-     * @param password
-     * @param isAdmin
-     * @param username
-     * @param dateOfBirth
-     * @param gender
-     * @param country
-     */
+   /**
+    * 
+    * @param userId
+    * @param email
+    * @param password
+    * @param isAdmin
+    * @param username
+    * @param dateOfBirth
+    * @param gender
+    * @param country
+    * @param status
+    */
     public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country,int status) {
     	super(userId,email,password,isAdmin);
     	this.username = username;
@@ -62,13 +63,13 @@ public class Player extends User {
      * @param playedGames
      * @param wonGames
      * @param lostGames
+     * @param status
      */
     public Player(int userId,String email, String password,int isAdmin, String username, Date dateOfBirth, Gender gender, String country,int playedGames,int wonGames, int lostGames,int status) {
     	this(userId,email,password,isAdmin,username,dateOfBirth,gender,country,status);
     	this.playedGames = playedGames;
     	this.wonGames = wonGames;
     	this.lostGames = lostGames;
-    	this.status = 1;
     }
 
     /**

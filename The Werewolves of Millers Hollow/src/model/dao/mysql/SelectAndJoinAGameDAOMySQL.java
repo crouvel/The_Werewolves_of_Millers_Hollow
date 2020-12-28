@@ -1,5 +1,11 @@
+/**
+ * package model.dao.mysql
+ */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.util.*;
 import businesslogic.domain.Game;
 
@@ -11,28 +17,19 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     /**
      * Default constructor
      */
-    public SelectAndJoinAGameDAOMySQL() {
-    }
+    public SelectAndJoinAGameDAOMySQL() {}
 
-    /**
-     * @param game_id 
-     * @return
-     */
+    @Override
     public Game getGameById(int game_id) {
     	return null;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public ArrayList<Game> getAvailableGameList(){
     	return new ArrayList<Game>();
     }
 
-    /**
-     * @param game_id 
-     * @return
-     */
+    @Override
     public boolean makePlayerJoinAGameByGameId(int game_id) {
     	return true;
     }

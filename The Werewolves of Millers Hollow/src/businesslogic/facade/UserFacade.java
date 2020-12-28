@@ -23,12 +23,6 @@ import model.dao.mysql.UserDAO;
 public class UserFacade {
 
     /**
-     * 
-     */
-    private User currentUser;
-
-
-    /**
      * Allows the user to log in using their email and password.
      * @param email 
      * @param password 
@@ -63,43 +57,6 @@ public class UserFacade {
     	}catch(SQLException e) {
     		return null;
     	} 
-    }
-    
-    
-    /**
-     * 
-     * @param email 
-     * @param password 
-     * @return
-     * @throws SQLException 
-     */
-    public User register(String email, String password) throws SQLException {
-        //@Not Implemented    	
-    	return currentUser;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public int getCurrentUserId() {
-        return currentUser.getId();
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String getCurrentUserEmail() {
-        return currentUser.getEmail();
     }
     
     /**
@@ -140,20 +97,6 @@ public class UserFacade {
     public boolean deletePlayerByUsername(String username) {
         // TODO implement here
         return false;
-    }
-
-    /**
-     * 
-     */
-    public void registerAdministrator() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void registerPlayer() {
-        // TODO implement here
     }
 
     /**

@@ -77,7 +77,7 @@ public class UserDAOMySQL extends UserDAO{
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
-    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
+    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"),resultSet.getBoolean("isLockedAccount"));
     	}
     	else{
     		return null;

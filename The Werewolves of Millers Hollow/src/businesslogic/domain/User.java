@@ -17,6 +17,11 @@ public class User {
     	this.isLockedAccount = false;
     }
     
+    public User(int userId,String email, String password,int isAdmin,boolean isLockedAccount) {
+    	this(userId,email,password,isAdmin);
+    	this.isLockedAccount = isLockedAccount;
+    }
+    
 
     /**
      * 
@@ -98,15 +103,14 @@ public class User {
      * @return
      */
     public boolean isLockedAccount() {
-        // TODO implement here
-        return false;
+        return this.isLockedAccount;
     }
 
     /**
      * @param isLocked
      */
     public void setIsLockedAccount(boolean isLocked) {
-        // TODO implement here
+        this.isLockedAccount=isLocked;
     }
     
 

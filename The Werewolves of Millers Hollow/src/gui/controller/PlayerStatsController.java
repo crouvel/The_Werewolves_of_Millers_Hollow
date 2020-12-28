@@ -117,11 +117,9 @@ public class PlayerStatsController implements Initializable {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 	}
 	
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({"unchecked","deprecation"})
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
 		
 		//Comparaison Stats Graph
 		try {
@@ -129,6 +127,7 @@ public class PlayerStatsController implements Initializable {
 			played.setText(PlayerStatsController.getPlayer().getPlayedGames()+"");
 			won.setText(PlayerStatsController.getPlayer().getWonGames()+"");
 			lost.setText(PlayerStatsController.getPlayer().getLostGames()+"");
+			System.out.println(PlayerStatsController.getPlayer().isStatus());
 			if(PlayerStatsController.getPlayer().isStatus()==1) {
 				month.setText((PlayerStatsController.getPlayer().getDateOfBirth().getMonth()+1)+"");
 				day.setText(PlayerStatsController.getPlayer().getDateOfBirth().getDate()+"");

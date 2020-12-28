@@ -60,13 +60,13 @@ public class LoginController implements Initializable {
 		String mail = email.getText();
 		String pwd = password.getText();
 		if(mail.isBlank() && pwd.isBlank()) {
-			infoBox("Please enter an email address and a password.","Missing email address and password","Missing informations");
+			infoBoxW("Please enter an email address and a password.","Missing email address and password","Missing informations");
 		}else {
 			if(mail.isBlank()) {
-				infoBox("Please enter an email address.","Missing email address","Missing information");
+				infoBoxW("Please enter an email address.","Missing email address","Missing information");
 			}else {
 				if(pwd.isBlank()) {
-					infoBox("Please enter a password.","Missing password","Missing information");
+					infoBoxW("Please enter a password.","Missing password","Missing information");
 				}else {
 					UserFacade userFacade = new UserFacade();
 					User user=userFacade.login(mail,HashPassword.hashPassword(pwd));
@@ -74,10 +74,14 @@ public class LoginController implements Initializable {
 						if(user.isAdmin()==1) {
 							TheWerewolvesOfMillersHollow.goToAdminMenu(user,getClass().getResource("../view/AdministratorMenuView.fxml"));
 						}else {
-							TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
+							if(user.isLockedAccount()) {
+								infoBoxI("Try to contact an administrator.. Good Luck !","Blocked account", "Locked Account");
+							}else {
+								TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
+							}
 						}
 					}else {
-						infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
+						infoBoxE("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
 					}
 				}
 			}
@@ -97,13 +101,41 @@ public class LoginController implements Initializable {
 	//Methode ajoute
 	
 	/**
-	 * Open an info box.
+	 * Open an information info box.
 	 * @param message
 	 * @param head
 	 * @param title
 	 */
-	public static void infoBox(String message, String head, String title){
+	public static void infoBoxI(String message, String head, String title){
 		Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.setTitle(title);
+        alert.setHeaderText(head);
+        alert.showAndWait();
+    }
+	
+	/**
+	 * Open a warning info box.
+	 * @param message
+	 * @param head
+	 * @param title
+	 */
+	public static void infoBoxW(String message, String head, String title){
+		Alert alert = new Alert(AlertType.WARNING);
+        alert.setContentText(message);
+        alert.setTitle(title);
+        alert.setHeaderText(head);
+        alert.showAndWait();
+    }
+	
+	/**
+	 * Open an error info box.
+	 * @param message
+	 * @param head
+	 * @param title
+	 */
+	public static void infoBoxE(String message, String head, String title){
+		Alert alert = new Alert(AlertType.ERROR);
         alert.setContentText(message);
         alert.setTitle(title);
         alert.setHeaderText(head);
