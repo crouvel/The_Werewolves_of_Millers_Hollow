@@ -9,11 +9,16 @@ import businesslogic.domain.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class PlayerStatsController implements Initializable {
 
@@ -85,10 +90,7 @@ public class PlayerStatsController implements Initializable {
 	 */
 	@FXML
 	private ImageView countryImage;
-	
-	@FXML
-	private BarChart<CategoryAxis,NumberAxis> comparaison;
-	
+		
 	@FXML
 	void searchAnotherPlayer(ActionEvent event) throws IOException {
 		PlayerStatsController.setPlayer(null);

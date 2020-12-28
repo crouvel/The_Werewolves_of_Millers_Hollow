@@ -67,6 +67,12 @@ public class TheWerewolvesOfMillersHollow extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param admin
+	 * @param resource
+	 * @throws IOException
+	 */
 	public static void goToAdminMenu(User admin, URL resource) throws IOException {
 		try {
 			LoginController.setCurrentUser(admin);
@@ -79,6 +85,12 @@ public class TheWerewolvesOfMillersHollow extends Application {
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
 	
+	/**
+	 * 
+	 * @param player
+	 * @param resource
+	 * @throws IOException
+	 */
 	public static void goToPlayerMenu(User player, URL resource) throws IOException {
 		try {
 			LoginController.setCurrentUser(player);
@@ -91,6 +103,12 @@ public class TheWerewolvesOfMillersHollow extends Application {
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
 	
+	/**
+	 * 
+	 * @param player
+	 * @param resource
+	 * @throws IOException
+	 */
 	public static void goToPlayerStats(Player player, URL resource) throws IOException {
 		try {
 			PlayerStatsController.setPlayer(player);
@@ -110,4 +128,5 @@ public class TheWerewolvesOfMillersHollow extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 }

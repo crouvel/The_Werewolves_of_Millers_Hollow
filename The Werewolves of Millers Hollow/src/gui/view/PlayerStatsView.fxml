@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
@@ -114,14 +115,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <BarChart fx:id="comparaison" layoutX="496.0" layoutY="271.0" prefHeight="150.0" prefWidth="288.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
       <ImageView fitHeight="150.0" fitWidth="156.0" layoutX="487.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/note.png" />
