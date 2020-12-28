@@ -62,8 +62,9 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     	String sqlRequest="SELECT * FROM Game WHERE gameId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
-    	boolean exist = resultSet.first();
+    	
     	ResultSet resultSet = request.executeQuery();
+    	boolean exist = resultSet.first();
     	if(exist){
     		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getInt("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getInt("hasWitch"),resultSet.getInt("hasLittleGirl"), 
     				resultSet.getInt("hasCupid"), resultSet.getInt("hasHunter"), resultSet.getInt("hasFortuneTeller"), resultSet.getInt("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getInt("availableGame"));

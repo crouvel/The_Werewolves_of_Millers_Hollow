@@ -10,13 +10,15 @@ public class Game {
     
 	
 	
+	private int availableGame;
+
 	/**
      * Default constructor
      */
   
-    /**
+    
 
-	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,Phase currentPhase, boolean availableGame, String creatorUsername) {
+	public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch, int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,Phase currentPhase, int availableGame, String creatorUsername) {
 		this.game_id = game_id;
 		this.numberOfPlayers = numberOfPlayers;
 		this.status = status;
@@ -328,7 +330,6 @@ public class Game {
     /**
      * 
      */
-    private int availableGame;
-    private boolean availableGame;
+   
     private String creatorUsername;
 }

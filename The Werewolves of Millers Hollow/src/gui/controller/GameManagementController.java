@@ -32,8 +32,6 @@ import model.dao.mysql.GameManagementDAOMySQL;
 
 public class GameManagementController implements Initializable {
 	
-	//Attributes
-	private static Game currentGame;
 	
 	private static PlayerInGame currentPlayerInGame;
 	
@@ -385,33 +383,9 @@ public class GameManagementController implements Initializable {
 		}
 	}
 
-	/**
-	 * @return the currentPlayerInGame
-	 */
-	public static PlayerInGame getCurrentPlayerInGame() {
-		return currentPlayerInGame;
-	}
+	
 
-	/**
-	 * @param currentPlayerInGame the currentPlayerInGame to set
-	 */
-	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
-		GameManagementController.currentPlayerInGame = currentPlayerInGame;
-	}
-
-	/**
-	 * @return the currentGame
-	 */
-	public static Game getCurrentGame() {
-		return currentGame;
-	}
-
-	/**
-	 * @param currentGame the currentGame to set
-	 */
-	public static void setCurrentGame(Game currentGame) {
-		GameManagementController.currentGame = currentGame;
-	}
+	
 		
 
 
