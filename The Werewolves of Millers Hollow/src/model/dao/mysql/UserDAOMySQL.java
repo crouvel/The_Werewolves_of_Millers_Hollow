@@ -9,6 +9,7 @@ package model.dao.mysql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslogic.domain.Administrator;
 import businesslogic.domain.Player;
@@ -234,5 +235,116 @@ public class UserDAOMySQL extends UserDAO{
     		return null;
     	}
 	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @param played
+	 * @param won
+	 * @param lost
+	 * @param maxPlayed
+	 * @param maxWon
+	 * @param maxLost
+	 * @return
+	 * @throws SQLException 
+	 */
+	public ArrayList<String> getCorrespondingPlayer(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWon, boolean maxLost) throws SQLException {
+		ArrayList<String> players = new ArrayList<String>();
+		PreparedStatement request;
+		String sqlRequest = "SELECT * FROM Player WHERE username LIKE '%";
+		if(username.isBlank()) {
+			sqlRequest += "%' AND playedGames ";
+			if(maxPlayed) {
+				sqlRequest += "<= ? AND wonGames ";
+				if(maxWon) {
+					sqlRequest += "<= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}else {
+					sqlRequest += ">= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}
+			}else {
+				sqlRequest += ">= ? AND wonGames ";
+				if(maxWon) {
+					sqlRequest += "<= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}else {
+					sqlRequest += ">= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}
+			}
+			request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);	
+	    	request.setInt(1, played);
+	    	request.setInt(2, won);
+	    	request.setInt(3, lost);
+		}else {
+			System.out.println("request debut");
+			sqlRequest += "?%' AND playedGames ";
+			if(maxPlayed) {
+				sqlRequest += "<= ? AND wonGames ";
+				if(maxWon) {
+					sqlRequest += "<= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}else {
+					sqlRequest += ">= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}
+			}else {
+				System.out.println(">= 0 ");
+				sqlRequest += ">= ? AND wonGames ";
+				if(maxWon) {
+					sqlRequest += "<= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						sqlRequest += ">= ?";
+					}
+				}else {
+					System.out.println(">= 0 ");
+					sqlRequest += ">= ? AND lostGames ";
+					if(maxLost) {
+						sqlRequest += "<= ?";
+					}else {
+						System.out.println(">= 0 ");
+						sqlRequest += ">= ?";
+					}
+				}
+			}
+			request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);	
+	    	request.setString(1, username);
+	    	request.setInt(2, played);
+	    	request.setInt(3, won);
+	    	request.setInt(4, lost);
+		}
+    	ResultSet resultSet = request.executeQuery();
+    	while(resultSet.next()) {
+    		players.add(resultSet.getString("username"));
+    	}
+		return players;
+    }
 
 }

@@ -206,10 +206,14 @@ public class UserFacade {
      * @param maxLost 
      * @return
      */
-    public ArrayList<Player> getCorrespondingPlayers(String username, int player, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) {
-        // TODO implement here
-        return null;
+    public ArrayList<String> getCorrespondingPlayers(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) throws SQLException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getCorrespondingPlayer(username,played,won,lost,maxPlayed,maxWin,maxLost);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
     }
-
-
+    
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
@@ -32,7 +31,6 @@
     <fullyQualifiedTypeName name="javafx.fxml.LoadException"/>
     <fullyQualifiedTypeName name="model.dao.mysql.FriendManagementDAO"/>
     <fullyQualifiedTypeName name="businesslogic.facade.FriendManagementFacade"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
     <fullyQualifiedTypeName name="gui.controller.LoginController"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Administrator"/>
@@ -48,10 +46,8 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
     <fullyQualifiedTypeName name="businesslogic.facade.ReportManagementFacade"/>
-    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
     <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
@@ -60,4 +56,8 @@
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
     <fullyQualifiedTypeName name="application.TheWerewolvesOfMillersHollow"/>
     <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

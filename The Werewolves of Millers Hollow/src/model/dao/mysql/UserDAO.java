@@ -131,12 +131,9 @@ public abstract class UserDAO {
      * @param maxWin 
      * @param maxLost 
      * @return
+     * @throws SQLException 
      */
-    public ArrayList<Player> getCorrespondingPlayer(String username, int played, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) {
-        // TODO implement here
-        return null;
-    }
-
+    public abstract ArrayList<String> getCorrespondingPlayer(String username, int played, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) throws SQLException;
     /**
      * 
      * @param user
@@ -152,5 +149,5 @@ public abstract class UserDAO {
 	 * @throws SQLException
 	 */
 	public abstract Administrator getAdmin(User user) throws SQLException;
-
+	
 }

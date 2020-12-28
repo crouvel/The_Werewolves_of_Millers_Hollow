@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.Game;
 import businesslogic.domain.PlayerInGame;
 /*
 import javafx.animation.Animation;
@@ -41,7 +42,15 @@ public class GameController implements Initializable{
 	
 	//Attributes
 	
+	/**
+	 * 
+	 */
 	private static PlayerInGame currentPlayer;
+	
+	/**
+	 * 
+	 */
+	private static Game game;
 	
 	//Report Part
 	
@@ -49,7 +58,7 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	@FXML
-	private Pane playerReportPane;
+	private Pane reportPlayerPane;
 	
 	/**
 	 * 
@@ -98,10 +107,10 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void reportAPlayer(ActionEvent event) throws IOException {
-		if(playerReportPane.isVisible()) {
-			playerReportPane.setVisible(false);
+		if(reportPlayerPane.isVisible()) {
+			reportPlayerPane.setVisible(false);
 		}else {
-			playerReportPane.setVisible(true);
+			reportPlayerPane.setVisible(true);
 		}
 	}
 	
@@ -290,6 +299,20 @@ public class GameController implements Initializable{
 	 */
 	public static void setCurrentPlayer(PlayerInGame currentPlayer) {
 		GameController.currentPlayer = currentPlayer;
+	}
+
+	/**
+	 * @return the game
+	 */
+	public static Game getGame() {
+		return game;
+	}
+
+	/**
+	 * @param game the game to set
+	 */
+	public static void setGame(Game game) {
+		GameController.game = game;
 	}
 
 }
