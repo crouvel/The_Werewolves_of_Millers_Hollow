@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0f0f3d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.ReportManagementController">
+   <children>
+		<ImageView fitHeight="536.0" fitWidth="684.0" layoutX="360.0" layoutY="73.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
+	         <image>
+	            <Image url="@../../image/wolf_background.png" />
+	         </image>
+      	</ImageView>
+      <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnAdministratorMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
+         <effect>
+            <Lighting diffuseConstant="1.54" specularConstant="1.23" specularExponent="24.39" surfaceScale="1.86">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <Shadow height="5.0" radius="1.25" width="2.0" />
+               </effect>
+               <image>
+                  <Image url="@../../image/iconMenu.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="313.0" layoutY="73.0" prefHeight="536.0" prefWidth="654.0" style="-fx-background-color: rgb(128, 128, 128,0.6);">
+         <children>
+            <Pane prefHeight="84.0" prefWidth="654.0" style="-fx-background-color: rgb(0, 0, 102,0.6);">
+               <children>
+                  <Text fill="WHITE" layoutX="92.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin : Reports">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="53.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <ListView fx:id="playerReports" layoutX="20.0" layoutY="120.0" prefHeight="163.0" prefWidth="614.0" style="-fx-background-color: rgb(64, 64, 64,0.7);" />
+            <ListView fx:id="bugReports" layoutX="20.0" layoutY="330.0" prefHeight="163.0" prefWidth="614.0" style="-fx-background-color: rgb(64, 64, 64,0.7);" />
+            <Text fill="WHITE" layoutX="20.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player reports">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="20.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bug reports">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="493.0" layoutY="287.0" mnemonicParsing="false" onAction="#checkPlayerReport" prefHeight="31.0" prefWidth="141.0" style="-fx-background-color: rgb(0, 0, 77,0.8);" text="Check" textFill="WHITE">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="493.0" layoutY="498.0" mnemonicParsing="false" onAction="#checkBugReport" prefHeight="31.0" prefWidth="141.0" style="-fx-background-color: rgb(0, 0, 77,0.8);" text="Check" textFill="WHITE">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>   
+	</children>
+</Pane>

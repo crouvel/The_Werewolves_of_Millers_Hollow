@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="536.0" fitWidth="684.0" layoutX="360.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/wolf_background.png" />
+            <Image url="@../../image/wolf_background.png" />
          </image>
       </ImageView>
       <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnAdministratorMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
@@ -34,7 +34,7 @@
                   <Shadow height="5.0" radius="1.25" width="2.0" />
                </effect>
                <image>
-                  <Image url="@../../../image/iconMenu.png" />
+                  <Image url="@../../image/iconMenu.png" />
                </image>
             </ImageView>
          </graphic>
@@ -76,8 +76,8 @@
             <Font name="Copperplate Gothic Bold" size="25.0" />
          </font>
       </Button>
-      <TextField fx:id="administratorEmail" layoutX="450.0" layoutY="251.0" prefHeight="47.0" prefWidth="422.0" promptText="email address...." />
-      <TextField fx:id="administratorPassword" layoutX="450.0" layoutY="317.0" prefHeight="47.0" prefWidth="422.0" promptText="password..." />
+      <TextField fx:id="adminEmail" layoutX="450.0" layoutY="251.0" prefHeight="47.0" prefWidth="422.0" promptText="email address...." />
+      <TextField fx:id="adminPassword" layoutX="450.0" layoutY="317.0" prefHeight="47.0" prefWidth="422.0" promptText="password..." />
       <Button layoutX="287.0" layoutY="489.0" mnemonicParsing="false" onAction="#saveModifications" prefHeight="60.0" prefWidth="328.0" style="-fx-background-color: #2e2eb8;" text="Save Modifications" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="25.0" />
