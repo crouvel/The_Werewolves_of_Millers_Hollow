@@ -32,11 +32,11 @@ public class GameManagementFacade {
      * @param status 
      * @return
      */
-    public boolean createGame(int nbplayers, int status) {
+    public boolean createGame(int nbplayers, int status, String creator) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
-    		return gameManagementDAO.createGame(nbplayers, status);
+    		return gameManagementDAO.createGame(nbplayers, status, creator);
     	}catch(SQLException e) {
     		e.getStackTrace();
     		return false;
@@ -125,9 +125,16 @@ public class GameManagementFacade {
     	}   
     }
 
-	/**
-	 * @return the currentGame
-	 */
+	public Game getGameByCreator(String username) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+    		return gameManagementDAO.getGameByCreator(username);
+    	}catch(SQLException e) {
+    		e.getStackTrace();
+    		return null;
+    	}  
+	}
 	
 
 }

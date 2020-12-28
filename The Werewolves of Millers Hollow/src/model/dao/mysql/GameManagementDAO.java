@@ -24,7 +24,7 @@ public abstract class GameManagementDAO {
      * @param status 
      * @return
      */
-    public abstract boolean createGame(int nbplayers, int status) throws SQLException;
+    public abstract boolean createGame(int nbplayers, int status, String creator) throws SQLException;
 
     /**
      * @param game_id 
@@ -70,4 +70,5 @@ public abstract class GameManagementDAO {
      */
     public abstract boolean deleteGame(int game_id) throws SQLException;
 
+    public abstract Game getGameByCreator( String creator) throws SQLException;
 }

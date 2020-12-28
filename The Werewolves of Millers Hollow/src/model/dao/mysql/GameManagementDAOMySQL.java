@@ -22,7 +22,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * Default constructor
      */
     
-	private static boolean GameGenerated = false;
+
 	
 	public GameManagementDAOMySQL() {
     }
@@ -36,26 +36,26 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 	
 	
 	
-	public boolean createGame(int nbplayers, int status) throws SQLException{
+	public boolean createGame(int nbplayers, int status, String creator) throws SQLException{
 		
-		new Game(Game.getNbgames() + 1, nbplayers, status, 0,0,0,0,0,0,0, Phase.NIGHT, 0);
-		String sqlRequest = "INSERT INTO Game(gameId, numberOfPlayers, status, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter, finish, currentPhase, availableGame) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		new Game(nbplayers, status, 0,0,0,0,0,0,0, Phase.NIGHT, 0);
+		String sqlRequest = "INSERT INTO Game(numberOfPlayers, status, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter, finish, currentPhase, availableGame, creatorUsername) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-		request.setInt(1, Game.getNbgames());
-		request.setInt(2, nbplayers);
-		request.setInt(3, status);
-		request.setInt(4, 1);
+		request.setInt(1, nbplayers);
+		request.setInt(2, status);
+		request.setInt(3, 1);
+		request.setInt(4, 0);
 		request.setInt(5, 0);
 		request.setInt(6, 0);
 		request.setInt(7, 0);
 		request.setInt(8, 0);
 		request.setInt(9, 0);
-		request.setInt(10, 0);
-		request.setString(11, Phase.NIGHT.name());
-		request.setInt(12, 0);
+		request.setString(10, Phase.NIGHT.name());
+		request.setInt(11, 1);
+		request.setString(12, creator);
 		request.executeUpdate();
-		GameGenerated = true;
-        return existsGame(Game.getNbgames());
+		 return existsGame2(creator);  
     }
 
     /**
@@ -66,6 +66,23 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     	String sqlRequest="SELECT * FROM Game WHERE gameId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
+    	ResultSet resultSet = request.executeQuery();
+    	boolean exist = resultSet.first();
+    	if(exist){
+    		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getInt("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getInt("hasWitch"),resultSet.getInt("hasLittleGirl"), 
+    				resultSet.getInt("hasCupid"), resultSet.getInt("hasHunter"), resultSet.getInt("hasFortuneTeller"), resultSet.getInt("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getInt("availableGame"));
+    	}
+    	else{
+    		return null;
+    	}
+        
+    	
+    }
+    
+    public Game getGameByCreator( String creator) throws SQLException{
+    	String sqlRequest="SELECT * FROM Game WHERE creatorUsername=? and availableGame =1";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, creator);
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
@@ -128,7 +145,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setInt(1, game_id);
 		request.setString(2, username1);
     	request.setString(3, username2);
-        request.execute();
+        request.executeUpdate();
         return existsGameRequest(game_id,username1,username2);
     }
 
@@ -189,7 +206,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
         request.executeUpdate();
-        Game.nbgames -= 1;
         return !existsGame(game_id);
     	
     }
@@ -201,13 +217,19 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
     	ResultSet resultSet = request.executeQuery();
     	return resultSet.first();
     }
+    
+    public boolean existsGame2(String username) throws SQLException {
+    	String sqlRequest = "SELECT * FROM Game WHERE creatorUsername =? AND availableGame=1";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, username);
+    	ResultSet resultSet = request.executeQuery();
+    	return resultSet.first();
+    }
 
 	/**
 	 * @return the gameGenerated
 	 */
-	public static boolean isGameGenerated() {
-		return GameGenerated;
-	}
+	
 
 
 

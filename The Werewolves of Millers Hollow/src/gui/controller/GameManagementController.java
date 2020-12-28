@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import model.dao.mysql.GameManagementDAOMySQL;
@@ -107,6 +108,9 @@ public class GameManagementController implements Initializable {
 	@FXML
 	private Slider hasHunter;
 	
+	
+	
+	private ToggleGroup statusGroup;
 	/**
 	 * 
 	 * @param event
@@ -114,26 +118,24 @@ public class GameManagementController implements Initializable {
 	 */
 	
 	private static Game currentGame;
+	
 	@FXML
 	void generateGameId(ActionEvent event) throws IOException{ //marche
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-		int status;
-		if (publicGame.isSelected()) {
-			status = 1;
-		}if(privateGame.isSelected()) {
+		int status = 1;
+		
+		if(statusGroup.getSelectedToggle()== privateGame) {
 			status = 0;
-		}if(publicGame.isSelected() && privateGame.isSelected()) {
-			status = 1;
-			infoBox("Game was set public, privacy wrongly defined. Regenerate the game with the right privacy if you want to change it.","Incorrect information.", "Game set public");
-		}else {
-			status = 1;
-			infoBox("Please retry to create a game later.","Incorrect information.", "Connection problem");
 		}
-		boolean isDone = gameManagementFacade.createGame((int)numberOfPlayers.getValue(), status);
+		boolean isDone = gameManagementFacade.createGame((int)numberOfPlayers.getValue(), status, PlayerMenuController.getCurrentPlayer().getUsername());
 		if(isDone) {		
-			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
+			Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
+			if(game == null) {
+				infoBox("Please retry to create the game later","Incorrect information.", "Connection Problem");
+			}else {TheWerewolvesOfMillersHollow.generateGameIdInGameManagement(game, getClass().getResource("../view/GameManagementView.fxml"));
+			}
 		}else {
-			infoBox("Game was set public, privacy wrongly defined. Regenerate the game with the right privacy if you want to change it.","Incorrect information.", "Game set public");
+		infoBox("Game was set public, privacy wrongly defined. Regenerate the game with the right privacy if you want to change it.","Incorrect information.", "Game set public");
 		}
 		
 		
@@ -148,7 +150,7 @@ public class GameManagementController implements Initializable {
 	void startGame(ActionEvent event) throws IOException{
 		
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-		boolean isDone = gameManagementFacade.modifyRole(Game.getGame_id(),(int)numberOfWerewolves.getValue(),(int)hasWitch.getValue(),(int)hasFortuneTeller.getValue(),(int)hasLittleGirl.getValue(),(int)hasCupid.getValue(),(int)hasHunter.getValue());
+		boolean isDone = gameManagementFacade.modifyRole(GameManagementController.getCurrentGame().getGame_id(),(int)numberOfWerewolves.getValue(),(int)hasWitch.getValue(),(int)hasFortuneTeller.getValue(),(int)hasLittleGirl.getValue(),(int)hasCupid.getValue(),(int)hasHunter.getValue());
 		if(isDone) {		
 			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
 		}else {
@@ -169,7 +171,7 @@ public class GameManagementController implements Initializable {
 		}else {
 			GameManagementFacade gameManagementFacade = new GameManagementFacade();
 			GameManagementController.getCurrentGame();
-			boolean isDone = gameManagementFacade.kickPlayerOfTheGame(Game.getGame_id(),username);
+			boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),username);
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 			}else {
@@ -194,7 +196,7 @@ public class GameManagementController implements Initializable {
 			}else {
 				GameManagementFacade gameManagementFacade = new GameManagementFacade();
 				GameManagementController.getCurrentGame();
-				boolean isDone=gameManagementFacade.inviteFriendToPlay(Game.getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend.getUsername());
+				boolean isDone=gameManagementFacade.inviteFriendToPlay(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend.getUsername());
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 				}else {
@@ -220,7 +222,7 @@ public class GameManagementController implements Initializable {
 			}else {
 				GameManagementFacade gameManagementFacade = new GameManagementFacade();
 				GameManagementController.getCurrentGame();
-				boolean isDone=gameManagementFacade.cancelRequest(Game.getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend.getUsername());
+				boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend.getUsername());
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
 				}else {
@@ -238,10 +240,9 @@ public class GameManagementController implements Initializable {
 	@FXML
 	void returnPlayerMenu(ActionEvent event) throws IOException{
 		
-		if(GameManagementDAOMySQL.isGameGenerated()) {
+		if(GameManagementController.getCurrentGame() != null) {
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-			GameManagementController.getCurrentGame();
-			boolean isDone = gameManagementFacade.deleteGame(Game.getGame_id());
+			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 			}else {
@@ -251,7 +252,6 @@ public class GameManagementController implements Initializable {
 	}else {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 	}
-	
 	
 	}
 	
@@ -277,15 +277,25 @@ public class GameManagementController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-		
+		statusGroup = new ToggleGroup();
+		privateGame.setToggleGroup(statusGroup);
+		publicGame.setToggleGroup(statusGroup);
+		try {
+			if (GameManagementController.getCurrentGame() != null) {
+				gameId.setText(GameManagementController.getCurrentGame().getGame_id() + "");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
-	public static Game getCurrentGame() {
+	public static Game getCurrentGame() throws IOException {
 		return GameManagementController.currentGame;
 	}
 
-	public static void setCurrentGame(Game currentGame) {
+	public static void setCurrentGame(Game currentGame) throws IOException {
 		GameManagementController.currentGame = currentGame;
 	}
 

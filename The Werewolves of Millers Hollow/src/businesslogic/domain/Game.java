@@ -6,7 +6,7 @@ package businesslogic.domain;
 
 
 public class Game {
-	public static int nbgames;
+	
     
 	
 	
@@ -24,15 +24,14 @@ public class Game {
 
     public Game() {
     
-    	nbgames ++;
+    	
     }
     
     
-    public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
+    public Game(int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
     		int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,
 			Phase currentPhase, int availableGame) {
 		super();
-		Game.game_id = game_id;
 		this.numberOfPlayers = numberOfPlayers;
 		this.status = status;
 		this.numberOfWerewolves = numberOfWerewolves;
@@ -44,11 +43,30 @@ public class Game {
 		this.finish = finish;
 		this.currentPhase = currentPhase;
 		this.availableGame = availableGame;
-		nbgames++;
+	
+	}
+    
+    public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
+    		int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,
+			Phase currentPhase, int availableGame) {
+		super();
+		this.game_id = game_id;
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+
 	}
 
     public Game(int numberOfWerewolves, int status) {
-    	nbgames ++;
+    	
     }
 	/**
      * 
@@ -103,15 +121,15 @@ public class Game {
 	/**
 	 * @return the game_id
 	 */
-	public static int getGame_id() {
-		return game_id;
+	public  int getGame_id() {
+		return this.game_id;
 	}
 
 	/**
 	 * @param game_id the game_id to set
 	 */
-	public static void setGame_id(int game_id) {
-		Game.game_id = game_id;
+	public  void setGame_id(int game_id) {
+		this.game_id = game_id;
 	}
 
 	/**
@@ -212,14 +230,12 @@ public class Game {
 		this.availableGame = availableGame;
 	}
 
-	public static int getNbgames() {
-		return nbgames;
-	}
+
 
 	/**
      * 
      */
-    private static int game_id;
+    private int game_id;
 
     /**
      * 

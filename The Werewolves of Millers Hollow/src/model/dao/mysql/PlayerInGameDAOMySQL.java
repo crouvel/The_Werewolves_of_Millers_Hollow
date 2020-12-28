@@ -16,6 +16,7 @@ public class PlayerInGameDAOMySQL extends PlayerInGameDAO {
      * @param username 
      * @return
      */
+    
     public boolean proposeAsASheriff(String username) {
     	return true;
     }
