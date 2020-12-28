@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.Player;
 import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -174,7 +175,18 @@ public class SearchPlayerStatsController  implements Initializable{
 	 */
 	@FXML
 	void viewPlayerStats(ActionEvent event) throws IOException {
-		
+		String username = playersList.getSelectionModel().getSelectedItem();
+		if(username == null) {
+			infoBoxW("Please select a player before try to show player profile.","Selected player missing","Missing Information");
+		}else {
+			UserFacade userfacade = new UserFacade();
+			Player player = userfacade.searchPlayerStats(username);
+			if(player != null) {
+				TheWerewolvesOfMillersHollow.goToPlayerStats(player,getClass().getResource("../view/PlayerStatsView.fxml"));
+			}else {
+				infoBoxW("Please try later.","Bad connection / inexistant player","Connection problem or inexistant player");
+			}
+		}
 	}
 	
 	/**

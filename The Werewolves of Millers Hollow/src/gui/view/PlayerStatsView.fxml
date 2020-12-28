@@ -152,5 +152,32 @@
             </Text>
          </children>
       </Pane>
+      <Text layoutX="503.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Month">
+         <font>
+            <Font name="Verdana" size="10.0" />
+         </font>
+      </Text>
+      <Text layoutX="541.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day" textAlignment="CENTER" wrappingWidth="30.0">
+         <font>
+            <Font name="Verdana" size="10.0" />
+         </font>
+      </Text>
+      <Text layoutX="578.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year" textAlignment="CENTER" wrappingWidth="30.0">
+         <font>
+            <Font name="Verdana" size="10.0" />
+         </font>
+      </Text>
+      <Pane layoutX="508.0" layoutY="260.0" prefHeight="176.0" prefWidth="284.0" style="-fx-background-color: rgb(255,255,255,0.6);">
+         <children>
+            <BarChart fx:id="comparaison" prefHeight="176.0" prefWidth="284.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </Pane>
    </children>
 </Pane>

@@ -163,7 +163,7 @@ public class PlayerProfileController  implements Initializable{
 			playerEmail.setText(PlayerMenuController.getCurrentPlayer().getEmail());
 			playerPassword.setText(PlayerMenuController.getCurrentPlayer().getPassword());
 			//dateOfBirth
-			gender.setText(PlayerMenuController.getCurrentPlayer().getGender());
+			gender.setText(PlayerMenuController.getCurrentPlayer().getGender().getName());
 			country.setText(PlayerMenuController.getCurrentPlayer().getCountry());
 		} catch (IOException e) {
 			e.printStackTrace();

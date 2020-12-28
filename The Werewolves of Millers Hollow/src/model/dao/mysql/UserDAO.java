@@ -150,4 +150,11 @@ public abstract class UserDAO {
 	 */
 	public abstract Administrator getAdmin(User user) throws SQLException;
 	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract Player getPlayerByUsername(String username) throws SQLException;
 }

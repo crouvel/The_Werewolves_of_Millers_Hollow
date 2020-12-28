@@ -191,9 +191,14 @@ public class UserFacade {
      * @param username 
      * @return
      */
-    public boolean searchPlayerStats(String username) {
-        // TODO implement here
-        return false;
+    public Player searchPlayerStats(String username) {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getPlayerByUsername(username);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
     }
 
     /**

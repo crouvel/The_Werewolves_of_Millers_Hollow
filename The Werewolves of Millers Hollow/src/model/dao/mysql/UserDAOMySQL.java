@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import businesslogic.domain.Administrator;
+import businesslogic.domain.Gender;
 import businesslogic.domain.Player;
 import businesslogic.domain.User;
 import model.dao.factory.AbstractFactoryDAO;
@@ -209,7 +210,7 @@ public class UserDAOMySQL extends UserDAO{
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
-    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),resultSet.getString("gender"),resultSet.getString("country"));
+    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("status"));
     	}
     	else{
     		return null;
@@ -338,10 +339,22 @@ public class UserDAOMySQL extends UserDAO{
 		}
     	ResultSet resultSet = request.executeQuery();
     	while(resultSet.next()) {
-    		System.out.println(resultSet.getString("username"));
     		players.add(resultSet.getString("username"));
     	}
 		return players;
     }
+
+	@Override
+	public Player getPlayerByUsername(String username) throws SQLException {
+		String sqlRequest = "SELECT * FROM Player,User WHERE Player.userId = User.userId AND username=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setString(1, username);
+		ResultSet resultSet = request.executeQuery();
+		if(resultSet.first()) {
+			return new Player(resultSet.getInt("User.userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("playedGames"),resultSet.getInt("wonGames"),resultSet.getInt("lostGames"),resultSet.getInt("status"));
+		}else {
+			return null;
+		}
+	}
 
 }

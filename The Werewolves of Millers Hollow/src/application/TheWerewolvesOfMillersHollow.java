@@ -9,8 +9,10 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 
+import businesslogic.domain.Game;
 import businesslogic.domain.Player;
 import businesslogic.domain.User;
+import gui.controller.GameManagementController;
 import gui.controller.LoginController;
 import gui.controller.PlayerStatsController;
 import javafx.application.Application;
@@ -112,6 +114,24 @@ public class TheWerewolvesOfMillersHollow extends Application {
 	public static void goToPlayerStats(Player player, URL resource) throws IOException {
 		try {
 			PlayerStatsController.setPlayer(player);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        TheWerewolvesOfMillersHollow.stage.setScene(scene);
+    }
+	
+	/**
+	 * 
+	 * @param game
+	 * @param resource
+	 * @throws IOException
+	 */
+	public static void generateGameIdInGameManagement(Game game, URL resource) throws IOException {
+		try {
+			GameManagementController.setCurrentGame(game);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
