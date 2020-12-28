@@ -1,5 +1,6 @@
 package model.dao.mysql;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.User;
@@ -58,7 +59,7 @@ public abstract class UserDAO {
      * @param email 
      * @return
      */
-    public abstract User deleteUserByEmail(String email);
+    public abstract boolean deleteUserByEmail(String email);
 
     /**
      * @param username 
@@ -70,8 +71,10 @@ public abstract class UserDAO {
      * @param email 
      * @param password 
      * @return
+     * @throws IOException 
+     * @throws SQLException 
      */
-    public abstract boolean updateAdministratorProfile(String email, String password);
+    public abstract boolean updateAdministratorProfile(String email, String password) throws SQLException, IOException;
 
     /**
      * @param username 
@@ -86,9 +89,11 @@ public abstract class UserDAO {
      * @param password 
      * @param country 
      * @return
+     * @throws IOException 
+     * @throws SQLException 
      */
-    public abstract boolean udaptePlayerProfile(String username, String email, String password, String country);
-
+    public abstract boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException, IOException;
+    
     /**
      * @param username 
      * @param email 
@@ -98,20 +103,13 @@ public abstract class UserDAO {
      * @param country 
      * @return
      */
-    public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country) {
-        // TODO implement here
-        return false;
-    }
-
+    public abstract boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country);
     /**
      * @param email 
      * @param password 
      * @return
      */
-    public boolean addAnAdministrator(String email, String password) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean addAnAdministrator(String email, String password);
 
     /**
      * @param username 

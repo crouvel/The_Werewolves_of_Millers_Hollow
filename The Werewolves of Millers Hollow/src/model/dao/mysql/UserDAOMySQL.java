@@ -3,16 +3,20 @@
  */
 package model.dao.mysql;
 
+import java.io.IOException;
 /**
  * Imported classes and libraries.
  */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import businesslogic.domain.Administrator;
 import businesslogic.domain.Player;
 import businesslogic.domain.User;
+import gui.controller.AdministratorMenuController;
+import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
@@ -48,7 +52,15 @@ public class UserDAOMySQL extends UserDAO{
      * @throws SQLException
      */
     public User getUserById(int userId) throws SQLException {
-    	return null;
+    	String sqlRequest="SELECT * FROM User WHERE userId=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	ResultSet resultSet = request.executeQuery();
+    	if(resultSet.wasNull()||!resultSet.first()){
+    		return null;
+    	}
+    	else{
+    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("idAdmin"));
+    	}
     }
 
     /**
@@ -138,9 +150,19 @@ public class UserDAOMySQL extends UserDAO{
      * @param email 
      * @return
      */
-	public User deleteUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteUserByEmail(String email) {
+		boolean res = true;
+        try {
+        	String sqlRequest="DELETE FROM User WHERE email=?";
+    		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+        	request.setString(1, email);
+            request.executeUpdate();
+            res = existsByEmail(email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return res;
 	}
 
 	/**
@@ -148,8 +170,18 @@ public class UserDAOMySQL extends UserDAO{
      * @return
      */
 	public boolean deletePlayerByUsername(String username) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = true;
+        try {
+        	String sqlRequest="DELETE FROM User WHERE username=?";
+    		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+        	request.setString(1, username);
+            request.executeUpdate();
+            res = existsUsername(username);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return res;
 	}
 
     /**
@@ -157,9 +189,20 @@ public class UserDAOMySQL extends UserDAO{
      * @param password 
      * @return
      */
-	public boolean updateAdministratorProfile(String email, String password) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateAdministratorProfile(String email, String password) throws SQLException,IOException{
+		try {
+			Administrator ad = AdministratorMenuController.getCurrentAdmin();
+			String sqlRequest = "UPDATE User SET email=?,password=? WHERE userId=?";
+	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+	    	request.setString(1, password);
+	    	request.setString(2, email);
+	    	request.setInt(3, ad.getId());
+	    	request.executeUpdate();
+	    	return true;
+		}catch(SQLException|IOException e) {
+			e.getStackTrace();
+			return false;
+		}
 	}
 
 
@@ -190,9 +233,22 @@ public class UserDAOMySQL extends UserDAO{
      * @param country 
      * @return
      */
-	public boolean udaptePlayerProfile(String username, String email, String password, String country) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException,IOException{
+		try {
+			Player p = PlayerMenuController.getCurrentPlayer();
+			String sqlRequest = "UPDATE User SET username=?,email=?,password=?,country=? WHERE userId=?";
+	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+	    	request.setString(1, username);
+	    	request.setString(2, password);
+	    	request.setString(3, email);
+	    	request.setString(4, country);
+	    	request.setInt(5, p.getId());
+	    	request.executeUpdate();
+	    	return true;
+		}catch(SQLException|IOException e) {
+			e.getStackTrace();
+			return false;
+		}
 	}
 
     /**
@@ -233,6 +289,58 @@ public class UserDAOMySQL extends UserDAO{
     	else{
     		return null;
     	}
+	}
+
+	/**
+     * @param username 
+     * @param email 
+     * @param password 
+     * @param country 
+     * @param dateOfBirth
+     * @param gender
+     * @return
+     */
+	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) {
+		try {
+			String sqlRequest = "INSERT INTO USER(email,password) VALUES(?,?)";
+	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+	    	request.setString(1, email);
+	    	request.setString(2, password);
+	    	request.executeUpdate();
+	    	User u = getUserByEmail(email);
+	    	String sqlRequest2 = "INSERT INTO PLAYER(userID,username,dateOfBirth,gender,country) VALUES(?,?,?,?,?)";
+	    	PreparedStatement request2 = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest2);
+	    	request2.setInt(1, u.getId());
+	    	request2.setString(2, username);
+	    	request2.setDate(3, (java.sql.Date) dateOfBirth);
+	    	request2.setString(4, gender);
+	    	request2.setString(5, country);
+	    	request2.executeUpdate();
+	    	return true;
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}
+	}
+
+	/**
+     * @param email 
+     * @param password 
+     * @return
+     */
+	public boolean addAnAdministrator(String email, String password) {
+		try {
+			String sqlRequest = "INSERT INTO USER(email,password,isAdmin) VALUES(?,?,?)";
+	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+	    	request.setString(1, email);
+	    	request.setString(2, password);
+	    	request.setBoolean(3, true);
+	    	request.executeUpdate();
+	    	return true;
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}
 	}
 
 }

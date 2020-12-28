@@ -3,6 +3,7 @@
  */
 package businesslogic.facade;
 
+import java.io.IOException;
 import java.sql.Date;
 /**
  * Imported classes and libraries.
@@ -64,19 +65,6 @@ public class UserFacade {
     		return null;
     	} 
     }
-    
-    
-    /**
-     * 
-     * @param email 
-     * @param password 
-     * @return
-     * @throws SQLException 
-     */
-    public User register(String email, String password) throws SQLException {
-        //@Not Implemented    	
-    	return currentUser;
-    }
 
     /**
      * 
@@ -108,20 +96,32 @@ public class UserFacade {
      * @param password 
      * @param country 
      * @return
+     * @throws IOException 
      */
-    public boolean modifyPlayerProfile(String username, String email, String password, String country) {
-        // TODO implement here
-        return false;
+    public boolean modifyPlayerProfile(String username, String email, String password, String country) throws IOException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.updatePlayerProfile(username,email,password,country);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
      * @param email 
      * @param password 
      * @return
+     * @throws IOException 
      */
-    public boolean modifyAdministratorProfile(String email, String password) {
-        // TODO implement here
-        return false;
+    public boolean modifyAdministratorProfile(String email, String password) throws IOException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.updateAdministratorProfile(email,password);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
@@ -129,8 +129,13 @@ public class UserFacade {
      * @return
      */
     public boolean deleteUserByEmail(String playerEmail) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.deleteUserByEmail(playerEmail);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
@@ -138,29 +143,27 @@ public class UserFacade {
      * @return
      */
     public boolean deletePlayerByUsername(String username) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * 
-     */
-    public void registerAdministrator() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void registerPlayer() {
-        // TODO implement here
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.deletePlayerByUsername(username);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
      * @param adminEmail
+     * @return 
      */
-    public void deleteAdministratorByEmail(String adminEmail) {
-        // TODO implement here
+    public boolean deleteAdministratorByEmail(String adminEmail) {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.deleteUserByEmail(adminEmail);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
@@ -173,8 +176,13 @@ public class UserFacade {
      * @return
      */
     public boolean registerPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.addAPlayer(username,email,password,dateOfBirth,gender,country);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
@@ -183,8 +191,13 @@ public class UserFacade {
      * @return
      */
     public boolean registerAdministrator(String email, String password) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.addAnAdministrator(email,password);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
     /**
