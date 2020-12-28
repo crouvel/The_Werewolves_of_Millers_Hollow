@@ -87,7 +87,7 @@ public abstract class UserDAO {
      * @param country 
      * @return
      */
-    public abstract boolean udaptePlayerProfile(String username, String email, String password, String country);
+    public abstract boolean updatePlayerProfile(String username, String email, String password, String country);
 
     /**
      * @param username 
@@ -98,29 +98,20 @@ public abstract class UserDAO {
      * @param country 
      * @return
      */
-    public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country);
 
     /**
      * @param email 
      * @param password 
      * @return
      */
-    public boolean addAnAdministrator(String email, String password) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean addAnAdministrator(String email, String password);
 
     /**
      * @param username 
      * @return
      */
-    public boolean searchPlayerStats(String username) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean searchPlayerStats(String username);
 
     /**
      * @param username 
@@ -157,4 +148,21 @@ public abstract class UserDAO {
 	 * @throws SQLException
 	 */
 	public abstract Player getPlayerByUsername(String username) throws SQLException;
+
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean exist(User user) throws SQLException;
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract int getUserIdByUsername(String username) throws SQLException ;
+	
 }

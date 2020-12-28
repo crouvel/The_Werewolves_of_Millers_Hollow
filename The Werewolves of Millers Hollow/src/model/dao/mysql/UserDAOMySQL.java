@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import businesslogic.domain.Administrator;
 import businesslogic.domain.Gender;
@@ -22,18 +23,12 @@ import model.dao.factory.AbstractFactoryDAO;
  */
 public class UserDAOMySQL extends UserDAO{
 
-    /**
-     * Default constructor
-     */
-    public UserDAOMySQL() {
-    }
-
-    /**
-     * 
-     * @param email 
-     * @return
-     * @throws SQLException
-     */
+	/**
+	 * Default constructor
+	 */
+    public UserDAOMySQL() {}
+    
+	@Override
     public int getUserIdByUsername(String username) throws SQLException {
 		String sqlRequest="SELECT * FROM Player WHERE username=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -43,22 +38,12 @@ public class UserDAOMySQL extends UserDAO{
     	return resultSet.getInt("userId");
     }
     
-    /**
-     * 
-     * @param userId 
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public User getUserById(int userId) throws SQLException {
     	return null;
     }
 
-    /**
-     * 
-     * @param email 
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public User getUserByEmail(String email) throws SQLException {
 		String sqlRequest="SELECT * FROM User WHERE email=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -72,12 +57,7 @@ public class UserDAOMySQL extends UserDAO{
     	}
     }
     
-    /**
-     * 
-     * @param user
-     * @return true if the User belongs in parameter exists, else false.
-     * @throws SQLException
-     */
+    @Override
     public boolean exist(User user) throws SQLException {
     	String sqlRequest = "SELECT * FROM User WHERE email=? AND userId=? AND password=? AND ";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -88,13 +68,7 @@ public class UserDAOMySQL extends UserDAO{
     	return resultSet.first();
     }
 
-    /**
-     * 
-     * @param email
-     * @param password
-     * @return
-     * @throws SQLException
-     */
+    @Override
 	public User getUserByLogin(String email, String password) throws SQLException{
 		String sqlRequest="SELECT * FROM User WHERE email=? AND password=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -110,11 +84,7 @@ public class UserDAOMySQL extends UserDAO{
     	}
 	}
 
-	/**
-     * @param email 
-     * @return
-     * @throws SQLException
-     */
+	@Override
 	public boolean existsByEmail(String email) throws SQLException {
 		String sqlRequest = "SELECT * FROM User WHERE email=?";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -123,11 +93,7 @@ public class UserDAOMySQL extends UserDAO{
     	return resultSet.first();
 	}
 
-	/**
-     * @param username 
-     * @return
-	 * @throws SQLException 
-     */
+	@Override
 	public boolean existsUsername(String username) throws SQLException {
 		String sqlRequest = "SELECT * FROM Player WHERE username=?";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -136,40 +102,26 @@ public class UserDAOMySQL extends UserDAO{
     	return resultSet.first();
 	}
 
-	/**
-     * @param email 
-     * @return
-     */
+	@Override
 	public User deleteUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/**
-     * @param username 
-     * @return
-     */
+	@Override
 	public boolean deletePlayerByUsername(String username) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-    /**
-     * @param email 
-     * @param password 
-     * @return
-     */
+	@Override
 	public boolean updateAdministratorProfile(String email, String password) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-    /**
-     * @param username 
-     * @return
-     * @throws SQLException
-     */
+	@Override
 	public boolean updateBlockPlayer(String username) throws SQLException {
 		try {
 			String sqlRequest = "UPDATE User SET isLockedAccount=? WHERE userId=?";
@@ -185,24 +137,13 @@ public class UserDAOMySQL extends UserDAO{
 		}
 	}
 
-    /**
-     * @param username 
-     * @param email 
-     * @param password 
-     * @param country 
-     * @return
-     */
-	public boolean udaptePlayerProfile(String username, String email, String password, String country) {
+	@Override
+	public boolean updatePlayerProfile(String username, String email, String password, String country) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-    /**
-     * 
-     * @param user
-     * @return
-     * @throws SQLException 
-     */
+	@Override
 	public Player getPlayer(User user) throws SQLException {
 		String sqlRequest="SELECT * FROM Player WHERE userId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -217,12 +158,7 @@ public class UserDAOMySQL extends UserDAO{
     	}
 	}
 
-	/**
-     * 
-     * @param user
-     * @return
-     * @throws SQLException 
-     */
+	@Override
 	public Administrator getAdmin(User user) throws SQLException {
 		String sqlRequest="SELECT * FROM User WHERE userId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -237,18 +173,7 @@ public class UserDAOMySQL extends UserDAO{
     	}
 	}
 	
-	/**
-	 * 
-	 * @param username
-	 * @param played
-	 * @param won
-	 * @param lost
-	 * @param maxPlayed
-	 * @param maxWon
-	 * @param maxLost
-	 * @return
-	 * @throws SQLException 
-	 */
+	@Override
 	public ArrayList<String> getCorrespondingPlayer(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWon, boolean maxLost) throws SQLException {
 		ArrayList<String> players = new ArrayList<String>();
 		PreparedStatement request;
@@ -355,6 +280,22 @@ public class UserDAOMySQL extends UserDAO{
 		}else {
 			return null;
 		}
+	}
+
+	@Override
+	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,
+			String country) {
+		return false;
+	}
+
+	@Override
+	public boolean addAnAdministrator(String email, String password) {
+		return false;
+	}
+
+	@Override
+	public boolean searchPlayerStats(String username) {
+		return false;
 	}
 
 }

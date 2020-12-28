@@ -19,7 +19,7 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
      * @return
      */
     public Game getGameById(int game_id) {
-    	return new Game();
+    	return null;
     }
 
     /**
