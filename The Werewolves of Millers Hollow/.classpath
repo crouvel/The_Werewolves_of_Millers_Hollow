@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -14,6 +13,5 @@
 	<classpathentry kind="lib" path="C:/Users/Aaron/Desktop/javafx-sdk-13.0.1/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Aaron/Desktop/javafx-sdk-13.0.1/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Aaron/Desktop/javafx-sdk-13.0.1/lib/javafx-swt.jar"/>
-	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
