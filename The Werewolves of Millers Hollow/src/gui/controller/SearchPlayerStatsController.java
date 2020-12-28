@@ -116,55 +116,54 @@ public class SearchPlayerStatsController  implements Initializable{
 		String searchPlayed = playedSearch.getText();
 		String searchWin = winSearch.getText();
 		String searchLost = lostSearch.getText();
-		try{
-			theSearchUsername.matches("([a-z]|[A-Z])*");
-		}catch(Exception e) {
+		if(!theSearchUsername.matches("([a-z]|[A-Z]|[0-9])*")) {
 			infoBoxE("Please enter a correct username or a correct string.","Incorrect syntax for the username field","Incorrect syntax");
-		}
-		int play = 0;
-		int win = 0;
-		int lost = 0;
-		try {
-		   play = Integer.parseInt(searchPlayed);
-		}catch (NumberFormatException e){
-			infoBoxE("Please enter an integer for the number of played games.","Incorrect syntax for the number of played games","Incorrect syntax");
-		}
-		try {
-			win = Integer.parseInt(searchWin);
-		}catch (NumberFormatException e){
-			infoBoxE("Please enter an integer for the number of won games.","Incorrect syntax for the number of won games","Incorrect syntax");
-		}
-		try {
-			lost = Integer.parseInt(searchLost);
-		}catch (NumberFormatException e){	
-			infoBoxE("Please enter an integer for the number of lost games.","Incorrect syntax for the number of lost games","Incorrect syntax");
-		}	
-		boolean maxP = true;
-		boolean maxW = true;
-		boolean maxL = true;
-		if(playedGroup.getSelectedToggle()==minPlayed) {
-			maxP = false;
-		}
-		if(wonGroup.getSelectedToggle()==minWin) {
-			maxW = false;
-		}
-		if(lostGroup.getSelectedToggle()==minLost) {
-			maxL = false;
-		}
-		UserFacade userfacade = new UserFacade();
-		ArrayList<String> searchList = new ArrayList<String>();
-		try {
-			searchList = userfacade.getCorrespondingPlayers(theSearchUsername, play, win, lost, maxP, maxW, maxL);
-			if(searchList.isEmpty()) {
-				infoBoxW("No result.. Another try ?","Empty list in result :","No result");
-			}else {
-				playersList.getItems().clear();
-				for(String username : searchList) {
-					playersList.getItems().add(username);
-				}
+		}else {
+			int play = 0;
+			int win = 0;
+			int lost = 0;
+			try {
+			   play = Integer.parseInt(searchPlayed);
+			}catch (NumberFormatException e){
+				infoBoxE("Please enter an integer for the number of played games.","Incorrect syntax for the number of played games","Incorrect syntax");
 			}
-		}catch(SQLException e) {
-			e.getStackTrace();
+			try {
+				win = Integer.parseInt(searchWin);
+			}catch (NumberFormatException e){
+				infoBoxE("Please enter an integer for the number of won games.","Incorrect syntax for the number of won games","Incorrect syntax");
+			}
+			try {
+				lost = Integer.parseInt(searchLost);
+			}catch (NumberFormatException e){	
+				infoBoxE("Please enter an integer for the number of lost games.","Incorrect syntax for the number of lost games","Incorrect syntax");
+			}	
+			boolean maxP = true;
+			boolean maxW = true;
+			boolean maxL = true;
+			if(playedGroup.getSelectedToggle()==minPlayed) {
+				maxP = false;
+			}
+			if(wonGroup.getSelectedToggle()==minWin) {
+				maxW = false;
+			}
+			if(lostGroup.getSelectedToggle()==minLost) {
+				maxL = false;
+			}
+			UserFacade userfacade = new UserFacade();
+			ArrayList<String> searchList = new ArrayList<String>();
+			try {
+				searchList = userfacade.getCorrespondingPlayers(theSearchUsername, play, win, lost, maxP, maxW, maxL);
+				if(searchList.isEmpty()) {
+					infoBoxW("No result.. Another try ?","Empty list in result :","No result");
+				}else {
+					playersList.getItems().clear();
+					for(String username : searchList) {
+						playersList.getItems().add(username);
+					}
+				}
+			}catch(SQLException e) {
+				e.getStackTrace();
+			}
 		}
 	}
 
@@ -241,8 +240,7 @@ public class SearchPlayerStatsController  implements Initializable{
 			}
 		}catch(SQLException e) {
 			e.getStackTrace();
-		}
-		
+		}	
 	}
 
 }

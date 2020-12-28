@@ -251,9 +251,9 @@ public class UserDAOMySQL extends UserDAO{
 	public ArrayList<String> getCorrespondingPlayer(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWon, boolean maxLost) throws SQLException {
 		ArrayList<String> players = new ArrayList<String>();
 		PreparedStatement request;
-		String sqlRequest = "SELECT * FROM Player WHERE username LIKE '%";
+		String sqlRequest = "SELECT * FROM Player WHERE username LIKE ";
 		if(username.isBlank()) {
-			sqlRequest += "%' AND playedGames ";
+			sqlRequest += "'%%' AND playedGames ";
 			if(maxPlayed) {
 				sqlRequest += "<= ? AND wonGames ";
 				if(maxWon) {
@@ -294,8 +294,7 @@ public class UserDAOMySQL extends UserDAO{
 	    	request.setInt(2, won);
 	    	request.setInt(3, lost);
 		}else {
-			System.out.println("request debut");
-			sqlRequest += "?%' AND playedGames ";
+			sqlRequest += "? ESCAPE '!' AND playedGames ";
 			if(maxPlayed) {
 				sqlRequest += "<= ? AND wonGames ";
 				if(maxWon) {
@@ -314,7 +313,6 @@ public class UserDAOMySQL extends UserDAO{
 					}
 				}
 			}else {
-				System.out.println(">= 0 ");
 				sqlRequest += ">= ? AND wonGames ";
 				if(maxWon) {
 					sqlRequest += "<= ? AND lostGames ";
@@ -324,24 +322,23 @@ public class UserDAOMySQL extends UserDAO{
 						sqlRequest += ">= ?";
 					}
 				}else {
-					System.out.println(">= 0 ");
 					sqlRequest += ">= ? AND lostGames ";
 					if(maxLost) {
 						sqlRequest += "<= ?";
 					}else {
-						System.out.println(">= 0 ");
 						sqlRequest += ">= ?";
 					}
 				}
 			}
 			request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);	
-	    	request.setString(1, username);
+	    	request.setString(1, "%"+ username+ "%");
 	    	request.setInt(2, played);
 	    	request.setInt(3, won);
 	    	request.setInt(4, lost);
 		}
     	ResultSet resultSet = request.executeQuery();
     	while(resultSet.next()) {
+    		System.out.println(resultSet.getString("username"));
     		players.add(resultSet.getString("username"));
     	}
 		return players;
