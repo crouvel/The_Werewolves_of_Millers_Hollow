@@ -19,7 +19,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @return
      */
     public Game createGame(int numberOfPlayers, String status) {
-    	return new Game();
+    	return null;
     }
 
     /**
@@ -27,7 +27,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @return
      */
     public Game getGame(int game_id) {
-    	return new Game();
+    	return null;
     }
 
     /**

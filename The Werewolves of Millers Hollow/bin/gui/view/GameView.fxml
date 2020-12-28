@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -13,11 +15,152 @@
             <Image url="@../../image/dayBackground.png" />
          </image>
       </ImageView>
-      <Pane layoutX="640.0" layoutY="53.0" prefHeight="573.0" prefWidth="578.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;">
+      <Pane fx:id="chatPane" layoutX="640.0" layoutY="53.0" prefHeight="573.0" prefWidth="578.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;">
          <children>
-            <TextArea layoutX="23.0" layoutY="14.0" prefHeight="471.0" prefWidth="532.0" />
+            <ListView fx:id="chat" layoutX="35.0" layoutY="35.0" prefHeight="450.0" prefWidth="510.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 30px;" />
+            <TextField fx:id="message" layoutX="35.0" layoutY="497.0" prefHeight="62.0" prefWidth="409.0" promptText="Write a message..." style="-fx-background-color: rgb(64,64,64,0.6); -fx-background-radius: 30px;" />
+            <Button layoutX="447.0" layoutY="491.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="74.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="66.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/send.png" />
+                     </image>
+                     <effect>
+                        <Lighting diffuseConstant="1.12" specularConstant="0.86" specularExponent="31.71" surfaceScale="0.0">
+                           <bumpInput>
+                              <Shadow blurType="GAUSSIAN" height="123.62" radius="80.16" width="199.02" />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
-      <Pane layoutX="104.0" layoutY="115.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;" />
+      <Pane fx:id="votePane" layoutX="104.0" layoutY="115.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: rgb(64,64,64,0.8); -fx-background-radius: 50px;" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="43.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vote :">
+               <font>
+                  <Font name="Verdana Bold" size="47.0" />
+               </font>
+            </Text>
+            <ListView fx:id="playerVoteList" layoutX="46.0" layoutY="94.0" prefHeight="261.0" prefWidth="358.0" style="-fx-background-color: rgb(0,0,0,0.5);" />
+            <Button layoutX="248.0" layoutY="381.0" mnemonicParsing="false" onAction="#sendVote" prefHeight="39.0" prefWidth="156.0" style="-fx-background-color: rgb(0, 102, 0,0.95); -fx-background-radius: 30px;" text="Send my vote" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Button>
+         </children></Pane>
+      <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnPlayerMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
+         <effect>
+            <Lighting diffuseConstant="1.54" specularConstant="1.23" specularExponent="24.39" surfaceScale="1.86">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <Shadow height="5.0" radius="1.25" width="2.0" />
+               </effect>
+               <image>
+                  <Image url="@../../image/iconMenu.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="563.0" layoutY="53.0" mnemonicParsing="false" onAction="#reportAPlayer" prefHeight="36.0" prefWidth="47.0" style="-fx-background-color: rgb(0, 0, 102); -fx-background-radius: 35;">
+         <effect>
+            <Lighting diffuseConstant="1.54" specularConstant="1.23" specularExponent="24.39" surfaceScale="1.86">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/reportplayer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane fx:id="reportPlayerPane" layoutX="104.0" layoutY="83.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: rgb(45,45,45,0.8); -fx-background-radius: 300px;" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="88.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username of bad player :">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="badPlayerUsername" layoutX="88.0" layoutY="94.0" prefHeight="31.0" prefWidth="280.0" />
+            <Text fill="WHITE" layoutX="88.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason for report :">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="88.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="251.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="300.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="201.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="reason" layoutX="88.0" layoutY="173.0" prefHeight="31.0" prefWidth="280.0" />
+            <TextArea fx:id="description" layoutX="85.0" layoutY="248.0" prefHeight="113.0" prefWidth="280.0" promptText="Describe the situation..." />
+            <Button layoutX="122.0" layoutY="376.0" mnemonicParsing="false" onAction="#cancelReport" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: rgb(255,0,0,0.8);" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="230.0" layoutY="376.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: rgb(0,150,0,0.8);" text="Send" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="speechPane" layoutX="90.0" layoutY="208.0" prefHeight="200.0" prefWidth="450.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 30px;" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="28.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to be a Sheriff ?">
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Text>
+            <TextField fx:id="speech" layoutX="21.0" layoutY="69.0" prefHeight="62.0" prefWidth="409.0" promptText="Write a speech..." style="-fx-background-color: rgb(64,64,64,0.6); -fx-background-radius: 30px;" />
+            <Button layoutX="43.0" layoutY="147.0" mnemonicParsing="false" onAction="#no" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: rgb(255,0,0,0.9);" text="No" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="191.0" layoutY="147.0" mnemonicParsing="false" onAction="#sendCandidacy" prefHeight="32.0" prefWidth="221.0" style="-fx-background-color: rgb(0,160,0,0.9);" text="Send my candidacy" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </Pane>

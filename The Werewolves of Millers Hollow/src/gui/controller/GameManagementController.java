@@ -11,7 +11,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.Game;
 import businesslogic.domain.Player;
+import businesslogic.domain.PlayerInGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +25,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 public class GameManagementController implements Initializable {
+	
+	//Attributes
+	private static Game currentGame;
+	
+	private static PlayerInGame currentPlayerInGame;
 	
 	//FXML Attributes
 	
@@ -121,7 +128,7 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void startGame(ActionEvent event) throws IOException{
-		
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));	
 	}
 	
 	/**
@@ -187,6 +194,34 @@ public class GameManagementController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * @return the currentPlayerInGame
+	 */
+	public static PlayerInGame getCurrentPlayerInGame() {
+		return currentPlayerInGame;
+	}
+
+	/**
+	 * @param currentPlayerInGame the currentPlayerInGame to set
+	 */
+	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
+		GameManagementController.currentPlayerInGame = currentPlayerInGame;
+	}
+
+	/**
+	 * @return the currentGame
+	 */
+	public static Game getCurrentGame() {
+		return currentGame;
+	}
+
+	/**
+	 * @param currentGame the currentGame to set
+	 */
+	public static void setCurrentGame(Game currentGame) {
+		GameManagementController.currentGame = currentGame;
 	}
 		
 
