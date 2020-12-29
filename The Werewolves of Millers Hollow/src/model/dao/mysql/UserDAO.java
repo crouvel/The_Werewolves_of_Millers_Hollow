@@ -165,4 +165,12 @@ public abstract class UserDAO {
 	 */
 	public abstract int getUserIdByUsername(String username) throws SQLException ;
 	
+	/**
+     * @param email 
+     * @param password 
+     * @return
+     * @throws SQLException 
+     */
+	public abstract Administrator getAdminByLogin(String email,String password) throws SQLException;
+	
 }

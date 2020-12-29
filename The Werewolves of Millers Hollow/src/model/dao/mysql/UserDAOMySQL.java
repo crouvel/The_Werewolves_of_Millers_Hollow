@@ -120,7 +120,7 @@ public class UserDAOMySQL extends UserDAO{
     		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
         	request.setString(1, email);
             request.executeUpdate();
-            return existsByEmail(email);
+            return !existsByEmail(email);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,18 +130,17 @@ public class UserDAOMySQL extends UserDAO{
 
 	@Override
 	public boolean deletePlayerByUsername(String username) throws SQLException{
-		boolean res = true;
         try {
         	String sqlRequest="DELETE FROM User WHERE username=?";
     		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
         	request.setString(1, username);
             request.executeUpdate();
-            res = existsUsername(username);
+            return !existsUsername(username);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-        return res;
 	}
 
     @Override
@@ -150,8 +149,8 @@ public class UserDAOMySQL extends UserDAO{
 			Administrator ad = AdministratorMenuController.getCurrentAdmin();
 			String sqlRequest = "UPDATE User SET email=?,password=? WHERE userId=?";
 	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-	    	request.setString(1, password);
-	    	request.setString(2, email);
+	    	request.setString(2, password);
+	    	request.setString(1, email);
 	    	request.setInt(3, ad.getId());
 	    	request.executeUpdate();
 	    	return true;
@@ -326,13 +325,13 @@ public class UserDAOMySQL extends UserDAO{
 	@Override
 	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) {
 		try {
-			String sqlRequest = "INSERT INTO USER(email,password) VALUES(?,?)";
+			String sqlRequest = "INSERT INTO User(email,password) VALUES(?,?)";
 	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
 	    	request.setString(1, email);
 	    	request.setString(2, password);
 	    	request.executeUpdate();
 	    	User u = getUserByEmail(email);
-	    	String sqlRequest2 = "INSERT INTO PLAYER(userID,username,dateOfBirth,gender,country) VALUES(?,?,?,?,?)";
+	    	String sqlRequest2 = "INSERT INTO Player(userID,username,dateOfBirth,gender,country) VALUES(?,?,?,?,?)";
 	    	PreparedStatement request2 = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest2);
 	    	request2.setInt(1, u.getId());
 	    	request2.setString(2, username);
@@ -350,11 +349,12 @@ public class UserDAOMySQL extends UserDAO{
 	@Override
 	public boolean addAnAdministrator(String email, String password) {
 		try {
-			String sqlRequest = "INSERT INTO USER(email,password,isAdmin) VALUES(?,?,?)";
+			String sqlRequest = "INSERT INTO User(email,password,isAdmin,isLockedAccount) VALUES(?,?,?,?)";
 	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
 	    	request.setString(1, email);
 	    	request.setString(2, password);
 	    	request.setBoolean(3, true);
+	    	request.setBoolean(4, false);
 	    	request.executeUpdate();
 	    	return true;
 		}catch(SQLException e) {
@@ -376,5 +376,21 @@ public class UserDAOMySQL extends UserDAO{
             return null;
         }
 	}
+	
+	@Override
+	public Administrator getAdminByLogin(String email,String password) throws SQLException {
+        String sqlRequest="SELECT * FROM User WHERE email=? AND password=?";
+        PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+        request.setString(1, email);
+        request.setString(2, password);
+        ResultSet resultSet = request.executeQuery();
+        boolean exist = resultSet.first();
+        if(exist){
+            return new Administrator(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
+        }
+        else{
+            return null;
+        }
+    }
 
 }
