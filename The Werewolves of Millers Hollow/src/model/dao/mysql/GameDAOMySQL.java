@@ -1,5 +1,12 @@
+/**
+ * package model.dao.mysql
+ */
 package model.dao.mysql;
 
+import java.sql.SQLException;
+/**
+ * Imported classes and libraries.
+ */
 import java.util.*;
 
 import businesslogic.domain.PlayerInGame;
@@ -12,35 +19,20 @@ public class GameDAOMySQL extends GameDAO {
     /**
      * Default constructor
      */
-    public GameDAOMySQL() {
-    }
+    public GameDAOMySQL() {}
     
-    /**
-     * @param game_id 
-     * @return
-     */
-    public ArrayList<PlayerInGame> getPlayerInGameList(int game_id) {
-        // TODO implement here
+    @Override
+    public ArrayList<PlayerInGame> getPlayerInGameList(int game_id) throws SQLException {
         return null;
     }
 
-    /**
-     * @param game_id 
-     * @return
-     */
-    public ArrayList<String> getAllVotes(int game_id) {
-        // TODO implement here
+    @Override
+    public ArrayList<String> getAllVotes(int game_id) throws SQLException {
         return null;
     }
 
-    /**
-     * @param username1 
-     * @param username2 
-     * @param game_id 
-     * @return
-     */
-    public boolean sendVote(String username1, String username2, int game_id) {
-        // TODO implement here
+    @Override
+    public boolean sendVote(String username1, String username2, int game_id) throws SQLException {
         return false;
     }
 

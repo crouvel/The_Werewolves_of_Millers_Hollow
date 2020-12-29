@@ -23,23 +23,19 @@ public class ReportDAOMySQL extends ReportDAO {
     /**
      * Default constructor
      */
-    public ReportDAOMySQL() {
-    }
+    public ReportDAOMySQL() {}
 
-    /**
-     * @param subject 
-     * @param description 
-     * @param attachment 
-     * @return
-     */
-    public boolean createBugReport(String subject, String description, String attachment) {
+    @Override
+    public boolean createBugReport(String subject, String description, String attachment) throws SQLException {
+    	return true;
+    }
+    
+    @Override
+    public boolean createPlayerReport(String badPlayerUsername, String reason, String description) throws SQLException {
     	return true;
     }
 
-    /**
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public ArrayList<BugReport> getBugReports() throws SQLException{
     	String sqlRequest="SELECT * FROM Report";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -53,10 +49,7 @@ public class ReportDAOMySQL extends ReportDAO {
         return bugReports;    
     }
 
-    /**
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public ArrayList<PlayerReport> getPlayerReports() throws SQLException{
     	String sqlRequest="SELECT * FROM Report";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -70,10 +63,7 @@ public class ReportDAOMySQL extends ReportDAO {
         return playerReports;
     }
 
-    /**
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public ArrayList<Report> getReports() throws SQLException{
     	String sqlRequest="SELECT * FROM Report";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -86,35 +76,22 @@ public class ReportDAOMySQL extends ReportDAO {
     }
     
     
-    /**
-     * @param reportId 
-     * @return
-     */
-    public BugReport getBugReportById(int reportId) {
+    @Override
+    public BugReport getBugReportById(int reportId) throws SQLException {
     	return null;
     }
 
-    /**
-     * @param reportId 
-     * @return
-     */
-    public PlayerReport getPlayerReportById(int reportId) {
+    @Override
+    public PlayerReport getPlayerReportById(int reportId) throws SQLException {
     	return null;
     }
 
-    /**
-     * @param reportId 
-     * @return
-     */
-    public Report getReportById(int reportId) {
+    @Override
+    public Report getReportById(int reportId) throws SQLException {
     	return null;
     }
 
-    /**
-     * @param reportId 
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public boolean existsReport(int reportId) throws SQLException {
     	String sqlRequest = "SELECT * FROM Report WHERE reportId=?";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -123,27 +100,13 @@ public class ReportDAOMySQL extends ReportDAO {
     	return resultSet.first();
     }
 
-    /**
-     * @param reportId 
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public boolean deleteReport(int reportId) throws SQLException{
     	String sqlRequest="DELETE FROM Report WHERE reportId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, reportId);
         request.executeUpdate();
         return !existsReport(reportId);
-    }
-    /**
-     * @param badPlayerUsername 
-     * @param reason 
-     * @param description 
-     * @return
-     * @throws SQLException
-     */
-    public boolean createPlayerReport(String badPlayerUsername, String reason, String description) throws SQLException {
-    	return true;
     }
 
 }

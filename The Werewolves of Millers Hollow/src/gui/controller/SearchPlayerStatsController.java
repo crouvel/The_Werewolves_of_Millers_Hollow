@@ -34,8 +34,19 @@ public class SearchPlayerStatsController  implements Initializable{
 	
 	//FXML Attributes
 	
+	/**
+	 * 
+	 */
 	private ToggleGroup playedGroup;
+	
+	/**
+	 * 
+	 */
 	private ToggleGroup wonGroup;
+	
+	/**
+	 * 
+	 */
 	private ToggleGroup lostGroup;
 	
 	/**
@@ -202,7 +213,7 @@ public class SearchPlayerStatsController  implements Initializable{
 	//Added Methods
 	
 	/**
-	 * Open an info box.
+	 * Open an error box.
 	 * @param message
 	 * @param head
 	 * @param title
@@ -216,7 +227,7 @@ public class SearchPlayerStatsController  implements Initializable{
     }
 
 	/**
-	 * Open an info box.
+	 * Open an warning box.
 	 * @param message
 	 * @param head
 	 * @param title

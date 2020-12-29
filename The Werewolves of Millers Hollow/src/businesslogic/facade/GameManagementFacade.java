@@ -1,6 +1,7 @@
+/**
+ * package businesslogic.facade
+ */
 package businesslogic.facade;
-
-import businesslogic.domain.Game;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -10,24 +11,15 @@ public class GameManagementFacade {
     /**
      * Default constructor
      */
-    public GameManagementFacade() {
-    }
-
-    /**
-     * 
-     */
-    private Game currentGame;
-
-
+    public GameManagementFacade() {}
 
     /**
      * @param numberOfPlayers 
      * @param status 
      * @return
      */
-    public Game createGame(int numberOfPlayers, String status) {
-        // TODO implement here
-        return null;
+    public boolean createGame(int numberOfPlayers, String status) {
+        return false;
     }
 
     /**
@@ -35,7 +27,6 @@ public class GameManagementFacade {
      * @return
      */
     public boolean deleteGame(int game_id) {
-        // TODO implement here
         return false;
     }
 
@@ -45,7 +36,6 @@ public class GameManagementFacade {
      * @return
      */
     public boolean inviteFriendToPlay(int game_id, String username) {
-        // TODO implement here
         return false;
     }
 
@@ -55,7 +45,6 @@ public class GameManagementFacade {
      * @return
      */
     public boolean cancelRequest(int game_id, String username) {
-        // TODO implement here
         return false;
     }
 
@@ -65,7 +54,6 @@ public class GameManagementFacade {
      * @return
      */
     public boolean kickPlayerOfTheGame(int game_id, String username) {
-        // TODO implement here
         return false;
     }
 
@@ -79,22 +67,7 @@ public class GameManagementFacade {
      * @return
      */
     public boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
-        // TODO implement here
         return false;
     }
-
-	/**
-	 * @return the currentGame
-	 */
-	public Game getCurrentGame() {
-		return currentGame;
-	}
-
-	/**
-	 * @param currentGame the currentGame to set
-	 */
-	public void setCurrentGame(Game currentGame) {
-		this.currentGame = currentGame;
-	}
 
 }
