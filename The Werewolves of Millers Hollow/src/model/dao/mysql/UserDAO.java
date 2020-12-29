@@ -1,6 +1,5 @@
 package model.dao.mysql;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.User;
@@ -60,7 +59,7 @@ public abstract class UserDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract User deleteUserByEmail(String email) throws SQLException;
+    public abstract boolean deleteUserByEmail(String email) throws SQLException;
 
     /**
      * @param username 
@@ -113,13 +112,6 @@ public abstract class UserDAO {
      * @throws SQLException 
      */
     public abstract boolean addAnAdministrator(String email, String password) throws SQLException;
-
-    /**
-     * @param username 
-     * @return
-     * @throws SQLException 
-     */
-    public abstract boolean searchPlayerStats(String username) throws SQLException;
 
     /**
      * @param username 

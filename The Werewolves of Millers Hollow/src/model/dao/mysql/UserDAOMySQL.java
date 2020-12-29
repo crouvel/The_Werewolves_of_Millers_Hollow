@@ -113,30 +113,23 @@ public class UserDAOMySQL extends UserDAO{
     	return resultSet.first();
 	}
 
-	/**
-     * @param email 
-     * @return
-     */
-	public boolean deleteUserByEmail(String email) {
-		boolean res = true;
+	@Override
+	public boolean deleteUserByEmail(String email) throws SQLException{
         try {
         	String sqlRequest="DELETE FROM User WHERE email=?";
     		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
         	request.setString(1, email);
             request.executeUpdate();
-            res = existsByEmail(email);
+            return existsByEmail(email);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-        return res;
 	}
 
-	/**
-     * @param username 
-     * @return
-     */
-	public boolean deletePlayerByUsername(String username) {
+	@Override
+	public boolean deletePlayerByUsername(String username) throws SQLException{
 		boolean res = true;
         try {
         	String sqlRequest="DELETE FROM User WHERE username=?";
@@ -151,12 +144,8 @@ public class UserDAOMySQL extends UserDAO{
         return res;
 	}
 
-    /**
-     * @param email 
-     * @param password 
-     * @return
-     */
-	public boolean updateAdministratorProfile(String email, String password) throws SQLException,IOException{
+    @Override
+	public boolean updateAdministratorProfile(String email, String password) throws SQLException{
 		try {
 			Administrator ad = AdministratorMenuController.getCurrentAdmin();
 			String sqlRequest = "UPDATE User SET email=?,password=? WHERE userId=?";
@@ -189,14 +178,8 @@ public class UserDAOMySQL extends UserDAO{
 		}
 	}
 
-    /**
-     * @param username 
-     * @param email 
-     * @param password 
-     * @param country 
-     * @return
-     */
-	public boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException,IOException{
+    @Override
+	public boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException{
 		try {
 			Player p = PlayerMenuController.getCurrentPlayer();
 			String sqlRequest = "UPDATE User SET username=?,email=?,password=?,country=? WHERE userId=?";
@@ -340,15 +323,7 @@ public class UserDAOMySQL extends UserDAO{
 		return players;
     }
 
-	/**
-     * @param username 
-     * @param email 
-     * @param password 
-     * @param country 
-     * @param dateOfBirth
-     * @param gender
-     * @return
-     */
+	@Override
 	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) {
 		try {
 			String sqlRequest = "INSERT INTO USER(email,password) VALUES(?,?)";
@@ -372,11 +347,7 @@ public class UserDAOMySQL extends UserDAO{
 		}
 	}
 
-	/**
-     * @param email 
-     * @param password 
-     * @return
-     */
+	@Override
 	public boolean addAnAdministrator(String email, String password) {
 		try {
 			String sqlRequest = "INSERT INTO USER(email,password,isAdmin) VALUES(?,?,?)";
@@ -390,6 +361,20 @@ public class UserDAOMySQL extends UserDAO{
 			e.getStackTrace();
 			return false;
 		}
+	}
+
+
+	@Override
+	public Player getPlayerByUsername(String username) throws SQLException {
+		String sqlRequest = "SELECT * FROM Player,User WHERE Player.userId = User.userId AND username=?";
+        PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+        request.setString(1, username);
+        ResultSet resultSet = request.executeQuery();
+        if(resultSet.first()) {
+            return new Player(resultSet.getInt("User.userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("playedGames"),resultSet.getInt("wonGames"),resultSet.getInt("lostGames"),resultSet.getInt("status"));
+        }else {
+            return null;
+        }
 	}
 
 }
