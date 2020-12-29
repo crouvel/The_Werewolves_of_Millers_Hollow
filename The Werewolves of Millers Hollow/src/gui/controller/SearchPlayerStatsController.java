@@ -34,8 +34,19 @@ public class SearchPlayerStatsController  implements Initializable{
 	
 	//FXML Attributes
 	
+	/**
+	 * 
+	 */
 	private ToggleGroup playedGroup;
+	
+	/**
+	 * 
+	 */
 	private ToggleGroup wonGroup;
+	
+	/**
+	 * 
+	 */
 	private ToggleGroup lostGroup;
 	
 	/**

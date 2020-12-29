@@ -57,21 +57,24 @@ public abstract class UserDAO {
     /**
      * @param email 
      * @return
+     * @throws SQLException 
      */
-    public abstract User deleteUserByEmail(String email);
+    public abstract User deleteUserByEmail(String email) throws SQLException;
 
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean deletePlayerByUsername(String username);
+    public abstract boolean deletePlayerByUsername(String username) throws SQLException;
 
     /**
      * @param email 
      * @param password 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean updateAdministratorProfile(String email, String password);
+    public abstract boolean updateAdministratorProfile(String email, String password) throws SQLException;
 
     /**
      * @param username 
@@ -86,8 +89,9 @@ public abstract class UserDAO {
      * @param password 
      * @param country 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean updatePlayerProfile(String username, String email, String password, String country);
+    public abstract boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException;
 
     /**
      * @param username 
@@ -97,21 +101,24 @@ public abstract class UserDAO {
      * @param gender 
      * @param country 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country);
+    public abstract boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country) throws SQLException;
 
     /**
      * @param email 
      * @param password 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean addAnAdministrator(String email, String password);
+    public abstract boolean addAnAdministrator(String email, String password) throws SQLException;
 
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean searchPlayerStats(String username);
+    public abstract boolean searchPlayerStats(String username) throws SQLException;
 
     /**
      * @param username 

@@ -103,19 +103,19 @@ public class UserDAOMySQL extends UserDAO{
 	}
 
 	@Override
-	public User deleteUserByEmail(String email) {
+	public User deleteUserByEmail(String email) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean deletePlayerByUsername(String username) {
+	public boolean deletePlayerByUsername(String username) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateAdministratorProfile(String email, String password) {
+	public boolean updateAdministratorProfile(String email, String password) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -138,7 +138,7 @@ public class UserDAOMySQL extends UserDAO{
 	}
 
 	@Override
-	public boolean updatePlayerProfile(String username, String email, String password, String country) {
+	public boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -283,18 +283,17 @@ public class UserDAOMySQL extends UserDAO{
 	}
 
 	@Override
-	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,
-			String country) {
+	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) throws SQLException {
 		return false;
 	}
 
 	@Override
-	public boolean addAnAdministrator(String email, String password) {
+	public boolean addAnAdministrator(String email, String password) throws SQLException {
 		return false;
 	}
 
 	@Override
-	public boolean searchPlayerStats(String username) {
+	public boolean searchPlayerStats(String username) throws SQLException {
 		return false;
 	}
 
