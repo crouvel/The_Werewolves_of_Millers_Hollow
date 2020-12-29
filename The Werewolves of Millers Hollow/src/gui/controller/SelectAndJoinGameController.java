@@ -8,10 +8,12 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
+import businesslogic.facade.SelectAndJoinAGameFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,7 +52,25 @@ public class SelectAndJoinGameController  implements Initializable {
 	 */
 	@FXML
 	void joinAGame(ActionEvent event) throws IOException {
-		
+		String id = gameId.getText();
+		if(id.isBlank()) {
+			infoBoxW("Please enter a game id before try to join.","Missing game id.","Missing information");
+		}else {
+			int gId = 0;
+			try {
+				gId = Integer.parseInt(id);
+			}catch (NumberFormatException e){
+				infoBoxE("Please enter an integer for the number of played games.","Incorrect syntax for the number of played games","Incorrect syntax");
+			}
+			SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+			boolean isDone = joinGameFacade.joinAGame(gId);
+			if(isDone) {
+				
+			}
+			else {
+				infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+			}
+		}
 	}
 	
 	/**
@@ -76,13 +96,27 @@ public class SelectAndJoinGameController  implements Initializable {
 	//Added Methods
 	
 	/**
-	 * Open an info box.
+	 * Open an error info box.
 	 * @param message
 	 * @param head
 	 * @param title
 	 */
-	public static void infoBox(String message, String head, String title){
+	public static void infoBoxE(String message, String head, String title){
         Alert alert = new Alert(AlertType.ERROR);
+        alert.setContentText(message);
+        alert.setTitle(title);
+        alert.setHeaderText(head);
+        alert.showAndWait();
+    }
+	
+	/**
+	 * Open a warning info box.
+	 * @param message
+	 * @param head
+	 * @param title
+	 */
+	public static void infoBoxW(String message, String head, String title){
+        Alert alert = new Alert(AlertType.WARNING);
         alert.setContentText(message);
         alert.setTitle(title);
         alert.setHeaderText(head);
@@ -91,8 +125,12 @@ public class SelectAndJoinGameController  implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+		ArrayList<Game> games;
+		games = joinGameFacade.getGamesList();
+		for(Game i : games) {
+			availableGames.getItems().add(i);
+		}
 	}
 
 }
