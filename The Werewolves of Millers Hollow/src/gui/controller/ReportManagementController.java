@@ -99,7 +99,7 @@ public class ReportManagementController implements Initializable {
 	//Added Methods
 	
 	/**
-	 * Open an info box.
+	 * Open an warning box.
 	 * @param message
 	 * @param head
 	 * @param title
@@ -113,7 +113,7 @@ public class ReportManagementController implements Initializable {
     }
 
 	/**
-	 * Open an info box.
+	 * Open an error box.
 	 * @param message
 	 * @param head
 	 * @param title

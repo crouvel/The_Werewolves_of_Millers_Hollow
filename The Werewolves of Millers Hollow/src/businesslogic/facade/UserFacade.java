@@ -24,12 +24,6 @@ import model.dao.mysql.UserDAO;
 public class UserFacade {
 
     /**
-     * 
-     */
-    private User currentUser;
-
-
-    /**
      * Allows the user to log in using their email and password.
      * @param email 
      * @param password 
@@ -64,30 +58,6 @@ public class UserFacade {
     	}catch(SQLException e) {
     		return null;
     	} 
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public int getCurrentUserId() {
-        return currentUser.getId();
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String getCurrentUserEmail() {
-        return currentUser.getEmail();
     }
     
     /**
@@ -204,9 +174,14 @@ public class UserFacade {
      * @param username 
      * @return
      */
-    public boolean searchPlayerStats(String username) {
-        // TODO implement here
-        return false;
+    public Player searchPlayerStats(String username) {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getPlayerByUsername(username);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
     }
 
     /**
@@ -219,10 +194,14 @@ public class UserFacade {
      * @param maxLost 
      * @return
      */
-    public ArrayList<Player> getCorrespondingPlayers(String username, int player, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) {
-        // TODO implement here
-        return null;
+    public ArrayList<String> getCorrespondingPlayers(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) throws SQLException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getCorrespondingPlayer(username,played,won,lost,maxPlayed,maxWin,maxLost);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
     }
-
-
+    
 }

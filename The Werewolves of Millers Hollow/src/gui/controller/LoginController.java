@@ -16,10 +16,9 @@ import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import util.HashPassword;
+import util.InfoBox;
 
 /**
  * 
@@ -60,13 +59,13 @@ public class LoginController implements Initializable {
 		String mail = email.getText();
 		String pwd = password.getText();
 		if(mail.isBlank() && pwd.isBlank()) {
-			infoBox("Please enter an email address and a password.","Missing email address and password","Missing informations");
+			InfoBox.infoBoxW("Please enter an email address and a password.","Missing email address and password","Missing informations");
 		}else {
 			if(mail.isBlank()) {
-				infoBox("Please enter an email address.","Missing email address","Missing information");
+				InfoBox.infoBoxW("Please enter an email address.","Missing email address","Missing information");
 			}else {
 				if(pwd.isBlank()) {
-					infoBox("Please enter a password.","Missing password","Missing information");
+					InfoBox.infoBoxW("Please enter a password.","Missing password","Missing information");
 				}else {
 					UserFacade userFacade = new UserFacade();
 					User user=userFacade.login(mail,HashPassword.hashPassword(pwd));
@@ -74,10 +73,14 @@ public class LoginController implements Initializable {
 						if(user.isAdmin()==1) {
 							TheWerewolvesOfMillersHollow.goToAdminMenu(user,getClass().getResource("../view/AdministratorMenuView.fxml"));
 						}else {
-							TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
+							if(user.isLockedAccount()) {
+								InfoBox.infoBoxI("Try to contact an administrator.. Good Luck !","Blocked account", "Locked Account");
+							}else {
+								TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
+							}
 						}
 					}else {
-						infoBox("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
+						InfoBox.infoBoxE("Please enter a correct email or password.","Incorrect email or password", "Incorrect information");
 					}
 				}
 			}
@@ -94,21 +97,7 @@ public class LoginController implements Initializable {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
 	
-	//Methode ajoute
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-		Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
+	//Methodes ajoutees
 	
 	/**
 	 * 

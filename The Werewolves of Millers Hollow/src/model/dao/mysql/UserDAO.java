@@ -58,23 +58,24 @@ public abstract class UserDAO {
     /**
      * @param email 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean deleteUserByEmail(String email);
+    public abstract User deleteUserByEmail(String email) throws SQLException;
 
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean deletePlayerByUsername(String username);
+    public abstract boolean deletePlayerByUsername(String username) throws SQLException;
 
     /**
      * @param email 
      * @param password 
      * @return
-     * @throws IOException 
      * @throws SQLException 
      */
-    public abstract boolean updateAdministratorProfile(String email, String password) throws SQLException, IOException;
+    public abstract boolean updateAdministratorProfile(String email, String password) throws SQLException;
 
     /**
      * @param username 
@@ -89,11 +90,10 @@ public abstract class UserDAO {
      * @param password 
      * @param country 
      * @return
-     * @throws IOException 
      * @throws SQLException 
      */
-    public abstract boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException, IOException;
-    
+    public abstract boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException;
+
     /**
      * @param username 
      * @param email 
@@ -102,23 +102,24 @@ public abstract class UserDAO {
      * @param gender 
      * @param country 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country);
+    public abstract boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country) throws SQLException;
+
     /**
      * @param email 
      * @param password 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean addAnAdministrator(String email, String password);
+    public abstract boolean addAnAdministrator(String email, String password) throws SQLException;
 
     /**
      * @param username 
      * @return
+     * @throws SQLException 
      */
-    public boolean searchPlayerStats(String username) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean searchPlayerStats(String username) throws SQLException;
 
     /**
      * @param username 
@@ -129,12 +130,9 @@ public abstract class UserDAO {
      * @param maxWin 
      * @param maxLost 
      * @return
+     * @throws SQLException 
      */
-    public ArrayList<Player> getCorrespondingPlayer(String username, int played, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) {
-        // TODO implement here
-        return null;
-    }
-
+    public abstract ArrayList<String> getCorrespondingPlayer(String username, int played, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) throws SQLException;
     /**
      * 
      * @param user
@@ -150,5 +148,29 @@ public abstract class UserDAO {
 	 * @throws SQLException
 	 */
 	public abstract Administrator getAdmin(User user) throws SQLException;
+	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract Player getPlayerByUsername(String username) throws SQLException;
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean exist(User user) throws SQLException;
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract int getUserIdByUsername(String username) throws SQLException ;
+	
 }

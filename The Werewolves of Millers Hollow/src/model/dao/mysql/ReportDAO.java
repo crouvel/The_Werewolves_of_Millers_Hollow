@@ -27,8 +27,9 @@ public abstract class ReportDAO {
      * @param description 
      * @param attachment 
      * @return
+     * @throws SQLException 
      */
-    public abstract boolean createBugReport(String subject, String description, String attachment);
+    public abstract boolean createBugReport(String subject, String description, String attachment) throws SQLException;
 
     /**
      * @return
@@ -51,20 +52,23 @@ public abstract class ReportDAO {
     /**
      * @param reportId 
      * @return
+     * @throws SQLException 
      */
-    public abstract BugReport getBugReportById(int reportId);
+    public abstract BugReport getBugReportById(int reportId) throws SQLException;
 
     /**
      * @param reportId 
      * @return
+     * @throws SQLException 
      */
-    public abstract PlayerReport getPlayerReportById(int reportId);
+    public abstract PlayerReport getPlayerReportById(int reportId) throws SQLException;
 
     /**
      * @param reportId 
      * @return
+     * @throws SQLException 
      */
-    public abstract Report getReportById(int reportId);
+    public abstract Report getReportById(int reportId) throws SQLException;
 
     /**
      * @param reportId 

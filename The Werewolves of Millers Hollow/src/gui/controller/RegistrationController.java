@@ -14,10 +14,8 @@ import application.TheWerewolvesOfMillersHollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class RegistrationController implements Initializable {
 	
@@ -68,21 +66,7 @@ public class RegistrationController implements Initializable {
 	}
 	
 	//Methodes ajoutees
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-	
+
 	/**
 	 * 
 	 */

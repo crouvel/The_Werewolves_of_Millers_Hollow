@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Administrator;
 import businesslogic.facade.UserFacade;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

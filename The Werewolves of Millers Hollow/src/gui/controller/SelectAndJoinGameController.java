@@ -8,17 +8,18 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
+import businesslogic.facade.SelectAndJoinAGameFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import util.InfoBox;
 
 /**
  * 
@@ -50,7 +51,30 @@ public class SelectAndJoinGameController  implements Initializable {
 	 */
 	@FXML
 	void joinAGame(ActionEvent event) throws IOException {
-		
+		String id = gameId.getText();
+		if(id.isBlank()) {
+			InfoBox.infoBoxW("Please enter a game id before try to join.","Missing game id.","Missing information");
+		}else {
+			int gId = 0;
+			try {
+				gId = Integer.parseInt(id);
+			}catch (NumberFormatException e){
+				InfoBox.infoBoxE("Please enter an integer for the number of played games.","Incorrect syntax for the number of played games","Incorrect syntax");
+			}
+			SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+			boolean isDone = joinGameFacade.joinAGame(gId);
+			if(isDone) {
+				Game game = joinGameFacade.getGame(gId);
+				if(game != null) {
+					TheWerewolvesOfMillersHollow.goToGameManagement(game,getClass().getResource("../view/GameManagementView.fxml"));
+				}else {
+					InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
+				}
+			}
+			else {
+				InfoBox.infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+			}
+		}
 	}
 	
 	/**
@@ -60,7 +84,25 @@ public class SelectAndJoinGameController  implements Initializable {
 	 */
 	@FXML
 	void selectAGame(ActionEvent event) throws IOException {
-		
+		String id = gameId.getText();
+		if(id.isBlank()) {
+			InfoBox.infoBoxW("Please enter a game id before try to join.","Missing game id.","Missing information");
+		}else {
+			int gId = 0;
+			try {
+				gId = Integer.parseInt(id);
+			}catch (NumberFormatException e){
+				InfoBox.infoBoxE("Please enter an integer for the number of played games.","Incorrect syntax for the number of played games","Incorrect syntax");
+			}
+			SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+			boolean isDone = joinGameFacade.joinAGame(gId);
+			if(isDone) {
+				
+			}
+			else {
+				InfoBox.infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+			}
+		}
 	}
 	
 	/**
@@ -74,25 +116,15 @@ public class SelectAndJoinGameController  implements Initializable {
 	}
 	
 	//Added Methods
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+		ArrayList<Game> games;
+		games = joinGameFacade.getGamesList();
+		for(Game i : games) {
+			availableGames.getItems().add(i);
+		}
 	}
 
 }
