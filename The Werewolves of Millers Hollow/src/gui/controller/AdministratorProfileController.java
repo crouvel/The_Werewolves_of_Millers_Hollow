@@ -14,8 +14,6 @@ import application.TheWerewolvesOfMillersHollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
 /**
@@ -93,28 +91,12 @@ public class AdministratorProfileController  implements Initializable{
 	
 	//Added Methods
 	
-	/**
-	 * 
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-        //A CUSTOMISER
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {		
 		try {
 			adminEmail.setText(AdministratorMenuController.getCurrentAdmin().getEmail());
 			adminPassword.setText(AdministratorMenuController.getCurrentAdmin().getPassword());	
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

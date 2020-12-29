@@ -19,13 +19,12 @@ import businesslogic.facade.ReportManagementFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import util.InfoBox;
 
 /**
  * 
@@ -72,14 +71,14 @@ public class ReportController implements Initializable {
 	void deleteReport(ActionEvent event) throws IOException{
 		Report report = ReportController.currentReport;
 		if(report == null) {
-			infoBoxE("Reload your application before retry to delete this report, we encounter a problem.","Problem with the current report :","Error");
+			InfoBox.infoBoxE("Reload your application before retry to delete this report, we encounter a problem.","Problem with the current report :","Error");
 		}else {
 			ReportManagementFacade reportManagementFacade = new ReportManagementFacade();
 			boolean isDone = reportManagementFacade.deleteReport(ReportController.getCurrentReport().getReportId());
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
 			}else {
-				infoBoxW("Retry to delete this report later.","Connection problem.", "Connection problem");
+				InfoBox.infoBoxW("Retry to delete this report later.","Connection problem.", "Connection problem");
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportManagementView.fxml"));
 			}
 		}		
@@ -116,48 +115,6 @@ public class ReportController implements Initializable {
 	}
 	
 	//Added Methods
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxC(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxE(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxW(String message, String head, String title){
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 	
 	/**
 	 * 

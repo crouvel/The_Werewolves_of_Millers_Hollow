@@ -17,18 +17,23 @@ import businesslogic.domain.PlayerInGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 public class GameManagementController implements Initializable {
 	
 	//Attributes
+	
+	/**
+	 * 
+	 */
 	private static Game currentGame;
 	
+	/**
+	 * 
+	 */
 	private static PlayerInGame currentPlayerInGame;
 	
 	//FXML Attributes
@@ -172,55 +177,40 @@ public class GameManagementController implements Initializable {
 	}
 	
 	//Added Methods
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 
 	/**
 	 * 
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	/**
 	 * @return the currentPlayerInGame
 	 */
-	public static PlayerInGame getCurrentPlayerInGame() {
+	public static PlayerInGame getCurrentPlayerInGame() throws IOException {
 		return currentPlayerInGame;
 	}
 
 	/**
 	 * @param currentPlayerInGame the currentPlayerInGame to set
 	 */
-	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
+	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) throws IOException {
 		GameManagementController.currentPlayerInGame = currentPlayerInGame;
 	}
 
 	/**
 	 * @return the currentGame
 	 */
-	public static Game getCurrentGame() {
+	public static Game getCurrentGame() throws IOException {
 		return currentGame;
 	}
 
 	/**
 	 * @param currentGame the currentGame to set
 	 */
-	public static void setCurrentGame(Game currentGame) {
+	public static void setCurrentGame(Game currentGame) throws IOException {
 		GameManagementController.currentGame = currentGame;
 	}
 		

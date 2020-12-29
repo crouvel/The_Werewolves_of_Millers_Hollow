@@ -3,6 +3,7 @@
  */
 package businesslogic.facade;
 
+import java.io.IOException;
 import java.sql.SQLException;
 /**
  * Imported classes and libraries.
@@ -53,8 +54,9 @@ public class SelectAndJoinAGameFacade {
     /**
      * @param game_id 
      * @return
+     * @throws IOException 
      */
-    public boolean joinAGame(int game_id) {
+    public boolean joinAGame(int game_id) throws IOException {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
     	try {
     		SelectAndJoinAGameDAO joinAGameDAO  = factoryTest.createSelectAndJoinAGameDAO();

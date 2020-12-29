@@ -3,6 +3,7 @@
  */
 package model.dao.mysql;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 /**
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
+import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
@@ -41,7 +43,7 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
 
     @Override
     public ArrayList<Game> getAvailableGameList() throws SQLException {
-    	String sqlRequest="SELECT * FROM Game WHERE availableGame=1";
+    	String sqlRequest="SELECT * FROM Game WHERE status=1 AND availableGame=1";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	ResultSet resultSet = request.executeQuery();
     	ArrayList<Game> games = new ArrayList<Game>();
@@ -52,8 +54,17 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     }
 
     @Override
-    public boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException {
-    	//String sqlRequest = "INSERT INTO PlayerInGame() VALUES";
+    public boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException, IOException {
+    	String sqlRequest = "INSERT INTO PlayerInGame(gameId,username,creator,proposeAsASheriff,isAlive,role,isSheriff) VALUES (?,?,?,?,?,?,?)";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1, game_id);
+    	request.setString(2, PlayerMenuController.getCurrentPlayer().getUsername());
+    	request.setBoolean(3, false);
+    	request.setBoolean(4, false);
+    	request.setBoolean(5, true);
+    	request.setString(6,"");
+    	request.setBoolean(7, false);
+    	request.executeUpdate();
     	return false;
     }
 

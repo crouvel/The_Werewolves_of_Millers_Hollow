@@ -1,5 +1,6 @@
 package model.dao.mysql;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Game;
@@ -33,7 +34,8 @@ public abstract class SelectAndJoinAGameDAO {
      * @param game_id 
      * @return
      * @throws SQLException 
+     * @throws IOException 
      */
-    public abstract boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException;
+    public abstract boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException, IOException;
 
 }
