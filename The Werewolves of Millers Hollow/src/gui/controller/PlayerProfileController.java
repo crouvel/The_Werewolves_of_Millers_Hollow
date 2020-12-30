@@ -9,13 +9,18 @@ package gui.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.domain.Player;
+import businesslogic.domain.User;
+import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import util.HashPassword;
+import util.InfoBox;
 
 /**
  * 
@@ -23,47 +28,47 @@ import javafx.scene.control.TextField;
  *
  */
 public class PlayerProfileController  implements Initializable{
-	
+
 	//FXML Attributes
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField username;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField playerEmail;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField playerPassword;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
-	private DatePicker dateOfBirth;
-	
+	private Text dateOfBirth;
+
 	/**
 	 * 
 	 */
 	@FXML
-	private TextField gender;
-	
+	private Text gender;
+
 	/**
 	 * 
 	 */
 	@FXML
-	private TextField country;
-	
+	private ComboBox<String> country;
+
 	//FXML Methods
-	
+
 	/**
 	 * 
 	 * @param event
@@ -71,9 +76,32 @@ public class PlayerProfileController  implements Initializable{
 	 */
 	@FXML
 	void modifyUsername(ActionEvent event) throws IOException {
-		
+		String user = username.getText();
+		if(user.isBlank()) {
+			InfoBox.infoBoxW("A valid username must be provided","Missing username","Missing information");
+		}else {
+			if(!user.matches("([a-z]|[A-Z]|[0-9])*")){
+				InfoBox.infoBoxW("A username with valid syntax expected","Username syntax invalid","Invalid syntax");
+			}
+			else {
+				UserFacade uf = new UserFacade();
+				Player cur = PlayerMenuController.getCurrentPlayer();
+				if(cur==null) {
+					InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+				}else {
+					boolean isDone = uf.modifyPlayerProfile(user,cur.getEmail(), cur.getPassword(),cur.getCountry());
+					if(isDone) {
+						Player newP =  uf.searchPlayerStats(user);
+						PlayerMenuController.setCurrentPlayer(newP);
+						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
+					}else {
+						InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+					}
+				}
+			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -81,39 +109,146 @@ public class PlayerProfileController  implements Initializable{
 	 */
 	@FXML
 	void modifyPlayerEmail(ActionEvent event) throws IOException {
-		
+		String email = playerEmail.getText();
+		if(email.isBlank()) {
+			InfoBox.infoBoxW("A valid email must be provided","Missing email","Missing information");
+		}else {
+			if(!email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")){
+				InfoBox.infoBoxW("An email with valid syntax expected","Email syntax invalid","Invalid syntax");
+			}
+			else {
+				UserFacade uf = new UserFacade();
+				Player cur = PlayerMenuController.getCurrentPlayer();
+				if(cur==null) {
+					InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+				}else {
+					boolean isDone = uf.modifyPlayerProfile(cur.getUsername(),email, cur.getPassword(),cur.getCountry());
+					if(isDone) {
+						Player newP =  uf.searchPlayerStats(cur.getUsername());
+						PlayerMenuController.setCurrentPlayer(newP);
+						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
+					}else {
+						InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+					}
+				}
+			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void modifyPlayerPassword(ActionEvent event) throws IOException {
-		
+	void modifyPlayerPassword(ActionEvent event) throws IOException,Exception {
+		String password = playerPassword.getText();
+		if(password.isBlank()) {
+			InfoBox.infoBoxW("A valid password must be provided","Missing password","Missing information");
+		}else {
+			if(!password.matches("([a-z]|[A-Z]|[0-9])*")){
+				InfoBox.infoBoxW("A password with valid syntax expected","Password syntax invalid","Invalid syntax");
+			}
+			else {
+				UserFacade uf = new UserFacade();
+				Player cur = PlayerMenuController.getCurrentPlayer();
+				if(cur==null) {
+					InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+				}else {
+					boolean isDone = uf.modifyPlayerProfile(cur.getUsername(),cur.getEmail(), HashPassword.hashPassword(password),cur.getCountry());
+					if(isDone) {
+						Player newP =  uf.searchPlayerStats(cur.getUsername());
+						PlayerMenuController.setCurrentPlayer(newP);
+						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
+					}else {
+						InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+					}
+				}
+			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void modifyCountry(ActionEvent event) throws IOException {
-		
+	void modifyCountry(ActionEvent event) throws IOException,Exception {
+		String count = (String) country.getValue();
+		UserFacade uf = new UserFacade();
+		Player cur = PlayerMenuController.getCurrentPlayer();
+		if(cur==null) {
+			InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+		}else {
+			boolean isDone = uf.modifyPlayerProfile(cur.getUsername(),cur.getEmail(), cur.getPassword(),count);
+			if(isDone) {
+				Player newP =  uf.searchPlayerStats(cur.getUsername());
+				PlayerMenuController.setCurrentPlayer(newP);
+				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
+			}else {
+				InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	void saveModifications(ActionEvent event) throws IOException {
-		
+	void saveModifications(ActionEvent event) throws IOException,Exception {
+		String user = username.getText();
+		String email = playerEmail.getText();
+		String password = playerPassword.getText();
+		String count = (String) country.getValue();
+		//Username
+		if(user.isBlank()) {
+			InfoBox.infoBoxW("A valid username must be provided","Missing username","Missing information");
+		}else {
+			//Email
+			if(email.isBlank()) {
+				InfoBox.infoBoxW("A valid email must be provided","Missing email","Missing information");
+			}else {
+				//Password
+				if(password.isBlank()) {
+					InfoBox.infoBoxW("A valid password must be provided","Missing password","Missing information");
+				}else {
+					if(!user.matches("([a-z]|[A-Z]|[0-9])*")){
+						InfoBox.infoBoxW("A username with valid syntax expected","Username syntax invalid","Invalid syntax");
+					}
+					else {
+						if(!email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")){
+							InfoBox.infoBoxW("An email with valid syntax expected","Email syntax invalid","Invalid syntax");
+						}
+						else {
+							if(!password.matches("([a-z]|[A-Z]|[0-9])*")){
+								InfoBox.infoBoxW("A password with valid syntax expected","Password syntax invalid","Invalid syntax");
+							}
+							else {
+								UserFacade uf = new UserFacade();
+								boolean isDone = uf.modifyPlayerProfile(user,email, HashPassword.hashPassword(password),count);
+								if(isDone) {
+									User cur =  uf.login(email, HashPassword.hashPassword(password));
+									if(cur==null) {
+										InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+									}else {
+										PlayerMenuController.setCurrentPlayer(uf.getPlayer(cur));
+										TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
+									}
+								}else {
+									InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -121,9 +256,16 @@ public class PlayerProfileController  implements Initializable{
 	 */
 	@FXML
 	void deletePlayerAccount(ActionEvent event) throws IOException {
-		
+		UserFacade uf = new UserFacade();
+		boolean isDone = uf.deleteUserByEmail(PlayerMenuController.getCurrentPlayer().getEmail());
+		if(isDone) {
+			LoginController.setCurrentUser(null);
+			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
+		}else {
+			InfoBox.infoBoxE("Delete failed, retry later","Deletion failed","Delete Error");
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -145,9 +287,12 @@ public class PlayerProfileController  implements Initializable{
 			username.setText(PlayerMenuController.getCurrentPlayer().getUsername());
 			playerEmail.setText(PlayerMenuController.getCurrentPlayer().getEmail());
 			playerPassword.setText(PlayerMenuController.getCurrentPlayer().getPassword());
-			//dateOfBirth
+			dateOfBirth.setText(PlayerMenuController.getCurrentPlayer().getDateOfBirth().toString());
 			gender.setText(PlayerMenuController.getCurrentPlayer().getGender().getName());
-			country.setText(PlayerMenuController.getCurrentPlayer().getCountry());
+			country.setValue(PlayerMenuController.getCurrentPlayer().getCountry());
+			country.getItems().add("France");
+			country.getItems().add("USA");
+			country.getItems().add("England");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

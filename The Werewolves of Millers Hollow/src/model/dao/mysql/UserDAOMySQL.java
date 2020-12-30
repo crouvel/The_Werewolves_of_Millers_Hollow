@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import businesslogic.domain.Administrator;
 import businesslogic.domain.Gender;
@@ -46,12 +46,9 @@ public class UserDAOMySQL extends UserDAO{
     	String sqlRequest="SELECT * FROM User WHERE userId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	ResultSet resultSet = request.executeQuery();
-    	if(resultSet.wasNull()||!resultSet.first()){
-    		return null;
-    	}
-    	else{
-    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("idAdmin"));
-    	}
+    	resultSet.first();
+    	return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("idAdmin"));
+
     }
 
     @Override
@@ -60,12 +57,9 @@ public class UserDAOMySQL extends UserDAO{
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setString(1, email);
     	ResultSet resultSet = request.executeQuery();
-    	if(resultSet.wasNull()||!resultSet.first()){
-    		return null;
-    	}
-    	else{
-    		return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("idAdmin"));
-    	}
+    	resultSet.first();
+    	return new User(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("idAdmin"));
+  
     }
     
     @Override
@@ -181,14 +175,20 @@ public class UserDAOMySQL extends UserDAO{
 	public boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException{
 		try {
 			Player p = PlayerMenuController.getCurrentPlayer();
-			String sqlRequest = "UPDATE User SET username=?,email=?,password=?,country=? WHERE userId=?";
+			String sqlRequest = "UPDATE User SET email=?,password=? WHERE userId=?";
 	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-	    	request.setString(1, username);
 	    	request.setString(2, password);
-	    	request.setString(3, email);
-	    	request.setString(4, country);
-	    	request.setInt(5, p.getId());
+	    	request.setString(1, email);
+	    	request.setInt(3, p.getId());
 	    	request.executeUpdate();
+	    	
+	    	String sqlRequest2 = "UPDATE Player SET username=?,country=? WHERE userId=?";
+	    	PreparedStatement request2 = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest2);
+	    	request2.setString(1, username);
+	    	request2.setString(2, country);
+	    	request2.setInt(3, p.getId());
+	    	request2.executeUpdate();
+	    	
 	    	return true;
 		}catch(SQLException|IOException e) {
 			e.getStackTrace();
@@ -323,27 +323,22 @@ public class UserDAOMySQL extends UserDAO{
     }
 
 	@Override
-	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) {
-		try {
-			String sqlRequest = "INSERT INTO User(email,password) VALUES(?,?)";
+	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) throws SQLException{
+			String sqlRequest = "INSERT INTO User(email,password,isAdmin,isLockedAccount) VALUES(?,?,false,false)";
 	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
 	    	request.setString(1, email);
 	    	request.setString(2, password);
 	    	request.executeUpdate();
-	    	User u = getUserByEmail(email);
-	    	String sqlRequest2 = "INSERT INTO Player(userID,username,dateOfBirth,gender,country) VALUES(?,?,?,?,?)";
+	    	User u = getUserByLogin(email,password);
+	    	String sqlRequest2 = "INSERT INTO Player(userId,username,dateOfBirth,gender,country,playedGames,wonGames,lostGames,status) VALUES(?,?,?,?,?,0,0,0,true)";
 	    	PreparedStatement request2 = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest2);
 	    	request2.setInt(1, u.getId());
 	    	request2.setString(2, username);
-	    	request2.setDate(3, (java.sql.Date) dateOfBirth);
+	    	request2.setDate(3, dateOfBirth);
 	    	request2.setString(4, gender);
 	    	request2.setString(5, country);
 	    	request2.executeUpdate();
-	    	return true;
-		}catch(SQLException e) {
-			e.getStackTrace();
-			return false;
-		}
+	    	return existsUsername(username);
 	}
 
 	@Override
