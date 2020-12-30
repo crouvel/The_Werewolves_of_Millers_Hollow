@@ -25,27 +25,27 @@ import util.HashPassword;
 import util.InfoBox;
 
 public class RegistrationController implements Initializable {
-	
+
 	//FXML Attributes
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField usernameField;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField emailAddressField;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField passwordField;
-	
+
 	/**
 	 * 
 	 */
@@ -62,21 +62,23 @@ public class RegistrationController implements Initializable {
 	
 	@FXML
 	private RadioButton choiceFemale;
-		
+  
 	/**
 	 * 
 	 * @param event
 	 * @throws Exception 
 	 */
 	@FXML
-	void register(ActionEvent event) throws Exception {
+	void register(ActionEvent event) throws IOException,Exception {
 		String user = usernameField.getText();
 		String email = emailAddressField.getText();
 		String password = passwordField.getText();
 		Date date = Date.valueOf(dateOfBirthField.getValue());
-		String genderC = gender.getSelectedToggle().toString(); 
+		String genderC = "Male";
 		String count = (String) countryChoice.getValue();
-
+		if(gender.getSelectedToggle()==choiceFemale) {
+			genderC="Female";
+		}
 		//Username
 		if(user.isBlank()) {
 			InfoBox.infoBoxW("A valid username must be provided","Missing username","Missing information");
@@ -116,7 +118,7 @@ public class RegistrationController implements Initializable {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -126,20 +128,19 @@ public class RegistrationController implements Initializable {
 	void returnStartMenu(ActionEvent event) throws IOException {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
-	
+
 	//Methodes ajoutees
 
 	/**
 	 * 
 	 */
 	@Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        countryChoice.getItems().add("France");
-        countryChoice.getItems().add("USA");
-        countryChoice.getItems().add("England");
-        gender = new ToggleGroup();
-        choiceMale.setToggleGroup(gender);
-        choiceFemale.setToggleGroup(gender);
-    }
-	
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		countryChoice.getItems().add("France");
+		countryChoice.getItems().add("USA");
+		countryChoice.getItems().add("England");
+		gender = new ToggleGroup();
+		choiceMale.setToggleGroup(gender);
+		choiceFemale.setToggleGroup(gender);
+	}
 }

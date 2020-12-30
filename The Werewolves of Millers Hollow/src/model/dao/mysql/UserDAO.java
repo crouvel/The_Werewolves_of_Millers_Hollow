@@ -8,6 +8,7 @@ package model.dao.mysql;
  */
 import java.sql.SQLException;
 import java.util.*;
+import java.sql.Date;
 import businesslogic.domain.User;
 import businesslogic.domain.Administrator;
 import businesslogic.domain.Player;
@@ -69,7 +70,7 @@ public abstract class UserDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract User deleteUserByEmail(String email) throws SQLException;
+    public abstract boolean deleteUserByEmail(String email) throws SQLException;
 
     /**
      * 
@@ -187,5 +188,13 @@ public abstract class UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+     * @param email 
+     * @param password 
+     * @return
+     * @throws SQLException 
+     */
+	public abstract Administrator getAdminByLogin(String email,String password) throws SQLException;
 	
 }
