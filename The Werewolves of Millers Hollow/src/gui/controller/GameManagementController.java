@@ -307,9 +307,7 @@ public class GameManagementController implements Initializable {
 
 					infoBox("Please select a friend to cancel sent invitation.","Missing friend","Missing informations");
 				}else {
-					if(inviteFriends.getItems().contains(invitedFriend)) {
-						infoBox("This player is already in the invite friends list.","Incorrect action", "Incorrect information");
-					}else {
+					
 
 						GameManagementController.getCurrentGame();
 						boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend);
@@ -322,7 +320,7 @@ public class GameManagementController implements Initializable {
 				}
 			}
 		}
-	}
+	
 
 	/**
 	 * 
