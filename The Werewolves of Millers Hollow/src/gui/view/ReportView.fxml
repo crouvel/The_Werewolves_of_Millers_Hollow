@@ -26,7 +26,6 @@
                   </Text>
                </children>
             </Pane>
-            <TextFlow fx:id="reportSpecifications" layoutX="48.0" layoutY="122.0" prefHeight="320.0" prefWidth="559.0" style="-fx-background-color: rgb(217, 217, 217,0.3);" />
             <Button fx:id="blockButton" layoutX="48.0" layoutY="465.0" mnemonicParsing="false" onAction="#goBlockAPlayer" prefHeight="50.0" prefWidth="262.0" style="-fx-background-color: rgb(230, 0, 0,0.8); -fx-background-radius: 30px;" text="Block a player" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="25.0" />
@@ -36,6 +35,11 @@
                   <Font name="Verdana Bold" size="25.0" />
                </font>
             </Button>
+            <ScrollPane layoutX="47.0" layoutY="124.0" prefHeight="317.0" prefWidth="560.0">
+               <content>
+                  <TextFlow fx:id="reportSpecifications" prefHeight="317.0" prefWidth="540.0" style="-fx-background-color: rgb(217, 217, 217,0.3);" textAlignment="JUSTIFY" />
+               </content>
+            </ScrollPane>
          </children>
       </Pane>
       <Button layoutX="60.0" layoutY="590.0" mnemonicParsing="false" onAction="#returnAdministratorMenu" style="-fx-background-color: #0066cc; -fx-background-radius: 35;">
