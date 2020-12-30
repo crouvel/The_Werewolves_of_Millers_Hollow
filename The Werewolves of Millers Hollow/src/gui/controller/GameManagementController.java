@@ -138,7 +138,12 @@ public class GameManagementController implements Initializable {
 		if(statusGroup.getSelectedToggle()== privateGame) {
 			status = false;
 		}
-		boolean isDone = gameManagementFacade.createGame((int)numberOfPlayers.getValue(), status, PlayerMenuController.getCurrentPlayer().getUsername());
+		
+		int nbplayers = Integer.parseInt(numberOfPlayers.getText());
+		if(nbplayers < 8 || nbplayers > 43 ) {
+			infoBox("The number of players must be between 8 and 43.", "Incorrect information","Bad Typing");
+		} else {
+		boolean isDone = gameManagementFacade.createGame( nbplayers , status, PlayerMenuController.getCurrentPlayer().getUsername());
 		if(isDone) {		
 			Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
 			if(game == null) {
@@ -149,7 +154,7 @@ public class GameManagementController implements Initializable {
 			infoBox("Please retry to create the game later","Incorrect information.", "Connection Problem");
 		}
 
-
+		}
 	}
 
 	/**
