@@ -68,7 +68,7 @@ public class GameManagementController implements Initializable {
 	 * Attribute uses to store the invited friends list of the player.
 	 */
 	@FXML
-	private static ListView<String> invitedFriends;
+	private ListView<String> invitedFriends;
 
 	/**
 	 * Attribute uses to store (the friends list - the invited friends list) of the player.
@@ -262,16 +262,22 @@ public class GameManagementController implements Initializable {
 	 * 
 	 * @param event
 	 * @throws IOException
+	 * @throws SQLException 
 	 */
 	@FXML
-	void cancelGameRequest(ActionEvent event) throws IOException{
+	void cancelGameRequest(ActionEvent event) throws IOException, SQLException{
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		Game game = GameManagementController.getCurrentGame();
 		if(game == null ) {
 			infoBox("Please generate a game in order to cancel a sent invitation.","Missing game","Bad Manipulation");
 		}else {
-			String invitedFriend = invitedFriends.getSelectionModel().getSelectedItem();
-			if(invitedFriend==null) {
+			ArrayList<String> invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
+			if(invited == null) {
+				infoBox("Please invite a friend to play.","Empty list","Missing informations");
+			}else {
+				String invitedFriend = invitedFriends.getSelectionModel().getSelectedItem();
+				if(invitedFriend==null) {
+				
 				infoBox("Please select a friend to cancel sent invitation.","Missing friend","Missing informations");
 			}else {
 				if(inviteFriends.getItems().contains(invitedFriend)) {
@@ -289,6 +295,7 @@ public class GameManagementController implements Initializable {
 			}
 		}
 	}
+	}
 
 	/**
 	 * 
@@ -303,7 +310,7 @@ public class GameManagementController implements Initializable {
 			GameManagementFacade gameManagementFacade = new GameManagementFacade();
 			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
 			if(isDone) {		
-				GameManagementController.setInvitedFriends(null);
+				
 				GameManagementController.setCurrentGame(null);
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 			}else {
@@ -419,10 +426,7 @@ public class GameManagementController implements Initializable {
 		GameManagementController.currentGame = currentGame;
 	}
 
-	public static void setInvitedFriends(ListView<String> invited){
-		GameManagementController.invitedFriends = invited;
-	}
-
+	
 	/**
 	 * @return the currentPlayerInGame
 	 */
