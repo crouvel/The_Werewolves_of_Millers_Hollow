@@ -1,6 +1,10 @@
 package businesslogic.facade;
 
+import java.sql.SQLException;
+
 import businesslogic.domain.Report;
+import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.ReportDAO;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -28,8 +32,13 @@ public class ReportABugFacade {
      * @return
      */
     public boolean createBugReport(String subject, String description, String attachment) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		ReportDAO reportDAO  = factoryTest.createReportDAO();
+    		return reportDAO.createBugReport(subject,description,attachment);
+    	}catch(SQLException e) {
+    		return false;
+    	}
     }
 
 

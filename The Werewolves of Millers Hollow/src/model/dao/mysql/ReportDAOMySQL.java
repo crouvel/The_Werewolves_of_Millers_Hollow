@@ -27,7 +27,19 @@ public class ReportDAOMySQL extends ReportDAO {
 
     @Override
     public boolean createBugReport(String subject, String description, String attachment) throws SQLException {
-    	return true;
+    	try {
+			String sqlRequest = "INSERT INTO Report(subject,description,isBugReport,attachementLink) VALUES(?,?,?,?)";
+	    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+	    	request.setString(1, subject);
+	    	request.setString(2, description);
+	    	request.setBoolean(3, true);
+	    	request.setString(4, attachment);
+	    	request.executeUpdate();
+	    	return true;
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}
     }
     
     @Override
