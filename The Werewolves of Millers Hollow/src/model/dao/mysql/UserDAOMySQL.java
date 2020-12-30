@@ -3,6 +3,9 @@
  */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 /**
  * Imported classes and libraries.

@@ -46,4 +46,13 @@ public abstract class SelectAndJoinAGameDAO {
      */
     public abstract boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException, IOException;
 
+    /**
+     * 
+     * @param gameid
+     * @param username
+     * @return
+     * @throws SQLException
+     */
+	public abstract boolean existsPlayerInGame(int gameid, String username) throws SQLException;
+
 }
