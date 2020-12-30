@@ -1,19 +1,22 @@
+/**
+ * package model.dao.mysql
+ */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.sql.SQLException;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public abstract class PlayerInGameDAO {
 
     /**
      * Default constructor
      */
-    public PlayerInGameDAO() {
-    }
-
-
+    public PlayerInGameDAO() {}
 
     /**
      * @param username 

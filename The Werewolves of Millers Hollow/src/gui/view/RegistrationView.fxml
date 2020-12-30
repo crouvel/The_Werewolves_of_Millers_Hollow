@@ -48,7 +48,7 @@
             <Font name="Copperplate Gothic Bold" size="20.0" />
          </font>
       </RadioButton>
-      <ChoiceBox fx:id="countruChoice" layoutX="644.0" layoutY="479.0" prefHeight="43.0" prefWidth="328.0" />
+      <ChoiceBox fx:id="countryChoice" layoutX="644.0" layoutY="479.0" prefHeight="43.0" prefWidth="328.0" />
       <Button layoutX="476.0" layoutY="562.0" mnemonicParsing="false" onAction="#register" prefHeight="53.0" prefWidth="328.0" style="-fx-background-color: #3333cc;" text="Register" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="26.0" />

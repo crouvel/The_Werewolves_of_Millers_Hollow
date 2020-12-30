@@ -116,8 +116,13 @@ public class UserFacade {
      * @return
      */
     public boolean registerPlayer(String username, String email, String password, Date dateOfBirth, String gender, String country) {
-        // TODO implement here
-        return false;
+    	 AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+         try {
+             UserDAO userDAO  = factoryTest.createUserDAO();
+             return userDAO.addAPlayer(username,email,password,dateOfBirth,gender,country);
+         }catch(SQLException e) {
+             return false;
+         }
     }
 
     /**
@@ -159,6 +164,16 @@ public class UserFacade {
     	try {
     		UserDAO userDAO  = factoryTest.createUserDAO();
     		return userDAO.getCorrespondingPlayer(username,played,won,lost,maxPlayed,maxWin,maxLost);
+    	}catch(SQLException e) {
+    		return null;
+    	} 
+    }
+    
+    public Administrator getAdminByLogin(String username, String password) throws SQLException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		UserDAO userDAO  = factoryTest.createUserDAO();
+    		return userDAO.getAdminByLogin(username,password);
     	}catch(SQLException e) {
     		return null;
     	} 

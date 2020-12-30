@@ -14,8 +14,9 @@ import application.TheWerewolvesOfMillersHollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * 
@@ -48,19 +49,19 @@ public class PlayerProfileController  implements Initializable{
 	 * 
 	 */
 	@FXML
-	private DatePicker dateOfBirth;
+	private Text dateOfBirth;
 	
 	/**
 	 * 
 	 */
 	@FXML
-	private TextField gender;
+	private Text gender;
 	
 	/**
 	 * 
 	 */
 	@FXML
-	private TextField country;
+	private ComboBox<String> country;
 	
 	//FXML Methods
 	
@@ -91,9 +92,9 @@ public class PlayerProfileController  implements Initializable{
 	 */
 	@FXML
 	void modifyPlayerPassword(ActionEvent event) throws IOException {
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -145,9 +146,12 @@ public class PlayerProfileController  implements Initializable{
 			username.setText(PlayerMenuController.getCurrentPlayer().getUsername());
 			playerEmail.setText(PlayerMenuController.getCurrentPlayer().getEmail());
 			playerPassword.setText(PlayerMenuController.getCurrentPlayer().getPassword());
-			//dateOfBirth
+			dateOfBirth.setText(PlayerMenuController.getCurrentPlayer().getDateOfBirth().toString());
 			gender.setText(PlayerMenuController.getCurrentPlayer().getGender().getName());
-			country.setText(PlayerMenuController.getCurrentPlayer().getCountry());
+			country.setValue(PlayerMenuController.getCurrentPlayer().getCountry());
+			country.getItems().add("France");
+			country.getItems().add("USA");
+			country.getItems().add("England");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

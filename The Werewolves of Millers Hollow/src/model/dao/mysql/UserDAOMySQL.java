@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import businesslogic.domain.Administrator;
 import businesslogic.domain.Gender;
@@ -151,7 +151,7 @@ public class UserDAOMySQL extends UserDAO{
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
-    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("status"));
+    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("playedGames"),resultSet.getInt("wonGames"),resultSet.getInt("lostGames"),resultSet.getInt("status"));
     	}
     	else{
     		return null;
@@ -167,6 +167,22 @@ public class UserDAOMySQL extends UserDAO{
     	boolean exist = resultSet.first();
     	if(exist){
     		return new Administrator(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin());
+    	}
+    	else{
+    		return null;
+    	}
+	}
+	
+	@Override
+	public Administrator getAdminByLogin(String email,String password) throws SQLException {
+		String sqlRequest="SELECT * FROM User WHERE email=? AND password=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, email);
+    	request.setString(2, password);
+    	ResultSet resultSet = request.executeQuery();
+    	boolean exist = resultSet.first();
+    	if(exist){
+    		return new Administrator(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
     	}
     	else{
     		return null;
@@ -284,16 +300,33 @@ public class UserDAOMySQL extends UserDAO{
 
 	@Override
 	public boolean addAPlayer(String username, String email, String password, Date dateOfBirth, String gender,String country) throws SQLException {
-		return false;
+		System.out.println(username);
+		System.out.println(dateOfBirth);
+		System.out.println(gender);
+		System.out.println(country);
+		String sqlRequest = "INSERT INTO User(email,password,isAdmin,isLockedAccount) VALUES(?,?,false,false)";
+         PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+         request.setString(1, email);
+         request.setString(2, password);
+         request.executeUpdate();
+         User u = getUserByLogin(email,password);
+         System.out.println(u);
+         String sqlRequest2 = "INSERT INTO Player(userId,username,dateOfBirth,gender,country,playedGames,wonGames,lostGames,status) VALUES(?,?,?,?,?,?,?,?,true)";
+         PreparedStatement request2 = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest2);
+         request2.setInt(1, u.getId());
+         request2.setString(2, username);
+         request2.setDate(3, dateOfBirth);
+         request2.setString(4, gender);
+         request2.setString(5, country);
+         request2.setInt(6, 0);
+         request2.setInt(7, 0);
+         request2.setInt(8, 0);
+         request2.executeUpdate();
+         return existsUsername(username);
 	}
 
 	@Override
 	public boolean addAnAdministrator(String email, String password) throws SQLException {
-		return false;
-	}
-
-	@Override
-	public boolean searchPlayerStats(String username) throws SQLException {
 		return false;
 	}
 
