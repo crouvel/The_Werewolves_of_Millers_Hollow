@@ -1,8 +1,6 @@
 package businesslogic.facade;
 
 import java.util.*;
-import businesslogic.domain.Game;
-import businesslogic.domain.PlayerInGame;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -12,15 +10,8 @@ public class GameFacade {
     /**
      * Default constructor
      */
-    public GameFacade() {
-    }
+    public GameFacade() {}
 
-    /**
-     * 
-     */
-    private Game currentGame;
-
-    private PlayerInGame currentPlayerInGame;
     /**
      * @param badPlayerUsername 
      * @param reason 
@@ -50,27 +41,6 @@ public class GameFacade {
     public boolean makeAVote(String username1, String username2, int game_id) {
         // TODO implement here
         return false;
-    }
-
-    /**
-     * @return
-     */
-    public PlayerInGame getCurrentPlayerInGame() {
-        return this.currentPlayerInGame;
-    }
-
-    /**
-     * @return
-     */
-    public String getCurrentPlayerInGameUsername() {
-        return this.currentPlayerInGame.getUsername();
-    }
-
-    /**
-     * @return
-     */
-    public int getGameId() {
-        return this.currentGame.getGame_id();
     }
 
     /**

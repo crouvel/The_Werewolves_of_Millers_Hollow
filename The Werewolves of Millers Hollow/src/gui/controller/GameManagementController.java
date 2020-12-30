@@ -21,7 +21,6 @@ import businesslogic.facade.GameManagementFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
@@ -33,6 +32,9 @@ import model.dao.mysql.GameManagementDAOMySQL;
 public class GameManagementController implements Initializable {
 	
 	
+	/**
+	 * 
+	 */
 	private static PlayerInGame currentPlayerInGame;
 	
 	//FXML Attributes

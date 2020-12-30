@@ -23,15 +23,14 @@ import javafx.beans.property.SimpleIntegerProperty;*/
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 //import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 //import javafx.util.Duration;
+import util.InfoBox;
 
 /**
  * 
@@ -201,7 +200,7 @@ public class GameController implements Initializable{
 	void sendCandidacy(ActionEvent event) throws IOException {
 		String mySpeech = speech.getText();
 		if(mySpeech.isBlank()) {
-			infoBoxW("Please fill in the speech field before sending your candidacy.","The speech is missing.","Missing information");
+			InfoBox.infoBoxW("Please fill in the speech field before sending your candidacy.","The speech is missing.","Missing information");
 		}else {
 			//A FINIR
 			System.out.println(mySpeech);
@@ -221,48 +220,6 @@ public class GameController implements Initializable{
 	}
 	
 	//Other functions
-	
-	/**
-	 * Open a warning info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxW(String message, String head, String title){
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-	
-	/**
-	 * Open a confirmation info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxC(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-	
-	/**
-	 * Open an error info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxE(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 	
 	/**
 	 * 

@@ -14,12 +14,12 @@ import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.facade.FriendManagementFacade;
+import util.InfoBox;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
 
 /**
@@ -69,14 +69,14 @@ public class FriendManagementController implements Initializable {
 	void accept(ActionEvent event) throws IOException {
 		String username = receive.getSelectionModel().getSelectedItem();
 		if(username==null) {
-			infoBoxW("Please select a friend request before accept.","Missing friend.","Missing informations");
+			InfoBox.infoBoxW("Please select a friend request before accept.","Missing friend.","Missing informations");
 		}else {
 			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 			boolean isDone = friendManagementFacade.acceptFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
 			}else {
-				infoBoxW("Retry to accept the friend request later.","Incorrect information.", "Connection problem");
+				InfoBox.infoBoxW("Retry to accept the friend request later.","Incorrect information.", "Connection problem");
 			}
 		}
 	}
@@ -90,14 +90,14 @@ public class FriendManagementController implements Initializable {
 	void refuse(ActionEvent event) throws IOException{
 		String username = receive.getSelectionModel().getSelectedItem();
 		if(username==null) {
-			infoBoxW("Please select a friend request before refuse.","Missing friend.","Missing informations");
+			InfoBox.infoBoxW("Please select a friend request before refuse.","Missing friend.","Missing informations");
 		}else {
 			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 			boolean isDone = friendManagementFacade.refuseFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
 			}else {
-				infoBoxW("Retry to refuse the friend request later.","Incorrect information.", "Connection problem");
+				InfoBox.infoBoxW("Retry to refuse the friend request later.","Incorrect information.", "Connection problem");
 			}
 		}
 	}
@@ -111,14 +111,14 @@ public class FriendManagementController implements Initializable {
 	void cancel(ActionEvent event) throws IOException {
 		String username = sent.getSelectionModel().getSelectedItem();
 		if(username==null) {
-			infoBoxW("Please select a friend request before cancel.","Missing friend.","Missing informations");
+			InfoBox.infoBoxW("Please select a friend request before cancel.","Missing friend.","Missing informations");
 		}else {
 			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 			boolean isDone = friendManagementFacade.cancelFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
 			}else {
-				infoBoxW("Retry to cancel your friend request later.","Incorrect information.", "Connection problem");
+				InfoBox.infoBoxW("Retry to cancel your friend request later.","Incorrect information.", "Connection problem");
 			}
 		}
 	}
@@ -133,14 +133,14 @@ public class FriendManagementController implements Initializable {
 	void deleteFriend(ActionEvent event) throws IOException {
 		String username = friendsList.getSelectionModel().getSelectedItem();
 		if(username==null) {
-			infoBoxW("Please select a friend before try to delete.","Missing friend.","Missing informations");
+			InfoBox.infoBoxW("Please select a friend before try to delete.","Missing friend.","Missing informations");
 		}else {
 			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 			boolean isDone = friendManagementFacade.deleteFriend(PlayerMenuController.getCurrentPlayer().getUsername(),username);
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
 			}else {
-				infoBoxW("Retry to delete your friend later.","Incorrect information.", "Connection problem");
+				InfoBox.infoBoxW("Retry to delete your friend later.","Incorrect information.", "Connection problem");
 			}
 		}		
 	}
@@ -155,17 +155,17 @@ public class FriendManagementController implements Initializable {
 	void sendCurrentRequest(ActionEvent event) throws IOException {
 		String newFriend = addFriendUsername.getText();
 		if(newFriend.isBlank()) {
-			infoBoxW("Please write a username if you want to add a friend.","Missing username","Missing informations");
+			InfoBox.infoBoxW("Please write a username if you want to add a friend.","Missing username","Missing informations");
 		}else {
 			if(friendsList.getItems().contains(newFriend)) {
-				infoBoxW("This player is already in your friend list.","Incorrect username", "Incorrect information");
+				InfoBox.infoBoxW("This player is already in your friend list.","Incorrect username", "Incorrect information");
 			}else {
 				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 				boolean isDone=friendManagementFacade.sendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),newFriend);
 				if (isDone) {
 					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
 				}else {
-					infoBoxW("Please write a correct username or retry later.","Incorrect username", "Incorrect information");
+					InfoBox.infoBoxW("Please write a correct username or retry later.","Incorrect username", "Incorrect information");
 				}
 			}
 		}
@@ -192,34 +192,6 @@ public class FriendManagementController implements Initializable {
 	}
 	
 	//Added Methods 
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxC(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxW(String message, String head, String title){
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 
 	/**
 	 * 

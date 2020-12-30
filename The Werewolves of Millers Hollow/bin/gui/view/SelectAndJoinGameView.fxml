@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -53,7 +54,10 @@
                   <Font name="Copperplate Gothic Bold" size="20.0" />
                </font>
             </Button>
-            <ListView fx:id="availableGames" layoutX="40.0" layoutY="163.0" prefHeight="360.0" prefWidth="634.0" />
+            <ListView fx:id="availableGames" fixedCellSize="50.0" layoutX="40.0" layoutY="163.0" prefHeight="360.0" prefWidth="634.0" style="-fx-fixed-cell-size: 50;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></ListView>
             <Button layoutX="464.0" layoutY="528.0" mnemonicParsing="false" onAction="#selectAGame" prefHeight="47.0" prefWidth="210.0" text="Select a game">
                <font>
                   <Font name="Copperplate Gothic Bold" size="20.0" />

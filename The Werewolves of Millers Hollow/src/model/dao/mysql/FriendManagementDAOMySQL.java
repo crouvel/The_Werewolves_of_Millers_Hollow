@@ -15,14 +15,9 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
     /**
      * Default constructor
      */
-    public FriendManagementDAOMySQL() {
-    }
+    public FriendManagementDAOMySQL() {}
 
-    /**
-     * @param username 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public ArrayList<String> getReceivedFriendRequests(String username) throws SQLException{
     	String sqlRequest="SELECT * FROM FriendRequest WHERE invitedUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -35,11 +30,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return requests;
     }
 
-    /**
-     * @param username 
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public ArrayList<String> getFriendList(String username) throws SQLException {
 		String sqlRequest="SELECT username2 FROM Friends WHERE username=? UNION SELECT username FROM Friends WHERE username2=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -53,12 +44,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return friends;
     }
 
-    /**
-     * @param username1 
-     * @param username2 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public boolean deleteRequest(String username1, String username2) throws SQLException {
     	String sqlRequest="DELETE FROM FriendRequest WHERE requesterUsername=? AND invitedUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -68,12 +54,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return !existsSentFriendRequest(username1,username2);
     }
 
-    /**
-     * @param username1 
-     * @param username2 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public boolean deleteFromFriendList(String username1, String username2) throws SQLException {
     	String sqlRequest="DELETE FROM Friends WHERE username=? AND username2=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -89,12 +70,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
     	
     }
 
-    /**
-     * @param username1 
-     * @param username2 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public boolean refuseRequest(String username1, String username2) throws SQLException {
     	String sqlRequest="DELETE FROM FriendRequest WHERE requesterUsername=? AND invitedUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -104,12 +80,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return !existsReceivedFriendRequest(username1,username2);    	
     }
 
-    /**
-     * @param username1 
-     * @param username2 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public boolean addFriendInList(String username1, String username2) throws SQLException {
     	String sqlRequest="DELETE FROM FriendRequest WHERE requesterUsername=? AND invitedUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -124,11 +95,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return existsFriend(username1,username2) && !existsReceivedFriendRequest(username1,username2);
     }
 
-    /**
-     * @param username 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public ArrayList<String> getRequestSent(String username) throws SQLException{
     	String sqlRequest="SELECT * FROM FriendRequest WHERE requesterUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -141,12 +108,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return requests;
     }
 
-    /**
-     * @param username1 
-     * @param username2 
-     * @return
-     * @throws SQLException 
-     */
+    @Override
     public boolean sendFriendRequest(String username1, String username2) throws SQLException {
     	String sqlRequest="INSERT INTO FriendRequest(requesterUsername, invitedUsername) VALUES (?,?)";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -156,13 +118,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
         return existsSentFriendRequest(username1,username2);
     }
     
-    /**
-     * 
-     * @param username1
-     * @param username2
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public boolean existsFriend(String username1,String username2) throws SQLException {
     	String sqlRequest="(SELECT * FROM Friends WHERE username=? AND username2=?) UNION (SELECT * FROM Friends WHERE username=? AND username2=?)";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -174,13 +130,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
     	return resultSet.first();
     }
     
-    /**
-     * 
-     * @param username1
-     * @param username2
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public boolean existsSentFriendRequest(String username1,String username2) throws SQLException {
     	String sqlRequest="SELECT * FROM FriendRequest WHERE requesterUsername=? AND invitedUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -190,13 +140,7 @@ public class FriendManagementDAOMySQL extends FriendManagementDAO {
     	return resultSet.first();
     }
     
-    /**
-     * 
-     * @param username1
-     * @param username2
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public boolean existsReceivedFriendRequest(String username1,String username2) throws SQLException {
     	String sqlRequest="SELECT * FROM FriendRequest WHERE requesterUsername=? AND invitedUsername=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);

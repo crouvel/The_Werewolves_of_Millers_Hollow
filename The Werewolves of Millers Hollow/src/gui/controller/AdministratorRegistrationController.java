@@ -11,13 +11,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import util.HashPassword;
+import util.InfoBox;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Alert.AlertType;
 
 /**
  * 
@@ -48,8 +49,35 @@ public class AdministratorRegistrationController  implements Initializable{
 	 * @throws IOException
 	 */
 	@FXML
-	void createAdministratorAccount(ActionEvent event) throws IOException {
+	void createAdministratorAccount(ActionEvent event) throws IOException,Exception {
+		String adEmail = emailAdmin.getText();
+		String adPassword = passwordAdmin.getText(); 
 		
+		if(adEmail.isBlank()) {
+			InfoBox.infoBoxW("A valid email must be provided","Missing email","Missing information");
+		}else {
+			if(adPassword.isBlank()) {
+				InfoBox.infoBoxW("A valid password must be provided","Missing password","Missing information");
+			}else {
+				if(!adEmail.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
+					InfoBox.infoBoxW("An email with valid syntax expected","Email syntax invalid","Invalid syntax");
+				}else {
+					if(!adPassword.matches("([a-z]|[A-Z]|[0-9])*")){
+						InfoBox.infoBoxW("A password with valid syntax expected","Password syntax invalid","Invalid syntax");
+					}
+					else {
+						UserFacade uf = new UserFacade();
+						boolean isDone = uf.registerAdministrator(adEmail, HashPassword.hashPassword(adPassword));
+						if(isDone) {
+							InfoBox.infoBoxI("Admin created", "Admin created", "Admin Created");
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
+						}else {
+							InfoBox.infoBoxE("Creation failed, retry later","Creation failed","Creation Error");
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	/**
@@ -63,20 +91,6 @@ public class AdministratorRegistrationController  implements Initializable{
 	}
 	
 	//Added Methods
-	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 
 	/**
 	 * 

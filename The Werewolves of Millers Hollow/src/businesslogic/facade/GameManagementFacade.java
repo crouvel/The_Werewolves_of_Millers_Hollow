@@ -1,3 +1,6 @@
+/**
+ * package businesslogic.facade
+ */
 package businesslogic.facade;
 
 import java.sql.SQLException;
@@ -17,8 +20,7 @@ public class GameManagementFacade {
     /**
      * Default constructor
      */
-    public GameManagementFacade() {
-    }
+    public GameManagementFacade() {}
 
     /**
      * 

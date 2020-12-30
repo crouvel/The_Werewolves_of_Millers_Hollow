@@ -19,7 +19,6 @@
     <fullyQualifiedTypeName name="javafx.animation.Animation"/>
     <fullyQualifiedTypeName name="gui.controller.AdministratorMenuController"/>
     <fullyQualifiedTypeName name="businesslogic.domain.User"/>
-    <fullyQualifiedTypeName name="gui.controller.PlayerMenuController"/>
     <fullyQualifiedTypeName name="javafx.fxml.LoadException"/>
     <fullyQualifiedTypeName name="model.dao.mysql.FriendManagementDAO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -39,7 +38,6 @@
     <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>

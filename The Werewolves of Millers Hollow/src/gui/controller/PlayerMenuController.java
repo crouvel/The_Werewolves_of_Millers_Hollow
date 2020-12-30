@@ -20,8 +20,6 @@ import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 /**
  * 
@@ -112,20 +110,6 @@ public class PlayerMenuController implements Initializable {
 	
 	//Added Methods
 	
-	/**
-	 * Open an info box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBox(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
-
 	/**
 	 * Getter of currentUser attribute.
 	 * @return

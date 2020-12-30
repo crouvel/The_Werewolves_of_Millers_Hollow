@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public abstract class FriendManagementDAO {
 
@@ -75,4 +75,31 @@ public abstract class FriendManagementDAO {
      */
     public abstract boolean sendFriendRequest(String username1, String username2) throws SQLException;
 
+    /**
+	 * 
+	 * @param username1
+	 * @param username2
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsSentFriendRequest(String username1, String username2) throws SQLException;
+
+	/**
+	 * 
+	 * @param username1
+	 * @param username2
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsFriend(String username1, String username2) throws SQLException;
+
+    /**
+     * 
+     * @param username1
+     * @param username2
+     * @return
+     * @throws SQLException
+     */
+	public abstract boolean existsReceivedFriendRequest(String username1, String username2) throws SQLException;
+	
 }
