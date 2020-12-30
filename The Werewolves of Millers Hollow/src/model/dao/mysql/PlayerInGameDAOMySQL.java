@@ -3,10 +3,13 @@
  */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.sql.SQLException;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire
  */
 public class PlayerInGameDAOMySQL extends PlayerInGameDAO {
 

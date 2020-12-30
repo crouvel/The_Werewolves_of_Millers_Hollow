@@ -9,7 +9,7 @@ package model.dao.mysql;
 import java.sql.SQLException;
 
 /**
- * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
+ * @author Tiffany Dumaire
  */
 public abstract class PlayerInGameDAO {
 
@@ -19,6 +19,7 @@ public abstract class PlayerInGameDAO {
     public PlayerInGameDAO() {}
 
     /**
+     * 
      * @param username 
      * @return
      * @throws SQLException 
