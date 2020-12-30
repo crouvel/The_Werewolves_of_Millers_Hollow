@@ -3,12 +3,11 @@
  */
 package model.dao.mysql;
 
-/**
- * Imported classes and libraries.
- */
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslogic.domain.Game;
+import businesslogic.domain.Phase;
 
 /**
  * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
@@ -20,6 +19,9 @@ public abstract class GameManagementDAO {
      */
     public GameManagementDAO() {}
 
+    
+
+   
     /**
      * 
      * @param numberOfPlayers 
@@ -27,7 +29,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract Game createGame(int numberOfPlayers, String status) throws SQLException;
+    public abstract boolean createGame(int nbplayers, boolean status, String creator) throws SQLException;
 
     /**
      * 
@@ -48,7 +50,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
+    public abstract boolean modifyRole(int game_id, int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
 
     /**
      * 
@@ -57,7 +59,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean inviteFriendToPlay(int game_id, String username) throws SQLException;
+    public abstract boolean inviteFriendToPlay(int game_id, String username1, String username2) throws SQLException;
 
     /**
      * 
@@ -66,7 +68,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean cancelRequest(int game_id, String username) throws SQLException;
+    public abstract boolean cancelRequest(int game_id, String username1, String username2) throws SQLException;
 
     /**
      * 
@@ -85,4 +87,12 @@ public abstract class GameManagementDAO {
      */
     public abstract boolean deleteGame(int game_id) throws SQLException;
 
+    public abstract Game getGameByCreator( String creator) throws SQLException;
+    
+    public abstract ArrayList<String> getInvitedFriend(int gameId, String username) throws SQLException;
+    
+    
+    public abstract ArrayList<String> getPlayer(int gameId) throws SQLException;
+    
+    
 }
