@@ -1,42 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
+    <fullyQualifiedTypeName name="businesslogic.systemelement.Player"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.TextFlow"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.net.InetAddress"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="util.HashPassword"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.PasswordField"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ProgressBar"/>
+    <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
+    <fullyQualifiedTypeName name="javafx.beans.property.IntegerProperty"/>
+    <fullyQualifiedTypeName name="javafx.animation.Timeline"/>
+    <fullyQualifiedTypeName name="javafx.animation.KeyValue"/>
+    <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
+    <fullyQualifiedTypeName name="javafx.util.Duration"/>
+    <fullyQualifiedTypeName name="javafx.animation.KeyFrame"/>
+    <fullyQualifiedTypeName name="javafx.animation.Animation"/>
+    <fullyQualifiedTypeName name="gui.controller.AdministratorMenuController"/>
+=======
+>>>>>>> werewolves
     <fullyQualifiedTypeName name="businesslogic.domain.User"/>
     <fullyQualifiedTypeName name="javafx.fxml.LoadException"/>
     <fullyQualifiedTypeName name="model.dao.mysql.FriendManagementDAO"/>
-    <fullyQualifiedTypeName name="businesslogic.facade.FriendManagementFacade"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="gui.controller.LoginController"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Administrator"/>
     <fullyQualifiedTypeName name="model.dao.mysql.ReportDAO"/>
     <fullyQualifiedTypeName name="javafx.scene.control.skin.VirtualFlow"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Cell"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Report"/>
     <fullyQualifiedTypeName name="businesslogic.domain.BugReport"/>
     <fullyQualifiedTypeName name="businesslogic.domain.PlayerReport"/>
     <fullyQualifiedTypeName name="javafx.scene.text.Font"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
     <fullyQualifiedTypeName name="businesslogic.facade.ReportManagementFacade"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
-    <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="application.TheWerewolvesOfMillersHollow"/>
-    <fullyQualifiedTypeName name="javafx.scene.SubScene"/>
-    <fullyQualifiedTypeName name="javafx.scene.layout.VBox"/>
-    <fullyQualifiedTypeName name="javafx.stage.Stage"/>
-    <fullyQualifiedTypeName name="javafx.scene.Scene"/>
-    <fullyQualifiedTypeName name="javafx.scene.chart.CategoryAxis"/>
-    <fullyQualifiedTypeName name="javafx.scene.chart.NumberAxis"/>
-    <fullyQualifiedTypeName name="javafx.scene.chart.BarChart"/>
-    <fullyQualifiedTypeName name="javafx.scene.chart.XYChart"/>
-    <fullyQualifiedTypeName name="javafx.scene.chart.XYChart.Series"/>
-    <fullyQualifiedTypeName name="businesslogic.domain.Gender"/>
-    <fullyQualifiedTypeName name="gui.controller.PlayerStatsController"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="model.dao.factory.FactoryDAOMySQL"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.UserDAOMySQL"/>
+    <fullyQualifiedTypeName name="java.awt.Image"/>
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<<<<<<< HEAD
+    <fullyQualifiedTypeName name="businesslogic.facade.GameManagementFacade"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Phase"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.GameManagementDAO"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.GameManagementDAOMySQL"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
+    <fullyQualifiedTypeName name="gui.controller.GameManagementController"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.FriendManagementFacade"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
+=======
     <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
@@ -60,4 +86,5 @@
     <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
+>>>>>>> werewolves
 </qualifiedTypeNameHistroy>

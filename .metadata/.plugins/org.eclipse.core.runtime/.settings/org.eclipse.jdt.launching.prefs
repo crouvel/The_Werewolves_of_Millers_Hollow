@@ -1,4 +1,3 @@
 PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1606819741135.java.version=13.0.1
 eclipse.preferences.version=1
-org.eclipse.jdt.launching.PREF_DEFAULT_ENVIRONMENTS_XML=
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1606819741135" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1606819741135" name\="jdk-13.0.1" path\="C\:\\Program Files\\Java\\jdk-13.0.1"/>\r\n    </vmType>\r\n</vmSettings>\r\n
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1607107236719" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1607107236719" name\="jdk-13.0.2" path\="C\:\\Users\\clare\\Downloads\\jdk-15_windows-x64_bin"/>\r\n    </vmType>\r\n</vmSettings>\r\n

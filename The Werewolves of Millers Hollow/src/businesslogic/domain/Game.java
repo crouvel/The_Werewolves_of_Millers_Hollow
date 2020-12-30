@@ -3,9 +3,81 @@ package businesslogic.domain;
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
-public class Game {
 
-	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,Phase currentPhase, boolean availableGame, String creatorUsername) {
+
+public class Game {
+	
+    
+	
+	
+	private boolean availableGame;
+
+	/**
+     * Default constructor
+     */
+  
+    
+
+	
+    /**
+     * 
+     * @return
+     */
+    public boolean isHasHunter() {
+		return hasHunter;
+	}
+
+    public Game() {
+    
+    	
+    }
+    
+    
+    public Game(int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
+    		boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
+			Phase currentPhase, boolean availableGame, String creator) {
+		super();
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+		this.setCreatorUsername(creatorUsername);
+	
+	}
+    
+    public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
+			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame) {
+		super();
+		this.game_id = game_id;
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+		
+	}
+    
+    
+    public Game(int numberOfWerewolves, int status) {
+    	
+    }
+	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
+			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame,
+			String creatorUsername) {
+		super();
 		this.game_id = game_id;
 		this.numberOfPlayers = numberOfPlayers;
 		this.status = status;
@@ -20,15 +92,7 @@ public class Game {
 		this.availableGame = availableGame;
 		this.setCreatorUsername(creatorUsername);
 	}
-    /**
-     * 
-     * @return
-     */
-    public boolean isHasHunter() {
-		return hasHunter;
-	}
-
-    /**
+	/**
      * 
      * @param hasHunter
      */
@@ -81,14 +145,14 @@ public class Game {
 	/**
 	 * @return the game_id
 	 */
-	public int getGame_id() {
-		return game_id;
+	public  int getGame_id() {
+		return this.game_id;
 	}
 
 	/**
 	 * @param game_id the game_id to set
 	 */
-	public void setGame_id(int game_id) {
+	public  void setGame_id(int game_id) {
 		this.game_id = game_id;
 	}
 
@@ -211,6 +275,7 @@ public class Game {
 	}
 
 
+
 	/**
      * 
      */
@@ -270,11 +335,6 @@ public class Game {
     /**
      * 
      */
-    private boolean availableGame;
-    
-    /**
-     * 
-     */
+   
     private String creatorUsername;
-    
 }
