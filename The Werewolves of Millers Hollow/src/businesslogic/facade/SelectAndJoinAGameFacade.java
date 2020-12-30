@@ -3,6 +3,9 @@
  */
 package businesslogic.facade;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.sql.SQLException;
 /**
@@ -14,7 +17,7 @@ import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.SelectAndJoinAGameDAO;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class SelectAndJoinAGameFacade {
 
@@ -39,6 +42,7 @@ public class SelectAndJoinAGameFacade {
     }
 
     /**
+     * 
      * @return
      */
     public ArrayList<Game> getGamesList() {
@@ -52,6 +56,7 @@ public class SelectAndJoinAGameFacade {
     }
     
     /**
+     * 
      * @param game_id 
      * @return
      * @throws IOException 

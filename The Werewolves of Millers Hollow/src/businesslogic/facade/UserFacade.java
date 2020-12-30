@@ -3,6 +3,9 @@
  */
 package businesslogic.facade;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.sql.Date;
 /**
@@ -19,7 +22,7 @@ import model.dao.mysql.UserDAO;
 
 
 /**
- * @author Tiffany Dumaire
+ * @author Tiffany Dumaire, Aaron Lazaroo
  */
 public class UserFacade {
 
@@ -40,6 +43,12 @@ public class UserFacade {
     	}
     }
 
+    /**
+     * Search and return the player corresponding to the user in parameter.
+     * @param user
+     * @return a player
+     * @throws SQLException
+     */
     public Player getPlayer(User user) throws SQLException {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
     	try {
@@ -50,6 +59,12 @@ public class UserFacade {
     	} 
     }
     
+    /**
+     * Search and return the administrator corresponding to the user in parameter.
+     * @param user
+     * @return an administrator.
+     * @throws SQLException
+     */
     public Administrator getAdmin(User user) throws SQLException {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
     	try {
@@ -171,8 +186,9 @@ public class UserFacade {
     }
 
     /**
+     * Search and return the player corresponding to the username in parameter.
      * @param username 
-     * @return
+     * @return a player
      */
     public Player searchPlayerStats(String username) {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
@@ -185,6 +201,7 @@ public class UserFacade {
     }
 
     /**
+     * Search and return the list of players corresponding to the research parameters.
      * @param username 
      * @param player 
      * @param win 
@@ -192,7 +209,7 @@ public class UserFacade {
      * @param maxPlayed 
      * @param maxWin 
      * @param maxLost 
-     * @return
+     * @return the list of player usernames for the current research parameters.
      */
     public ArrayList<String> getCorrespondingPlayers(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) throws SQLException {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
@@ -204,6 +221,13 @@ public class UserFacade {
     	} 
     }
     
+    /**
+     * 
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public Administrator getAdminByLogin(String username, String password) throws SQLException {
         AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
         try {

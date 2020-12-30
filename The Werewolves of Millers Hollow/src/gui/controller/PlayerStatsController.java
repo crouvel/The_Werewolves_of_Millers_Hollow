@@ -23,80 +23,80 @@ public class PlayerStatsController implements Initializable {
 	//Attributes
 	
 	/**
-	 * 
+	 * Attribute corresponding to the observed player stats.
 	 */
 	private static Player player;
 	
 	//FXML Attributes
 	
 	/**
-	 * 
+	 * Attribute corresponding to the number of played games of player.
 	 */
 	@FXML
 	private Text played;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the number of won games of player.
 	 */
 	@FXML
 	private Text won;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the number of lost games of player.
 	 */
 	@FXML
 	private Text lost;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the username of player.
 	 */
 	@FXML
 	private Text username;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the gender of player.
 	 */
 	@FXML
 	private ImageView photo;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the country of player.
 	 */
 	@FXML
 	private Text countryName;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the date of birth month of player.
 	 */
 	@FXML
 	private Text month;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the date of birth day of player.
 	 */
 	@FXML
 	private Text day;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the date of birth year of player.
 	 */
 	@FXML
 	private Text year;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the country flag of player.
 	 */
 	@FXML
 	private ImageView countryImage;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the comparison between player statistics and logged in player statistics.
 	 */
 	@FXML
 	private BarChart<String,Number> comparaison;
 	
 	/**
-	 * 
+	 * Allows the player to return on the research window to search another player statistics.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -107,7 +107,7 @@ public class PlayerStatsController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to return to the menu.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -175,6 +175,7 @@ public class PlayerStatsController implements Initializable {
 	}
 
 	/**
+	 * 
 	 * @return the player
 	 */
 	public static Player getPlayer() throws IOException {

@@ -3,6 +3,9 @@
  */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 /**
  * Imported classes and libraries.
@@ -22,7 +25,7 @@ import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
- * @author Tiffany Dumaire
+ * @author Tiffany Dumaire, Aaron Lazaroo
  */
 public class UserDAOMySQL extends UserDAO{
 

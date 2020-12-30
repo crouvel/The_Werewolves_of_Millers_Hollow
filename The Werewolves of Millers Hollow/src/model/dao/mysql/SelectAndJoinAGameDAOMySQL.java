@@ -3,6 +3,9 @@
  */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +23,7 @@ import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
 
@@ -31,8 +34,9 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
 
     @Override
     public Game getGameById(int game_id) throws SQLException {
-    	String sqlRequest="SELECT * FROM Game WHERE gameId=game_id";
+    	String sqlRequest="SELECT * FROM Game WHERE gameId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setInt(1, game_id);
     	ResultSet resultSet = request.executeQuery();
     	if(resultSet.first()) {
     		return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getBoolean("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getBoolean("hasWitch"),resultSet.getBoolean("hasLittleGirl"),resultSet.getBoolean("hasCupid"),resultSet.getBoolean("hasHunter"),resultSet.getBoolean("hasFortuneTeller"),resultSet.getBoolean("finish"),Phase.get(resultSet.getString("currentPhase")),resultSet.getBoolean("availableGame"),resultSet.getString("creatorUsername"));
@@ -65,7 +69,17 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     	request.setString(6,"");
     	request.setBoolean(7, false);
     	request.executeUpdate();
-    	return false;
+    	return existsPlayerInGame(game_id,PlayerMenuController.getCurrentPlayer().getUsername());
+    }
+    
+    @Override
+    public boolean existsPlayerInGame(int gameid, String username) throws SQLException {
+    	String sqlRequest="SELECT * FROM PlayerInGame WHERE gameId=? AND username=?";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1, gameid);
+    	request.setString(2, username);
+    	ResultSet resultSet = request.executeQuery();
+    	return resultSet.first();	
     }
 
 }
