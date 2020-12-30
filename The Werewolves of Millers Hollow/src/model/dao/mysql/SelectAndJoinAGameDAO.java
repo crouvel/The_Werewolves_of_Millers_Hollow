@@ -23,9 +23,9 @@ public abstract class SelectAndJoinAGameDAO {
 
 
     /**
-     * 
+     * Search and return the game corresponding to the game_id parameter.
      * @param game_id 
-     * @return
+     * @return the game corresponding to the game_id parameter.
      * @throws SQLException 
      */
     public abstract Game getGameById(int game_id) throws SQLException;
@@ -38,7 +38,7 @@ public abstract class SelectAndJoinAGameDAO {
     public abstract ArrayList<Game> getAvailableGameList() throws SQLException;
 
     /**
-     * 
+     * Allows the player to join an available game corresponding to the game_id parameter.
      * @param game_id 
      * @return true if the player joins the game successfully, else false.
      * @throws SQLException 
@@ -47,10 +47,10 @@ public abstract class SelectAndJoinAGameDAO {
     public abstract boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException, IOException;
 
     /**
-     * 
+     * Search if the game corresponding to gameid and creator=username exists.
      * @param gameid
      * @param username
-     * @return
+     * @return true if the game exists, else false.
      * @throws SQLException
      */
 	public abstract boolean existsPlayerInGame(int gameid, String username) throws SQLException;

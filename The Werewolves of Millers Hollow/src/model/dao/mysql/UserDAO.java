@@ -13,7 +13,7 @@ import businesslogic.domain.Administrator;
 import businesslogic.domain.Player;
 
 /**
- * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo
  */
 public abstract class UserDAO {
 
@@ -23,42 +23,42 @@ public abstract class UserDAO {
     public UserDAO() {}
 
     /**
-     * 
+     * Search and return the user corresponding to the userId in parameter.
      * @param userId 
-     * @return
+     * @return a user
      * @throws SQLException 
      */
     public abstract User getUserById(int userId) throws SQLException;
 
     /**
-     * 
+     * Search and return the user corresponding to the email in parameter.
      * @param email 
-     * @return
+     * @return a user
      * @throws SQLException 
      */
     public abstract User getUserByEmail(String email) throws SQLException;
 
     /**
-     * 
+     * Search and return the user corresponding to the login information in parameter.
      * @param email 
      * @param password 
-     * @return
+     * @return a user
      * @throws SQLException 
      */
     public abstract User getUserByLogin(String email, String password) throws SQLException;
 
     /**
-     * 
+     * Search and return the user corresponding to the email in parameter exists.
      * @param email 
-     * @return
+     * @return true if the user exists, else false.
      * @throws SQLException 
      */
     public abstract boolean existsByEmail(String email) throws SQLException;
 
     /**
-     * 
+     * Search and return the username in parameter exists.
      * @param username 
-     * @return
+     * @return true if the player username exists, else false
      * @throws SQLException 
      */
     public abstract boolean existsUsername(String username) throws SQLException;
@@ -130,7 +130,7 @@ public abstract class UserDAO {
     public abstract boolean addAnAdministrator(String email, String password) throws SQLException;
 
     /**
-     * 
+     * Search and return the list of players corresponding to the research parameters.
      * @param username 
      * @param played 
      * @param win 
@@ -138,29 +138,29 @@ public abstract class UserDAO {
      * @param maxPlayed 
      * @param maxWin 
      * @param maxLost 
-     * @return
+     * @return the list of player usernames
      * @throws SQLException 
      */
     public abstract ArrayList<String> getCorrespondingPlayer(String username, int played, int win, int lost, boolean maxPlayed, boolean maxWin, boolean maxLost) throws SQLException;
     
     /**
-     * 
+     * Search and return the player corresponding to the user in parameter.
      * @param user
-     * @return
+     * @return a player
      * @throws SQLException 
      */
 	public abstract Player getPlayer(User user) throws SQLException;
 
 	/**
-	 * 
+	 * Search and return the administrator corresponding to the user in parameter.
 	 * @param user
-	 * @return
+	 * @return an administrator
 	 * @throws SQLException
 	 */
 	public abstract Administrator getAdmin(User user) throws SQLException;
 	
 	/**
-	 * 
+	 * Search and return the player corresponding to the username in parameter.
 	 * @param username
 	 * @return
 	 * @throws SQLException
@@ -168,25 +168,26 @@ public abstract class UserDAO {
 	public abstract Player getPlayerByUsername(String username) throws SQLException;
 
 	/**
-	 * 
+	 * Search and return the user exists.
 	 * @param user
-	 * @return
+	 * @return true if exists, else false.
 	 * @throws SQLException
 	 */
 	public abstract boolean exist(User user) throws SQLException;
 
 	/**
-	 * 
+	 * Search and return the userId of a player corresponding to the username in parameter.
 	 * @param username
-	 * @return
+	 * @return a userId
 	 * @throws SQLException
 	 */
 	public abstract int getUserIdByUsername(String username) throws SQLException ;
 	
 	/**
+	 * Search and return the administrator corresponding to the login information in parameter.
      * @param email 
      * @param password 
-     * @return
+     * @return an administrator
      * @throws SQLException 
      */
 	public abstract Administrator getAdminByLogin(String email,String password) throws SQLException;

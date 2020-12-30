@@ -25,7 +25,7 @@ import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
- * @author Tiffany Dumaire
+ * @author Tiffany Dumaire, Aaron Lazaroo
  */
 public class UserDAOMySQL extends UserDAO{
 
