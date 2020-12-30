@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="businesslogic.systemelement.Player"/>
     <fullyQualifiedTypeName name="javafx.scene.text.TextFlow"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -18,6 +19,8 @@
     <fullyQualifiedTypeName name="javafx.animation.KeyFrame"/>
     <fullyQualifiedTypeName name="javafx.animation.Animation"/>
     <fullyQualifiedTypeName name="gui.controller.AdministratorMenuController"/>
+=======
+>>>>>>> werewolves
     <fullyQualifiedTypeName name="businesslogic.domain.User"/>
     <fullyQualifiedTypeName name="javafx.fxml.LoadException"/>
     <fullyQualifiedTypeName name="model.dao.mysql.FriendManagementDAO"/>
@@ -38,7 +41,6 @@
     <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
@@ -49,6 +51,7 @@
     <fullyQualifiedTypeName name="model.dao.mysql.UserDAOMySQL"/>
     <fullyQualifiedTypeName name="java.awt.Image"/>
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="businesslogic.facade.GameManagementFacade"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Phase"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
@@ -59,4 +62,29 @@
     <fullyQualifiedTypeName name="gui.controller.GameManagementController"/>
     <fullyQualifiedTypeName name="businesslogic.facade.FriendManagementFacade"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
+=======
+    <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
+    <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.SelectAndJoinAGameFacade"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.SelectAndJoinAGameDAO"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Phase"/>
+    <fullyQualifiedTypeName name="gui.controller.PlayerMenuController"/>
+    <fullyQualifiedTypeName name="gui.controller.GameManagementController"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.RadioButton"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ChoiceBox"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
+    <fullyQualifiedTypeName name="util.HashPassword"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="util.InfoBox"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.GameManagementFacade"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
+>>>>>>> werewolves
 </qualifiedTypeNameHistroy>
