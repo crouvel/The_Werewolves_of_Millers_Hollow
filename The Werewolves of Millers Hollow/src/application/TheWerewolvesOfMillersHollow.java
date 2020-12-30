@@ -11,7 +11,6 @@ import java.net.URL;
 
 import businesslogic.domain.Game;
 import businesslogic.domain.Player;
-import businesslogic.domain.Game;
 import businesslogic.domain.User;
 import gui.controller.GameManagementController;
 import gui.controller.LoginController;
@@ -123,6 +122,24 @@ public class TheWerewolvesOfMillersHollow extends Application {
         Scene scene = new Scene(root);
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
+    
+    /**
+     * 
+     * @param game
+     * @param resource
+     * @throws IOException
+     */
+    public static void goToGameManagement(Game game, URL resource) throws IOException {
+        try {
+            GameManagementController.setCurrentGame(game);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        TheWerewolvesOfMillersHollow.stage.setScene(scene);
+    }
 	
 	/**
 	 * 
@@ -141,21 +158,6 @@ public class TheWerewolvesOfMillersHollow extends Application {
         Scene scene = new Scene(root);
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
-	
-	 public static void goToGameManagement(Game game, URL resource) throws IOException {
-	        try {
-	            GameManagementController.setCurrentGame(game);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        FXMLLoader loader = new FXMLLoader(resource);
-	        Parent root = loader.load();
-	        Scene scene = new Scene(root);
-	        TheWerewolvesOfMillersHollow.stage.setScene(scene);
-	    }
-
-	
-
 	
 	/**
 	 * 
