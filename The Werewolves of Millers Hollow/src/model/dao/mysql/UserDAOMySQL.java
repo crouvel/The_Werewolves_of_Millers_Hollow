@@ -227,22 +227,6 @@ public class UserDAOMySQL extends UserDAO{
 	}
 	
 	@Override
-	public Administrator getAdminByLogin(String email,String password) throws SQLException {
-		String sqlRequest="SELECT * FROM User WHERE email=? AND password=?";
-		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
-    	request.setString(1, email);
-    	request.setString(2, password);
-    	ResultSet resultSet = request.executeQuery();
-    	boolean exist = resultSet.first();
-    	if(exist){
-    		return new Administrator(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
-    	}
-    	else{
-    		return null;
-    	}
-	}
-	
-	@Override
 	public ArrayList<String> getCorrespondingPlayer(String username, int played, int won, int lost, boolean maxPlayed, boolean maxWon, boolean maxLost) throws SQLException {
 		ArrayList<String> players = new ArrayList<String>();
 		PreparedStatement request;
