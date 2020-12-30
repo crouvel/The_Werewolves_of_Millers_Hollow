@@ -36,7 +36,7 @@ public class GameManagementFacade {
      * @param status 
      * @return
      */
-    public boolean createGame(int nbplayers, int status, String creator) {
+    public boolean createGame(int nbplayers, boolean status, String creator) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
@@ -118,7 +118,7 @@ public class GameManagementFacade {
      * @param hasHunter 
      * @return
      */
-    public boolean modifyRole(int game_id, int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) {
+    public boolean modifyRole(int game_id, int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	

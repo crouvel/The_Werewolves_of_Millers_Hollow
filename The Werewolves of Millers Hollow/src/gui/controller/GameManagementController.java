@@ -25,6 +25,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import model.dao.mysql.GameManagementDAOMySQL;
@@ -131,10 +132,10 @@ public class GameManagementController implements Initializable {
 	@FXML
 	void generateGameId(ActionEvent event) throws IOException{ 
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
-		int status = 1;
+		boolean status = true;
 
 		if(statusGroup.getSelectedToggle()== privateGame) {
-			status = 0;
+			status = false;
 		}
 		boolean isDone = gameManagementFacade.createGame((int)numberOfPlayers.getValue(), status, PlayerMenuController.getCurrentPlayer().getUsername());
 		if(isDone) {		
@@ -162,13 +163,31 @@ public class GameManagementController implements Initializable {
 		if(game == null ) {
 			infoBox("Please generate a game, then modify its roles, and then start it.","Missing game","Bad Manipulation");
 		}else {
-			boolean isDone = gameManagementFacade.modifyRole(GameManagementController.getCurrentGame().getGame_id(),(int)numberOfWerewolves.getValue(),(int)hasWitch.getValue(),(int)hasFortuneTeller.getValue(),(int)hasLittleGirl.getValue(),(int)hasCupid.getValue(),(int)hasHunter.getValue());
+			
+			
+			
+			int nbh = (int)hasWitch.getValue();
+			int ft = (int)hasFortuneTeller.getValue();
+			int lg = (int)hasLittleGirl.getValue();
+			int hc = (int)hasCupid.getValue();
+			int hunter = (int)hasHunter.getValue();
+			
+			boolean isDone = gameManagementFacade.modifyRole(GameManagementController.getCurrentGame().getGame_id(),
+					(int)numberOfWerewolves.getValue(),getBoolean(nbh),getBoolean(ft), getBoolean(lg),getBoolean(hc),getBoolean(hunter));
 			if(isDone) {		
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
 			}else {
 				infoBox("Please retry to start the game later.","Incorrect information.", "Connection problem");
 			}
 		}
+	}
+	
+	boolean getBoolean(int nb) {
+		if(nb == 0) {
+			return false;
+		}if (nb == 1 ) {
+			return true;
+		} return true;
 	}
 
 	/**
@@ -402,6 +421,20 @@ public class GameManagementController implements Initializable {
 
 	public static void setInvitedFriends(ListView<String> invited){
 		GameManagementController.invitedFriends = invited;
+	}
+
+	/**
+	 * @return the currentPlayerInGame
+	 */
+	public static PlayerInGame getCurrentPlayerInGame() {
+		return currentPlayerInGame;
+	}
+
+	/**
+	 * @param currentPlayerInGame the currentPlayerInGame to set
+	 */
+	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
+		GameManagementController.currentPlayerInGame = currentPlayerInGame;
 	}
 
 

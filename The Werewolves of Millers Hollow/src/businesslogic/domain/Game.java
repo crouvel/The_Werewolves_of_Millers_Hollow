@@ -10,7 +10,7 @@ public class Game {
     
 	
 	
-	private int availableGame;
+	private boolean availableGame;
 
 	/**
      * Default constructor
@@ -18,7 +18,66 @@ public class Game {
   
     
 
-	public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch, int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,Phase currentPhase, int availableGame, String creatorUsername) {
+	
+    /**
+     * 
+     * @return
+     */
+    public boolean isHasHunter() {
+		return hasHunter;
+	}
+
+    public Game() {
+    
+    	
+    }
+    
+    
+    public Game(int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
+    		boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
+			Phase currentPhase, boolean availableGame, String creator) {
+		super();
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+		this.setCreatorUsername(creatorUsername);
+	
+	}
+    
+    public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
+			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame) {
+		super();
+		this.game_id = game_id;
+		this.numberOfPlayers = numberOfPlayers;
+		this.status = status;
+		this.numberOfWerewolves = numberOfWerewolves;
+		this.hasWitch = hasWitch;
+		this.hasLittleGirl = hasLittleGirl;
+		this.hasCupid = hasCupid;
+		this.hasHunter = hasHunter;
+		this.hasFortuneTeller = hasFortuneTeller;
+		this.finish = finish;
+		this.currentPhase = currentPhase;
+		this.availableGame = availableGame;
+		
+	}
+    
+    
+    public Game(int numberOfWerewolves, int status) {
+    	
+    }
+	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
+			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame,
+			String creatorUsername) {
+		super();
 		this.game_id = game_id;
 		this.numberOfPlayers = numberOfPlayers;
 		this.status = status;
@@ -33,93 +92,39 @@ public class Game {
 		this.availableGame = availableGame;
 		this.setCreatorUsername(creatorUsername);
 	}
-    /**
-     * 
-     * @return
-     */
-    public int isHasHunter() {
-		return hasHunter;
-	}
-
-    public Game() {
-    
-    	
-    }
-    
-    
-    public Game(int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
-    		int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,
-			Phase currentPhase, int availableGame) {
-		super();
-		this.numberOfPlayers = numberOfPlayers;
-		this.status = status;
-		this.numberOfWerewolves = numberOfWerewolves;
-		this.hasWitch = hasWitch;
-		this.hasLittleGirl = hasLittleGirl;
-		this.hasCupid = hasCupid;
-		this.hasHunter = hasHunter;
-		this.hasFortuneTeller = hasFortuneTeller;
-		this.finish = finish;
-		this.currentPhase = currentPhase;
-		this.availableGame = availableGame;
-	
-	}
-    
-    public Game(int game_id, int numberOfPlayers, int status, int numberOfWerewolves, int hasWitch,
-    		int hasLittleGirl, int hasCupid, int hasHunter, int hasFortuneTeller, int finish,
-			Phase currentPhase, int availableGame) {
-		super();
-		this.game_id = game_id;
-		this.numberOfPlayers = numberOfPlayers;
-		this.status = status;
-		this.numberOfWerewolves = numberOfWerewolves;
-		this.hasWitch = hasWitch;
-		this.hasLittleGirl = hasLittleGirl;
-		this.hasCupid = hasCupid;
-		this.hasHunter = hasHunter;
-		this.hasFortuneTeller = hasFortuneTeller;
-		this.finish = finish;
-		this.currentPhase = currentPhase;
-		this.availableGame = availableGame;
-
-	}
-
-    public Game(int numberOfWerewolves, int status) {
-    	
-    }
 	/**
      * 
      * @param hasHunter
      */
-	public void setHasHunter(int hasHunter) {
+	public void setHasHunter(boolean hasHunter) {
 		this.hasHunter = hasHunter;
 	}
 
 	/**
 	 * @return the hasFortuneTeller
 	 */
-	public int isHasFortuneTeller() {
+	public boolean isHasFortuneTeller() {
 		return hasFortuneTeller;
 	}
 
 	/**
 	 * @param hasFortuneTeller the hasFortuneTeller to set
 	 */
-	public void setHasFortuneTeller(int hasFortuneTeller) {
+	public void setHasFortuneTeller(boolean hasFortuneTeller) {
 		this.hasFortuneTeller = hasFortuneTeller;
 	}
 
 	/**
 	 * @return the finish
 	 */
-	public int isFinish() {
+	public boolean isFinish() {
 		return finish;
 	}
 
 	/**
 	 * @param finish the finish to set
 	 */
-	public void setFinish(int finish) {
+	public void setFinish(boolean finish) {
 		this.finish = finish;
 	}
 
@@ -168,14 +173,14 @@ public class Game {
 	/**
 	 * @return the status
 	 */
-	public int isStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
@@ -196,56 +201,56 @@ public class Game {
 	/**
 	 * @return the hasWitch
 	 */
-	public int isHasWitch() {
+	public boolean isHasWitch() {
 		return hasWitch;
 	}
 
 	/**
 	 * @param hasWitch the hasWitch to set
 	 */
-	public void setHasWitch(int hasWitch) {
+	public void setHasWitch(boolean hasWitch) {
 		this.hasWitch = hasWitch;
 	}
 
 	/**
 	 * @return the hasLittleGirl
 	 */
-	public int isHasLittleGirl() {
+	public boolean isHasLittleGirl() {
 		return hasLittleGirl;
 	}
 
 	/**
 	 * @param hasLittleGirl the hasLittleGirl to set
 	 */
-	public void setHasLittleGirl(int hasLittleGirl) {
+	public void setHasLittleGirl(boolean hasLittleGirl) {
 		this.hasLittleGirl = hasLittleGirl;
 	}
 
 	/**
 	 * @return the hasCupid
 	 */
-	public int isHasCupid() {
+	public boolean isHasCupid() {
 		return hasCupid;
 	}
 
 	/**
 	 * @param hasCupid the hasCupid to set
 	 */
-	public void setHasCupid(int hasCupid) {
+	public void setHasCupid(boolean hasCupid) {
 		this.hasCupid = hasCupid;
 	}
 
 	/**
 	 * @return the availableGame
 	 */
-	public int isAvailableGame() {
+	public boolean isAvailableGame() {
 		return availableGame;
 	}
 
 	/**
 	 * @param availableGame the availableGame to set
 	 */
-	public void setAvailableGame(int availableGame) {
+	public void setAvailableGame(boolean availableGame) {
 		this.availableGame = availableGame;
 	}
 	
@@ -284,7 +289,7 @@ public class Game {
     /**
      * 
      */
-    private int status;
+    private boolean status;
 
     /**
      * 
@@ -294,32 +299,32 @@ public class Game {
     /**
      * 
      */
-    private int hasWitch;
+    private boolean hasWitch;
 
     /**
      * 
      */
-    private int hasLittleGirl;
+    private boolean hasLittleGirl;
 
     /**
      * 
      */
-    private int hasCupid;
+    private boolean hasCupid;
 
     /**
      * 
      */
-    private int hasHunter;
+    private boolean hasHunter;
 
     /**
      * 
      */
-    private int hasFortuneTeller;
+    private boolean hasFortuneTeller;
 
     /**
      * 
      */
-    private int finish;
+    private boolean finish;
 
 
     /**

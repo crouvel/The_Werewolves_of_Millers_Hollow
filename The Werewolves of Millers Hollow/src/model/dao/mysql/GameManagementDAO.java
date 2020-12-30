@@ -29,7 +29,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean createGame(int nbplayers, int status, String creator) throws SQLException;
+    public abstract boolean createGame(int nbplayers, boolean status, String creator) throws SQLException;
 
     /**
      * 
@@ -50,7 +50,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean modifyRole(int game_id, int numberOfWerewolves, int hasWitch, int hasFortuneTeller, int hasLittleGirl, int hasCupid, int hasHunter) throws SQLException;
+    public abstract boolean modifyRole(int game_id, int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
 
     /**
      * 
