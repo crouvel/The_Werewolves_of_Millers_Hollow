@@ -1,5 +1,11 @@
+/**
+ * package gui.controller
+ */
 package gui.controller;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,85 +24,101 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+/**
+ * 
+ * @author Tiffany Dumaire
+ *
+ */
 public class PlayerStatsController implements Initializable {
 
 	//Attributes
 	
 	/**
-	 * 
+	 * Attribute corresponding to the observed player statistics.
 	 */
 	private static Player player;
 	
 	//FXML Attributes
 	
 	/**
-	 * 
+	 * Attribute corresponding to the number of played games of player.
 	 */
 	@FXML
 	private Text played;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the number of won games of player.
 	 */
 	@FXML
 	private Text won;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the number of lost games of player.
 	 */
 	@FXML
 	private Text lost;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the player username.
 	 */
 	@FXML
 	private Text username;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the gender of player.
 	 */
 	@FXML
 	private ImageView photo;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the country of player.
 	 */
 	@FXML
 	private Text countryName;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the date of birth month of player.
 	 */
 	@FXML
 	private Text month;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the date of birth day of player.
 	 */
 	@FXML
 	private Text day;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the date of birth year of player.
 	 */
 	@FXML
 	private Text year;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the country flag of player.
 	 */
 	@FXML
 	private ImageView countryImage;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the comparison between player statistics and logged in player statistics.
 	 */
 	@FXML
 	private BarChart<String,Number> comparaison;
 	
 	/**
-	 * 
+	 * Attribute corresponding to the xAxis of the comparison BarChart.
+	 */
+	@FXML
+	private CategoryAxis xAxis;
+	/**
+	 * Attribute corresponding to the yAxis of the comparison BarChart.
+	 */
+	@FXML
+	private NumberAxis yAxis;
+	
+	/**
+	 * Allows the player to return on the research window to search another player statistics.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -107,7 +129,7 @@ public class PlayerStatsController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to return to the menu.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -121,8 +143,8 @@ public class PlayerStatsController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		//Comparaison Stats Graph
 		try {
+			//profile information
 			username.setText(PlayerStatsController.getPlayer().getUsername());
 			played.setText(PlayerStatsController.getPlayer().getPlayedGames()+"");
 			won.setText(PlayerStatsController.getPlayer().getWonGames()+"");
@@ -147,33 +169,31 @@ public class PlayerStatsController implements Initializable {
 				countryName.setText("Home");
 				countryImage.setImage(new Image("@../../image/country/Home.png"));
 			}
-			//Axis initialization
-			CategoryAxis xAxis = new CategoryAxis();
-			NumberAxis yAxis = new NumberAxis();
-			//creation of graph
-			comparaison = new BarChart<String,Number>(xAxis,yAxis);
+			//Comparison Statistics Graph
+			//series creation
 			XYChart.Series<String,Number> series = new XYChart.Series<String, Number>();
 			series.setName(PlayerMenuController.getCurrentPlayer().getUsername());
 			XYChart.Series<String,Number> series2 = new XYChart.Series<String, Number>();
 			series2.setName(PlayerStatsController.getPlayer().getUsername());
-			//series
+			//series : current player statistics.
 			series.getData().addAll(
 					new XYChart.Data<String,Number>("Played",PlayerMenuController.getCurrentPlayer().getPlayedGames()),
 					new XYChart.Data<String,Number>("Won",PlayerMenuController.getCurrentPlayer().getWonGames()),
 					new XYChart.Data<String,Number>("Lost",PlayerMenuController.getCurrentPlayer().getLostGames()));
-			
+			//series2 : observed player statistics.
 			series2.getData().addAll(
 					new XYChart.Data<String,Number>("Played",PlayerStatsController.getPlayer().getPlayedGames()),
 					new XYChart.Data<String,Number>("Won",PlayerStatsController.getPlayer().getWonGames()),
 					new XYChart.Data<String,Number>("Lost",PlayerStatsController.getPlayer().getLostGames()));
-			comparaison.getData().addAll(series,series2);
-			
+			//initialization of BarChart
+			comparaison.getData().addAll(series,series2);		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
+	 * 
 	 * @return the player
 	 */
 	public static Player getPlayer() throws IOException {

@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javafx.animation.Timeline"/>
-    <fullyQualifiedTypeName name="javafx.animation.KeyValue"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
-    <fullyQualifiedTypeName name="javafx.util.Duration"/>
-    <fullyQualifiedTypeName name="javafx.animation.KeyFrame"/>
-    <fullyQualifiedTypeName name="javafx.animation.Animation"/>
-    <fullyQualifiedTypeName name="gui.controller.AdministratorMenuController"/>
     <fullyQualifiedTypeName name="businesslogic.domain.User"/>
-    <fullyQualifiedTypeName name="gui.controller.PlayerMenuController"/>
     <fullyQualifiedTypeName name="javafx.fxml.LoadException"/>
     <fullyQualifiedTypeName name="model.dao.mysql.FriendManagementDAO"/>
     <fullyQualifiedTypeName name="businesslogic.facade.FriendManagementFacade"/>
@@ -26,14 +18,9 @@
     <fullyQualifiedTypeName name="businesslogic.facade.BlockAPlayerFacade"/>
     <fullyQualifiedTypeName name="model.dao.mysql.UserDAO"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
-    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
-    <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
     <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -52,12 +39,25 @@
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Player"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="gui.controller.GameManagementController"/>
-    <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
     <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
     <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="businesslogic.facade.SelectAndJoinAGameFacade"/>
     <fullyQualifiedTypeName name="model.dao.mysql.SelectAndJoinAGameDAO"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Phase"/>
+    <fullyQualifiedTypeName name="gui.controller.PlayerMenuController"/>
+    <fullyQualifiedTypeName name="gui.controller.GameManagementController"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Game"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.RadioButton"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ChoiceBox"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.UserFacade"/>
+    <fullyQualifiedTypeName name="util.HashPassword"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="util.InfoBox"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.GameManagementFacade"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
 </qualifiedTypeNameHistroy>

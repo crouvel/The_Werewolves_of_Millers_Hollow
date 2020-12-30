@@ -167,14 +167,14 @@
             <Font name="Verdana" size="10.0" />
          </font>
       </Text>
-      <Pane layoutX="508.0" layoutY="260.0" prefHeight="176.0" prefWidth="284.0" style="-fx-background-color: rgb(255,255,255,0.6);">
+      <Pane layoutX="472.0" layoutY="260.0" prefHeight="245.0" prefWidth="350.0" style="-fx-background-color: rgb(255,255,255,0.6);">
          <children>
-            <BarChart fx:id="comparaison" prefHeight="176.0" prefWidth="284.0">
+            <BarChart fx:id="comparaison" alternativeColumnFillVisible="true" prefHeight="245.0" prefWidth="350.0" title="Comparison of statistics">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis label="Statistics of games" prefHeight="37.0" prefWidth="264.0" side="BOTTOM" fx:id="xAxis" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="yAxis" label="Number of games" side="LEFT" />
               </yAxis>
             </BarChart>
          </children>

@@ -3,6 +3,9 @@
  */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 /**
  * Imported classes and libraries.
@@ -22,7 +25,7 @@ import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
- * @author Tiffany Dumaire
+ * @author Tiffany Dumaire, Aaron Lazaroo
  */
 public class UserDAOMySQL extends UserDAO{
 
@@ -204,7 +207,7 @@ public class UserDAOMySQL extends UserDAO{
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
-    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("status"));
+    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("playedGames"),resultSet.getInt("wonGames"),resultSet.getInt("lostGames"),resultSet.getInt("status"));
     	}
     	else{
     		return null;
@@ -356,7 +359,7 @@ public class UserDAOMySQL extends UserDAO{
 			e.getStackTrace();
 			return false;
 		}
-	}
+  }
 
 
 	@Override
@@ -387,5 +390,4 @@ public class UserDAOMySQL extends UserDAO{
             return null;
         }
     }
-
 }

@@ -160,12 +160,20 @@ public class FriendManagementController implements Initializable {
 			if(friendsList.getItems().contains(newFriend)) {
 				InfoBox.infoBoxW("This player is already in your friend list.","Incorrect username", "Incorrect information");
 			}else {
-				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-				boolean isDone=friendManagementFacade.sendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),newFriend);
-				if (isDone) {
-					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+				if(receive.getItems().contains(newFriend)) {
+					InfoBox.infoBoxI("You've already receive a request from this player.", "Accept the receive request", "Request already in the database");
 				}else {
-					InfoBox.infoBoxW("Please write a correct username or retry later.","Incorrect username", "Incorrect information");
+					if(sent.getItems().contains(newFriend)) {
+						InfoBox.infoBoxI("You've already sent a request to this player.", "Sent request already exists", "Request already in the database");
+					}else {
+						FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+						boolean isDone=friendManagementFacade.sendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),newFriend);
+						if (isDone) {
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+						}else {
+							InfoBox.infoBoxW("Please write a correct username or retry later.","Incorrect username", "Incorrect information");
+						}
+					}
 				}
 			}
 		}

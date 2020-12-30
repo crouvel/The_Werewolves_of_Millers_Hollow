@@ -124,10 +124,12 @@ public class ReportController implements Initializable {
 		if(currentReport instanceof BugReport) {
 			titleIdTypeReport.setText(((BugReport) currentReport).getSubject() +"\n Bug Report");
 			Text description = new Text();
-			description.setText(currentReport.getDescription());
+			description.setText(currentReport.getDescription()+"\n");
 			description.setFont(new Font("Arial", 20));
 			String url = ((BugReport) currentReport).getAttachment();
 			ImageView img = new ImageView(url);	
+			img.setPreserveRatio(true);
+			img.setFitWidth(535);
 			reportSpecifications.getChildren().add(description);
 			reportSpecifications.getChildren().add(img);
 			blockButton.setDisable(true);
