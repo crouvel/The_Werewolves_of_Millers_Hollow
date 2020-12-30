@@ -12,10 +12,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
-import businesslogic.domain.Game;
-import businesslogic.domain.Phase;
 import businesslogic.domain.Player;
-import businesslogic.facade.GameManagementFacade;
 import businesslogic.facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
