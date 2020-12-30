@@ -11,10 +11,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
+import businesslogic.facade.ReportABugFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import util.InfoBox;
 import javafx.scene.control.TextArea;
 
 /**
@@ -49,7 +51,41 @@ public class ReportABugController  implements Initializable{
 	 */
 	@FXML
 	void sendBugReport(ActionEvent event) throws IOException {
-		
+		String sub = subject.getText();
+		String image = imageLink.getText();
+		String desc = description.getText();
+
+		if(sub.isBlank()) {
+			InfoBox.infoBoxW("Please enter a subject","Missing Subject","Missing Information");
+		}else {
+			if(desc.isBlank()) {
+				InfoBox.infoBoxW("Please enter a description","Missing Description","Missing Information");
+			}else {
+				if(!sub.matches("([a-z]|[A-Z]|[0-9])*")){
+					InfoBox.infoBoxW("Please enter a valid subject","Invalid Subject","Invalid Syntax");
+				}else {
+					if(!image.isBlank()) {
+						if(!image.matches("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")) {
+							InfoBox.infoBoxW("Please enter a valid url","Invalid attachment link","Invalid URL");
+						}else {
+							if(image.contains(">") || image.contains("<")) {
+								InfoBox.infoBoxW("Invalid character detected","Invalid character","Invalid URL");
+							}else {
+								ReportABugFacade rbf = new ReportABugFacade();
+								boolean isDone = rbf.createBugReport(sub, desc, image);
+								if(isDone) {
+									InfoBox.infoBoxI("Bug report sent", "Report sent", "Report sent");
+									TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+								}else {
+									InfoBox.infoBoxW("Problem sending bug report","Connection problem.", "Connection problem");
+									TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportABugView.fxml"));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	/**
@@ -59,7 +95,7 @@ public class ReportABugController  implements Initializable{
 	 */
 	@FXML
 	void cancelAction(ActionEvent event) throws IOException {
-		
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportABugView.fxml"));
 	}
 	
 	/**
