@@ -301,7 +301,7 @@ public class GameManagementController implements Initializable {
 		if(GameManagementController.getCurrentGame() != null) {
 
 			GameManagementFacade gameManagementFacade = new GameManagementFacade();
-			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id(), PlayerMenuController.getCurrentPlayer().getUsername());
+			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
 			if(isDone) {		
 				GameManagementController.setInvitedFriends(null);
 				GameManagementController.setCurrentGame(null);

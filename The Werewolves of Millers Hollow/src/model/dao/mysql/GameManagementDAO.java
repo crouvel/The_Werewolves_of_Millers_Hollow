@@ -85,7 +85,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean deleteGame(int game_id, String username) throws SQLException;
+    public abstract boolean deleteGame(int game_id) throws SQLException;
 
     public abstract Game getGameByCreator( String creator) throws SQLException;
     

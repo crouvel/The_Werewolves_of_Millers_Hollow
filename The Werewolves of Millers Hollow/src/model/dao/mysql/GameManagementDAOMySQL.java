@@ -37,7 +37,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      */
 	public boolean createGame(int nbplayers, boolean status, String creator) throws SQLException{
 		
-		new Game(nbplayers, status, 1, false, false ,false,false,false,false, Phase.NIGHT, false, creator);
+		new Game(nbplayers, status, 1, false, false ,false,false,false,false, Phase.SET_UP, true, creator);
 		String sqlRequest = "INSERT INTO Game(numberOfPlayers, status, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter, finish, currentPhase, availableGame, creatorUsername) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
@@ -50,8 +50,8 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setBoolean(7, false);
 		request.setBoolean(8, false);
 		request.setBoolean(9, false);
-		request.setString(10, Phase.NIGHT.name());
-		request.setBoolean(11, false);
+		request.setString(10, Phase.SET_UP.getName());
+		request.setBoolean(11, true);
 		request.setString(12, creator);
 		request.executeUpdate();
 		 return existsGame2(creator);  
@@ -201,11 +201,10 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
      * @param game_id 
      * @return
      */
-    public boolean deleteGame(int game_id, String username) throws SQLException{
-    	String sqlRequest="DELETE FROM Game WHERE gameId=? AND creatorUsername=?";
+    public boolean deleteGame(int game_id) throws SQLException{
+    	String sqlRequest="DELETE FROM Game WHERE gameId=?";
 		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
-    	request.setString(2, username);
         request.executeUpdate();
         return !existsGame(game_id);
     	

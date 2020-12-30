@@ -51,11 +51,11 @@ public class GameManagementFacade {
      * @param game_id 
      * @return
      */
-    public boolean deleteGame(int game_id, String username) {
+    public boolean deleteGame(int game_id) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
     	try {
     		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
-    		return gameManagementDAO.deleteGame(game_id, username);
+    		return gameManagementDAO.deleteGame(game_id);
     	}catch(SQLException e) {
     		e.getStackTrace();
     		return false;
