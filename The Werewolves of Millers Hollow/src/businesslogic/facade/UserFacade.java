@@ -205,7 +205,6 @@ public class UserFacade {
     }
     
     public Administrator getAdminByLogin(String username, String password) throws SQLException {
-
         AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
         try {
             UserDAO userDAO  = factoryTest.createUserDAO();

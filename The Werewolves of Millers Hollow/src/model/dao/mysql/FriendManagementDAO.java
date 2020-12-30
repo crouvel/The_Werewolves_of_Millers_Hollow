@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public abstract class FriendManagementDAO {
 

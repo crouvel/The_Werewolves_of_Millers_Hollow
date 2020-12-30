@@ -1,23 +1,29 @@
+/**
+ * package model.dao.mysql
+ */
 package model.dao.mysql;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Game;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public abstract class SelectAndJoinAGameDAO {
 
     /**
      * Default constructor
      */
-    public SelectAndJoinAGameDAO() {
-    }
+    public SelectAndJoinAGameDAO() {}
 
 
     /**
+     * 
      * @param game_id 
      * @return
      * @throws SQLException 
@@ -25,14 +31,16 @@ public abstract class SelectAndJoinAGameDAO {
     public abstract Game getGameById(int game_id) throws SQLException;
 
     /**
-     * @return
+     * Search and returns the list of available and public games.
+     * @return the list of available and public games.
      * @throws SQLException 
      */
     public abstract ArrayList<Game> getAvailableGameList() throws SQLException;
 
     /**
+     * 
      * @param game_id 
-     * @return
+     * @return true if the player joins the game successfully, else false.
      * @throws SQLException 
      * @throws IOException 
      */

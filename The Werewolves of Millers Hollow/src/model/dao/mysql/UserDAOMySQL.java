@@ -204,7 +204,7 @@ public class UserDAOMySQL extends UserDAO{
     	ResultSet resultSet = request.executeQuery();
     	boolean exist = resultSet.first();
     	if(exist){
-    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("status"));
+    		return new Player(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin(),resultSet.getString("username"),resultSet.getDate("dateOfBirth"),Gender.get(resultSet.getString("gender")),resultSet.getString("country"),resultSet.getInt("playedGames"),resultSet.getInt("wonGames"),resultSet.getInt("lostGames"),resultSet.getInt("status"));
     	}
     	else{
     		return null;
@@ -220,6 +220,22 @@ public class UserDAOMySQL extends UserDAO{
     	boolean exist = resultSet.first();
     	if(exist){
     		return new Administrator(resultSet.getInt("userId"),user.getEmail(),user.getPassword(),user.isAdmin());
+    	}
+    	else{
+    		return null;
+    	}
+	}
+	
+	@Override
+	public Administrator getAdminByLogin(String email,String password) throws SQLException {
+		String sqlRequest="SELECT * FROM User WHERE email=? AND password=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setString(1, email);
+    	request.setString(2, password);
+    	ResultSet resultSet = request.executeQuery();
+    	boolean exist = resultSet.first();
+    	if(exist){
+    		return new Administrator(resultSet.getInt("userId"),resultSet.getString("email"),resultSet.getString("password"),resultSet.getInt("isAdmin"));
     	}
     	else{
     		return null;
@@ -356,7 +372,7 @@ public class UserDAOMySQL extends UserDAO{
 			e.getStackTrace();
 			return false;
 		}
-	}
+  }
 
 
 	@Override
@@ -387,5 +403,4 @@ public class UserDAOMySQL extends UserDAO{
             return null;
         }
     }
-
 }

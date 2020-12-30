@@ -51,31 +51,22 @@ public class RegistrationController implements Initializable {
 	 */
 	@FXML
 	private DatePicker dateOfBirthField;
-
-	/**
-	 * 
-	 */
+	
 	@FXML
 	private ChoiceBox<String> countryChoice;
 	
-	/**
-	 * 
-	 */
+	private ToggleGroup gender;
+	
 	@FXML
 	private RadioButton choiceMale;
 	
-	/**
-	 * 
-	 */
 	@FXML
 	private RadioButton choiceFemale;
-	
-	private ToggleGroup gender;
-
+  
 	/**
 	 * 
 	 * @param event
-	 * @throws IOException
+	 * @throws Exception 
 	 */
 	@FXML
 	void register(ActionEvent event) throws IOException,Exception {
@@ -88,7 +79,6 @@ public class RegistrationController implements Initializable {
 		if(gender.getSelectedToggle()==choiceFemale) {
 			genderC="Female";
 		}
-		
 		//Username
 		if(user.isBlank()) {
 			InfoBox.infoBoxW("A valid username must be provided","Missing username","Missing information");
@@ -153,5 +143,4 @@ public class RegistrationController implements Initializable {
 		choiceMale.setToggleGroup(gender);
 		choiceFemale.setToggleGroup(gender);
 	}
-
 }
