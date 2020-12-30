@@ -105,6 +105,42 @@ public class TheWerewolvesOfMillersHollow extends Application {
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
 	
+	   /**
+     * 
+     * @param game
+     * @param resource
+     * @throws IOException
+     */
+    public static void generateGameIdInGameManagement(Game game, URL resource) throws IOException {
+        try {
+            GameManagementController.setCurrentGame(game);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        TheWerewolvesOfMillersHollow.stage.setScene(scene);
+    }
+    
+    /**
+     * 
+     * @param game
+     * @param resource
+     * @throws IOException
+     */
+    public static void goToGameManagement(Game game, URL resource) throws IOException {
+        try {
+            GameManagementController.setCurrentGame(game);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        TheWerewolvesOfMillersHollow.stage.setScene(scene);
+    }
+	
 	/**
 	 * 
 	 * @param player
@@ -114,42 +150,6 @@ public class TheWerewolvesOfMillersHollow extends Application {
 	public static void goToPlayerStats(Player player, URL resource) throws IOException {
 		try {
 			PlayerStatsController.setPlayer(player);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        FXMLLoader loader = new FXMLLoader(resource);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        TheWerewolvesOfMillersHollow.stage.setScene(scene);
-    }
-	
-	/**
-	 * 
-	 * @param game
-	 * @param resource
-	 * @throws IOException
-	 */
-	public static void generateGameIdInGameManagement(Game game, URL resource) throws IOException {
-		try {
-			GameManagementController.setCurrentGame(game);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        FXMLLoader loader = new FXMLLoader(resource);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        TheWerewolvesOfMillersHollow.stage.setScene(scene);
-    }
-	
-	/**
-	 * 
-	 * @param game
-	 * @param resource
-	 * @throws IOException
-	 */
-	public static void goToGameManagement(Game game, URL resource) throws IOException {
-		try {
-			GameManagementController.setCurrentGame(game);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

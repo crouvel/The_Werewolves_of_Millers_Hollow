@@ -7,6 +7,7 @@ package model.dao.mysql;
  * Imported classes and libraries.
  */
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslogic.domain.Game;
 
@@ -27,7 +28,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract Game createGame(int numberOfPlayers, String status) throws SQLException;
+    public abstract boolean createGame(int nbplayers, boolean status, String creator) throws SQLException;
 
     /**
      * 
@@ -48,7 +49,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean modifyRole(int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
+    public abstract boolean modifyRole(int game_id, int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
 
     /**
      * 
@@ -57,7 +58,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean inviteFriendToPlay(int game_id, String username) throws SQLException;
+    public abstract boolean inviteFriendToPlay(int game_id, String username1, String username2) throws SQLException;
 
     /**
      * 
@@ -66,7 +67,7 @@ public abstract class GameManagementDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean cancelRequest(int game_id, String username) throws SQLException;
+    public abstract boolean cancelRequest(int game_id, String username1, String username2) throws SQLException;
 
     /**
      * 
@@ -85,4 +86,78 @@ public abstract class GameManagementDAO {
      */
     public abstract boolean deleteGame(int game_id) throws SQLException;
 
+    /**
+     * 
+     * @param creator
+     * @return
+     * @throws SQLException
+     */
+    public abstract Game getGameByCreator( String creator) throws SQLException;
+    
+    /**
+     * 
+     * @param gameId
+     * @param username
+     * @return
+     * @throws SQLException
+     */
+    public abstract ArrayList<String> getInvitedFriend(int gameId, String username) throws SQLException;
+    
+    /**
+     * 
+     * @param gameId
+     * @return
+     * @throws SQLException
+     */
+    public abstract ArrayList<String> getPlayer(int gameId) throws SQLException;
+
+    /**
+     * 
+     * @param game_id
+     * @param numberOfWerewolves
+     * @param hasWitch
+     * @param hasFortuneTeller
+     * @param hasLittleGirl
+     * @param hasCupid
+     * @param hasHunter
+     * @return
+     * @throws SQLException
+     */
+	public abstract boolean existsGamewithParams(int game_id, int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) throws SQLException;
+
+	/**
+	 * 
+	 * @param game_id
+	 * @param username1
+	 * @param username2
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsGameRequest(int game_id, String username1, String username2) throws SQLException;
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsGame2(String username) throws SQLException;
+
+	/**
+	 * 
+	 * @param game_id
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsGame(int game_id) throws SQLException;
+
+	/**
+	 * 
+	 * @param username
+	 * @param game_id
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsPlayerInGame(String username, int game_id) throws SQLException;
+    
 }

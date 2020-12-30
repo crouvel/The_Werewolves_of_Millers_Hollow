@@ -1,5 +1,5 @@
-/businesslogic/
-/chat/
-/gui/
-/model/
 /util/
+/application/
+/gui/
+/businesslogic/
+/model/

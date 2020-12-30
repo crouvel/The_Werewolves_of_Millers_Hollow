@@ -37,7 +37,10 @@ public class PlayerMenuController implements Initializable {
 	 */
 	@FXML
 	void createAGame(ActionEvent event) throws IOException{
-		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));	
+		
+			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
+		
+			
 	}
 	
 	/**
