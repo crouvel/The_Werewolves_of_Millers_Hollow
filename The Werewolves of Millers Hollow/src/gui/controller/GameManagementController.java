@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -44,8 +45,8 @@ public class GameManagementController implements Initializable {
 	 * Attribute uses to define the number of players of the game.
 	 */
 	@FXML
-	private Slider numberOfPlayers;
-
+	private TextField numberOfPlayers;
+	
 	/**
 	 * Attribute uses to store the generate game id.
 	 */
