@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
+import businesslogic.domain.PlayerInGame;
 import businesslogic.facade.SelectAndJoinAGameFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,7 +69,8 @@ public class SelectAndJoinGameController  implements Initializable {
 				if(game == null) {
 					InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
 				}else {
-					TheWerewolvesOfMillersHollow.goToGameManagement(game,getClass().getResource("../view/GameManagementView.fxml"));
+					PlayerInGame player = joinGameFacade.getPlayerInGame(gId, PlayerMenuController.getCurrentPlayer().getUsername());
+					TheWerewolvesOfMillersHollow.goToGameManagement(player, game, getClass().getResource("../view/GameManagementView.fxml"));
 				}
 			}
 			else {
@@ -96,7 +98,8 @@ public class SelectAndJoinGameController  implements Initializable {
 				if(joinedGame == null) {
 					InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
 				}else {
-					TheWerewolvesOfMillersHollow.goToGameManagement(joinedGame,getClass().getResource("../view/GameManagementView.fxml"));
+					PlayerInGame player = joinGameFacade.getPlayerInGame(gId, PlayerMenuController.getCurrentPlayer().getUsername());
+					TheWerewolvesOfMillersHollow.goToGameManagement(player, joinedGame, getClass().getResource("../view/GameManagementView.fxml"));
 				}
 			}
 			else {

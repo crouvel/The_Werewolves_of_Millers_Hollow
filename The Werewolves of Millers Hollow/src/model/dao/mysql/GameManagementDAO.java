@@ -159,5 +159,13 @@ public abstract class GameManagementDAO {
 	 * @throws SQLException
 	 */
 	public abstract boolean existsPlayerInGame(String username, int game_id) throws SQLException;
+
+	/**
+	 * 
+	 * @param creatorUsername
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean deleteGame2(String creatorUsername) throws SQLException;
     
 }

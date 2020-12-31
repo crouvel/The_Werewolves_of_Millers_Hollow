@@ -9,7 +9,9 @@ package model.dao.mysql;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
+
 import businesslogic.domain.Game;
+import businesslogic.domain.PlayerInGame;
 
 /**
  * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
@@ -47,6 +49,15 @@ public abstract class SelectAndJoinAGameDAO {
     public abstract boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException, IOException;
 
     /**
+     * Allows the player to join an available game, as creator, corresponding to the game_id parameter.
+     * @param game_id
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
+	public abstract boolean makePlayerJoinAGameByGameIdCreator(int game_id) throws SQLException, IOException;
+	
+    /**
      * Search if the game corresponding to gameid and creator=username exists.
      * @param gameid
      * @param username
@@ -55,4 +66,12 @@ public abstract class SelectAndJoinAGameDAO {
      */
 	public abstract boolean existsPlayerInGame(int gameid, String username) throws SQLException;
 
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract PlayerInGame getPlayerInGame(int gameid, String username) throws SQLException;
+	
 }

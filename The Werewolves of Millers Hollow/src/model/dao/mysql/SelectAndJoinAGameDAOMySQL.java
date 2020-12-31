@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.util.*;
 import businesslogic.domain.Game;
 import businesslogic.domain.Phase;
+import businesslogic.domain.PlayerInGame;
+import businesslogic.domain.Role;
 import gui.controller.PlayerMenuController;
 import model.dao.factory.AbstractFactoryDAO;
 
@@ -66,7 +68,22 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     	request.setBoolean(3, false);
     	request.setBoolean(4, false);
     	request.setBoolean(5, true);
-    	request.setString(6,"");
+    	request.setString(6,Role.VILLAGER.getName());
+    	request.setBoolean(7, false);
+    	request.executeUpdate();
+    	return existsPlayerInGame(game_id,PlayerMenuController.getCurrentPlayer().getUsername());
+    }
+    
+    @Override
+    public boolean makePlayerJoinAGameByGameIdCreator(int game_id) throws SQLException, IOException {
+    	String sqlRequest = "INSERT INTO PlayerInGame(gameId,username,creator,proposeAsASheriff,isAlive,role,isSheriff) VALUES (?,?,?,?,?,?,?)";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1, game_id);
+    	request.setString(2, PlayerMenuController.getCurrentPlayer().getUsername());
+    	request.setBoolean(3, true);
+    	request.setBoolean(4, false);
+    	request.setBoolean(5, true);
+    	request.setString(6,Role.VILLAGER.getName());
     	request.setBoolean(7, false);
     	request.executeUpdate();
     	return existsPlayerInGame(game_id,PlayerMenuController.getCurrentPlayer().getUsername());
@@ -81,5 +98,19 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     	ResultSet resultSet = request.executeQuery();
     	return resultSet.first();	
     }
+
+	@Override
+	public PlayerInGame getPlayerInGame(int gameid, String username) throws SQLException {
+		String sqlRequest="SELECT * FROM PlayerInGame WHERE gameId=? AND username=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setInt(1, gameid);
+		request.setString(2, username);
+    	ResultSet resultSet = request.executeQuery();
+    	if(resultSet.first()) {
+    		return new PlayerInGame(resultSet.getInt("gameId"),resultSet.getString("username"),resultSet.getBoolean("creator"),resultSet.getBoolean("proposeAsASheriff"),resultSet.getBoolean("isAlive"),Role.get(resultSet.getString("Role")),resultSet.getBoolean("isSheriff"));
+    	}else{
+    		return null;
+    	}
+	}
 
 }
