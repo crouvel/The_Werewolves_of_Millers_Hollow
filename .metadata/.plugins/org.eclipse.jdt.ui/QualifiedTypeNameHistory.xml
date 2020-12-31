@@ -3,4 +3,7 @@
     <fullyQualifiedTypeName name="util.InfoBox"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Role"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.SelectAndJoinAGameFacade"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
 </qualifiedTypeNameHistroy>
