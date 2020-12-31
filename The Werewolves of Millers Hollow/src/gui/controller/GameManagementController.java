@@ -145,22 +145,22 @@ public class GameManagementController implements Initializable {
 			
 			nbplayers = Integer.parseInt(numberOfPlayers.getText());
 			if(nbplayers < 8 || nbplayers > 47 ) {
-				infoBox("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
+				InfoBox.infoBoxW("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
 			} else {
 				boolean isDone = gameManagementFacade.createGame( nbplayers , status, PlayerMenuController.getCurrentPlayer().getUsername());
 				if(isDone) {		
 					Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
 					if(game == null) {
-						infoBox("Please retry to create the game later","Incorrect information.", "Connection Problem");
+						InfoBox.infoBoxW("Please retry to create the game later","Incorrect information.", "Connection Problem");
 					}else {TheWerewolvesOfMillersHollow.generateGameIdInGameManagement(game, getClass().getResource("../view/GameManagementView.fxml"));
 					}
 				}else {
-					infoBox("Please retry to create the game later","Incorrect information.", "Connection Problem");
+					InfoBox.infoBoxW("Please retry to create the game later","Incorrect information.", "Connection Problem");
 				}
 
 			}
 		}catch(NumberFormatException e) {
-			infoBox("Please enter an integer for the number of players.", "Incorrect information","Bad Typing");
+			InfoBox.infoBoxE("Please enter an integer for the number of players.", "Incorrect information","Bad Typing");
 		}
 		
 	}
