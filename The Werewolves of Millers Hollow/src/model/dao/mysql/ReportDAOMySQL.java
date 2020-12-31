@@ -15,8 +15,9 @@ import model.dao.factory.AbstractFactoryDAO;
 import businesslogic.domain.PlayerReport;
 import businesslogic.domain.PlayerReportType;
 import businesslogic.domain.BugReport;
+
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class ReportDAOMySQL extends ReportDAO {
 
