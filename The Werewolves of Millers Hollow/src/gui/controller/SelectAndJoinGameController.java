@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
+import businesslogic.domain.PlayerInGame;
 import businesslogic.facade.SelectAndJoinAGameFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,18 +62,22 @@ public class SelectAndJoinGameController  implements Initializable {
 			}catch (NumberFormatException e){
 				InfoBox.infoBoxE("Please enter an integer corresponding to a valid gameId.","Incorrect syntax of game id","Incorrect syntax");
 			}
-			SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
-			boolean isDone = joinGameFacade.joinAGame(gId);
-			if(isDone) {
-				Game game = joinGameFacade.getGame(gId);
-				if(game == null) {
-					InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
-				}else {
-					TheWerewolvesOfMillersHollow.goToGameManagement(game,getClass().getResource("../view/GameManagementView.fxml"));
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to join this game?", "Join confirmation");
+			if(confirmation) {
+				SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+				boolean isDone = joinGameFacade.joinAGame(gId);
+				if(isDone) {
+					Game game = joinGameFacade.getGame(gId);
+					if(game == null) {
+						InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
+					}else {
+						PlayerInGame player = joinGameFacade.getPlayerInGame(gId, PlayerMenuController.getCurrentPlayer().getUsername());
+						TheWerewolvesOfMillersHollow.goToGameManagement(player, game, getClass().getResource("../view/GameManagementView.fxml"));
+					}
 				}
-			}
-			else {
-				InfoBox.infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+				else {
+					InfoBox.infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+				}
 			}
 		}
 	}
@@ -89,18 +94,22 @@ public class SelectAndJoinGameController  implements Initializable {
 			InfoBox.infoBoxW("Please select a game before try to join.","Missing selected game.","Missing information");
 		}else {
 			int gId = game.getGame_id();
-			SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
-			boolean isDone = joinGameFacade.joinAGame(gId);
-			if(isDone) {
-				Game joinedGame = joinGameFacade.getGame(gId);
-				if(joinedGame == null) {
-					InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
-				}else {
-					TheWerewolvesOfMillersHollow.goToGameManagement(joinedGame,getClass().getResource("../view/GameManagementView.fxml"));
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to join this game?", "Join confirmation");
+			if(confirmation) {
+				SelectAndJoinAGameFacade joinGameFacade = new SelectAndJoinAGameFacade();
+				boolean isDone = joinGameFacade.joinAGame(gId);
+				if(isDone) {
+					Game joinedGame = joinGameFacade.getGame(gId);
+					if(joinedGame == null) {
+						InfoBox.infoBoxI("Please select an other game.","Connection problem or inexistant game","Inexistant game");
+					}else {
+						PlayerInGame player = joinGameFacade.getPlayerInGame(gId, PlayerMenuController.getCurrentPlayer().getUsername());
+						TheWerewolvesOfMillersHollow.goToGameManagement(player, joinedGame, getClass().getResource("../view/GameManagementView.fxml"));
+					}
 				}
-			}
-			else {
-				InfoBox.infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+				else {
+					InfoBox.infoBoxE("Please try later.","Connection problem or inexistant game","Bad connection / inexistant game");
+				}
 			}
 		}
 	}

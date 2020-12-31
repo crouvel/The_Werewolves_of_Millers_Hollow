@@ -62,8 +62,7 @@ public class AdministratorProfileController  implements Initializable{
 	@FXML
 	void saveModifications(ActionEvent event) throws IOException,Exception {
 		String adEmail = adminEmail.getText();
-		String adPassword = adminPassword.getText(); 
-		
+		String adPassword = adminPassword.getText(); 		
 		if(adEmail.isBlank()) {
 			InfoBox.infoBoxW("A valid email must be provided","Missing email","Missing information");
 		}else {
@@ -77,18 +76,23 @@ public class AdministratorProfileController  implements Initializable{
 						InfoBox.infoBoxW("A password with valid syntax expected","Password syntax invalid","Invalid syntax");
 					}
 					else {
-						UserFacade uf = new UserFacade();
-						boolean isDone = uf.modifyAdministratorProfile(adEmail, HashPassword.hashPassword(adPassword));
-						if(isDone) {
-							Administrator admin =  uf.getAdminByLogin(adEmail, HashPassword.hashPassword(adPassword));
-							if(admin==null) {
-								InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+						boolean confirmation = InfoBox.infoBoxC("Are you sure you want to save the modifications?", "Update confirmation");
+						if(confirmation) {
+							UserFacade uf = new UserFacade();
+							boolean isDone = uf.modifyAdministratorProfile(adEmail, HashPassword.hashPassword(adPassword));
+							if(isDone) {
+								Administrator admin =  uf.getAdminByLogin(adEmail, HashPassword.hashPassword(adPassword));
+								if(admin==null) {
+									InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+								}else {
+									AdministratorMenuController.setCurrentAdmin(admin);
+									TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
+								}
 							}else {
-								AdministratorMenuController.setCurrentAdmin(admin);
-								TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
+								InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
 							}
 						}else {
-							InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
 						}
 					}
 				}
@@ -104,14 +108,17 @@ public class AdministratorProfileController  implements Initializable{
 	 */
 	@FXML
 	void deleteAdministratorAccount(ActionEvent event) throws IOException {
-		UserFacade uf = new UserFacade();
-		boolean isDone = uf.deleteAdministratorByEmail(AdministratorMenuController.getCurrentAdmin().getEmail());
-		if(isDone) {
-			AdministratorMenuController.setCurrentAdmin(null);
-			LoginController.setCurrentUser(null);
-			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
-		}else {
-			InfoBox.infoBoxE("Delete failed, retry later","Deletion failed","Delete Error");
+		boolean confirmation = InfoBox.infoBoxC("Are you sure you want to delete your account?", "Delete confirmation");
+		if(confirmation) {
+			UserFacade uf = new UserFacade();
+			boolean isDone = uf.deleteAdministratorByEmail(AdministratorMenuController.getCurrentAdmin().getEmail());
+			if(isDone) {
+				AdministratorMenuController.setCurrentAdmin(null);
+				LoginController.setCurrentUser(null);
+				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
+			}else {
+				InfoBox.infoBoxE("Delete failed, retry later","Deletion failed","Delete Error");
+			}
 		}
 	}
 	
@@ -129,18 +136,23 @@ public class AdministratorProfileController  implements Initializable{
 			if(!adEmail.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
 				InfoBox.infoBoxW("An email with valid syntax expected","Email syntax invalid","Invalid syntax");
 			}else {
-				UserFacade uf = new UserFacade();
-				boolean isDone = uf.modifyAdministratorProfile(adEmail,AdministratorMenuController.getCurrentAdmin().getPassword());
-				if(isDone) {
-					Administrator admin =  uf.getAdminByLogin(adEmail, AdministratorMenuController.getCurrentAdmin().getPassword());
-					if(admin==null) {
-						InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+				boolean confirmation = InfoBox.infoBoxC("Are you sure you want to save the modifications?", "Update confirmation");
+				if(confirmation) {
+					UserFacade uf = new UserFacade();
+					boolean isDone = uf.modifyAdministratorProfile(adEmail,AdministratorMenuController.getCurrentAdmin().getPassword());
+					if(isDone) {
+						Administrator admin =  uf.getAdminByLogin(adEmail, AdministratorMenuController.getCurrentAdmin().getPassword());
+						if(admin==null) {
+							InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+						}else {
+							AdministratorMenuController.setCurrentAdmin(admin);
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
+						}
 					}else {
-						AdministratorMenuController.setCurrentAdmin(admin);
-						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
+						InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
 					}
-				}else {
-					InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+				} else {
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
 				}
 			}
 		}
@@ -160,18 +172,23 @@ public class AdministratorProfileController  implements Initializable{
 			if(!adPassword.matches("([a-z]|[A-Z]|[0-9])*")) {
 				InfoBox.infoBoxW("A password with valid syntax expected","Password syntax invalid","Invalid syntax");
 			}else {
-				UserFacade uf = new UserFacade();
-				boolean isDone = uf.modifyAdministratorProfile(AdministratorMenuController.getCurrentAdmin().getEmail(),HashPassword.hashPassword(adPassword));
-				if(isDone) {
-					Administrator admin =  uf.getAdminByLogin(AdministratorMenuController.getCurrentAdmin().getEmail(),HashPassword.hashPassword(adPassword));
-					if(admin==null) {
-						InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+				boolean confirmation = InfoBox.infoBoxC("Are you sure you want to save the modifications?", "Update confirmation");
+				if(confirmation) {
+					UserFacade uf = new UserFacade();
+					boolean isDone = uf.modifyAdministratorProfile(AdministratorMenuController.getCurrentAdmin().getEmail(),HashPassword.hashPassword(adPassword));
+					if(isDone) {
+						Administrator admin =  uf.getAdminByLogin(AdministratorMenuController.getCurrentAdmin().getEmail(),HashPassword.hashPassword(adPassword));
+						if(admin==null) {
+							InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
+						}else {
+							AdministratorMenuController.setCurrentAdmin(admin);
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
+						}
 					}else {
-						AdministratorMenuController.setCurrentAdmin(admin);
-						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
+						InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
 					}
-				}else {
-					InfoBox.infoBoxE("Connection failed, retry later","Connection failed","Connection Error");
+				} else {
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
 				}
 			}
 		}

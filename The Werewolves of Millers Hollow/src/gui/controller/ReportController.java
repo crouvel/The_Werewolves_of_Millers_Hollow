@@ -73,13 +73,18 @@ public class ReportController implements Initializable {
 		if(report == null) {
 			InfoBox.infoBoxE("Reload your application before retry to delete this report, we encounter a problem.","Problem with the current report :","Error");
 		}else {
-			ReportManagementFacade reportManagementFacade = new ReportManagementFacade();
-			boolean isDone = reportManagementFacade.deleteReport(ReportController.getCurrentReport().getReportId());
-			if(isDone) {		
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdministratorMenuView.fxml"));
-			}else {
-				InfoBox.infoBoxW("Retry to delete this report later.","Connection problem.", "Connection problem");
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportManagementView.fxml"));
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to delete this report?", "Delete confirmation");
+			if(confirmation) {
+				ReportManagementFacade reportManagementFacade = new ReportManagementFacade();
+				boolean isDone = reportManagementFacade.deleteReport(ReportController.getCurrentReport().getReportId());
+				if(isDone) {	
+					ReportController.setCurrentReport(null);
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportManagementView.fxml"));
+				}else {
+					ReportController.setCurrentReport(null);
+					InfoBox.infoBoxW("Retry to delete this report later.","Connection problem.", "Connection problem");
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportManagementView.fxml"));
+				}
 			}
 		}		
 	}
