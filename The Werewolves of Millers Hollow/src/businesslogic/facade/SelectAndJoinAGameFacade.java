@@ -13,6 +13,7 @@ import java.sql.SQLException;
  */
 import java.util.*;
 import businesslogic.domain.Game;
+import businesslogic.domain.PlayerInGame;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.SelectAndJoinAGameDAO;
 
@@ -68,6 +69,32 @@ public class SelectAndJoinAGameFacade {
     		return joinAGameDAO.makePlayerJoinAGameByGameId(game_id);
     	}catch(SQLException e) {
     		return false;
+    	}
+    }
+    
+    /**
+     * 
+     * @param game_id 
+     * @return
+     * @throws IOException 
+     */
+    public boolean joinAGameCreator(int game_id) throws IOException {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		SelectAndJoinAGameDAO joinAGameDAO  = factoryTest.createSelectAndJoinAGameDAO();
+    		return joinAGameDAO.makePlayerJoinAGameByGameIdCreator(game_id);
+    	}catch(SQLException e) {
+    		return false;
+    	}
+    }
+    
+    public PlayerInGame getPlayerInGame(int gameId, String username) {
+    	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
+    	try {
+    		SelectAndJoinAGameDAO joinAGameDAO  = factoryTest.createSelectAndJoinAGameDAO();
+    		return joinAGameDAO.getPlayerInGame(gameId,username);
+    	}catch(SQLException e) {
+    		return null;
     	}
     }
 

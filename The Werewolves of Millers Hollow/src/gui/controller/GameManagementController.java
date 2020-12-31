@@ -17,6 +17,7 @@ import businesslogic.domain.Game;
 import businesslogic.domain.PlayerInGame;
 import businesslogic.facade.FriendManagementFacade;
 import businesslogic.facade.GameManagementFacade;
+import businesslogic.facade.SelectAndJoinAGameFacade;
 import javafx.event.ActionEvent;
 import util.InfoBox;
 
@@ -177,33 +178,40 @@ public class GameManagementController implements Initializable {
 	@FXML
 	void generateGameId(ActionEvent event) throws IOException{ 
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
+		SelectAndJoinAGameFacade selectAGame = new SelectAndJoinAGameFacade();
 		boolean status = true;
-
 		if(statusGroup.getSelectedToggle()== privateGame) {
 			status = false;
 		}
-		int nbplayers = 8;
+		boolean exists = gameManagementFacade.existsGameByUsername(PlayerMenuController.getCurrentPlayer().getUsername());
+		if(exists) {
+			gameManagementFacade.deleteGame2(PlayerMenuController.getCurrentPlayer().getUsername());
+		}
+		int nbplayers = 0;
 		try {		
 			nbplayers = Integer.parseInt(numberOfPlayers.getText());
 			if(nbplayers < 8 || nbplayers > 47 ) {
 				InfoBox.infoBoxW("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
-			} else {
+			}else {
 				boolean isDone = gameManagementFacade.createGame( nbplayers , status, PlayerMenuController.getCurrentPlayer().getUsername());
 				if(isDone) {		
 					Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
 					if(game == null) {
 						InfoBox.infoBoxW("Please retry to create the game later","Incorrect information.", "Connection Problem");
-					}else {TheWerewolvesOfMillersHollow.generateGameIdInGameManagement(game, getClass().getResource("../view/GameManagementView.fxml"));
+					}else {
+						boolean isDone2 = selectAGame.joinAGameCreator(game.getGame_id());
+						if(isDone2) {
+							PlayerInGame player = selectAGame.getPlayerInGame(game.getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
+							TheWerewolvesOfMillersHollow.generateGameIdInGameManagement(player, game, getClass().getResource("../view/GameManagementView.fxml"));
+						}
 					}
 				}else {
 					InfoBox.infoBoxW("Please retry to create the game later","Incorrect information.", "Connection Problem");
 				}
-
 			}
 		}catch(NumberFormatException e) {
 			InfoBox.infoBoxE("Please enter an integer for the number of players.", "Incorrect information","Bad Typing");
-		}
-		
+		}	
 	}
 
 	/**
@@ -229,7 +237,6 @@ public class GameManagementController implements Initializable {
 			int hunter = (int)hasHunter.getValue();
 			int special = nbh + ft + lg + hc + hunter;
 			players = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
-
 			if(players.size() < nbplayers || players == null) {
 				InfoBox.infoBoxW("Cannot start the game. The number of players is not reached", "Not enough Players", "Bad Manipulation");
 			}else  {
@@ -245,7 +252,6 @@ public class GameManagementController implements Initializable {
 					}
 				}
 			}
-
 		}
 	}
 
@@ -306,8 +312,6 @@ public class GameManagementController implements Initializable {
 		}
 	}
 
-
-
 	/**
 	 * 
 	 * @param event
@@ -341,7 +345,6 @@ public class GameManagementController implements Initializable {
 		}
 	}
 	
-
 	/**
 	 * 
 	 * @param event
@@ -376,13 +379,22 @@ public class GameManagementController implements Initializable {
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 		try {
-			if (GameManagementController.getCurrentGame() !=  null) {
-				rolePane.setDisable(false);
+			if ((GameManagementController.getCurrentGame() !=  null) && (GameManagementController.getCurrentPlayerInGame() !=  null)) {
+				if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
+					rolePane.setDisable(false);
+					kickPlayerOutOfGameButton.setDisable(false);
+					startGameButton.setDisable(false);
+				}
+				numberOfPlayers.setText(GameManagementController.getCurrentGame().getNumberOfPlayers()+"");
+				numberOfPlayers.setDisable(true);
+				privateGame.setDisable(true);
+				publicGame.setDisable(true);
+				if(!GameManagementController.getCurrentGame().isStatus()) {
+					statusGroup.selectToggle(privateGame);
+				}
 				invitedFriendsPane.setVisible(true);
 				friendsPane.setVisible(true);
-				startGameButton.setDisable(false);
 				generateIdButton.setDisable(true);
-				kickPlayerOutOfGameButton.setDisable(false);
 				players = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
 				for(String i : players) {
 					listPlayers.getItems().add(i);
@@ -390,21 +402,24 @@ public class GameManagementController implements Initializable {
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
 				invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
 				for(String i : invited) {
-					invitedFriends.getItems().add(i);
+					if(!players.contains(i)) {
+						invitedFriends.getItems().add(i);
+					}
 				}
 				invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
 				for(String i : invite) {
-					inviteFriends.getItems().add(i);
-				}
-				
+					if(!players.contains(i) && !invited.contains(i)) {
+						inviteFriends.getItems().add(i);
+					}
+				}				
 			}
 		}catch (NullPointerException | IOException | SQLException e) {
-			e.printStackTrace();
-		}
-		
+			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");
+		}	
 	}
 	
 	/**
+	 * 
 	 * @return the currentGame
 	 * @throws IOException
 	 */
@@ -413,6 +428,7 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
+	 * 
 	 * @param currentGame the currentGame to set
 	 * @throws IOException
 	 */
@@ -421,6 +437,7 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
+	 * 
 	 * @return the currentPlayerInGame
 	 */
 	public static PlayerInGame getCurrentPlayerInGame() {
@@ -428,6 +445,7 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
+	 * 
 	 * @param currentPlayerInGame the currentPlayerInGame to set
 	 */
 	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {

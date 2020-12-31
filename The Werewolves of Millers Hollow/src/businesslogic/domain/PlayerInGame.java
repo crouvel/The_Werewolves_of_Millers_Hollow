@@ -8,7 +8,13 @@ public class PlayerInGame {
     /**
      * Default constructor
      */
-    public PlayerInGame() {
+    public PlayerInGame(int gameId, String username, boolean creator, boolean isAlive, boolean proposeAsASheriff, Role role, boolean isSheriff) {
+    	this.gameId = gameId;
+    	this.username = username;
+    	this.creator = creator;
+    	this.isAlive = isAlive;
+    	this.proposeAsASheriff = proposeAsASheriff;
+    	this.role = Role.VILLAGER;
     }
 
     /**
@@ -87,6 +93,22 @@ public class PlayerInGame {
 	public String getUsername() {
 		return username;
 	}
+	
+	/**
+	 * @return the gameId
+	 */
+	public int getGameId() {
+		return gameId;
+	}
+
+	/**
+	 * @param gameId the gameId to set
+	 */
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+
+	private int gameId;
 
 	/**
 	 * 

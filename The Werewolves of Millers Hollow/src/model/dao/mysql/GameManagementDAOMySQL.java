@@ -225,5 +225,15 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		}
 		return players;
 	}
+	
+	@Override
+	public boolean deleteGame2(String creatorUsername) throws SQLException{
+		String sqlRequest="DELETE FROM Game WHERE creatorUsername=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setString(1, creatorUsername);
+		request.executeUpdate();
+		return !existsGame2(creatorUsername);
+
+	}
 
 }    
