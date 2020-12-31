@@ -415,7 +415,7 @@ public class GameManagementController implements Initializable {
 			}
 		}catch (NullPointerException | IOException | SQLException e) {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");
-		}	
+		}
 	}
 	
 	/**

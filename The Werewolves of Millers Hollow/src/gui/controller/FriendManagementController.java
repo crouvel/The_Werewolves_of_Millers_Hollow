@@ -135,12 +135,15 @@ public class FriendManagementController implements Initializable {
 		if(username==null) {
 			InfoBox.infoBoxW("Please select a friend before try to delete.","Missing friend.","Missing informations");
 		}else {
-			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-			boolean isDone = friendManagementFacade.deleteFriend(PlayerMenuController.getCurrentPlayer().getUsername(),username);
-			if(isDone) {		
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
-			}else {
-				InfoBox.infoBoxW("Retry to delete your friend later.","Incorrect information.", "Connection problem");
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to delete this friend?", "Delete confirmation");
+			if(confirmation) {
+				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+				boolean isDone = friendManagementFacade.deleteFriend(PlayerMenuController.getCurrentPlayer().getUsername(),username);
+				if(isDone) {
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Retry to delete your friend later.","Incorrect information.", "Connection problem");
+				}
 			}
 		}		
 	}

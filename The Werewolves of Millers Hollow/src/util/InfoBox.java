@@ -5,6 +5,7 @@ package util;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /**
  * @author Tiffany Dumaire
@@ -60,12 +61,16 @@ public class InfoBox {
 	 * @param head
 	 * @param title
 	 */
-	public static void infoBoxC(String message, String head, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+	public static boolean infoBoxC(String message, String title){
+        Alert alert = new Alert(AlertType.CONFIRMATION,"",ButtonType.YES, ButtonType.CANCEL);
         alert.setContentText(message);
         alert.setTitle(title);
-        alert.setHeaderText(head);
         alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES) {
+        	return true;       
+        } else {
+        	return false;       
+        }
     }
 	
 }
