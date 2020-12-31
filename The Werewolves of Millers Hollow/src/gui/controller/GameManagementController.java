@@ -18,15 +18,18 @@ import businesslogic.domain.PlayerInGame;
 import businesslogic.facade.FriendManagementFacade;
 import businesslogic.facade.GameManagementFacade;
 import javafx.event.ActionEvent;
+import util.InfoBox;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import util.InfoBox;
 
 /**
  * 
@@ -120,17 +123,57 @@ public class GameManagementController implements Initializable {
 	@FXML
 	private Slider hasHunter;
 
-
-
+	/**
+	 * 
+	 */
+	@FXML
+	private Pane invitedFriendsPane;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Pane friendsPane;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Pane rolePane;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Button startGameButton;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Button kickPlayerOutOfGameButton;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Button generateIdButton;
+	
+	/**
+	 * 
+	 */
 	private ToggleGroup statusGroup;
+
+	/**
+	 * 
+	 */
+	private static Game currentGame;
+
 	/**
 	 * 
 	 * @param event
 	 * @throws IOException
 	 */
-
-	private static Game currentGame;
-
 	@FXML
 	void generateGameId(ActionEvent event) throws IOException{ 
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
@@ -139,10 +182,8 @@ public class GameManagementController implements Initializable {
 		if(statusGroup.getSelectedToggle()== privateGame) {
 			status = false;
 		}
-
 		int nbplayers = 8;
-		try {
-			
+		try {		
 			nbplayers = Integer.parseInt(numberOfPlayers.getText());
 			if(nbplayers < 8 || nbplayers > 47 ) {
 				InfoBox.infoBoxW("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
@@ -178,9 +219,7 @@ public class GameManagementController implements Initializable {
 		if(game == null ) {
 			InfoBox.infoBoxE("Please generate a game, then modify its roles, and then start it.","Missing game","Bad Manipulation");
 		}else {
-
 			ArrayList<String> players;
-			
 			int nbplayers = GameManagementController.getCurrentGame().getNumberOfPlayers();
 			int nbw = (int)numberOfWerewolves.getValue();
 			int nbh = (int)hasWitch.getValue();
@@ -206,16 +245,8 @@ public class GameManagementController implements Initializable {
 					}
 				}
 			}
-		 
-	}
-	}
-	
-	boolean getBoolean(int nb) {
-		if(nb == 0) {
-			return false;
-		}if (nb == 1 ) {
-			return true;
-		} return true;
+
+		}
 	}
 
 	/**
@@ -229,10 +260,7 @@ public class GameManagementController implements Initializable {
 		Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
 		if(game == null ) {
 			InfoBox.infoBoxW("Please generate a game in order to kick a player of the game.","Missing game","Bad Manipulation");
-
-
 		}else {
-
 			String username = listPlayers.getSelectionModel().getSelectedItem();
 			if(username==null) {
 				InfoBox.infoBoxW("Please select a player before try to delete.","Missing Player.","Missing informations");
@@ -259,19 +287,14 @@ public class GameManagementController implements Initializable {
 		Game game = gameManagementFacade.getGameByCreator(PlayerMenuController.getCurrentPlayer().getUsername());
 		if(game == null) {
 			InfoBox.infoBoxW("Please generate a game in order to send a game invitation.","Missing game","Bad Manipulation");
-
-
 		}else {
 			String invFriend = inviteFriends.getSelectionModel().getSelectedItem();
 			if(invFriend == null) {
 				InfoBox.infoBoxW("Please select a friend to invite.","Missing friend","Missing informations");
 			}else {
-
 				if(invitedFriends.getItems().contains(invFriend)) {
 					InfoBox.infoBoxW("This player is already in the invited friends list.","Incorrect action", "Incorrect information");
 				}else {
-
-
 					boolean isDone=gameManagementFacade.inviteFriendToPlay(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invFriend);
 					if (isDone) {
 						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
@@ -280,7 +303,6 @@ public class GameManagementController implements Initializable {
 					}
 				}
 			}
-
 		}
 	}
 
@@ -302,25 +324,22 @@ public class GameManagementController implements Initializable {
 			ArrayList<String> invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
 			if(invited == null) {
 				InfoBox.infoBoxW("Please invite a friend to play.","Empty list","Missing informations");
-			}else {
+			} else {
 				String invitedFriend = invitedFriends.getSelectionModel().getSelectedItem();
 				if(invitedFriend==null) {
-
 					InfoBox.infoBoxW("Please select a friend to cancel sent invitation.","Missing friend","Missing informations");
-				}else {
-					
-
-						GameManagementController.getCurrentGame();
-						boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend);
-						if (isDone) {
-							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
-						}else {
-							InfoBox.infoBoxE("Please retry to cancel the invitation to play later.","Connection Problem", "Incorrect information");
-						}
+				} else {
+					GameManagementController.getCurrentGame();
+					boolean isDone=gameManagementFacade.cancelRequest(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername(),invitedFriend);
+					if (isDone) {
+						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
+					} else {
+						InfoBox.infoBoxE("Please retry to cancel the invitation to play later.","Connection Problem", "Incorrect information");
 					}
 				}
 			}
 		}
+	}
 	
 
 	/**
@@ -330,94 +349,59 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	void returnPlayerMenu(ActionEvent event) throws IOException{
-
 		if(GameManagementController.getCurrentGame() != null) {
-
 			GameManagementFacade gameManagementFacade = new GameManagementFacade();
 			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
 			if(isDone) {		
-
 				GameManagementController.setCurrentGame(null);
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
-			}else {
+			} else {
 				InfoBox.infoBoxE("Retry to cancel the game creation later.","Incorrect information.", "Connection problem");
 			}		
-
-		}else {
+		} else {
 			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 		}
-
 	}
 
 	//Added Methods
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		statusGroup = new ToggleGroup();
+		privateGame.setToggleGroup(statusGroup);
+		publicGame.setToggleGroup(statusGroup);
 		ArrayList<String> invited;
 		ArrayList<String> invite;
-		ArrayList<String> players;
+		ArrayList<String> players;	
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-
-
-
 		try {
 			if (GameManagementController.getCurrentGame() !=  null) {
-
+				rolePane.setDisable(false);
+				invitedFriendsPane.setVisible(true);
+				friendsPane.setVisible(true);
+				startGameButton.setDisable(false);
+				generateIdButton.setDisable(true);
+				kickPlayerOutOfGameButton.setDisable(false);
 				players = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
 				for(String i : players) {
 					listPlayers.getItems().add(i);
 				}
-			}
-
-
-
-		} catch (NullPointerException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		statusGroup = new ToggleGroup();
-		privateGame.setToggleGroup(statusGroup);
-		publicGame.setToggleGroup(statusGroup);
-
-
-		try {
-			if (GameManagementController.getCurrentGame() !=  null) {
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
-			}
-		}catch (NullPointerException | IOException e) {
-			e.printStackTrace();}
-
-		try {
-			if (GameManagementController.getCurrentGame() !=  null) {
 				invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
 				for(String i : invited) {
 					invitedFriends.getItems().add(i);
 				}
+				invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
+				for(String i : invite) {
+					inviteFriends.getItems().add(i);
+				}
+				
 			}
-		}catch (NullPointerException | IOException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch (NullPointerException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
-
-		try{
-			invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
-
-			for(String i : invite) {
-				inviteFriends.getItems().add(i);
-			}
-		} catch (NullPointerException | IOException e2) {
-			e2.printStackTrace();
-		} catch (SQLException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
+		
 	}
 	
 	/**
@@ -448,6 +432,19 @@ public class GameManagementController implements Initializable {
 	 */
 	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
 		GameManagementController.currentPlayerInGame = currentPlayerInGame;
+	}
+	
+	/**
+	 * 
+	 * @param nb
+	 * @return
+	 */
+	public boolean getBoolean(int nb) {
+		if(nb == 0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 	
 }

@@ -180,7 +180,7 @@ public class SearchPlayerStatsController  implements Initializable{
 	}
 
 	/**
-	 * Returns the player to the selected player's statistics view .
+	 * Returns the player to the selected player's statistics view.
 	 * @param event
 	 * @throws IOException
 	 */
