@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
 import businesslogic.domain.PlayerInGame;
+import businesslogic.facade.GameFacade;
 /*
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -38,45 +39,45 @@ import util.InfoBox;
  *
  */
 public class GameController implements Initializable{
-	
+
 	//Attributes
-	
+
 	/**
 	 * 
 	 */
 	private static PlayerInGame currentPlayer;
-	
+
 	/**
 	 * 
 	 */
 	private static Game game;
-	
+
 	//Report Part
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Pane reportPlayerPane;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ComboBox<String> badPlayerUsername;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ComboBox<String> reason;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextArea description;
-	
+
 	/**
 	 * 
 	 * @param event
@@ -88,7 +89,7 @@ public class GameController implements Initializable{
 		reason.getItems().get(0);
 		description.setText("");
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -96,9 +97,23 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void sendReport(ActionEvent event)  throws IOException {
-		
+		GameFacade gameFacade = new GameFacade();
+		String username = badPlayerUsername.getValue();
+		String motive = reason.getValue();
+		String descr = description.getText();
+		if(username == null || motive == null || descr == null) {
+			InfoBox.infoBoxW("Please complete all the report information.", "Missing information.", "Bad manipulation");
+		}else {
+			boolean isDone = gameFacade.sendPlayerReport(username, motive, descr);
+			if(isDone) {
+				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+			}else {
+				InfoBox.infoBoxW("Please try to report the player later.", "Connection Problem.", "Incorrect information");
+			}
+		}
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -112,27 +127,27 @@ public class GameController implements Initializable{
 			reportPlayerPane.setVisible(true);
 		}
 	}
-	
+
 	//Chat Part
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Pane chatPane;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ListView<String> chat;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField message;
-	
+
 	/**
 	 * 
 	 * @param event
@@ -140,23 +155,23 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void sendMessage(ActionEvent event)  throws IOException {
-		
+
 	}
-	
+
 	//Vote Part
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Pane votePane;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ListView<String> playerVoteList;
-	
+
 	/**
 	 * 
 	 * @param event
@@ -164,23 +179,23 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void sendVote(ActionEvent event)  throws IOException {
-		
+
 	}
-	
+
 	//Propose As A Sheriff Part
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Pane speechPane;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private TextField speech;
-	
+
 	/**
 	 * 
 	 * @param event
@@ -190,7 +205,7 @@ public class GameController implements Initializable{
 	void no(ActionEvent event) throws IOException {
 		speechPane.setVisible(false);
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -206,9 +221,9 @@ public class GameController implements Initializable{
 			System.out.println(mySpeech);
 		}
 	}
-	
+
 	//Quit Part
-	
+
 	/**
 	 * 
 	 * @param event
@@ -218,9 +233,9 @@ public class GameController implements Initializable{
 	void returnPlayerMenu(ActionEvent event) throws IOException {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 	}
-	
+
 	//Other functions
-	
+
 	/**
 	 * 
 	 */
@@ -241,7 +256,7 @@ public class GameController implements Initializable{
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
-		*/
+		 */
 	}
 
 	/**

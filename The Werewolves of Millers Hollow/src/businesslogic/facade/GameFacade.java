@@ -1,6 +1,10 @@
 package businesslogic.facade;
 
+import java.sql.SQLException;
 import java.util.*;
+
+import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.ReportDAO;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -19,8 +23,13 @@ public class GameFacade {
      * @return
      */
     public boolean sendPlayerReport(String badPlayerUsername, String reason, String description) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			ReportDAO reportDAO  = factory.createReportDAO();
+			return reportDAO.createPlayerReport(badPlayerUsername, reason, description);
+		}catch(SQLException e) {
+			return false;
+		} 
     }
 
     /**
