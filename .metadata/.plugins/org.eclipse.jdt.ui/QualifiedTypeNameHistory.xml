@@ -6,4 +6,7 @@
     <fullyQualifiedTypeName name="businesslogic.domain.Role"/>
     <fullyQualifiedTypeName name="businesslogic.facade.SelectAndJoinAGameFacade"/>
     <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ButtonType"/>
+    <fullyQualifiedTypeName name="javafx.stage.WindowEvent"/>
+    <fullyQualifiedTypeName name="javafx.application.Platform"/>
 </qualifiedTypeNameHistroy>
