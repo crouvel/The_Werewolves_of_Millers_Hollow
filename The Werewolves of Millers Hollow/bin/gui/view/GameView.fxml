@@ -17,7 +17,12 @@
       </ImageView>
       <Pane fx:id="chatPane" layoutX="640.0" layoutY="53.0" prefHeight="573.0" prefWidth="578.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;">
          <children>
-            <ListView fx:id="chat" layoutX="35.0" layoutY="35.0" prefHeight="450.0" prefWidth="510.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 30px;" />
+            <ListView layoutX="35.0" layoutY="35.0" prefHeight="450.0" prefWidth="510.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 30px;" />
+            <ScrollPane layoutX="35.0" layoutY="35.0" prefHeight="450.0" prefWidth="510.0">
+               <content>
+                  <TextFlow fx:id="chat" opacity="0.93" prefHeight="450.0" prefWidth="490.0" style="-fx-background-color: rgb(0,0,0,0.8);" />
+               </content>
+            </ScrollPane>
             <TextField fx:id="message" layoutX="35.0" layoutY="497.0" prefHeight="62.0" prefWidth="409.0" promptText="Write a message..." style="-fx-background-color: rgb(64,64,64,0.6); -fx-background-radius: 30px;" />
             <Button layoutX="447.0" layoutY="491.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="74.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                <graphic>
