@@ -9,4 +9,5 @@
     <fullyQualifiedTypeName name="javafx.scene.control.ButtonType"/>
     <fullyQualifiedTypeName name="javafx.stage.WindowEvent"/>
     <fullyQualifiedTypeName name="javafx.application.Platform"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.TextFlow"/>
 </qualifiedTypeNameHistroy>

@@ -6,6 +6,7 @@ import java.util.*;
 /**
  * 
  */
+@SuppressWarnings("deprecation")
 public class ObservableGameClient extends Observable {
 
     /**
