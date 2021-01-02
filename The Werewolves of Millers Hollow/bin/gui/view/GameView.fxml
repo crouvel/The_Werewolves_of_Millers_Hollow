@@ -17,7 +17,6 @@
       </ImageView>
       <Pane fx:id="chatPane" layoutX="640.0" layoutY="53.0" prefHeight="573.0" prefWidth="578.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 50px;">
          <children>
-            <ListView layoutX="35.0" layoutY="35.0" prefHeight="450.0" prefWidth="510.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 30px;" />
             <ScrollPane layoutX="35.0" layoutY="35.0" prefHeight="450.0" prefWidth="510.0">
                <content>
                   <TextFlow fx:id="chat" opacity="0.93" prefHeight="450.0" prefWidth="490.0" style="-fx-background-color: rgb(0,0,0,0.8);" />

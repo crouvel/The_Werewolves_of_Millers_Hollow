@@ -144,6 +144,13 @@ public class GameController implements Initializable{
 		
 	}
 	
+	/**
+	 * 
+	 */
+	public void displayMessage() {
+		
+	}
+	
 	//Vote Part
 	
 	/**
