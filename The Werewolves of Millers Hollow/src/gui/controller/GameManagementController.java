@@ -242,7 +242,7 @@ public class GameManagementController implements Initializable {
 			if(players.size() < nbplayers || players == null) {
 				InfoBox.infoBoxW("Cannot start the game. The number of players is not reached", "Not enough Players", "Bad Manipulation");
 			}else  {
-				if(nbw > nbplayers/6 || special > nbplayers/4) {
+				if(nbw < nbplayers/6 || special < nbplayers/4) {
 					InfoBox.infoBoxW("The amount of werewolves or/and special roles is too high", "Incorrect information", "Bad information");
 				}else {
 					boolean isDone = gameManagementFacade.modifyRole(GameManagementController.getCurrentGame().getGame_id(),(int)numberOfWerewolves.getValue(),getBoolean(nbh),getBoolean(ft), getBoolean(lg),getBoolean(hc),getBoolean(hunter));
@@ -355,14 +355,27 @@ public class GameManagementController implements Initializable {
 	void returnPlayerMenu(ActionEvent event) throws IOException{
 		if(GameManagementController.getCurrentGame() != null) {
 			GameManagementFacade gameManagementFacade = new GameManagementFacade();
-			boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
-			if(isDone) {		
-				GameManagementController.setCurrentGame(null);
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
-			} else {
-				InfoBox.infoBoxE("Retry to cancel the game creation later.","Incorrect information.", "Connection problem");
-			}		
-		} else {
+			if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
+				boolean isDone = gameManagementFacade.deleteGame(GameManagementController.getCurrentGame().getGame_id());
+				if(isDone) {		
+					GameManagementController.setCurrentGame(null);
+					GameManagementController.setCurrentPlayerInGame(null);
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+				} else {
+					InfoBox.infoBoxE("Retry to cancel the game creation later.","Incorrect information.", "Connection problem");
+				}	
+			}else {
+				boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),GameManagementController.getCurrentPlayerInGame().getUsername());
+				if(isDone) {
+					GameManagementController.setCurrentGame(null);
+					GameManagementController.setCurrentPlayerInGame(null);
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+				}else {
+					InfoBox.infoBoxE("Retry to cancel the game later.","Incorrect information.", "Connection problem");
+				}
+			} 
+		}
+		else {
 			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 		}
 	}
@@ -401,11 +414,12 @@ public class GameManagementController implements Initializable {
 							ArrayList<String> p = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
 							ArrayList<String> invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
 							ArrayList<String> invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
-							Platform.runLater(() -> {
+							Platform.runLater(() -> {	
 								listPlayers.getItems().clear();
 								for(String i : p) {
 									listPlayers.getItems().add(i);
 								}
+
 								invitedFriends.getItems().clear();
 								for(String i : invited) {
 									if(!p.contains(i)) {
@@ -418,9 +432,21 @@ public class GameManagementController implements Initializable {
 										inviteFriends.getItems().add(i);
 									}
 								}
-							});
+								if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
+									try {
+										if(!listPlayers.getItems().contains(GameManagementController.getCurrentGame().getCreatorUsername())) {
+											GameManagementController.setCurrentGame(null);
+											GameManagementController.setCurrentPlayerInGame(null);
+											TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+										}
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							});	
 							Thread.sleep(5000);
 						}
+						
 						if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
 							startGameButton.setDisable(false);
 						}
@@ -431,7 +457,7 @@ public class GameManagementController implements Initializable {
 				listThread.setDaemon(true);
 				listThread.start();
 				//go to game
-				if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
+				/*if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
 					Task<ListView<String>> goGame = new Task<>() {
 						@Override
 						protected ListView<String> call() throws Exception {
@@ -447,7 +473,7 @@ public class GameManagementController implements Initializable {
 					Thread getItemsThread = new Thread(goGame);
 					getItemsThread.setDaemon(true);
 					getItemsThread.start();
-				}				
+				}		*/		
 			}
 		}catch (NullPointerException | IOException e) {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");
