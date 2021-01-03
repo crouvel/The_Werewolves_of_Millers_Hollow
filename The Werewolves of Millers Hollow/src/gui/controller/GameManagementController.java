@@ -407,7 +407,7 @@ public class GameManagementController implements Initializable {
 				generateIdButton.setDisable(true);
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
 				//refresh lists
-				Task<ListView<String>> taskPlayerList = new Task<>() {
+				Task<ListView<String>> gameManagementTask = new Task<>() {
 					@Override
 					protected ListView<String> call() throws Exception {
 						while(listPlayers.getItems().size() != GameManagementController.getCurrentGame().getNumberOfPlayers()){
@@ -432,48 +432,68 @@ public class GameManagementController implements Initializable {
 										inviteFriends.getItems().add(i);
 									}
 								}
-								if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
-									try {
-										if(!listPlayers.getItems().contains(GameManagementController.getCurrentGame().getCreatorUsername())) {
-											GameManagementController.setCurrentGame(null);
-											GameManagementController.setCurrentPlayerInGame(null);
-											TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
-										}
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
-								}
 							});	
+							if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
+								try {
+									if(!p.contains(GameManagementController.getCurrentGame().getCreatorUsername())) {
+										GameManagementController.setCurrentGame(null);
+										GameManagementController.setCurrentPlayerInGame(null);
+										TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
+									}
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
 							Thread.sleep(5000);
 						}
-						
 						if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
 							startGameButton.setDisable(false);
+						}else {
+							while(!(GameManagementController.getCurrentGame().getCurrentPhase().getName().equals("NIGHT"))) {
+								Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());	
+								GameManagementController.setCurrentGame(game);
+								Thread.sleep(1000);
+							}	
+							Platform.runLater(() -> {	
+								try {
+									TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+								} catch (IOException e) {
+									e.printStackTrace();
+								}			
+							});
 						}
+						
 						return listPlayers;
 					}
 				};				
-				Thread listThread = new Thread(taskPlayerList);
-				listThread.setDaemon(true);
-				listThread.start();
-				//go to game
-				/*if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
-					Task<ListView<String>> goGame = new Task<>() {
+				Thread gameManagementThread = new Thread(gameManagementTask);
+				gameManagementThread.setDaemon(true);
+				gameManagementThread.start();	
+				
+				/*
+				if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
+					startGameButton.setDisable(false);
+				}else {
+					Task<Boolean> goGame = new Task<>() {
 						@Override
-						protected ListView<String> call() throws Exception {
-							do {
-								Game game = gameManagementFacade.getGameByCreator(GameManagementController.getCurrentGame().getCreatorUsername());
-								GameManagementController.setCurrentGame(game);
+						protected Boolean call() throws Exception {	
+							while(!GameManagementController.getCurrentGame().getCurrentPhase().getName().equals("NIGHT")) {
+								Game game = gameManagementFacade.getGameByCreator2(GameManagementController.getCurrentGame().getCreatorUsername());
+									try {
+										GameManagementController.setCurrentGame(game);
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
 								Thread.sleep(1000);
-							}while(!GameManagementController.getCurrentGame().getCurrentPhase().getName().equals("NIGHT"));
-							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
-							return listPlayers;
+							}		
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));	
+							return true;
 						}
 					};
-					Thread getItemsThread = new Thread(goGame);
+				 */
+				/*Thread getItemsThread = new Thread(goGame);
 					getItemsThread.setDaemon(true);
-					getItemsThread.start();
-				}		*/		
+					getItemsThread.start();*/
 			}
 		}catch (NullPointerException | IOException e) {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");

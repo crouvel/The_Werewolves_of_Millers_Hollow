@@ -57,14 +57,11 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		ResultSet resultSet = request.executeQuery();
 		boolean exist = resultSet.first();
 		if(exist){
-			return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getBoolean("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getBoolean("hasWitch"),resultSet.getBoolean("hasLittleGirl"), 
-					resultSet.getBoolean("hasCupid"), resultSet.getBoolean("hasHunter"), resultSet.getBoolean("hasFortuneTeller"), resultSet.getBoolean("finish"), Phase.valueOf(resultSet.getString("currentPhase")), resultSet.getBoolean("availableGame"), resultSet.getString("creatorUsername"));
+			return new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getBoolean("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getBoolean("hasWitch"),resultSet.getBoolean("hasLittleGirl"),resultSet.getBoolean("hasCupid"), resultSet.getBoolean("hasHunter"), resultSet.getBoolean("hasFortuneTeller"), resultSet.getBoolean("finish"), Phase.get(resultSet.getString("currentPhase")), resultSet.getBoolean("availableGame"), resultSet.getString("creatorUsername"));
 		}
 		else{
 			return null;
 		}
-
-
 	}
 
 	@Override
@@ -76,7 +73,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		boolean exist = resultSet.first();
 		if(exist){
 			Game game = new Game(resultSet.getInt("gameId"),resultSet.getInt("numberOfPlayers"),resultSet.getBoolean("status"),resultSet.getInt("numberOfWerewolves"),resultSet.getBoolean("hasWitch"),resultSet.getBoolean("hasLittleGirl"),  resultSet.getBoolean("hasCupid"), resultSet.getBoolean("hasHunter"), resultSet.getBoolean("hasFortuneTeller"), resultSet.getBoolean("finish"), Phase.get(resultSet.getString("currentPhase")), resultSet.getBoolean("availableGame"));
-			System.out.println(game.getCurrentPhase().getName());
 			return game;
 		}
 		else{
@@ -222,7 +218,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setInt(1, gameId);
 		ResultSet resultSet = request.executeQuery();
 		ArrayList<String> players = new ArrayList<String>();
-
 		while (resultSet.next()) {
 			players.add(resultSet.getString("username"));
 		}

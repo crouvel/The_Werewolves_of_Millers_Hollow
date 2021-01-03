@@ -159,6 +159,23 @@ public class GameManagementFacade {
 			return null;
 		}  
 	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public Game getGame(int gameId) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+			return gameManagementDAO.getGame(gameId);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}  
+	}
+
 
 	/**
 	 * 
