@@ -8,12 +8,16 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
 import businesslogic.domain.PlayerInGame;
+import businesslogic.domain.PlayerReportType;
 import businesslogic.facade.GameFacade;
+import businesslogic.facade.GameManagementFacade;
 /*
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -142,7 +146,7 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	private TextFlow chat;
-	
+
 	/**
 	 * 
 	 */
@@ -158,14 +162,14 @@ public class GameController implements Initializable{
 	void sendMessage(ActionEvent event)  throws IOException {
 
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void displayMessage() {
-		
+
 	}
-	
+
 	//Vote Part
 
 	/**
@@ -265,6 +269,20 @@ public class GameController implements Initializable{
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 		 */
+		GameManagementFacade gameManagementFacade = new GameManagementFacade();
+		try {
+			ArrayList<String> ListPlayers = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
+			ArrayList<String> reasons = new ArrayList<String>();
+			for(String i : ListPlayers) {	
+				badPlayerUsername.getItems().add(i);
+			}
+			for (int i = 0; i < PlayerReportType.values().length;i++ ) {
+				reasons.add(PlayerReportType.values()[i].getName());
+			}
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
