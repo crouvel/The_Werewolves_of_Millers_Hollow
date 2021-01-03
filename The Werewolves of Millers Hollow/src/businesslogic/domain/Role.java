@@ -1,10 +1,11 @@
 /**
- * 
+ * package businesslogic.domain
  */
 package businesslogic.domain;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * 
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  *
  */
 public enum Role {
@@ -15,7 +16,6 @@ public enum Role {
     FORTUNE_TELLER("Fortune Teller"),
     CUPID("Cupid"),
 	VILLAGER("Villager");
-	
 
 	/**
 	 * 

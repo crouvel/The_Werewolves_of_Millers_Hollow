@@ -14,7 +14,8 @@ public class PlayerInGame {
     	this.creator = creator;
     	this.isAlive = isAlive;
     	this.proposeAsASheriff = proposeAsASheriff;
-    	this.role = Role.VILLAGER;
+    	this.role = role;
+    	this.isSheriff = isSheriff;
     }
 
     /**

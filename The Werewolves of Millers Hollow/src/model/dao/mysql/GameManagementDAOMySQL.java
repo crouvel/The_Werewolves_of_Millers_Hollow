@@ -227,5 +227,27 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.executeUpdate();
 		return !existsGame2(creatorUsername);
 	}
+	
+	@Override
+	public boolean updatePlayerInGame(int gameId,String username,String role) throws SQLException {
+		String sqlRequest="UPDATE PlayerInGame SET role=? WHERE username=? AND gameId=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setString(1, role);
+		request.setString(2, username);
+		request.setInt(3,gameId);
+		request.executeUpdate();
+		return existsPlayerInGame2(gameId, username,role);
+	}
+	
+	
+	public boolean existsPlayerInGame2(int gameId, String username, String role) throws SQLException {
+		String sqlRequest="SELECT * FROM PlayerInGame WHERE gameId=? AND username=? and role=?";
+		PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+		request.setInt(1, gameId);
+		request.setString(2, username);
+		request.setString(3, role);
+		ResultSet resultSet = request.executeQuery();
+		return resultSet.first();
+	}
 
 }    

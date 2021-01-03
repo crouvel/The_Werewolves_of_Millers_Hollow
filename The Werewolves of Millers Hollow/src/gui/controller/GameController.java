@@ -13,6 +13,11 @@ import java.util.ResourceBundle;
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
 import businesslogic.domain.PlayerInGame;
+import businesslogic.domain.Role;
+import businesslogic.facade.GameFacade;
+import businesslogic.facade.GameManagementFacade;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 /*
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -28,7 +33,10 @@ import javafx.scene.control.ListView;
 //import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 //import javafx.util.Duration;
 import util.InfoBox;
@@ -227,6 +235,26 @@ public class GameController implements Initializable{
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 	}
 	
+	//Initialization
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Pane roleAttribution;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private Text roleName;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private ImageView roleImage;
+	
 	//Other functions
 	
 	/**
@@ -234,29 +262,81 @@ public class GameController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		/*
-		ProgressBar progress = new ProgressBar();
-        progress.setMinWidth(200);
-        progress.setMaxWidth(Double.MAX_VALUE);
-        IntegerProperty seconds = new SimpleIntegerProperty();
-        progress.progressProperty().bind(seconds.divide(60.0));
-        Timeline timeline = new Timeline(
-            new KeyFrame(Duration.ZERO, new KeyValue(seconds, 0)),
-            new KeyFrame(Duration.minutes(1), e-> {
-                // do anything you need here on completion...
-                System.out.println("Minute over");
-            }, new KeyValue(seconds, 60))   
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-		*/
+		GameFacade gameFacade = new GameFacade();
+		GameManagementFacade gameManagementFacade = new GameManagementFacade();
+		try {
+			PlayerInGame player = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
+			GameController.setCurrentPlayer(player);
+			roleName.setText(player.getRole().getName());
+			if(player.getRole().equals(Role.CUPID)) {
+				roleImage.setImage(new Image("@../../image/role/cupid.png"));
+			}
+			if(player.getRole().equals(Role.FORTUNE_TELLER)) {
+				roleImage.setImage(new Image("@../../image/role/fortuneTeller.png"));
+			}
+			if(player.getRole().equals(Role.HUNTER)) {
+				roleImage.setImage(new Image("@../../image/role/hunter.png"));
+			}
+			if(player.getRole().equals(Role.LITTLE_GIRL)) {
+				roleImage.setImage(new Image("@../../image/role/littleGirl.png"));
+			}
+			if(player.getRole().equals(Role.WEREWOLF)) {
+				roleImage.setImage(new Image("@../../image/role/wolf.png"));
+			}
+			if(player.getRole().equals(Role.WITCH)) {
+				roleImage.setImage(new Image("@../../image/role/witch.png"));
+			}
+			if(player.getRole().equals(Role.VILLAGER)) {
+				roleImage.setImage(new Image("@../../image/role/villager.png"));
+			}
+			Task<Boolean> gameTask = new Task<>() {
+				@Override
+				protected Boolean call() throws Exception {
+					Thread.sleep(10000);
+					Platform.runLater(() -> {	
+						roleAttribution.setVisible(false);		
+					});
+					
+					//Premiere night phase : CUPID (une unique fois)
+					
+					do {
+						PlayerInGame player2 = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
+						GameController.setCurrentPlayer(player2);
+						Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
+						GameController.setGame(game);
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					}while(!GameController.getGame().isFinish());
+					return true;
+				}
+			};
+			Thread gameThread = new Thread(gameTask);
+			gameThread.setDaemon(true);
+			gameThread.start();
+		} catch (IOException e) {
+			InfoBox.infoBoxE("Verify your connection.", "Bad connection", "Connection Problem");
+		}
 	}
 
 	/**
 	 * @return the currentPlayer
 	 */
 	public static PlayerInGame getCurrentPlayer() {
-		return currentPlayer;
+		return GameController.currentPlayer;
 	}
 
 	/**
@@ -270,7 +350,7 @@ public class GameController implements Initializable{
 	 * @return the game
 	 */
 	public static Game getGame() {
-		return game;
+		return GameController.game;
 	}
 
 	/**

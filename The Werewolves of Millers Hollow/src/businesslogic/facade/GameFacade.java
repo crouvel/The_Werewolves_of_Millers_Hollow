@@ -1,6 +1,11 @@
 package businesslogic.facade;
 
+import java.sql.SQLException;
 import java.util.*;
+
+import businesslogic.domain.PlayerInGame;
+import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.PlayerInGameDAO;
 
 /**
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
@@ -50,6 +55,17 @@ public class GameFacade {
     public ArrayList<String> getAllVotes(int game_id) {
         // TODO implement here
         return null;
+    }
+    
+    public PlayerInGame getPlayerInGame(int gameId,String username) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.getPlayerInGame(gameId, username);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}  
     }
 
 }

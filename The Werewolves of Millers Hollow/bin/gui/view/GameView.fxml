@@ -166,5 +166,15 @@
             </Button>
          </children>
       </Pane>
+      <Pane fx:id="roleAttribution" layoutX="115.0" layoutY="140.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 150px;">
+         <children>
+            <Text fx:id="roleName" fill="WHITE" layoutX="45.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="310.19140625">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="roleImage" fitHeight="200.0" fitWidth="200.0" layoutX="100.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
    </children>
 </Pane>

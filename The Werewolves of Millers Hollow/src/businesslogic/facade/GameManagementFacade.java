@@ -218,5 +218,15 @@ public class GameManagementFacade {
 			return false;
 		} 
 	}
+	
+	public boolean modifyPlayerInGame(int gameId, String username, String role) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
+			return gameManagementDAO.updatePlayerInGame(gameId, username,role);
+		}catch(SQLException e) {
+			return false;
+		} 
+	}
 
 }
