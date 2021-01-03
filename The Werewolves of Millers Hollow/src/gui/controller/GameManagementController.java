@@ -468,32 +468,7 @@ public class GameManagementController implements Initializable {
 				};				
 				Thread gameManagementThread = new Thread(gameManagementTask);
 				gameManagementThread.setDaemon(true);
-				gameManagementThread.start();	
-				
-				/*
-				if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
-					startGameButton.setDisable(false);
-				}else {
-					Task<Boolean> goGame = new Task<>() {
-						@Override
-						protected Boolean call() throws Exception {	
-							while(!GameManagementController.getCurrentGame().getCurrentPhase().getName().equals("NIGHT")) {
-								Game game = gameManagementFacade.getGameByCreator2(GameManagementController.getCurrentGame().getCreatorUsername());
-									try {
-										GameManagementController.setCurrentGame(game);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
-								Thread.sleep(1000);
-							}		
-							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));	
-							return true;
-						}
-					};
-				 */
-				/*Thread getItemsThread = new Thread(goGame);
-					getItemsThread.setDaemon(true);
-					getItemsThread.start();*/
+				gameManagementThread.start();					
 			}
 		}catch (NullPointerException | IOException e) {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");

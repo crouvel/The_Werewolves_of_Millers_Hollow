@@ -78,8 +78,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		else{
 			return null;
 		}
-
-
 	}
 
 	@Override
@@ -97,8 +95,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setInt(9, game_id);
 		request.executeUpdate();
 		return existsGamewithParams(game_id, numberOfWerewolves, hasWitch, hasFortuneTeller, hasLittleGirl, hasCupid, hasHunter);
-
-
 	}
 
 	@Override
@@ -176,7 +172,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setInt(1, game_id);
 		request.executeUpdate();
 		return !existsGame(game_id);
-
 	}
 
 	@Override
@@ -231,7 +226,6 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 		request.setString(1, creatorUsername);
 		request.executeUpdate();
 		return !existsGame2(creatorUsername);
-
 	}
 
 }    
