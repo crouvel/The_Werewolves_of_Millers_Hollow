@@ -7,6 +7,7 @@ import chat.com.lloseng.ocsf.server.ConnectionToGameClient;
 /**
  * 
  */
+@SuppressWarnings("deprecation")
 public class EchoServerGame implements Observer {
 
     /**

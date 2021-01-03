@@ -158,7 +158,14 @@ public class GameController implements Initializable{
 	void sendMessage(ActionEvent event)  throws IOException {
 
 	}
-
+	
+	/**
+	 * 
+	 */
+	public void displayMessage() {
+		
+	}
+	
 	//Vote Part
 
 	/**

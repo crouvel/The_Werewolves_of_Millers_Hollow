@@ -18,7 +18,6 @@ import businesslogic.domain.PlayerInGame;
 import businesslogic.facade.FriendManagementFacade;
 import businesslogic.facade.GameManagementFacade;
 import businesslogic.facade.SelectAndJoinAGameFacade;
-import javafx.event.ActionEvent;
 import util.InfoBox;
 
 import javafx.fxml.FXML;
@@ -31,6 +30,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.application.Platform;
 
 /**
  * 
@@ -395,11 +397,8 @@ public class GameManagementController implements Initializable {
 				invitedFriendsPane.setVisible(true);
 				friendsPane.setVisible(true);
 				generateIdButton.setDisable(true);
-				players = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
-				for(String i : players) {
-					listPlayers.getItems().add(i);
-				}
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
+				players = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
 				invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
 				for(String i : invited) {
 					if(!players.contains(i)) {
@@ -411,7 +410,45 @@ public class GameManagementController implements Initializable {
 					if(!players.contains(i) && !invited.contains(i)) {
 						inviteFriends.getItems().add(i);
 					}
-				}				
+				}
+				for(String i : players) {
+					listPlayers.getItems().add(i);
+				}
+				Task<ListView<String>> taskPlayerList = new Task<>() {
+
+					@Override
+					protected ListView<String> call() throws Exception {
+						while(listPlayers.getItems().size() != GameManagementController.getCurrentGame().getNumberOfPlayers()){
+							ArrayList<String> p = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
+							ArrayList<String> invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
+							ArrayList<String> invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
+							Platform.runLater(() -> {
+								listPlayers.getItems().clear();
+								for(String i : p) {
+									listPlayers.getItems().add(i);
+								}
+								invitedFriends.getItems().clear();
+								for(String i : invited) {
+									if(!p.contains(i)) {
+										invitedFriends.getItems().add(i);
+									}
+								}
+								inviteFriends.getItems().clear();
+								for(String i : invite) {
+									if(!p.contains(i) && !invited.contains(i)) {
+										inviteFriends.getItems().add(i);
+									}
+								}
+							});
+							Thread.sleep(1000);
+						}
+						return listPlayers;
+					}
+				};
+				
+				Thread getItemsThread = new Thread(taskPlayerList);
+				getItemsThread.setDaemon(true);
+				getItemsThread.start();
 			}
 		}catch (NullPointerException | IOException | SQLException e) {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");
