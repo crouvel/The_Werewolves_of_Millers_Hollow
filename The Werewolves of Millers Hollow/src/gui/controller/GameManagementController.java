@@ -192,7 +192,7 @@ public class GameManagementController implements Initializable {
 		int nbplayers = 0;
 		try {		
 			nbplayers = Integer.parseInt(numberOfPlayers.getText());
-			if(nbplayers < 8 || nbplayers > 47 ) {
+			if(nbplayers < 2 || nbplayers > 47 ) {
 				InfoBox.infoBoxW("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
 			}else {
 				boolean isDone = gameManagementFacade.createGame( nbplayers , status, PlayerMenuController.getCurrentPlayer().getUsername());
@@ -245,8 +245,7 @@ public class GameManagementController implements Initializable {
 				if(nbw > nbplayers/6 || special > nbplayers/4) {
 					InfoBox.infoBoxW("The amount of werewolves or/and special roles is too high", "Incorrect information", "Bad information");
 				}else {
-					boolean isDone = gameManagementFacade.modifyRole(GameManagementController.getCurrentGame().getGame_id(),
-							(int)numberOfWerewolves.getValue(),getBoolean(nbh),getBoolean(ft), getBoolean(lg),getBoolean(hc),getBoolean(hunter));
+					boolean isDone = gameManagementFacade.modifyRole(GameManagementController.getCurrentGame().getGame_id(),(int)numberOfWerewolves.getValue(),getBoolean(nbh),getBoolean(ft), getBoolean(lg),getBoolean(hc),getBoolean(hunter));
 					if(isDone) {		
 						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
 					}else {
@@ -375,9 +374,6 @@ public class GameManagementController implements Initializable {
 		statusGroup = new ToggleGroup();
 		privateGame.setToggleGroup(statusGroup);
 		publicGame.setToggleGroup(statusGroup);
-		ArrayList<String> invited;
-		ArrayList<String> invite;
-		ArrayList<String> players;	
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
 		try {
@@ -385,7 +381,6 @@ public class GameManagementController implements Initializable {
 				if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
 					rolePane.setDisable(false);
 					kickPlayerOutOfGameButton.setDisable(false);
-					startGameButton.setDisable(false);
 				}
 				numberOfPlayers.setText(GameManagementController.getCurrentGame().getNumberOfPlayers()+"");
 				numberOfPlayers.setDisable(true);
@@ -398,24 +393,8 @@ public class GameManagementController implements Initializable {
 				friendsPane.setVisible(true);
 				generateIdButton.setDisable(true);
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
-				players = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
-				invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
-				for(String i : invited) {
-					if(!players.contains(i)) {
-						invitedFriends.getItems().add(i);
-					}
-				}
-				invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
-				for(String i : invite) {
-					if(!players.contains(i) && !invited.contains(i)) {
-						inviteFriends.getItems().add(i);
-					}
-				}
-				for(String i : players) {
-					listPlayers.getItems().add(i);
-				}
+				//refresh lists
 				Task<ListView<String>> taskPlayerList = new Task<>() {
-
 					@Override
 					protected ListView<String> call() throws Exception {
 						while(listPlayers.getItems().size() != GameManagementController.getCurrentGame().getNumberOfPlayers()){
@@ -440,17 +419,37 @@ public class GameManagementController implements Initializable {
 									}
 								}
 							});
-							Thread.sleep(1000);
+							Thread.sleep(5000);
+						}
+						if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
+							startGameButton.setDisable(false);
 						}
 						return listPlayers;
 					}
-				};
-				
-				Thread getItemsThread = new Thread(taskPlayerList);
-				getItemsThread.setDaemon(true);
-				getItemsThread.start();
+				};				
+				Thread listThread = new Thread(taskPlayerList);
+				listThread.setDaemon(true);
+				listThread.start();
+				//go to game
+				if(!GameManagementController.getCurrentPlayerInGame().isCreator()) {
+					Task<ListView<String>> goGame = new Task<>() {
+						@Override
+						protected ListView<String> call() throws Exception {
+							do {
+								Game game = gameManagementFacade.getGameByCreator(GameManagementController.getCurrentGame().getCreatorUsername());
+								GameManagementController.setCurrentGame(game);
+								Thread.sleep(1000);
+							}while(!GameManagementController.getCurrentGame().getCurrentPhase().getName().equals("NIGHT"));
+							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+							return listPlayers;
+						}
+					};
+					Thread getItemsThread = new Thread(goGame);
+					getItemsThread.setDaemon(true);
+					getItemsThread.start();
+				}				
 			}
-		}catch (NullPointerException | IOException | SQLException e) {
+		}catch (NullPointerException | IOException e) {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");
 		}
 	}
