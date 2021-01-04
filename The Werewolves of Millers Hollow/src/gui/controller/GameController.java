@@ -30,6 +30,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 //import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
@@ -37,6 +38,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -66,6 +68,12 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	private static Game game;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private ImageView background;
 	
 	//Report Part
 	
@@ -178,7 +186,7 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	@FXML
-	private ListView<String> playerVoteList;
+	private ListView<Label> playerVoteList;
 	
 	/**
 	 * 
@@ -225,8 +233,28 @@ public class GameController implements Initializable{
 		if(mySpeech.isBlank()) {
 			InfoBox.infoBoxW("Please fill in the speech field before sending your candidacy.","The speech is missing.","Missing information");
 		}else {
-			//A FINIR
-			System.out.println(mySpeech);
+			GameFacade gameFacade = new GameFacade();
+			boolean isDone = gameFacade.proposeAsASheriff(GameController.getGame().getGame_id(),GameController.getCurrentPlayer().getUsername());
+			if(isDone) {
+				//modifié avec envoie par chat !
+				Text message = new Text();
+				message.setText(" Game Message - "+ GameController.getCurrentPlayer().getUsername() +" would like to be Sheriff.\n\n");
+				message.setFont(new Font("Arial", 15));
+				message.setFill(Color.WHITE);
+				chat.getChildren().add(message);
+				ImageView image = new ImageView(new Image("@../../image/candidat.png"));
+				image.setFitWidth(40);
+				image.setFitHeight(80);
+				chat.getChildren().add(image);
+				Text speechCandidat = new Text();
+				speechCandidat.setText(GameController.getCurrentPlayer().getUsername() +" : "+ mySpeech + "\n\n");
+				speechCandidat.setFont(new Font("Arial", 15));
+				speechCandidat.setFill(Color.WHITE);
+				chat.getChildren().add(speechCandidat);
+				speechPane.setVisible(false);
+			}else {
+				InfoBox.infoBoxW("Please retry...", "Connection problem", "Connection Problem");
+			}
 		}
 	}
 	
@@ -262,7 +290,8 @@ public class GameController implements Initializable{
 	@FXML
 	private ImageView roleImage;
 	
-	//Cupid
+	//Cupid Part
+	
 	/**
 	 * 
 	 */
@@ -302,12 +331,10 @@ public class GameController implements Initializable{
 				if(!player2) {
 					InfoBox.infoBoxE("(Joke) The game will self-destruct. Thank your connection.","The game was corrupted","Corrupt game");
 				}else {
-					//Affichage dans le chat
-					System.out.println("In Love : " + playerOne + " x " + playerTwo );
+					inLovePane.setVisible(false);
 				}
 			}
-		}
-		
+		}		
 	}
 	
 	//Other functions
@@ -317,12 +344,22 @@ public class GameController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		try {
+			TheWerewolvesOfMillersHollow.getStage().setOnCloseRequest(evt -> {
+				
+				Platform.exit();
+			});
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		GameFacade gameFacade = new GameFacade();
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		try {
+			Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
+			GameController.setGame(game);
 			ArrayList<String> role = gameFacade.getRoleList(GameController.getGame().getGame_id());
 			this.setRoleList(role);
-			PlayerInGame player = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
+			PlayerInGame player = gameFacade.getPlayerInGame(GameController.getGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
 			GameController.setCurrentPlayer(player);
 			roleName.setText(player.getRole().getName());
 			if(player.getRole().equals(Role.CUPID)) {
@@ -352,45 +389,146 @@ public class GameController implements Initializable{
 					Thread.sleep(10000);
 					Platform.runLater(() -> {	
 						roleAttribution.setVisible(false);							
+						//Game Start
+						Text start = new Text();
+						start.setText("\n Game Message - The game start ! \n \nGame Message - Night falls on the city..\n \n");
+						start.setFont(new Font("Arial", 15));
+						start.setFill(Color.WHITE);
+						chat.getChildren().add(start);						
 					});
-					//Game Start
-					Text start = new Text();
-					start.setText("Game Message - The game start ! \n \nGame Message - Night falls on the city...\n \n");
-					start.setFont(new Font("Arial", 15));
-					chat.getChildren().add(start);
 					Thread.sleep(1000);
 					
 					if(roleList.contains(Role.CUPID.getName())) {
-						//Unique action of cupid
-						Text cupid = new Text();
-						cupid.setText("Game Message - It is cupid's turn to perform his special action ! \n \n ");
-						cupid.setFont(new Font("Arial", 15));
-						chat.getChildren().add(cupid);
+						//Unique action of CUPID
+						Platform.runLater(() -> {		
+							Text cupid = new Text();
+							cupid.setText(" Game Message - It is cupid's turn to perform his special action! \n \n");
+							cupid.setFont(new Font("Arial", 15));
+							cupid.setFill(Color.WHITE);
+							chat.getChildren().add(cupid);
+						});
+					
 						if(GameController.getCurrentPlayer().getRole().equals(Role.CUPID)) {
+							GameFacade gameFacade = new GameFacade();
+							ArrayList<String> playerList = gameFacade.getPlayerList(GameController.getGame().getGame_id());
+							for(String i : playerList) {
+								Platform.runLater(() -> {
+									firstPlayerInLove.getItems().add(i);
+									secondPlayerInLove.getItems().add(i);
+								});
+							}
 							Platform.runLater(() -> {	
-								inLovePane.setVisible(true);	
+								inLovePane.setVisible(true);
 								Text cupid2 = new Text();
-								cupid2.setText("Game Message - Choose the lovers ! \n \n ");
+								cupid2.setText(" Game Message - Choose the lovers! \n \n");
 								cupid2.setFont(new Font("Arial", 15));
+								cupid2.setFill(Color.WHITE);
 								chat.getChildren().add(cupid2);
 							});
+							
 						}
-						Thread.sleep(60000);
+						Thread.sleep(30000);
 						if(GameController.getCurrentPlayer().getRole().equals(Role.CUPID)) {
 							Platform.runLater(() -> {	
 								inLovePane.setVisible(false);							
 							});
 						}
-						Text cupid3 = new Text();
-						cupid3.setText("Game Message - Cupid has chosen the lovers ! \n \n ");
-						cupid3.setFont(new Font("Arial", 15));
-						chat.getChildren().add(cupid3);
+												
+						//Display in Love with
+						ArrayList<String> inLovePlayers = gameFacade.getPlayerInLove(GameController.getGame().getGame_id());
+						if(inLovePlayers.isEmpty()) {
+							Platform.runLater(() -> {	
+								Text cupid3 = new Text();
+								cupid3.setText(" Game Message - Cupid has not chosen lovers! \n \n");
+								cupid3.setFont(new Font("Arial", 15));
+								cupid3.setFill(Color.WHITE);
+								chat.getChildren().add(cupid3);
+							});
+						}else {
+							Platform.runLater(() -> {	
+								Text cupid3 = new Text();
+								cupid3.setText(" Game Message - Cupid has chosen the lovers! \n \n");
+								cupid3.setFont(new Font("Arial", 15));
+								cupid3.setFill(Color.WHITE);
+								chat.getChildren().add(cupid3);
+							});
+							if(inLovePlayers.get(0).equals(GameController.getCurrentPlayer().getUsername())) {
+								Platform.runLater(() -> {
+									Text cupid4 = new Text();
+									cupid4.setText(" Game Message - You are in love with "+ inLovePlayers.get(1)+ "! \n \n");
+									cupid4.setFont(new Font("Arial", 15));
+									cupid4.setFill(Color.WHITE);
+									chat.getChildren().add(cupid4);
+								});
+							}
+							if(inLovePlayers.get(1).equals(GameController.getCurrentPlayer().getUsername())) {
+								Platform.runLater(() -> {
+									Text cupid4 = new Text();
+									cupid4.setText(" Game Message - You are in love with "+ inLovePlayers.get(0)+ "! \n \n");
+									cupid4.setFont(new Font("Arial", 15));
+									cupid4.setFill(Color.WHITE);
+									chat.getChildren().add(cupid4);
+								});
+							}
+						}
+						Thread.sleep(2000);
 					}
 					
+					//1st day with candidate and vote for Sheriff
+					Platform.runLater(() -> {
+						background.setImage(new Image("@../../image/dayBackground.png"));
+						Text sheriffDay = new Text();
+						sheriffDay.setText(" Game Message - The sun rises over the city.. \n \nThis morning, we can see werewolf scratches on the doors ...\n\nYou can now apply for the post of Sheriff!\n\n");
+						sheriffDay.setFont(new Font("Arial", 15));
+						sheriffDay.setFill(Color.WHITE);
+						chat.getChildren().add(sheriffDay);
+						speechPane.setVisible(true);
+					});
+					Thread.sleep(10000);
+					Platform.runLater(() -> {
+						speechPane.setVisible(false);
+						Text sheriffDay2 = new Text();
+						sheriffDay2.setText(" Game Message - Voting will start in a minute..\n\n");
+						sheriffDay2.setFont(new Font("Arial", 15));
+						sheriffDay2.setFill(Color.WHITE);
+						chat.getChildren().add(sheriffDay2);
+					});
+					Thread.sleep(10000);
+					GameFacade gameFacade = new GameFacade();
+					ArrayList<PlayerInGame> playerList = gameFacade.getPlayerInGameList(GameController.getGame().getGame_id());
+					for(PlayerInGame i : playerList) {
+						if(i.isProposeAsASheriff()) {
+							Platform.runLater(() -> {
+								ImageView candidate = new ImageView(new Image("@../../image/candidat.png"));
+								candidate.setFitHeight(20);
+								candidate.setFitWidth(10);
+								Label nextSheriff = new Label();
+								nextSheriff.setText(i.getUsername());
+								nextSheriff.setGraphic(candidate);
+								playerVoteList.getItems().add(nextSheriff);
+							});
+						}else {
+							Platform.runLater(() -> {
+								Label nextSheriff = new Label();
+								nextSheriff.setText(i.getUsername());
+								playerVoteList.getItems().add(nextSheriff);
+							});
+						}
+					}
+					Platform.runLater(() -> {
+						votePane.setVisible(true);
+						Text sheriffVote = new Text();
+						sheriffVote.setText(" Game Message - Now you can vote for Sheriff!\n\n");
+						sheriffVote.setFont(new Font("Arial", 15));
+						sheriffVote.setFill(Color.WHITE);
+						chat.getChildren().add(sheriffVote);
+					});
+					Thread.sleep(60000);
 					
 					do {
-						PlayerInGame player2 = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
-						GameController.setCurrentPlayer(player2);
+						PlayerInGame player = gameFacade.getPlayerInGame(GameController.getGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
+						player = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
+						GameController.setCurrentPlayer(player);
 						Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
 						GameController.setGame(game);
 						

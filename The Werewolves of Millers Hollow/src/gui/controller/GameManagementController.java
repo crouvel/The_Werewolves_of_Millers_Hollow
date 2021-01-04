@@ -194,7 +194,7 @@ public class GameManagementController implements Initializable {
 		int nbplayers = 0;
 		try {		
 			nbplayers = Integer.parseInt(numberOfPlayers.getText());
-			if(nbplayers < 8 || nbplayers > 47 ) {
+			if(nbplayers < 2 || nbplayers > 47 ) {
 				InfoBox.infoBoxW("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
 			}else {
 				boolean isDone = gameManagementFacade.createGame( nbplayers , status, PlayerMenuController.getCurrentPlayer().getUsername());
@@ -249,7 +249,7 @@ public class GameManagementController implements Initializable {
 						InfoBox.infoBoxW("The amount of werewolves or/and special roles is too high", "Incorrect information", "Bad information");
 					}else {
 						ArrayList<String> roles = new ArrayList<String>();
-						for(int i = 0; i < nbw; i++) {
+						for(int i = 0; i < 1; i++) {
 							roles.add(Role.WEREWOLF.getName());
 						}
 						if(nbh == 1) {

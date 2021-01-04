@@ -1,5 +1,11 @@
+/**
+ * package businesslogic.facade
+ */
 package businesslogic.facade;
 
+/**
+ * Imported classes and libraries.
+ */
 import java.sql.SQLException;
 import java.util.*;
 
@@ -8,7 +14,7 @@ import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.PlayerInGameDAO;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire
  */
 public class GameFacade {
 
@@ -29,15 +35,23 @@ public class GameFacade {
     }
 
     /**
+     * 
      * @param username 
      * @return
      */
-    public boolean proposeAsASheriff(String username) {
-        // TODO implement here
-        return false;
+    public boolean proposeAsASheriff(int gameId, String username) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.proposeAsASheriff(gameId, username);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}  
     }
 
     /**
+     * 
      * @param username1 
      * @param username2 
      * @param game_id 
@@ -49,6 +63,7 @@ public class GameFacade {
     }
 
     /**
+     * 
      * @param game_id 
      * @return
      */
@@ -92,6 +107,7 @@ public class GameFacade {
     }
     
     /**
+     * 
      * @param game_id 
      * @return
      */
@@ -100,6 +116,54 @@ public class GameFacade {
 		try {
 			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
 			return playerInGameDAO.getRoleList(gameId);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}
+    }
+    
+    /**
+     * 
+     * @param game_id 
+     * @return
+     */
+    public ArrayList<String> getPlayerList(int gameId) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.getPlayerList(gameId);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}
+    }
+    
+    /**
+     * 
+     * @param gameId
+     * @return
+     */
+    public ArrayList<String> getPlayerInLove(int gameId) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.getPlayerInLove(gameId);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}
+    }
+    
+    /**
+     * 
+     * @param game_id 
+     * @return
+     */
+    public ArrayList<PlayerInGame> getPlayerInGameList(int gameId) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.getPlayerInGameList(gameId);
 		}catch(SQLException e) {
 			e.getStackTrace();
 			return null;

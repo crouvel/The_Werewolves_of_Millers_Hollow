@@ -27,7 +27,7 @@ public abstract class PlayerInGameDAO {
      * @return
      * @throws SQLException 
      */
-    public abstract boolean proposeAsASheriff(String username) throws SQLException;
+    public abstract boolean proposeAsASheriff(int gameId,String username) throws SQLException;
 
     /**
      * 
@@ -62,5 +62,38 @@ public abstract class PlayerInGameDAO {
 	 * @throws SQLException
 	 */
 	public abstract ArrayList<String> getRoleList(int gameId) throws SQLException;
+
+	/**
+	 * 
+	 * @param gameId
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract ArrayList<String> getPlayerList(int gameId) throws SQLException;
+
+	/**
+	 * 
+	 * @param gameId
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract ArrayList<String> getPlayerInLove(int gameId) throws SQLException;
+
+	/**
+	 * 
+	 * @param gameId
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract ArrayList<PlayerInGame> getPlayerInGameList(int gameId) throws SQLException;
+
+	/**
+	 * 
+	 * @param gameId
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsCandidate(int gameId, String username) throws SQLException;
 
 }
