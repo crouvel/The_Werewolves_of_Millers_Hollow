@@ -61,7 +61,7 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
 
     @Override
     public boolean makePlayerJoinAGameByGameId(int game_id) throws SQLException, IOException {
-    	String sqlRequest = "INSERT INTO PlayerInGame(gameId,username,creator,proposeAsASheriff,isAlive,role,isSheriff) VALUES (?,?,?,?,?,?,?)";
+    	String sqlRequest = "INSERT INTO PlayerInGame(gameId,username,creator,proposeAsASheriff,isAlive,role,isSheriff,inLove) VALUES (?,?,?,?,?,?,?,?)";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
     	request.setString(2, PlayerMenuController.getCurrentPlayer().getUsername());
@@ -70,13 +70,14 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     	request.setBoolean(5, true);
     	request.setString(6,Role.VILLAGER.getName());
     	request.setBoolean(7, false);
+    	request.setBoolean(8, false);
     	request.executeUpdate();
     	return existsPlayerInGame(game_id,PlayerMenuController.getCurrentPlayer().getUsername());
     }
     
     @Override
     public boolean makePlayerJoinAGameByGameIdCreator(int game_id) throws SQLException, IOException {
-    	String sqlRequest = "INSERT INTO PlayerInGame(gameId,username,creator,proposeAsASheriff,isAlive,role,isSheriff) VALUES (?,?,?,?,?,?,?)";
+    	String sqlRequest = "INSERT INTO PlayerInGame(gameId,username,creator,proposeAsASheriff,isAlive,role,isSheriff,inLove) VALUES (?,?,?,?,?,?,?,?)";
     	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
     	request.setInt(1, game_id);
     	request.setString(2, PlayerMenuController.getCurrentPlayer().getUsername());
@@ -85,6 +86,7 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
     	request.setBoolean(5, true);
     	request.setString(6,Role.VILLAGER.getName());
     	request.setBoolean(7, false);
+    	request.setBoolean(8, false);
     	request.executeUpdate();
     	return existsPlayerInGame(game_id,PlayerMenuController.getCurrentPlayer().getUsername());
     }
@@ -107,7 +109,7 @@ public class SelectAndJoinAGameDAOMySQL extends SelectAndJoinAGameDAO {
 		request.setString(2, username);
     	ResultSet resultSet = request.executeQuery();
     	if(resultSet.first()) {
-    		return new PlayerInGame(resultSet.getInt("gameId"),resultSet.getString("username"),resultSet.getBoolean("creator"),resultSet.getBoolean("proposeAsASheriff"),resultSet.getBoolean("isAlive"),Role.get(resultSet.getString("Role")),resultSet.getBoolean("isSheriff"));
+    		return new PlayerInGame(resultSet.getInt("gameId"),resultSet.getString("username"),resultSet.getBoolean("creator"),resultSet.getBoolean("proposeAsASheriff"),resultSet.getBoolean("isAlive"),Role.get(resultSet.getString("Role")),resultSet.getBoolean("isSheriff"),resultSet.getBoolean("inLove"));
     	}else{
     		return null;
     	}

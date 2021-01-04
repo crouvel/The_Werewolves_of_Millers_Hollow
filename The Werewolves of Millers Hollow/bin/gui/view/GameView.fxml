@@ -166,7 +166,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="roleAttribution" layoutX="115.0" layoutY="140.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 150px;">
+      <Pane fx:id="roleAttribution" layoutX="115.0" layoutY="140.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 150px;" visible="false">
          <children>
             <Text fx:id="roleName" fill="WHITE" layoutX="45.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="310.19140625">
                <font>
@@ -174,6 +174,36 @@
                </font>
             </Text>
             <ImageView fx:id="roleImage" fitHeight="200.0" fitWidth="200.0" layoutX="100.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Pane fx:id="inLovePane" layoutX="115.0" layoutY="140.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: rgb(0,0,0,0.6); -fx-background-radius: 150px;">
+         <children>
+            <ComboBox fx:id="firstPlayerInLove" layoutX="79.0" layoutY="145.0" prefHeight="31.0" prefWidth="243.0" />
+            <ComboBox fx:id="secondPlayerInLove" layoutX="79.0" layoutY="239.0" prefHeight="31.0" prefWidth="243.0" />
+            <Text fill="WHITE" layoutX="66.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the second player in love :">
+               <font>
+                  <Font name="Verdana Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="66.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the first player in love :">
+               <font>
+                  <Font name="Verdana Bold" size="14.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="100.0" fitWidth="107.0" layoutX="145.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/cupid.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="162.0" layoutY="291.0" mnemonicParsing="false" onAction="#becomeLovers" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="57.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/lovePotion.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
    </children>

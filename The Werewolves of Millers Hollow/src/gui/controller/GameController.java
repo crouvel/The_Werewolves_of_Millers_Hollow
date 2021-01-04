@@ -8,6 +8,7 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
@@ -36,6 +37,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 //import javafx.util.Duration;
@@ -54,6 +56,11 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	private static PlayerInGame currentPlayer;
+	
+	/**
+	 * 
+	 */
+	private ArrayList<String> roleList;
 	
 	/**
 	 * 
@@ -255,6 +262,54 @@ public class GameController implements Initializable{
 	@FXML
 	private ImageView roleImage;
 	
+	//Cupid
+	/**
+	 * 
+	 */
+	@FXML
+	private Pane inLovePane;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private ComboBox<String> firstPlayerInLove;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private ComboBox<String> secondPlayerInLove;
+	
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
+	@FXML
+	void becomeLovers(ActionEvent event) throws IOException {
+		String playerOne = firstPlayerInLove.getValue();
+		String playerTwo = secondPlayerInLove.getValue();
+		if(playerOne.equals(playerTwo)) {
+			InfoBox.infoBoxI("Please choose two different players.", "The two players are the same.", "Identical players");
+		}else {
+			GameFacade gameFacade = new GameFacade();
+			boolean player1 = gameFacade.becomeLover(GameController.getGame().getGame_id(), playerOne);
+			if(!player1) {
+				InfoBox.infoBoxW("Retry to send your love potion","Love potion corrupted","Corrupt Love Potion");
+			}else {
+				boolean player2 = gameFacade.becomeLover(GameController.getGame().getGame_id(), playerTwo);
+				if(!player2) {
+					InfoBox.infoBoxE("(Joke) The game will self-destruct. Thank your connection.","The game was corrupted","Corrupt game");
+				}else {
+					//Affichage dans le chat
+					System.out.println("In Love : " + playerOne + " x " + playerTwo );
+				}
+			}
+		}
+		
+	}
+	
 	//Other functions
 	
 	/**
@@ -265,6 +320,8 @@ public class GameController implements Initializable{
 		GameFacade gameFacade = new GameFacade();
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		try {
+			ArrayList<String> role = gameFacade.getRoleList(GameController.getGame().getGame_id());
+			this.setRoleList(role);
 			PlayerInGame player = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
 			GameController.setCurrentPlayer(player);
 			roleName.setText(player.getRole().getName());
@@ -294,24 +351,48 @@ public class GameController implements Initializable{
 				protected Boolean call() throws Exception {
 					Thread.sleep(10000);
 					Platform.runLater(() -> {	
-						roleAttribution.setVisible(false);		
+						roleAttribution.setVisible(false);							
 					});
+					//Game Start
+					Text start = new Text();
+					start.setText("Game Message - The game start ! \n \nGame Message - Night falls on the city...\n \n");
+					start.setFont(new Font("Arial", 15));
+					chat.getChildren().add(start);
+					Thread.sleep(1000);
 					
-					//Premiere night phase : CUPID (une unique fois)
+					if(roleList.contains(Role.CUPID.getName())) {
+						//Unique action of cupid
+						Text cupid = new Text();
+						cupid.setText("Game Message - It is cupid's turn to perform his special action ! \n \n ");
+						cupid.setFont(new Font("Arial", 15));
+						chat.getChildren().add(cupid);
+						if(GameController.getCurrentPlayer().getRole().equals(Role.CUPID)) {
+							Platform.runLater(() -> {	
+								inLovePane.setVisible(true);	
+								Text cupid2 = new Text();
+								cupid2.setText("Game Message - Choose the lovers ! \n \n ");
+								cupid2.setFont(new Font("Arial", 15));
+								chat.getChildren().add(cupid2);
+							});
+						}
+						Thread.sleep(60000);
+						if(GameController.getCurrentPlayer().getRole().equals(Role.CUPID)) {
+							Platform.runLater(() -> {	
+								inLovePane.setVisible(false);							
+							});
+						}
+						Text cupid3 = new Text();
+						cupid3.setText("Game Message - Cupid has chosen the lovers ! \n \n ");
+						cupid3.setFont(new Font("Arial", 15));
+						chat.getChildren().add(cupid3);
+					}
+					
 					
 					do {
 						PlayerInGame player2 = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
 						GameController.setCurrentPlayer(player2);
 						Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
 						GameController.setGame(game);
-						
-						
-						
-						
-						
-						
-						
-						
 						
 						
 						
@@ -358,6 +439,20 @@ public class GameController implements Initializable{
 	 */
 	public static void setGame(Game game) {
 		GameController.game = game;
+	}
+
+	/**
+	 * @return the roleList
+	 */
+	public ArrayList<String> getRoleList() {
+		return roleList;
+	}
+
+	/**
+	 * @param roleList the roleList to set
+	 */
+	public void setRoleList(ArrayList<String> roleList) {
+		this.roleList = roleList;
 	}
 
 }

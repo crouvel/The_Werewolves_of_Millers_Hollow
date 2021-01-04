@@ -57,6 +57,12 @@ public class GameFacade {
         return null;
     }
     
+    /**
+     * 
+     * @param gameId
+     * @param username
+     * @return
+     */
     public PlayerInGame getPlayerInGame(int gameId,String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
 		try {
@@ -68,4 +74,35 @@ public class GameFacade {
 		}  
     }
 
+    /**
+     * 
+     * @param gameId
+     * @param username
+     * @return
+     */
+    public boolean becomeLover(int gameId, String username) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.becomeLover(gameId, username);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}  
+    }
+    
+    /**
+     * @param game_id 
+     * @return
+     */
+    public ArrayList<String> getRoleList(int gameId) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.getRoleList(gameId);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}
+    }
 }

@@ -8,7 +8,7 @@ public class PlayerInGame {
     /**
      * Default constructor
      */
-    public PlayerInGame(int gameId, String username, boolean creator, boolean isAlive, boolean proposeAsASheriff, Role role, boolean isSheriff) {
+    public PlayerInGame(int gameId, String username, boolean creator, boolean isAlive, boolean proposeAsASheriff, Role role, boolean isSheriff, boolean inLove) {
     	this.gameId = gameId;
     	this.username = username;
     	this.creator = creator;
@@ -16,6 +16,7 @@ public class PlayerInGame {
     	this.proposeAsASheriff = proposeAsASheriff;
     	this.role = role;
     	this.isSheriff = isSheriff;
+    	this.inLove = inLove;
     }
 
     /**
@@ -109,6 +110,20 @@ public class PlayerInGame {
 		this.gameId = gameId;
 	}
 
+	/**
+	 * @return the inLove
+	 */
+	public boolean isInLove() {
+		return inLove;
+	}
+
+	/**
+	 * @param inLove the inLove to set
+	 */
+	public void setInLove(boolean inLove) {
+		this.inLove = inLove;
+	}
+
 	private int gameId;
 
 	/**
@@ -140,6 +155,11 @@ public class PlayerInGame {
      * 
      */
     private boolean isSheriff;
+    
+    /**
+     * 
+     */
+    private boolean inLove;
 
 
 

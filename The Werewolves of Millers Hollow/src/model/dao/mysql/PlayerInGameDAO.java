@@ -7,6 +7,7 @@ package model.dao.mysql;
  * Imported classes and libraries.
  */
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslogic.domain.PlayerInGame;
 
@@ -36,5 +37,30 @@ public abstract class PlayerInGameDAO {
      * @throws SQLException
      */
 	public abstract PlayerInGame getPlayerInGame(int gameId, String username) throws SQLException;
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean becomeLover(int gameId,String username) throws SQLException;
+
+	/**
+	 * 
+	 * @param gameId
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean existsLover(int gameId, String username) throws SQLException;
+
+	/**
+	 * 
+	 * @param gameId
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract ArrayList<String> getRoleList(int gameId) throws SQLException;
 
 }
