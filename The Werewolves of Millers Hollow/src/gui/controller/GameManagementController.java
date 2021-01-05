@@ -192,7 +192,7 @@ public class GameManagementController implements Initializable {
 		int nbplayers = 0;
 		try {		
 			nbplayers = Integer.parseInt(numberOfPlayers.getText());
-			if(nbplayers < 8 || nbplayers > 47 ) {
+			if(nbplayers < 2 || nbplayers > 47 ) {
 				InfoBox.infoBoxW("The number of players must be between 8 and 47.", "Incorrect information","Bad Typing");
 			}else {
 				boolean isDone = gameManagementFacade.createGame( nbplayers , status, PlayerMenuController.getCurrentPlayer().getUsername());
@@ -394,6 +394,7 @@ public class GameManagementController implements Initializable {
 				if(!GameManagementController.getCurrentGame().isStatus()) {
 					statusGroup.selectToggle(privateGame);
 				}
+				
 				invitedFriendsPane.setVisible(true);
 				friendsPane.setVisible(true);
 				generateIdButton.setDisable(true);
