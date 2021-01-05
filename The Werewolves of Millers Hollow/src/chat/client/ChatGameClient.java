@@ -2,17 +2,38 @@ package chat.client;
 
 import java.util.*;
 import businesslogic.domain.PlayerInGame;
+import java.util.Observable;
+import java.util.Observer;
+import gui.controller.GameController;
+
+import com.lloseng.ocsf.client.ObservableClient;
+import com.lloseng.ocsf.client.ObservableSWRClient;
 
 /**
  * 
  */
 @SuppressWarnings("deprecation")
 public class ChatGameClient implements Observer {
+	
+	String idC;
+	ObservableSWRClient swrC;
+	GameController clientUI;
 
     /**
      * Default constructor
      */
-    public ChatGameClient() {
+    public ChatGameClient(String host, int port, String id) throws IOException{
+    	this.swrC = new ObservableSWRClient(host,port);
+    	this.swrC.addObserver(this);
+    	this.clientUI = new GameController();
+    	
+    	
+    	this.idC = id;
+    	
+    	try {
+			this.swrC.openConnection();
+		} catch (Exception e) {
+		}
     }
 
 
@@ -27,7 +48,17 @@ public class ChatGameClient implements Observer {
      * @param a1
      */
     public void update(Observable a0, Object a1) {
-        // TODO implement here
+    	String msg = (String) a1;
+
+		if (msg.startsWith(ObservableSWRClient.WAITING_FOR_REPLY)) {
+
+		} else if (msg.startsWith(ObservableSWRClient.CONNECTION_CLOSED)) {
+			this.connectionClosed();
+		} else if (msg.startsWith(ObservableSWRClient.CONNECTION_ESTABLISHED)) {
+			this.connectionEstablished();
+		} else {
+			this.handleMessageFromServer(arg1);
+		}
     }
 
     /**
@@ -35,36 +66,45 @@ public class ChatGameClient implements Observer {
      * @return
      */
     public void handleMessageFromServer(Object msg) {
-        // TODO implement here
+    	clientUI.display(msg.toString());
     }
 
     /**
      * @param msg 
      * @return
      */
-    public void handleMessageFromClienUI(String msg) {
-        // TODO implement here
+    public void handleMessageFromClientUI(String msg) {
+    	try {
+			this.swrC.sendToServer(message);
+		} catch (IOException e) {
+			clientUI.display("Could not send message to server.  Terminating client.");
+			quit();
+		}
     }
 
     /**
      * @return
      */
     public void quit() {
-        // TODO implement here
+    	try {
+			this.swrC.closeConnection();
+		} catch (IOException e) {
+		}
+		System.exit(0);
     }
 
     /**
      * @return
      */
     protected void connectionClosed() {
-        // TODO implement here
+    	this.clientUI.display("This connection is closed");
     }
 
     /**
      * @return
      */
     protected void connectionEstablished() {
-        // TODO implement here
+    	this.clientUI.display("The connection has been established");
     }
 
     /**
@@ -72,7 +112,7 @@ public class ChatGameClient implements Observer {
      * @return
      */
     public void connectionException(Exception exception) {
-        // TODO implement here
+    	this.clientUI.display("An exception has occured during connection: " + exception.getMessage());
     }
 
 	/**

@@ -1,129 +1,228 @@
 package chat.com.lloseng.ocsf.client;
 
-import java.net.InetAddress;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 /**
  * 
  */
 public abstract class AbstractClient {
 
-    /**
-     * Default constructor
-     */
-    public AbstractClient() {
-    }
+	private Socket clientS;
 
-    /**
-     * 
-     */
-    private String host;
+	private ObjectOutputStream out;
 
-    /**
-     * 
-     */
-    private int port;
+	private ObjectInputStream in;
+
+	private Thread clientT;
+
+	private boolean stop= false;
+
+	/**
+	 * Default constructor
+	 */
+	public AbstractClient(String host, int port)
+	{
+		this.host = host;
+		this.port = port;
+	}
+
+	/**
+	 * 
+	 */
+	private String host;
+
+	/**
+	 * 
+	 */
+	private int port;
 
 
-    /**
-     * 
-     */
-    public final void run() {
-        // TODO implement here
-    }
+	/**
+	 * 
+	 */
+	public final void run() {
+		connectionEstablished();
 
-    /**
-     * @return
-     */
-    public final void openConnection() {
-        // TODO implement here
-    }
+	    // message from  server
+	    Object msg;
 
-    /**
-     * @param message 
-     * @return
-     */
-    public void sendToServer(Object message) {
-        // TODO implement here
-    }
 
-    /**
-     * @return
-     */
-    public final boolean isConnected() {
-        // TODO implement here
-    	return false;
-    }
+	    try
+	    {
+	      while(!stop)
+	      {
+	   
+	        try { 
+	        
+	          msg = in.readObject();
 
-    /**
-     * @param int port 
-     * @return
-     */
-    public final void setPort(int port) {
-    	this.port = port;
-    }
+	          if (!stop) {  // Added in version 2.2
+	            handleMessageFromServer(msg);
+	          }
+	          
+	        } catch(ClassNotFoundException e) { 
+	        
+	          connectionException(e);
+	          
+	        } catch (RuntimeException e) { 
+	        
+	          connectionException(e);
+	        }
+	      } 
+	    }
+	    catch (Exception exception)
+	    {
+	      if(!stop)
+	      {
+	        try
+	        {
+	          closeAll();
+	        }
+	        catch (Exception e) { }
 
-    /**
-     * @return
-     */
-    public final int getPort() {
-        return this.port;
-    }
+	        clientT= null; 
+	        connectionException(exception);      
+	      }
+	    } finally {
+	    
+	        clientT = null; 
+	        connectionClosed();   
+	    }
+	}
 
-    /**
-     * @return
-     */
-    public final String getHost() {
-        return this.host;
-    }
+	/**
+	 * @return
+	 */
+	public final void openConnection() {
+		// Do not do anything if the connection is already open
+		if(isConnected())
+			return;
 
-    /**
-     * @param host 
-     * @return
-     */
-    public final void setHost(String host) {
-        this.host = host;
-    }
+		//Create the sockets and the data streams
+		try
+		{
+			clientS= new Socket(host, port);
+			out = new ObjectOutputStream(clientS.getOutputStream());
+			in = new ObjectInputStream(clientS.getInputStream());
+		}
+		catch (IOException e)
+		{
+			try
+			{
+				closeAll();
+			}
+			catch (Exception exc) { }
 
-    /**
-     * @return
-     */
-    public final InetAddress getInetAddress() {
-        // TODO implement here
-    	return null;
-    }
+			throw e; 
+		}
 
-    /**
-     * @return
-     */
-    protected void connnectionClosed() {
-        // TODO implement here
-    }
+		clientT = new Thread(this);  
+		stop = false;
+		clientT.start(); 
+	}
 
-    /**
-     * @param exception 
-     * @return
-     */
-    protected void connectionException(Exception exception) {
-        // TODO implement here
-    }
+	/**
+	 * @param message 
+	 * @return
+	 */
+	public void sendToServer(Object message) {
+		if (clientS == null || out == null) {
+			throw new SocketException("this socket does not exist");
+		}
 
-    /**
-     * @return
-     */
-    protected void connectionEstablished() {
-        // TODO implement here
-    }
+		out.writeObject(message);
+	}
 
-    /**
-     * @return
-     */
-    private final void closeAll() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public final boolean isConnected() {
+		return clientT!=null && clientT.isAlive();
+	}
 
-    /**
-     * @param msg
-     */
-    protected abstract void handleMessageFromServer(Object msg);
+	/**
+	 * @param int port 
+	 * @return
+	 */
+	public final void setPort(int port) {
+		this.port = port;
+	}
+
+	/**
+	 * @return
+	 */
+	public final int getPort() {
+		return this.port;
+	}
+
+	/**
+	 * @return
+	 */
+	public final String getHost() {
+		return this.host;
+	}
+
+	/**
+	 * @param host 
+	 * @return
+	 */
+	public final void setHost(String host) {
+		this.host = host;
+	}
+
+	/**
+	 * @return
+	 */
+	public final InetAddress getInetAddress() {
+		return clientS.getInetAddress();
+	}
+
+	/**
+	 * @return
+	 */
+	protected void connnectionClosed() {}
+
+	/**
+	 * @param exception 
+	 * @return
+	 */
+	protected void connectionException(Exception exception) {}
+
+	/**
+	 * @return
+	 */
+	protected void connectionEstablished() {}
+
+	/**
+	 * @return
+	 */
+	private final void closeAll() {
+
+	    try
+	    {
+	      if (clientS != null)
+	        clientS.close();
+
+	      if (out != null)
+	        out.close();
+
+	      if (in != null)
+	        in.close();
+	    }
+	    finally
+	    {
+	      out = null;
+	      in = null;
+	      clientS = null;
+	    }
+	  }
+	}
+
+	/**
+	 * @param msg
+	 */
+	protected abstract void handleMessageFromServer(Object msg);
 
 }

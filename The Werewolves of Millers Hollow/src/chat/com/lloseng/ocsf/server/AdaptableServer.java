@@ -4,47 +4,51 @@ package chat.com.lloseng.ocsf.server;
  * 
  */
 public class AdaptableServer extends AbstractServer {
+	
+	ObservableGameServer server;
 
     /**
      * Default constructor
      */
-    public AdaptableServer() {
+    public AdaptableServer(int port, ObservableServer server) {
+    	super(port);
+    	this.server=server;
     }
 
 
     /**
      * @return
      */
-    protected final void clientConnected() {
-        // TODO implement here
+    protected final void clientConnected(ConnectionToClient client) {
+    	server.clientConnected(client);
     }
 
     /**
      * @return
      */
-    protected final void clientDisconnected() {
-        // TODO implement here
+    protected final void clientDisconnected(ConnectionToClient client) {
+    	server.clientDisconnected(client);
     }
 
     /**
      * @return
      */
     protected final void serverStarted() {
-        // TODO implement here
+    	server.serverStarted();
     }
 
     /**
      * @return
      */
     protected final void serverStopped() {
-        // TODO implement here
+    	server.serverStopped();
     }
 
     /**
      * @return
      */
     protected final void serverClosed() {
-        // TODO implement here
+    	server.serverClosed();
     }
 
     /**
@@ -52,7 +56,7 @@ public class AdaptableServer extends AbstractServer {
      * @param client
      */
     protected final void handleMessageFromClient(Object msg, ConnectionToGameClient client) {
-        // TODO implement here
+    	server.handleMessageFromClient(msg, client);
     }
 
     /**
@@ -61,7 +65,7 @@ public class AdaptableServer extends AbstractServer {
      * @return
      */
     protected final void clientException(ConnectionToGameClient client, Throwable exception) {
-        // TODO implement here
+    	server.clientException(client, exception);
     }
 
     /**
@@ -69,7 +73,7 @@ public class AdaptableServer extends AbstractServer {
      * @return
      */
     protected final void listeningException(Throwable exception) {
-        // TODO implement here
+    	server.listeningException(exception);
     }
 
 }
