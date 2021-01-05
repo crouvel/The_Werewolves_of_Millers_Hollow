@@ -12,6 +12,7 @@ import java.util.*;
 import businesslogic.domain.PlayerInGame;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.PlayerInGameDAO;
+import model.dao.mysql.ReportDAO;
 
 /**
  * @author Tiffany Dumaire
@@ -30,8 +31,13 @@ public class GameFacade {
      * @return
      */
     public boolean sendPlayerReport(String badPlayerUsername, String reason, String description) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			ReportDAO reportDAO  = factory.createReportDAO();
+			return reportDAO.createPlayerReport(badPlayerUsername, reason, description);
+		}catch(SQLException e) {
+			return false;
+		} 
     }
 
     /**

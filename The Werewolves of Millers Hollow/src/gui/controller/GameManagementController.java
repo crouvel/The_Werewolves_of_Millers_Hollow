@@ -481,6 +481,7 @@ public class GameManagementController implements Initializable {
 				if(!GameManagementController.getCurrentGame().isStatus()) {
 					statusGroup.selectToggle(privateGame);
 				}
+				
 				invitedFriendsPane.setVisible(true);
 				friendsPane.setVisible(true);
 				generateIdButton.setDisable(true);
