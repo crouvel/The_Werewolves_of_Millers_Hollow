@@ -68,18 +68,18 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	private ArrayList<String> roleList;
-	
+
 	/**
 	 * 
 	 */
 	private static Game game;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ImageView background;
-	
+
 	//Report Part
 
 	/**
@@ -129,19 +129,24 @@ public class GameController implements Initializable{
 		String username = badPlayerUsername.getValue();
 		String motive = reason.getValue();
 		String descr = description.getText();
-		if(username == null || motive == null || descr == null) {
+		if(username == null || motive == null || descr.equals("")) {
 			InfoBox.infoBoxW("Please complete all the report information.", "Missing information.", "Bad manipulation");
 		}else {
-			boolean isDone = gameFacade.sendPlayerReport(username, motive, descr);
-			if(isDone) {
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+			if(username.equals(GameManagementController.getCurrentPlayerInGame().getUsername())) {
+				InfoBox.infoBoxW("You cannot report yourself.", "Bad Manipulation", "Operation not allowed");
 			}else {
-				InfoBox.infoBoxW("Please try to report the player later.", "Connection Problem.", "Incorrect information");
+				boolean isDone = gameFacade.sendPlayerReport(username, motive, descr);
+				if(isDone) {
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Please try to report the player later.", "Connection Problem.", "Incorrect information");
+				}
 			}
-		}
 
+		}
 	}
 
+	
 	/**
 	 * 
 	 * @param event
@@ -206,7 +211,7 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	private ListView<Label> playerVoteList;
-	
+
 	/**
 	 * 
 	 * @param event
@@ -288,47 +293,47 @@ public class GameController implements Initializable{
 	void returnPlayerMenu(ActionEvent event) throws IOException {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerMenuView.fxml"));
 	}
-	
+
 	//Initialization
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Pane roleAttribution;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Text roleName;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ImageView roleImage;
-	
+
 	//Cupid Part
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private Pane inLovePane;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ComboBox<String> firstPlayerInLove;
-	
+
 	/**
 	 * 
 	 */
 	@FXML
 	private ComboBox<String> secondPlayerInLove;
-	
+
 	/**
 	 * 
 	 * @param event
@@ -355,7 +360,7 @@ public class GameController implements Initializable{
 			}
 		}		
 	}
-	
+
 	//Other functions
 
 	/**
@@ -382,27 +387,27 @@ public class GameController implements Initializable{
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		try {
 			ArrayList<String> ListPlayers = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
-			ArrayList<String> reasons = new ArrayList<String>();
 			for(String i : ListPlayers) {	
 				badPlayerUsername.getItems().add(i);
 			}
-			for (int i = 0; i < PlayerReportType.values().length;i++ ) {
-				reasons.add(PlayerReportType.values()[i].getName());
-			}
+
+			reason.getItems().add(PlayerReportType.DISOBEYING_RULES.getName());
+			reason.getItems().add(PlayerReportType.INAPPROPRIATE_BEHAVIOR.getName());
+			reason.getItems().add(PlayerReportType.PROFANITY.getName());
+
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			TheWerewolvesOfMillersHollow.getStage().setOnCloseRequest(evt -> {
-				
+
 				Platform.exit();
 			});
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		GameFacade gameFacade = new GameFacade();
-		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		try {
 			Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
 			GameController.setGame(game);
@@ -446,7 +451,7 @@ public class GameController implements Initializable{
 						chat.getChildren().add(start);						
 					});
 					Thread.sleep(1000);
-					
+
 					if(roleList.contains(Role.CUPID.getName())) {
 						//Unique action of CUPID
 						Platform.runLater(() -> {		
@@ -456,7 +461,7 @@ public class GameController implements Initializable{
 							cupid.setFill(Color.WHITE);
 							chat.getChildren().add(cupid);
 						});
-					
+
 						if(GameController.getCurrentPlayer().getRole().equals(Role.CUPID)) {
 							GameFacade gameFacade = new GameFacade();
 							ArrayList<String> playerList = gameFacade.getPlayerList(GameController.getGame().getGame_id());
@@ -474,7 +479,7 @@ public class GameController implements Initializable{
 								cupid2.setFill(Color.WHITE);
 								chat.getChildren().add(cupid2);
 							});
-							
+
 						}
 						Thread.sleep(30000);
 						if(GameController.getCurrentPlayer().getRole().equals(Role.CUPID)) {
@@ -482,7 +487,7 @@ public class GameController implements Initializable{
 								inLovePane.setVisible(false);							
 							});
 						}
-												
+
 						//Display in Love with
 						ArrayList<String> inLovePlayers = gameFacade.getPlayerInLove(GameController.getGame().getGame_id());
 						if(inLovePlayers.isEmpty()) {
@@ -522,7 +527,7 @@ public class GameController implements Initializable{
 						}
 						Thread.sleep(2000);
 					}
-					
+
 					//1st day with candidate and vote for Sheriff
 					Platform.runLater(() -> {
 						background.setImage(new Image("@../../image/dayBackground.png"));
@@ -573,21 +578,21 @@ public class GameController implements Initializable{
 						chat.getChildren().add(sheriffVote);
 					});
 					Thread.sleep(60000);
-					
+
 					do {
 						PlayerInGame player = gameFacade.getPlayerInGame(GameController.getGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
 						player = gameFacade.getPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
 						GameController.setCurrentPlayer(player);
 						Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
 						GameController.setGame(game);
-						
-						
-						
-						
-						
-						
-						
-						
+
+
+
+
+
+
+
+
 					}while(!GameController.getGame().isFinish());
 					return true;
 				}

@@ -12,6 +12,7 @@ import java.util.*;
 import businesslogic.domain.PlayerInGame;
 import model.dao.factory.AbstractFactoryDAO;
 import model.dao.mysql.PlayerInGameDAO;
+import model.dao.mysql.ReportDAO;
 
 /**
  * @author Tiffany Dumaire
