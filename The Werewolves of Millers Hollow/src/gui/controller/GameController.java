@@ -129,7 +129,7 @@ public class GameController implements Initializable{
 		String username = badPlayerUsername.getValue();
 		String motive = reason.getValue();
 		String descr = description.getText();
-		if(username == null || motive == null || descr.equals("")) {
+		if(username == null || motive == null|| descr.equals("")) {
 			InfoBox.infoBoxW("Please complete all the report information.", "Missing information.", "Bad manipulation");
 		}else {
 			if(username.equals(GameManagementController.getCurrentPlayerInGame().getUsername())) {
