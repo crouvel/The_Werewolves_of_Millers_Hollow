@@ -112,7 +112,7 @@
                         <Image url="@../../image/witch.png" />
                      </image>
                   </ImageView>
-                  <Slider fx:id="numberOfWerewolves" blockIncrement="1.0" layoutX="10.0" layoutY="88.0" majorTickUnit="1.0" max="8.0" min="1.0" minorTickCount="0" prefHeight="36.0" prefWidth="78.0" showTickLabels="true" showTickMarks="true" value="1.0" />
+                  <Slider fx:id="numberOfWerewolves" blockIncrement="1.0" layoutX="10.0" layoutY="88.0" majorTickUnit="1.0" max="8.0" min="2.0" minorTickCount="0" prefHeight="36.0" prefWidth="78.0" showTickLabels="true" showTickMarks="true" value="1.0" />
                   <Slider fx:id="hasWitch" blockIncrement="1.0" layoutX="108.0" layoutY="88.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" prefHeight="36.0" prefWidth="78.0" showTickLabels="true" showTickMarks="true" value="1.0" />
                   <Slider fx:id="hasFortuneTeller" blockIncrement="1.0" layoutX="198.0" layoutY="88.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" prefHeight="36.0" prefWidth="78.0" showTickLabels="true" showTickMarks="true" value="1.0" />
                   <Slider fx:id="hasLittleGirl" blockIncrement="1.0" layoutX="283.0" layoutY="88.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" prefHeight="36.0" prefWidth="78.0" showTickLabels="true" showTickMarks="true" />

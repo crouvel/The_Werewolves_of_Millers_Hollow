@@ -138,7 +138,8 @@ public abstract class GameManagementDAO {
 	/**
 	 * 
 	 * @param username
-	 * @return
+	 * @return@Override
+	
 	 * @throws SQLException
 	 */
 	public abstract boolean existsGame2(String username) throws SQLException;
@@ -167,5 +168,13 @@ public abstract class GameManagementDAO {
 	 * @throws SQLException
 	 */
 	public abstract boolean deleteGame2(String creatorUsername) throws SQLException;
-    
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean updatePlayerInGame(int gameId, String username, String role) throws SQLException;
+
 }

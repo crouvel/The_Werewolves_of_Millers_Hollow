@@ -170,6 +170,7 @@ public class PlayerProfileController  implements Initializable{
 						boolean isDone = uf.modifyPlayerProfile(cur.getUsername(),cur.getEmail(), HashPassword.hashPassword(password),cur.getCountry());
 						if(isDone) {
 							Player newP =  uf.searchPlayerStats(cur.getUsername());
+							newP.setPassword(password);
 							PlayerMenuController.setCurrentPlayer(newP);
 							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
 						}else {
@@ -257,6 +258,7 @@ public class PlayerProfileController  implements Initializable{
 											InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
 										}else {
 											PlayerMenuController.setCurrentPlayer(uf.getPlayer(cur));
+											PlayerMenuController.getCurrentPlayer().setPassword(password);
 											TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/PlayerProfileView.fxml"));
 										}
 									}else {

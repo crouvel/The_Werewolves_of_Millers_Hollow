@@ -71,11 +71,13 @@ public class LoginController implements Initializable {
 					User user=userFacade.login(mail,HashPassword.hashPassword(pwd));
 					if (user != null) {
 						if(user.isAdmin()==1) {
+							user.setPassword(pwd);
 							TheWerewolvesOfMillersHollow.goToAdminMenu(user,getClass().getResource("../view/AdministratorMenuView.fxml"));
 						}else {
 							if(user.isLockedAccount()) {
 								InfoBox.infoBoxI("Try to contact an administrator.. Good Luck !","Blocked account", "Locked Account");
 							}else {
+								user.setPassword(pwd);
 								TheWerewolvesOfMillersHollow.goToPlayerMenu(user,getClass().getResource("../view/PlayerMenuView.fxml"));
 							}
 						}
