@@ -159,6 +159,23 @@ public class GameManagementFacade {
 			return null;
 		}  
 	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public Game getGame(int gameId) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+			return gameManagementDAO.getGame(gameId);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}  
+	}
+
 
 	/**
 	 * 
@@ -197,6 +214,16 @@ public class GameManagementFacade {
 		try {
 			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
 			return gameManagementDAO.existsGame2(creatorUsername);
+		}catch(SQLException e) {
+			return false;
+		} 
+	}
+	
+	public boolean modifyPlayerInGame(int gameId, String username, String role) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
+			return gameManagementDAO.updatePlayerInGame(gameId, username,role);
 		}catch(SQLException e) {
 			return false;
 		} 

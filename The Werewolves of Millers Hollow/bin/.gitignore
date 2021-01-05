@@ -1,2 +1,6 @@
 /gui/
-/chat/
+/model/
+/businesslogic/
+/pendu.cpp
+/image/
+/application/

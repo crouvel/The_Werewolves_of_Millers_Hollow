@@ -85,6 +85,7 @@ public class AdministratorProfileController  implements Initializable{
 								if(admin==null) {
 									InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
 								}else {
+									admin.setPassword(adPassword);
 									AdministratorMenuController.setCurrentAdmin(admin);
 									TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
 								}
@@ -181,6 +182,7 @@ public class AdministratorProfileController  implements Initializable{
 						if(admin==null) {
 							InfoBox.infoBoxE("Connection failed","Connection failed","Connection Error");
 						}else {
+							admin.setPassword(adPassword);
 							AdministratorMenuController.setCurrentAdmin(admin);
 							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/AdminProfileView.fxml"));
 						}

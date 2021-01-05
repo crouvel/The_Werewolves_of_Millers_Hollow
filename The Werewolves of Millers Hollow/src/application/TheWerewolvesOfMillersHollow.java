@@ -35,6 +35,10 @@ public class TheWerewolvesOfMillersHollow extends Application {
 	 * Attribute containing the current stage of the application.
 	 */
 	private static Stage stage = null;
+	
+	public static Stage getStage() throws IOException{
+		return TheWerewolvesOfMillersHollow.stage;
+	}
 
 	/**
 	 * Allows the application to change scene.
