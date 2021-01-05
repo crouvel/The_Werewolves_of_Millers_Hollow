@@ -29,6 +29,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.TextFlow;
 //import javafx.util.Duration;
 import util.InfoBox;
 
@@ -125,7 +126,7 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	@FXML
-	private ListView<String> chat;
+	private TextFlow chat;
 	
 	/**
 	 * 
@@ -140,6 +141,13 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void sendMessage(ActionEvent event)  throws IOException {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public void displayMessage() {
 		
 	}
 	

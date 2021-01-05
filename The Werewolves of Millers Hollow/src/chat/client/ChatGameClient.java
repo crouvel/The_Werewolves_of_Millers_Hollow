@@ -6,6 +6,7 @@ import businesslogic.domain.PlayerInGame;
 /**
  * 
  */
+@SuppressWarnings("deprecation")
 public class ChatGameClient implements Observer {
 
     /**

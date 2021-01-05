@@ -55,6 +55,22 @@ public class GameManagementFacade {
 			return false;
 		}  
 	}
+	
+	/**
+	 * 
+	 * @param game_id 
+	 * @return
+	 */
+	public boolean deleteGame2(String creatorUsername) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();	
+			return gameManagementDAO.deleteGame2(creatorUsername);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}  
+	}
 
 	/**
 	 * 
@@ -166,22 +182,6 @@ public class GameManagementFacade {
 	 * @return
 	 * @throws SQLException
 	 */
-	/*public ArrayList<String> getInviteFriendList(String username) throws SQLException {
-    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
-    	try {
-    		GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
-    		return gameManagementDAO.getInviteFriend(username);
-    	}catch(SQLException e) {
-    		return null;
-    	}   
-    }*/
-
-	/**
-	 * 
-	 * @param username 
-	 * @return
-	 * @throws SQLException
-	 */
 	public ArrayList<String> getPlayerList(int game_id) throws SQLException {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
 		try {
@@ -190,6 +190,16 @@ public class GameManagementFacade {
 		}catch(SQLException e) {
 			return null;
 		}   
+	}
+	
+	public boolean existsGameByUsername(String creatorUsername) {
+		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
+			return gameManagementDAO.existsGame2(creatorUsername);
+		}catch(SQLException e) {
+			return false;
+		} 
 	}
 
 }

@@ -186,7 +186,7 @@ public class PlayerStatsController implements Initializable {
 					new XYChart.Data<String,Number>("Won",PlayerStatsController.getPlayer().getWonGames()),
 					new XYChart.Data<String,Number>("Lost",PlayerStatsController.getPlayer().getLostGames()));
 			//initialization of BarChart
-			comparaison.getData().addAll(series,series2);		
+			comparaison.getData().addAll(series,series2);	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

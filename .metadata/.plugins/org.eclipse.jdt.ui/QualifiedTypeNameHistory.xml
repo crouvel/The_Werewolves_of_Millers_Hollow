@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="util.InfoBox"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.Role"/>
+    <fullyQualifiedTypeName name="businesslogic.facade.SelectAndJoinAGameFacade"/>
+    <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ButtonType"/>
+    <fullyQualifiedTypeName name="javafx.stage.WindowEvent"/>
+    <fullyQualifiedTypeName name="javafx.application.Platform"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.TextFlow"/>
+</qualifiedTypeNameHistroy>

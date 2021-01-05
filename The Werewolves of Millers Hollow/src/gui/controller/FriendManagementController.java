@@ -71,12 +71,15 @@ public class FriendManagementController implements Initializable {
 		if(username==null) {
 			InfoBox.infoBoxW("Please select a friend request before accept.","Missing friend.","Missing informations");
 		}else {
-			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-			boolean isDone = friendManagementFacade.acceptFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
-			if(isDone) {		
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
-			}else {
-				InfoBox.infoBoxW("Retry to accept the friend request later.","Incorrect information.", "Connection problem");
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to accept the " + username + "'s friend request?", "Accept confirmation");
+			if(confirmation) {
+				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+				boolean isDone = friendManagementFacade.acceptFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
+				if(isDone) {		
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Retry to accept the friend request later.","Incorrect information.", "Connection problem");
+				}
 			}
 		}
 	}
@@ -92,12 +95,15 @@ public class FriendManagementController implements Initializable {
 		if(username==null) {
 			InfoBox.infoBoxW("Please select a friend request before refuse.","Missing friend.","Missing informations");
 		}else {
-			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-			boolean isDone = friendManagementFacade.refuseFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
-			if(isDone) {		
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
-			}else {
-				InfoBox.infoBoxW("Retry to refuse the friend request later.","Incorrect information.", "Connection problem");
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to refuse the "+ username+"'s friend request?", "Refuse confirmation");
+			if(confirmation) {
+				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+				boolean isDone = friendManagementFacade.refuseFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
+				if(isDone) {		
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Retry to refuse the friend request later.","Incorrect information.", "Connection problem");
+				}
 			}
 		}
 	}
@@ -113,12 +119,15 @@ public class FriendManagementController implements Initializable {
 		if(username==null) {
 			InfoBox.infoBoxW("Please select a friend request before cancel.","Missing friend.","Missing informations");
 		}else {
-			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-			boolean isDone = friendManagementFacade.cancelFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
-			if(isDone) {		
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
-			}else {
-				InfoBox.infoBoxW("Retry to cancel your friend request later.","Incorrect information.", "Connection problem");
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to cancel this friend request?", "Cancel confirmation");
+			if(confirmation) {
+				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+				boolean isDone = friendManagementFacade.cancelFriendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),username);
+				if(isDone) {		
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Retry to cancel your friend request later.","Incorrect information.", "Connection problem");
+				}
 			}
 		}
 	}
@@ -135,12 +144,15 @@ public class FriendManagementController implements Initializable {
 		if(username==null) {
 			InfoBox.infoBoxW("Please select a friend before try to delete.","Missing friend.","Missing informations");
 		}else {
-			FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-			boolean isDone = friendManagementFacade.deleteFriend(PlayerMenuController.getCurrentPlayer().getUsername(),username);
-			if(isDone) {		
-				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
-			}else {
-				InfoBox.infoBoxW("Retry to delete your friend later.","Incorrect information.", "Connection problem");
+			boolean confirmation = InfoBox.infoBoxC("Are you sure you want to delete this friend?", "Delete confirmation");
+			if(confirmation) {
+				FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+				boolean isDone = friendManagementFacade.deleteFriend(PlayerMenuController.getCurrentPlayer().getUsername(),username);
+				if(isDone) {
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Retry to delete your friend later.","Incorrect information.", "Connection problem");
+				}
 			}
 		}		
 	}
@@ -166,12 +178,15 @@ public class FriendManagementController implements Initializable {
 					if(sent.getItems().contains(newFriend)) {
 						InfoBox.infoBoxI("You've already sent a request to this player.", "Sent request already exists", "Request already in the database");
 					}else {
-						FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-						boolean isDone=friendManagementFacade.sendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),newFriend);
-						if (isDone) {
-							TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
-						}else {
-							InfoBox.infoBoxW("Please write a correct username or retry later.","Incorrect username", "Incorrect information");
+						boolean confirmation = InfoBox.infoBoxC("Are you sure you want to send a friend request to "+newFriend+"?", "Confirmation");
+						if(confirmation) {
+							FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+							boolean isDone=friendManagementFacade.sendRequest(PlayerMenuController.getCurrentPlayer().getUsername(),newFriend);
+							if (isDone) {
+								TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/FriendManagementView.fxml"));
+							}else {
+								InfoBox.infoBoxW("Please write a correct username or retry later.","Incorrect username", "Incorrect information");
+							}
 						}
 					}
 				}
