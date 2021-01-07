@@ -96,4 +96,12 @@ public abstract class PlayerInGameDAO {
 	 */
 	public abstract boolean existsCandidate(int gameId, String username) throws SQLException;
 
+	/**
+	 * 
+	 * @param gameId
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract boolean removePlayerInGame(int gameId, String username) throws SQLException;
 }

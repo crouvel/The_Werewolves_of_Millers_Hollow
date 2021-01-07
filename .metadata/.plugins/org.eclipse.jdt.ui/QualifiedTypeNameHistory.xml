@@ -11,8 +11,6 @@
     <fullyQualifiedTypeName name="java.util.Collections"/>
     <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
     <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="businesslogic.facade.GameFacade"/>
     <fullyQualifiedTypeName name="businesslogic.domain.PlayerInGame"/>
     <fullyQualifiedTypeName name="model.dao.mysql.PlayerInGameDAO"/>
@@ -20,4 +18,11 @@
     <fullyQualifiedTypeName name="javafx.concurrent.Task"/>
     <fullyQualifiedTypeName name="businesslogic.domain.Role"/>
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
+    <fullyQualifiedTypeName name="model.dao.mysql.GameDAO"/>
+    <fullyQualifiedTypeName name="model.dao.factory.AbstractFactoryDAO"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 </qualifiedTypeNameHistroy>

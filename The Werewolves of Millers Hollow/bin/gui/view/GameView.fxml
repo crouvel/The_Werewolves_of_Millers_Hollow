@@ -99,53 +99,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Pane fx:id="reportPlayerPane" layoutX="104.0" layoutY="83.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: rgb(45,45,45,0.8); -fx-background-radius: 300px;" visible="false">
-         <children>
-            <Text fill="WHITE" layoutX="88.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username of bad player :">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-            <ComboBox fx:id="badPlayerUsername" layoutX="88.0" layoutY="94.0" prefHeight="31.0" prefWidth="280.0" />
-            <Text fill="WHITE" layoutX="88.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason for report :">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="88.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text fill="RED" layoutX="251.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text fill="RED" layoutX="300.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text fill="RED" layoutX="201.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Text>
-            <ComboBox fx:id="reason" layoutX="88.0" layoutY="173.0" prefHeight="31.0" prefWidth="280.0" />
-            <TextArea fx:id="description" layoutX="85.0" layoutY="248.0" prefHeight="113.0" prefWidth="280.0" promptText="Describe the situation..." />
-            <Button layoutX="122.0" layoutY="376.0" mnemonicParsing="false" onAction="#cancelReport" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: rgb(255,0,0,0.8);" text="Cancel" textFill="WHITE">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button layoutX="230.0" layoutY="376.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: rgb(0,150,0,0.8);" text="Send" textFill="WHITE">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
       <Pane fx:id="speechPane" layoutX="90.0" layoutY="208.0" prefHeight="200.0" prefWidth="450.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 30px;" visible="false">
          <children>
             <Text fill="WHITE" layoutX="28.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to be a Sheriff ?">
@@ -203,6 +156,53 @@
                      </image>
                   </ImageView>
                </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="reportPlayerPane" layoutX="104.0" layoutY="83.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: rgb(45,45,45,0.8); -fx-background-radius: 300px;" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="88.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username of bad player :">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="badPlayerUsername" layoutX="88.0" layoutY="94.0" prefHeight="31.0" prefWidth="280.0" />
+            <Text fill="WHITE" layoutX="88.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason for report :">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="88.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="251.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="300.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="201.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="48.5947265625">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="reason" layoutX="88.0" layoutY="173.0" prefHeight="31.0" prefWidth="280.0" />
+            <TextArea fx:id="description" layoutX="85.0" layoutY="248.0" prefHeight="113.0" prefWidth="280.0" promptText="Describe the situation..." />
+            <Button layoutX="122.0" layoutY="376.0" mnemonicParsing="false" onAction="#cancelReport" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: rgb(255,0,0,0.8);" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="230.0" layoutY="376.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: rgb(0,150,0,0.8);" text="Send" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
             </Button>
          </children>
       </Pane>

@@ -11,6 +11,7 @@ import java.util.*;
 
 import businesslogic.domain.PlayerInGame;
 import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.GameDAO;
 import model.dao.mysql.PlayerInGameDAO;
 
 /**
@@ -58,8 +59,14 @@ public class GameFacade {
      * @return
      */
     public boolean makeAVote(String username1, String username2, int game_id) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+    	try {
+    		GameDAO gameDAO = factory.createGameDAO();
+    		return gameDAO.sendVote(username1,username2,game_id);
+    	}catch (SQLException e){
+    		e.getStackTrace();
+    		return false;
+    	}
     }
 
     /**
@@ -168,5 +175,22 @@ public class GameFacade {
 			e.getStackTrace();
 			return null;
 		}
+    }
+    
+    /**
+     * 
+     * @param gameId
+     * @param username
+     * @return
+     */
+    public boolean removePlayerInGame(int gameId, String username) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.removePlayerInGame(gameId, username);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}  
     }
 }

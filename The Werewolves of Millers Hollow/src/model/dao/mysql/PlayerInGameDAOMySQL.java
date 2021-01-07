@@ -136,4 +136,15 @@ public class PlayerInGameDAOMySQL extends PlayerInGameDAO {
     	return resultSet.first();
     }
 	
+	@Override
+    public boolean removePlayerInGame(int gameId, String username) throws SQLException {
+    	String sqlRequest = "DELETE ";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1, gameId);
+    	request.setString(2, username);
+    	request.setBoolean(3, true);
+    	ResultSet resultSet = request.executeQuery();
+    	return resultSet.first();
+    }
+	
 }

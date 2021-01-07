@@ -64,4 +64,9 @@ public class FactoryDAOMySQL extends AbstractFactoryDAO {
     	return new SelectAndJoinAGameDAOMySQL();
     }
 
+	@Override
+	public GameDAO createGameDAO() throws SQLException {
+		return new GameDAOMySQL();
+	}
+
 }

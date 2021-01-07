@@ -78,6 +78,12 @@ public abstract class AbstractFactoryDAO {
      * @throws SQLException 
      */
     public abstract GameManagementDAO createGameManagementDAO() throws SQLException;
+    
+    /**
+     * @return
+     * @throws SQLException 
+     */
+    public abstract GameDAO createGameDAO() throws SQLException;
 
     /**
      * @return

@@ -30,7 +30,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 //import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
@@ -186,7 +185,7 @@ public class GameController implements Initializable{
 	 * 
 	 */
 	@FXML
-	private ListView<Label> playerVoteList;
+	private ListView<Text> playerVoteList;
 	
 	/**
 	 * 
@@ -195,7 +194,7 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void sendVote(ActionEvent event)  throws IOException {
-		
+		//Label vote = playerVoteList.getValue();
 	}
 	
 	//Propose As A Sheriff Part
@@ -346,8 +345,18 @@ public class GameController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
 			TheWerewolvesOfMillersHollow.getStage().setOnCloseRequest(evt -> {
-				
-				Platform.exit();
+				GameFacade gameFacade = new GameFacade();
+				boolean a = gameFacade.removePlayerInGame(GameController.getGame().getGame_id(), GameController.getCurrentPlayer().getUsername());
+				if(a) {
+					Text quit = new Text();
+					quit.setText(" Game Message - The player "+ GameController.getCurrentPlayer().getUsername()+" leave the game! \n \n --> His role was "+ GameController.getCurrentPlayer().getRole().getName()+" \n\n");
+					quit.setFont(new Font("Arial", 15));
+					quit.setFill(Color.WHITE);
+					chat.getChildren().add(quit);
+					Platform.exit();
+				}else {
+					InfoBox.infoBoxE("You can't leave the game now :)", "Retry Later", "Connection Problem");
+				}
 			});
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -484,7 +493,7 @@ public class GameController implements Initializable{
 						chat.getChildren().add(sheriffDay);
 						speechPane.setVisible(true);
 					});
-					Thread.sleep(10000);
+					Thread.sleep(20000);
 					Platform.runLater(() -> {
 						speechPane.setVisible(false);
 						Text sheriffDay2 = new Text();
@@ -502,15 +511,16 @@ public class GameController implements Initializable{
 								ImageView candidate = new ImageView(new Image("@../../image/candidat.png"));
 								candidate.setFitHeight(20);
 								candidate.setFitWidth(10);
-								Label nextSheriff = new Label();
+								Text nextSheriff = new Text();
 								nextSheriff.setText(i.getUsername());
-								nextSheriff.setGraphic(candidate);
+								nextSheriff.setFont(new Font("Verdana", 15));
 								playerVoteList.getItems().add(nextSheriff);
 							});
 						}else {
 							Platform.runLater(() -> {
-								Label nextSheriff = new Label();
+								Text nextSheriff = new Text();
 								nextSheriff.setText(i.getUsername());
+								nextSheriff.setFont(new Font("Verdana", 15));
 								playerVoteList.getItems().add(nextSheriff);
 							});
 						}
@@ -524,6 +534,18 @@ public class GameController implements Initializable{
 						chat.getChildren().add(sheriffVote);
 					});
 					Thread.sleep(60000);
+					
+					Platform.runLater(() -> {
+						votePane.setVisible(false);
+					});
+							
+					Platform.runLater(() -> {
+						Text sheriffVote = new Text();
+						sheriffVote.setText(" Game Message - !\n\n");
+						sheriffVote.setFont(new Font("Arial", 15));
+						sheriffVote.setFill(Color.WHITE);
+						chat.getChildren().add(sheriffVote);
+					});
 					
 					do {
 						PlayerInGame player = gameFacade.getPlayerInGame(GameController.getGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
@@ -591,6 +613,30 @@ public class GameController implements Initializable{
 	 */
 	public void setRoleList(ArrayList<String> roleList) {
 		this.roleList = roleList;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String finalVote() {
+		GameFacade gameFacade = new GameFacade();
+		ArrayList<String> votes = gameFacade.getAllVotes(GameController.getGame().getGame_id());
+		String result = votes.get(0);
+		int a = 0;
+		while(!votes.isEmpty()) {
+			String e = votes.get(0);
+			int o = 0;
+			while(votes.contains(e)) {
+				votes.remove(e);
+				o++;
+			}
+			if(a < o) {
+				a = o;
+				result = e;
+			}
+		}
+		return result; 
 	}
 
 }
