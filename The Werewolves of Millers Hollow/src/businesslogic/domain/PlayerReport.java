@@ -18,24 +18,24 @@ public class PlayerReport extends Report {
     }
 
     /**
-     * 
+     * Attributes that defines the bad player username.
      */
     private String usernameOfBadPlayer;
 
     /**
-     * 
+     * Attributes that defines the report type of the player report.
      */
     private PlayerReportType reportType;
 
     /**
-     * @return
+     * @return the badPlayerUsername
      */
     public String getUsernameOfBadPlayer() {
         return this.usernameOfBadPlayer;
     }
 
 	/**
-	 * @param usernameOfBadPlayer the usernameOfBadPlayer to set
+	 * @param usernameOfBadPlayer the usernameOfBadPlayer to set.
 	 */
 	public void setUsernameOfBadPlayer(String usernameOfBadPlayer) {
 		this.usernameOfBadPlayer = usernameOfBadPlayer;
@@ -60,7 +60,7 @@ public class PlayerReport extends Report {
 	}
 	
 	/**
-	 * @return 
+	 * @return all the report information
 	 */
 	public String toString() {
 		return getReportId()+" : "+getReportType().getName();

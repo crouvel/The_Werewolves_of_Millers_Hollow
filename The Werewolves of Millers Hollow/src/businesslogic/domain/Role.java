@@ -10,20 +10,20 @@ package businesslogic.domain;
  */
 public enum Role {
 	WEREWOLF("Werewolf"),
-    LITTLE_GIRL("Little Girl"),
-    HUNTER("Hunter"),
-    WITCH("Witch"),
-    FORTUNE_TELLER("Fortune Teller"),
-    CUPID("Cupid"),
+	LITTLE_GIRL("Little Girl"),
+	HUNTER("Hunter"),
+	WITCH("Witch"),
+	FORTUNE_TELLER("Fortune Teller"),
+	CUPID("Cupid"),
 	VILLAGER("Villager");
 
 	/**
-	 * 
+	 * Attribute that defines the role name.
 	 */
 	private String name;
 
 	/**
-	 * 
+	 * Constructor
 	 * @param string
 	 */
 	Role(String string) {
@@ -31,17 +31,16 @@ public enum Role {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the name of the Role
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * 
+	 * Gets the Role
 	 * @param string
-	 * @return
+	 * @return the Role
 	 */
 	public static Role get(String string) {
 		if(string.equals(WEREWOLF.getName())) {

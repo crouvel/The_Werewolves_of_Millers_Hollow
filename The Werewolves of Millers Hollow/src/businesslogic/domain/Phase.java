@@ -1,13 +1,16 @@
 package businesslogic.domain;
 
 /**
- * 
+ * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
 public enum Phase {
     SET_UP("SET UP"),
     DAY("DAY"),
     NIGHT("NIGHT");
     
+	/**
+	 * Attribute that defines the name of the Phase
+	 */
 	private String name;
 	
 	Phase(String string) {
@@ -22,9 +25,8 @@ public enum Phase {
 	}
 
 	/**
-	 * 
 	 * @param string
-	 * @return
+	 * @return the Phase 
 	 */
 	public static Phase get(String string) {
 		if(string.equals(SET_UP.getName())) {
