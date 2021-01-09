@@ -6,7 +6,7 @@ package businesslogic.domain;
 public class Report {
 
     /**
-     * 
+     * Constructor
      * @param reportId
      * @param description
      */
@@ -16,26 +16,26 @@ public class Report {
     }
 
     /**
-     * 
+     * Attribute that defines the id of the report.
      */
     private int reportId;
 
     /**
-     * 
+     * Attribute that defines the report description.
      */
     private String description;
 
 
 
     /**
-     * @return
+     * @return the reportId
      */
     public int getReportId() {
         return this.reportId;
     }
 
     /**
-     * @return
+     * @return the description od the report
      */
     public String getDescription() {
         return this.description;

@@ -18,7 +18,7 @@ public enum Phase {
 	}
 
 	/**
-	 * @return the name
+	 * @return the name of the Phase.
 	 */
 	public String getName() {
 		return name;
