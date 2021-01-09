@@ -379,8 +379,11 @@ public class GameManagementController implements Initializable {
 		}else {
 			String username = listPlayers.getSelectionModel().getSelectedItem();
 			if(username==null) {
-				InfoBox.infoBoxW("Please select a player before try to delete.","Missing Player.","Missing informations");
+				InfoBox.infoBoxW("Please select a player before try to delete.","Missing Player.","Missing information");
 			}else {
+				if(username.equals(GameManagementController.getCurrentPlayerInGame().getUsername())) {
+					InfoBox.infoBoxW("You cannot kick yourself out of the game.","Bad Manipulation.","Missing informations");
+				}else {
 				GameManagementController.getCurrentGame();
 				boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),username);
 				if(isDone) {		
@@ -391,7 +394,8 @@ public class GameManagementController implements Initializable {
 			}		
 		}
 	}
-
+	}
+	
 	/**
 	 * 
 	 * @param event
