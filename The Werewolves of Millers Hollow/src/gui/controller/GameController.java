@@ -83,31 +83,31 @@ public class GameController implements Initializable{
 	//Report Part
 
 	/**
-	 * 
+	 * Attribute that represents the report a player area in the view.
 	 */
 	@FXML
 	private Pane reportPlayerPane;
 
 	/**
-	 * 
+	 * Attribute that defines the username of the PlayerInGame to report
 	 */
 	@FXML
 	private ComboBox<String> badPlayerUsername;
 
 	/**
-	 * 
+	 * Attribute that defines the reasons of the player report.
 	 */
 	@FXML
 	private ComboBox<String> reason;
 
 	/**
-	 * 
+	 * Attribute that defines the description of the report. 
 	 */
 	@FXML
 	private TextArea description;
 
 	/**
-	 * 
+	 * Cancels the player report by erasing the information entered by the PlayerInGame in the report.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -119,7 +119,7 @@ public class GameController implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Gets the information put by the player in the report form and send the report.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -148,7 +148,7 @@ public class GameController implements Initializable{
 
 	
 	/**
-	 * 
+	 * Finishes the report a player process.
 	 * @param event
 	 * @throws IOException
 	 */

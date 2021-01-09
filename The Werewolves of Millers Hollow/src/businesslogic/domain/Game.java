@@ -6,35 +6,102 @@ package businesslogic.domain;
 
 
 public class Game {
+
+	/**
+	 * Attributes which refers to the id of the game.
+	 */
+	private int game_id;
+
+	/**
+	 * Attributes which refers to the number if players in a game.
+	 */
+	private int numberOfPlayers;
+
+	/**
+	 * Attributes which refers to the privacy status of a game. 
+	 */
+	private boolean status;
+
+	/**
+	 * Attributes which refers to the number of werewolves in a game.
+	 */
+	private int numberOfWerewolves;
+
+	/**
+	 * Attributes which tells if the witch special role is in the game. 
+	 */
+	private boolean hasWitch;
+
+	/**
+	 *  Attributes which tells if the little girl special role is in the game.
+	 */
+	private boolean hasLittleGirl;
+
+	/**
+	 * Attributes which tells if the cupid special role is in the game.
+	 */
+	private boolean hasCupid;
+
+	/**
+	 * Attributes which tells if the hunter special role is in the game.
+	 */
+	private boolean hasHunter;
+
+	/**
+	 * Attributes which tells if the fortune teller special role is in the game.
+	 */
+	private boolean hasFortuneTeller;
+
+	/**
+	 * Attributes which tells if the game is finished.
+	 */
+	private boolean finish;
+
+
+	/**
+	 * Attributes which defines the current phase of the game.
+	 */
+	private Phase currentPhase;
+
+	/**
+	 * Attributes which defines the game creator username. 
+	 */
+	private String creatorUsername;
 	
-    
-	
-	
+	/**
+	 * Attribute which tells of the game is available.
+	 */
 	private boolean availableGame;
 
 	/**
-     * Default constructor
-     */
-  
-    
+	 * Default constructor
+	 */
+	public Game() {}
 
-	
-    /**
-     * 
-     * @return
-     */
-    public boolean isHasHunter() {
+	/**
+	 * @return hasHunter
+	 */
+	public boolean isHasHunter() {
 		return hasHunter;
 	}
-
-    public Game() {
-    
-    	
-    }
-    
-    
-    public Game(int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
-    		boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
+	
+	/**
+	 * Constructor 
+	 * @param numberOfPlayers
+	 * @param status
+	 * @param numberOfWerewolves
+	 * @param hasWitch
+	 * @param hasLittleGirl
+	 * @param hasCupid
+	 * @param hasHunter
+	 * @param hasFortuneTeller
+	 * @param finish
+	 * @param currentPhase
+	 * @param availableGame
+	 * @param creator
+	 */
+	public Game(int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
+			boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
 			Phase currentPhase, boolean availableGame, String creator) {
 		super();
 		this.numberOfPlayers = numberOfPlayers;
@@ -49,10 +116,25 @@ public class Game {
 		this.currentPhase = currentPhase;
 		this.availableGame = availableGame;
 		this.setCreatorUsername(creatorUsername);
-	
+
 	}
-    
-    public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
+	
+	/**
+	 * Constructor 
+	 * @param game_id
+	 * @param numberOfPlayers
+	 * @param status
+	 * @param numberOfWerewolves
+	 * @param hasWitch
+	 * @param hasLittleGirl
+	 * @param hasCupid
+	 * @param hasHunter
+	 * @param hasFortuneTeller
+	 * @param finish
+	 * @param currentPhase
+	 * @param availableGame
+	 */
+	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
 			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame) {
 		super();
 		this.game_id = game_id;
@@ -67,13 +149,25 @@ public class Game {
 		this.finish = finish;
 		this.currentPhase = currentPhase;
 		this.availableGame = availableGame;
-		
+
 	}
-    
-    
-    public Game(int numberOfWerewolves, int status) {
-    	
-    }
+
+	/**
+	 * Constructor 
+	 * @param game_id
+	 * @param numberOfPlayers
+	 * @param status
+	 * @param numberOfWerewolves
+	 * @param hasWitch
+	 * @param hasLittleGirl
+	 * @param hasCupid
+	 * @param hasHunter
+	 * @param hasFortuneTeller
+	 * @param finish
+	 * @param currentPhase
+	 * @param availableGame
+	 * @param creatorUsername
+	 */
 	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
 			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame,
 			String creatorUsername) {
@@ -92,10 +186,10 @@ public class Game {
 		this.availableGame = availableGame;
 		this.setCreatorUsername(creatorUsername);
 	}
-	/**
-     * 
-     * @param hasHunter
-     */
+	
+	/** 
+	 * @param hasHunter the hasHunter to set
+	 */
 	public void setHasHunter(boolean hasHunter) {
 		this.hasHunter = hasHunter;
 	}
@@ -253,7 +347,7 @@ public class Game {
 	public void setAvailableGame(boolean availableGame) {
 		this.availableGame = availableGame;
 	}
-	
+
 	/**
 	 * @return the creatorUsername
 	 */
@@ -266,75 +360,12 @@ public class Game {
 	public void setCreatorUsername(String creatorUsername) {
 		this.creatorUsername = creatorUsername;
 	}
-	
+
 	/**
-	 * 
+	 * @return the creatorUsername in a String
 	 */
 	public String toString() {
 		return creatorUsername;
 	}
 
-
-
-	/**
-     * 
-     */
-    private int game_id;
-
-    /**
-     * 
-     */
-    private int numberOfPlayers;
-
-    /**
-     * 
-     */
-    private boolean status;
-
-    /**
-     * 
-     */
-    private int numberOfWerewolves;
-
-    /**
-     * 
-     */
-    private boolean hasWitch;
-
-    /**
-     * 
-     */
-    private boolean hasLittleGirl;
-
-    /**
-     * 
-     */
-    private boolean hasCupid;
-
-    /**
-     * 
-     */
-    private boolean hasHunter;
-
-    /**
-     * 
-     */
-    private boolean hasFortuneTeller;
-
-    /**
-     * 
-     */
-    private boolean finish;
-
-
-    /**
-     * 
-     */
-    private Phase currentPhase;
-    
-    /**
-     * 
-     */
-   
-    private String creatorUsername;
 }

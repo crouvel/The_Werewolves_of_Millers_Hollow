@@ -37,14 +37,14 @@ import javafx.event.ActionEvent;
 import javafx.application.Platform;
 
 /**
- * 
+ * GameManagementController Class.
  * @author Tiffany Dumaire, Clarence Rouvel
  *
  */
 public class GameManagementController implements Initializable {
 
 	/**
-	 * 
+	 * Attribute used to store the current Player of the session.
 	 */
 	private static PlayerInGame currentPlayerInGame;
 
@@ -87,90 +87,91 @@ public class GameManagementController implements Initializable {
 	private ListView<String> inviteFriends;
 
 	/**
-	 * Attribute uses to store the list of players which are in the game.
+	 * Attribute used to store the list of players which are in the game.
 	 */
 	@FXML
 	private ListView<String> listPlayers;
 
 	/**
-	 * Attribute uses to define the number of Werewolves.
+	 * Attribute used to define the number of Werewolves.
 	 */
 	@FXML
 	private Slider numberOfWerewolves;
 
 	/**
-	 * Attribute uses to define if the special role Witch will be use.
+	 * Attribute used to define if the special role Witch will be used.
 	 */
 	@FXML
 	private Slider hasWitch;
 
 	/**
-	 * Attribute uses to define if the special role Fortune Teller will be use.
+	 * Attribute used to define if the special role Fortune Teller will be used.
 	 */
 	@FXML
 	private Slider hasFortuneTeller;
 
 	/**
-	 * Attribute uses to define if the special role Little Girl will be use.
+	 * Attribute used to define if the special role Little Girl will be used.
 	 */
 	@FXML
 	private Slider hasLittleGirl;
 
 	/**
-	 * Attribute uses to define if the special role Cupid will be use.
+	 * Attribute used to define if the special role Cupid will be used.
 	 */
 	@FXML
 	private Slider hasCupid;
 
 	/**
-	 * Attribute uses to define if the special role Hunter will be use.
+	 * Attribute used to define if the special role Hunter will be used.
 	 */
 	@FXML
 	private Slider hasHunter;
 
 	/**
-	 * 
+	 * Attribute used to display all the invited friends in a game. 
 	 */
 	@FXML
 	private Pane invitedFriendsPane;
 	
 	/**
-	 * 
+	 * Attribute used to display all the current player of the session friends.
+	 *
 	 */
 	@FXML
 	private Pane friendsPane;
 	
 	/**
-	 * 
+	 * Attribute used to display all the roles in the game management view.
 	 */
 	@FXML
 	private Pane rolePane;
 	
 	/**
-	 * 
+	 * Attribute that allows a game creator to start the game he created through a button.
 	 */
 	@FXML
 	private Button startGameButton;
 	
 	/**
-	 * 
+	 * Attribute that allows a game creator to kick a player out of the game he created.. 
 	 */
 	@FXML
 	private Button kickPlayerOutOfGameButton;
 	
 	/**
-	 * 
+	 * Attribute that allows a player to create a game and display the id of the game in the view (game management view).
 	 */
 	@FXML
 	private Button generateIdButton;
 	
 	/**
-	 * 
+	 * Attribute that shows which status if the game is chosen.
 	 */
 	private ToggleGroup statusGroup;
 
 	/**
-	 * 
+	 * Attributes used to store the current game of the session if created.
 	 */
 	private static Game currentGame;
 
@@ -178,6 +179,9 @@ public class GameManagementController implements Initializable {
 	 * 
 	 * @param event
 	 * @throws IOException
+	 * Method that allows a Player to create a game in the database if correct information is entered and displays the id of the 
+	 * generated game.
+	 * @return void.
 	 */
 	@FXML
 	void generateGameId(ActionEvent event) throws IOException{ 
@@ -222,7 +226,13 @@ public class GameManagementController implements Initializable {
 	 * 
 	 * @param event
 	 * @throws IOException
-	 * @throws SQLException 
+	 * @throws SQLException
+	 * 
+	 * Method which gets the roles selected by the game creator for the game, and distributes the chosen roles at the beginning of the game.
+	 * The method verifies if there is enough players in the game lobby to start the game, and if the roles chosen have a correct amount for the number of players
+	 * selected for the game by the game creator.
+	 * 
+	 * @return void.
 	 */
 	@FXML
 	void startGame(ActionEvent event) throws IOException, SQLException{
@@ -248,6 +258,9 @@ public class GameManagementController implements Initializable {
 					if(nbw > 2 || special > 3) {
 						InfoBox.infoBoxW("The amount of werewolves or/and special roles is too high", "Incorrect information", "Bad information");
 					}else {
+						/**
+						 * Stores in an ArrayList all the game available roles.
+						 */
 						ArrayList<String> roles = new ArrayList<String>();
 						for(int i = 0; i < 1; i++) {
 							roles.add(Role.WEREWOLF.getName());
@@ -267,6 +280,10 @@ public class GameManagementController implements Initializable {
 						if(hunter == 1) {
 							roles.add(Role.HUNTER.getName());
 						}
+						
+						/**
+						 * Shuffles the list of players in order to get this list and attributes to each players the roles from the role list. 
+						 */
 						Collections.shuffle(players);
 						for(int i = 0; i < roles.size(); i++) {
 							boolean a = gameManagementFacade.modifyPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), players.get(i), roles.get(i));
@@ -291,6 +308,9 @@ public class GameManagementController implements Initializable {
 					if(nbw > nbplayers/6 || special > nbplayers/4) {
 						InfoBox.infoBoxW("The amount of werewolves or/and special roles is too high", "Incorrect information", "Bad information");
 					}else {
+						/**
+						 * Stores in an ArrayList all the game available roles.
+						 */
 						ArrayList<String> roles = new ArrayList<String>();
 						for(int i = 0; i < nbw; i++) {
 							roles.add(Role.WEREWOLF.getName());
@@ -310,6 +330,10 @@ public class GameManagementController implements Initializable {
 						if(hunter == 1) {
 							roles.add(Role.HUNTER.getName());
 						}
+						
+						/**
+						 * Shuffles the list of players in order to get this list and attributes to each players the roles from the role list. 
+						 */
 						Collections.shuffle(players);
 						for(int i = 0; i < roles.size(); i++) {
 							boolean a = gameManagementFacade.modifyPlayerInGame(GameManagementController.getCurrentGame().getGame_id(), players.get(i), roles.get(i));
@@ -339,6 +363,12 @@ public class GameManagementController implements Initializable {
 	 * 
 	 * @param event
 	 * @throws IOException
+	 * 
+	 * Method that allows a game creator to kick a player out of the game lobby.
+	 * Verifies if the player is chosen in order to execute this action, otherwise, 
+	 * an infobox is displayed and the action is not done.
+	 * 
+	 * @return void.
 	 */
 	@FXML
 	void kickPlayerOutOfGame(ActionEvent event) throws IOException{
@@ -349,8 +379,11 @@ public class GameManagementController implements Initializable {
 		}else {
 			String username = listPlayers.getSelectionModel().getSelectedItem();
 			if(username==null) {
-				InfoBox.infoBoxW("Please select a player before try to delete.","Missing Player.","Missing informations");
+				InfoBox.infoBoxW("Please select a player before try to delete.","Missing Player.","Missing information");
 			}else {
+				if(username.equals(GameManagementController.getCurrentPlayerInGame().getUsername())) {
+					InfoBox.infoBoxW("You cannot kick yourself out of the game.","Bad Manipulation.","Missing informations");
+				}else {
 				GameManagementController.getCurrentGame();
 				boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),username);
 				if(isDone) {		
@@ -361,11 +394,18 @@ public class GameManagementController implements Initializable {
 			}		
 		}
 	}
-
+	}
+	
 	/**
 	 * 
 	 * @param event
 	 * @throws IOException
+	 * 
+	 * Method that allows a PlayerInGame in the game lobby to invite a friend to play with him.
+	 * Verifies if a friend is chosen to execute this action, otherwise, 
+	 * an infobox is displayed and the action is not done.
+	 * 
+	 * @return void.
 	 */
 	@FXML
 	void sendGameRequest(ActionEvent event) throws IOException{
@@ -396,7 +436,14 @@ public class GameManagementController implements Initializable {
 	 * 
 	 * @param event
 	 * @throws IOException
-	 * @throws SQLException 
+	 * @throws SQLException
+	 * 
+	 * Method that allows a PlayerInGame in the game lobby to invite a friend to play with him.
+	 * Verifies if a friend is chosen to execute this action, otherwise,
+	 * an infobox is displayed and the action is not done.
+	 * 
+	 * @return void.
+	 * 
 	 */
 	@FXML
 	void cancelGameRequest(ActionEvent event) throws IOException, SQLException{
@@ -429,6 +476,13 @@ public class GameManagementController implements Initializable {
 	 * 
 	 * @param event
 	 * @throws IOException
+	 * 
+	 * Method that allows a PlayerInGame to return in the main menu of the Werewolves game.
+	 * If the PlayerInGame is a game creator, the game he created is immediately deleted if he generated a game, 
+	 * otherwise, if it's a PlayerInGame, he is simply removed from the game.
+	 * 
+	 * @return void.
+	 * 
 	 */
 	@FXML
 	void returnPlayerMenu(ActionEvent event) throws IOException{
@@ -459,8 +513,14 @@ public class GameManagementController implements Initializable {
 		}
 	}
 
-	//Added Methods
 	
+	/**
+	 * @param arg0, arg1
+	 * 
+	 * Method that displays all the necessary information for the game management in its view.
+	 * 
+	 * @return void
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		statusGroup = new ToggleGroup();
@@ -468,12 +528,21 @@ public class GameManagementController implements Initializable {
 		publicGame.setToggleGroup(statusGroup);
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
+		
+		/**
+		 * Sets the allowed actions for a PlayerInGame depending if its the game creator, or a Player who joined the game.
+		 */
 		try {
 			if ((GameManagementController.getCurrentGame() !=  null) && (GameManagementController.getCurrentPlayerInGame() !=  null)) {
 				if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
 					rolePane.setDisable(false);
 					kickPlayerOutOfGameButton.setDisable(false);
-				}
+				} // Modification actions in the game management view are disabled for the Players which are not he creator of the game.
+				
+				/**
+				 * Sets the number of players selected and the privacy of the game allowed to be modified for the game creator.
+				 * 
+				 */
 				numberOfPlayers.setText(GameManagementController.getCurrentGame().getNumberOfPlayers()+"");
 				numberOfPlayers.setDisable(true);
 				privateGame.setDisable(true);
@@ -486,7 +555,10 @@ public class GameManagementController implements Initializable {
 				friendsPane.setVisible(true);
 				generateIdButton.setDisable(true);
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
-				//refresh lists
+				
+				/**
+				 * Refreshes all the lists, by a certain period of time.
+				 */
 				Task<ListView<String>> gameManagementTask = new Task<>() {
 					@Override
 					protected ListView<String> call() throws Exception {
@@ -495,6 +567,11 @@ public class GameManagementController implements Initializable {
 							ArrayList<String> invited = gameManagementFacade.getInvitedFriendList(GameManagementController.getCurrentGame().getGame_id(),PlayerMenuController.getCurrentPlayer().getUsername());
 							ArrayList<String> invite = friendManagementFacade.getFriendList(PlayerMenuController.getCurrentPlayer().getUsername());
 							Platform.runLater(() -> {	
+								/**
+								 * Manage the Players added in the list of Players in the game lobby, 
+								 * the list of friends for each PlayerInGame, and the list of invited for each
+								 * PlayerInGame.
+								 */
 								listPlayers.getItems().clear();
 								for(String i : p) {
 									listPlayers.getItems().add(i);
@@ -526,6 +603,9 @@ public class GameManagementController implements Initializable {
 							}
 							Thread.sleep(5000);
 						}
+						/**
+						 * Allows the game creator to start the game by giving him the ability to accede the corresponding button.
+						 */
 						if(GameManagementController.getCurrentPlayerInGame().isCreator()) {
 							startGameButton.setDisable(false);
 						}else {
@@ -546,6 +626,9 @@ public class GameManagementController implements Initializable {
 						return listPlayers;
 					}
 				};				
+				/**
+				 * The thread allows the refresh of the lists and permits a parallel execution of the different tasks.
+				 */
 				Thread gameManagementThread = new Thread(gameManagementTask);
 				gameManagementThread.setDaemon(true);
 				gameManagementThread.start();					
@@ -556,26 +639,25 @@ public class GameManagementController implements Initializable {
 	}
 	
 	/**
-	 * 
 	 * @return the currentGame
 	 * @throws IOException
+	 * @return Game
 	 */
 	public static Game getCurrentGame() throws IOException {
 		return GameManagementController.currentGame;
 	}
 
-	/**
-	 * 
+	/** 
 	 * @param currentGame the currentGame to set
 	 * @throws IOException
+	 * @return void.
 	 */
 	public static void setCurrentGame(Game currentGame) throws IOException {
 		GameManagementController.currentGame = currentGame;
 	}
 
 	/**
-	 * 
-	 * @return the currentPlayerInGame
+	 * @return the currentPlayerInGame of the session
 	 */
 	public static PlayerInGame getCurrentPlayerInGame() {
 		return currentPlayerInGame;
@@ -590,9 +672,10 @@ public class GameManagementController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Method that transforms a boolean into an int.
+	 * If the boolean is "true", returns 1. Otherwise, returns 0.
 	 * @param nb
-	 * @return
+	 * @return an int corresponding to a boolean.
 	 */
 	public boolean getBoolean(int nb) {
 		if(nb == 0) {

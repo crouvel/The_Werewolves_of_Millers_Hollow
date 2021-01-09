@@ -14,12 +14,12 @@ public enum PlayerReportType {
     PROFANITY("PROFANITY");
 
 	/**
-	 * 
+	 * Attributes that defines the name of the player report type.
 	 */
 	private String name;
 
 	/**
-	 * 
+	 * Constructor
 	 * @param string
 	 */
 	PlayerReportType(String string) {
@@ -27,15 +27,14 @@ public enum PlayerReportType {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the PlayerReport type name.
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * 
+	 * Gets the PlayerReportType
 	 * @param string
 	 * @return
 	 */

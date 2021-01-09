@@ -25,6 +25,7 @@ public class GameManagementDAOMySQL extends GameManagementDAO {
 	 */
 	public GameManagementDAOMySQL() {}
 
+	
 	@Override
 	public boolean createGame(int nbplayers, boolean status, String creator) throws SQLException{
 

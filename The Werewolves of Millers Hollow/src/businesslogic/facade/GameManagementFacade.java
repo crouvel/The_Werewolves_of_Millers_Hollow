@@ -24,10 +24,10 @@ public class GameManagementFacade {
 	public GameManagementFacade() {}
 
 	/**
-	 * 
+	 * Creates a game trough delegation to the GameManagementDAO.
 	 * @param numberOfPlayers 
 	 * @param status 
-	 * @return
+	 * @return boolean which is true if the action was made, otherwise false is returned.
 	 */
 	public boolean createGame(int nbplayers, boolean status, String creator) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -41,9 +41,9 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Deletes a game through delegation to the GameManagementDAO.
 	 * @param game_id 
-	 * @return
+	 * @return boolean which is true if the action was made, otherwise false is returned.
 	 */
 	public boolean deleteGame(int game_id) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -57,9 +57,9 @@ public class GameManagementFacade {
 	}
 	
 	/**
-	 * 
+	 * Deletes a game through delegation to the GameManagementDAO.
 	 * @param game_id 
-	 * @return
+	 * @return boolean which is true if the action was made, otherwise false is returned.
 	 */
 	public boolean deleteGame2(String creatorUsername) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -73,10 +73,10 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Creates a game request through delegation to the GameManagementDAO.
 	 * @param game_id 
 	 * @param username 
-	 * @return
+	 * @return boolean which is true if the action was made, otherwise false is returned.
 	 */
 	public boolean inviteFriendToPlay(int game_id, String username1, String username2) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -90,10 +90,10 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Deletes a game request through delegation to the GameManagementDAO.
 	 * @param game_id 
 	 * @param username 
-	 * @return
+	 * @return a boolean which is true if the wanted action is made, otherwise false is returned.
 	 */
 	public boolean cancelRequest(int game_id, String username1, String username2) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -107,10 +107,10 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Creates PlayerInGame from a game through delegation to the GameManagementDAO.
 	 * @param game_id 
 	 * @param username 
-	 * @return
+	 * @return a boolean which is true if the action is made, otherwise false is returned.
 	 */
 	public boolean kickPlayerOfTheGame(int game_id, String username) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -124,14 +124,15 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Modifies a game roles through delegation to the GameManagementDAO.
 	 * @param numberOfWerewolves 
 	 * @param hasWitch 
 	 * @param hasFortuneTeller 
 	 * @param hasLittleGirl 
 	 * @param hasCupid 
 	 * @param hasHunter 
-	 * @return
+	 * @return a boolean which is true if the action is made, otherwise false is returned.
+	 * 
 	 */
 	public boolean modifyRole(int game_id, int numberOfWerewolves, boolean hasWitch, boolean hasFortuneTeller, boolean hasLittleGirl, boolean hasCupid, boolean hasHunter) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -145,9 +146,11 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Searches the game through delegation to the GameManagementDAO.
 	 * @param username
-	 * @return
+	 * @return the Game corresponding to its game creator.
+	 * @catch SQLException
+	 * 
 	 */
 	public Game getGameByCreator(String username) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -161,9 +164,11 @@ public class GameManagementFacade {
 	}
 	
 	/**
-	 * 
+	 * Gets the game through delegation to the GameManagementDAO.
 	 * @param username
-	 * @return
+	 * @return the Game corresponding to its game id.
+	 * @catch SQLException
+	 * 
 	 */
 	public Game getGame(int gameId) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -178,10 +183,11 @@ public class GameManagementFacade {
 
 
 	/**
-	 * 
+	 * Gets all the PlayerInGame invited to a game by another one through delegation to the GameManagementDAO.
 	 * @param username 
-	 * @return
+	 * @return an ArrayList of all the Players invited in the game for each PlayerInGame.
 	 * @throws SQLException
+	 * 
 	 */
 	public ArrayList<String> getInvitedFriendList(int gameId, String username) throws SQLException{
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -194,10 +200,11 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Gets all the PlayerInGame in a game through delegation to the GameManagementDAO.
 	 * @param username 
-	 * @return
+	 * @return an ArrayList of all the PlayerInGame in the Game Management view for all the PlayerInGame. 
 	 * @throws SQLException
+	 * 
 	 */
 	public ArrayList<String> getPlayerList(int game_id) throws SQLException {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -209,6 +216,13 @@ public class GameManagementFacade {
 		}   
 	}
 	
+	/**
+	 * Checks if game exists through delegation to the GameManagementDAO.
+	 * @param creatorUsername
+	 * @return a boolean which is true if the action is made, otherwise false is returned.
+	 * @catch SQLException
+	 * 
+	 */
 	public boolean existsGameByUsername(String creatorUsername) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
 		try {
@@ -219,6 +233,15 @@ public class GameManagementFacade {
 		} 
 	}
 	
+	/**
+	 * Modify the PlayerInGame information through delegation to the GameManagementDAO.
+	 * @param gameId
+	 * @param username
+	 * @param role
+	 * @return a boolean which is true if the action is made, otherwise false is returned.
+	 * @catch SQLException
+	 * 
+	 */
 	public boolean modifyPlayerInGame(int gameId, String username, String role) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
 		try {
