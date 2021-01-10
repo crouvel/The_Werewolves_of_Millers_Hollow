@@ -14,6 +14,7 @@ import businesslogic.domain.PlayerReport;
 import businesslogic.domain.BugReport;
 
 /**
+ * ReportDAO class.
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
 public abstract class ReportDAO {

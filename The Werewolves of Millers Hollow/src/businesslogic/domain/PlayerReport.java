@@ -2,6 +2,7 @@ package businesslogic.domain;
 
 
 /**
+ * Player Report enumeration.
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
 public class PlayerReport extends Report {

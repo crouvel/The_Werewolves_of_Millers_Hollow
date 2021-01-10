@@ -17,6 +17,7 @@ import businesslogic.domain.PlayerReportType;
 import businesslogic.domain.BugReport;
 
 /**
+ * ReportDAOMySQL class.
  * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class ReportDAOMySQL extends ReportDAO {

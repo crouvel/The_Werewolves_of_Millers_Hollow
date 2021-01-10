@@ -1,6 +1,7 @@
 package businesslogic.domain;
 
 /**
+ * Report enumeration.
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
 public class Report {

@@ -16,6 +16,7 @@ import businesslogic.domain.Phase;
 import model.dao.factory.AbstractFactoryDAO;
 
 /**
+ * GameManagementDAOMySQL class.
  * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class GameManagementDAOMySQL extends GameManagementDAO {
