@@ -176,11 +176,10 @@ public class GameManagementController implements Initializable {
 	private static Game currentGame;
 
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException
 	 * Method that allows a Player to create a game in the database if correct information is entered and displays the id of the 
 	 * generated game.
+	 * @param event
+	 * @throws IOException
 	 * @return void.
 	 */
 	@FXML
@@ -223,15 +222,12 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException
-	 * @throws SQLException
-	 * 
 	 * Method which gets the roles selected by the game creator for the game, and distributes the chosen roles at the beginning of the game.
 	 * The method verifies if there is enough players in the game lobby to start the game, and if the roles chosen have a correct amount for the number of players
 	 * selected for the game by the game creator.
-	 * 
+	 * @param event
+	 * @throws IOException
+	 * @throws SQLException
 	 * @return void.
 	 */
 	@FXML
@@ -360,14 +356,11 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException
-	 * 
 	 * Method that allows a game creator to kick a player out of the game lobby.
 	 * Verifies if the player is chosen in order to execute this action, otherwise, 
 	 * an infobox is displayed and the action is not done.
-	 * 
+	 * @param event
+	 * @throws IOException
 	 * @return void.
 	 */
 	@FXML
@@ -397,14 +390,11 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException
-	 * 
 	 * Method that allows a PlayerInGame in the game lobby to invite a friend to play with him.
 	 * Verifies if a friend is chosen to execute this action, otherwise, 
 	 * an infobox is displayed and the action is not done.
-	 * 
+	 * @param event
+	 * @throws IOException 
 	 * @return void.
 	 */
 	@FXML
@@ -433,15 +423,12 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException
-	 * @throws SQLException
-	 * 
 	 * Method that allows a PlayerInGame in the game lobby to invite a friend to play with him.
 	 * Verifies if a friend is chosen to execute this action, otherwise,
 	 * an infobox is displayed and the action is not done.
-	 * 
+	 * @param event
+	 * @throws IOException
+	 * @throws SQLException
 	 * @return void.
 	 * 
 	 */
@@ -473,14 +460,11 @@ public class GameManagementController implements Initializable {
 	}
 
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException
-	 * 
 	 * Method that allows a PlayerInGame to return in the main menu of the Werewolves game.
 	 * If the PlayerInGame is a game creator, the game he created is immediately deleted if he generated a game, 
 	 * otherwise, if it's a PlayerInGame, he is simply removed from the game.
-	 * 
+	 * @param event
+	 * @throws IOException
 	 * @return void.
 	 * 
 	 */
@@ -515,10 +499,8 @@ public class GameManagementController implements Initializable {
 
 
 	/**
-	 * @param arg0, arg1
-	 * 
 	 * Method that displays all the necessary information for the game management in its view.
-	 * 
+	 * @param arg0, arg1
 	 * @return void
 	 */
 	@Override

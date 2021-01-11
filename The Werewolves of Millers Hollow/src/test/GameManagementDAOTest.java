@@ -12,7 +12,7 @@ import model.dao.mysql.GameManagementDAO;
 
 /**
  * GameManagementDAOTest class.
- * @author clare
+ * @author Clarence Rouvel.
  */
 class GameManagementDAOTest {
 

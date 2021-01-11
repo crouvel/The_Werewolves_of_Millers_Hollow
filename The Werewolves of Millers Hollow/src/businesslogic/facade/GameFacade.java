@@ -25,10 +25,11 @@ public class GameFacade {
     public GameFacade() {}
 
     /**
+     * Send the player report through delegation to the ReportDAO.
      * @param badPlayerUsername 
      * @param reason 
      * @param description 
-     * @return
+     * @return boolean true, if the action is executed.
      */
     public boolean sendPlayerReport(String badPlayerUsername, String reason, String description) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
