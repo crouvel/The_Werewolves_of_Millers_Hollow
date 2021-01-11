@@ -1,6 +1,7 @@
 package businesslogic.domain;
 
 /**
+ * Game class.
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
 

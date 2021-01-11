@@ -4,7 +4,7 @@
 package businesslogic.domain;
 
 /**
- * 
+ * Role enumeration.
  * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  *
  */

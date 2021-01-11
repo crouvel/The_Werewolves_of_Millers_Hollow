@@ -1,4 +1,5 @@
 /**
+ * Player report type enumeration.
  * package businesslogic.domain
  */
 package businesslogic.domain;

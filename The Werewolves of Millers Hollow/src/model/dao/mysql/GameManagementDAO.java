@@ -4,6 +4,7 @@
 package model.dao.mysql;
 
 /**
+ * GameManagementDAOMySQL
  * Imported classes and libraries.
  */
 import java.sql.SQLException;

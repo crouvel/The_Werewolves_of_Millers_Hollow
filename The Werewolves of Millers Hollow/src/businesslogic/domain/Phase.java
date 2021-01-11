@@ -1,6 +1,7 @@
 package businesslogic.domain;
 
 /**
+ * Phase enumeration.
  * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
  */
 public enum Phase {

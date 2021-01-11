@@ -133,38 +133,38 @@ public class GameManagementController implements Initializable {
 	 */
 	@FXML
 	private Pane invitedFriendsPane;
-	
+
 	/**
 	 * Attribute used to display all the current player of the session friends.
 	 *
 	 */
 	@FXML
 	private Pane friendsPane;
-	
+
 	/**
 	 * Attribute used to display all the roles in the game management view.
 	 */
 	@FXML
 	private Pane rolePane;
-	
+
 	/**
 	 * Attribute that allows a game creator to start the game he created through a button.
 	 */
 	@FXML
 	private Button startGameButton;
-	
+
 	/**
 	 * Attribute that allows a game creator to kick a player out of the game he created.. 
 	 */
 	@FXML
 	private Button kickPlayerOutOfGameButton;
-	
+
 	/**
 	 * Attribute that allows a player to create a game and display the id of the game in the view (game management view).
 	 */
 	@FXML
 	private Button generateIdButton;
-	
+
 	/**
 	 * Attribute that shows which status if the game is chosen.
 	 */
@@ -280,7 +280,7 @@ public class GameManagementController implements Initializable {
 						if(hunter == 1) {
 							roles.add(Role.HUNTER.getName());
 						}
-						
+
 						/**
 						 * Shuffles the list of players in order to get this list and attributes to each players the roles from the role list. 
 						 */
@@ -330,7 +330,7 @@ public class GameManagementController implements Initializable {
 						if(hunter == 1) {
 							roles.add(Role.HUNTER.getName());
 						}
-						
+
 						/**
 						 * Shuffles the list of players in order to get this list and attributes to each players the roles from the role list. 
 						 */
@@ -384,18 +384,18 @@ public class GameManagementController implements Initializable {
 				if(username.equals(GameManagementController.getCurrentPlayerInGame().getUsername())) {
 					InfoBox.infoBoxW("You cannot kick yourself out of the game.","Bad Manipulation.","Missing informations");
 				}else {
-				GameManagementController.getCurrentGame();
-				boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),username);
-				if(isDone) {		
-					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
-				}else {
-					InfoBox.infoBoxE("Please retry to kick the player later.","Incorrect information.", "Connection problem");
-				}
-			}		
+					GameManagementController.getCurrentGame();
+					boolean isDone = gameManagementFacade.kickPlayerOfTheGame(GameManagementController.getCurrentGame().getGame_id(),username);
+					if(isDone) {		
+						TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
+					}else {
+						InfoBox.infoBoxE("Please retry to kick the player later.","Incorrect information.", "Connection problem");
+					}
+				}		
+			}
 		}
 	}
-	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -471,7 +471,7 @@ public class GameManagementController implements Initializable {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -513,7 +513,7 @@ public class GameManagementController implements Initializable {
 		}
 	}
 
-	
+
 	/**
 	 * @param arg0, arg1
 	 * 
@@ -528,7 +528,7 @@ public class GameManagementController implements Initializable {
 		publicGame.setToggleGroup(statusGroup);
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();
-		
+
 		/**
 		 * Sets the allowed actions for a PlayerInGame depending if its the game creator, or a Player who joined the game.
 		 */
@@ -538,7 +538,7 @@ public class GameManagementController implements Initializable {
 					rolePane.setDisable(false);
 					kickPlayerOutOfGameButton.setDisable(false);
 				} // Modification actions in the game management view are disabled for the Players which are not he creator of the game.
-				
+
 				/**
 				 * Sets the number of players selected and the privacy of the game allowed to be modified for the game creator.
 				 * 
@@ -550,12 +550,12 @@ public class GameManagementController implements Initializable {
 				if(!GameManagementController.getCurrentGame().isStatus()) {
 					statusGroup.selectToggle(privateGame);
 				}
-				
+
 				invitedFriendsPane.setVisible(true);
 				friendsPane.setVisible(true);
 				generateIdButton.setDisable(true);
 				gameId.setText(GameManagementController.getCurrentGame().getGame_id()+"");
-				
+
 				/**
 				 * Refreshes all the lists, by a certain period of time.
 				 */
@@ -622,7 +622,7 @@ public class GameManagementController implements Initializable {
 								}			
 							});
 						}
-						
+
 						return listPlayers;
 					}
 				};				
@@ -637,7 +637,7 @@ public class GameManagementController implements Initializable {
 			InfoBox.infoBoxE("Loading information problem. Quit and retry.", "Loading information problem", "Error");
 		}
 	}
-	
+
 	/**
 	 * @return the currentGame
 	 * @throws IOException
@@ -670,7 +670,7 @@ public class GameManagementController implements Initializable {
 	public static void setCurrentPlayerInGame(PlayerInGame currentPlayerInGame) {
 		GameManagementController.currentPlayerInGame = currentPlayerInGame;
 	}
-	
+
 	/**
 	 * Method that transforms a boolean into an int.
 	 * If the boolean is "true", returns 1. Otherwise, returns 0.
@@ -684,5 +684,5 @@ public class GameManagementController implements Initializable {
 			return true;
 		}
 	}
-	
+
 }
