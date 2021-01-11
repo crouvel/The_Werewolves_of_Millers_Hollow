@@ -1,4 +1,4 @@
-package model.dao.mysql;
+package test;
 
 
 /**
@@ -8,10 +8,11 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 import businesslogic.domain.Game;
 import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.GameManagementDAO;
 
 /**
  * GameManagementDAOTest class.
- * @author clare
+ * @author Clarence Rouvel.
  */
 class GameManagementDAOTest {
 
