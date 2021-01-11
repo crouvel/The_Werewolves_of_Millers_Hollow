@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
@@ -22,8 +21,6 @@ import businesslogic.facade.GameManagementFacade;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import businesslogic.domain.PlayerReportType;
-import businesslogic.facade.GameFacade;
-import businesslogic.facade.GameManagementFacade;
 /*
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -52,7 +49,7 @@ import util.InfoBox;
 
 /**
  * 
- * @author Tiffany Dumaire
+ * @author Tiffany Dumaire, Clarence Rouvel
  *
  */
 public class GameController implements Initializable{
