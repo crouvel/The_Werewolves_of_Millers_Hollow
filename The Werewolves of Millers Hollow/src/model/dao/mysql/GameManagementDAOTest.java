@@ -26,7 +26,7 @@ class GameManagementDAOTest {
 			GameManagementDAO gameManagementDAO  = factory.createGameManagementDAO();
 
 			/**
-			 * Game with id 166 exists in the database, supposed to return Success.
+			 * Game with game id 166 exists in the database, supposed to return Success.
 			 */
 			Game game = gameManagementDAO.getGame(166);
 			if (game != null) {
