@@ -1,1 +1,11 @@
+application
+businesslogic.domain
+businesslogic.facade
+chat.client
+chat.com.lloseng.ocsf.client
+chat.com.lloseng.ocsf.server
+chat.server
+gui.controller
+model.dao.factory
 model.dao.mysql
+util
