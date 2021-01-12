@@ -3,196 +3,270 @@ package chat.com.lloseng.ocsf.server;
 /**
  * 
  */
-public abstract class AbstractServer {
+public abstract class AbstractServer implements Runnable{
 
-    /**
-     * Default constructor
-     */
-    public AbstractServer() {
-    }
+	/**
+	 * Default constructor
+	 */
+	public AbstractServer(int port) {
+		this.port = port;
+		this.ClientTG = new ThreadGroup("Client threads") {
+			public void uncaughtException(Thread thread, Throwable exception) {
+				clientException((ConnectionToClient)thread,exception);
+			}
+		}
+	}
 
-    /**
-     * 
-     */
-    private int port;
+	/**
+	 * 
+	 */
+	private int port;
 
-    /**
-     * 
-     */
-    private int timeout = 500;
+	/**
+	 * 
+	 */
+	private int timeout = 500;
 
-    /**
-     * 
-     */
-    private int backlog = 10;
+	/**
+	 * 
+	 */
+	private int backlog = 10;
 
-    /**
-     * 
-     */
-    public boolean readyToStop = true;
-
-    /**
-     * 
-     */
-    public AbstractConnectionFactory connectionFactory = null;
+	/**
+	 * 
+	 */
+	public boolean readyToStop = true;
 
 
+	private ServerSocket serverS = null;
+	private Thread connectionListener = null;
+	private ThreadGroup ClientTG;
 
-    /**
-     * @return
-     */
-    public final void listen() {
-        // TODO implement here
-    }
+	/**
+	 * 
+	 */
+	public AbstractConnectionFactory connectionFactory = null;
 
-    /**
-     * @return
-     */
-    public final void stopListening() {
-        // TODO implement here
-    }
 
-    /**
-     * @param msg 
-     * @return
-     */
-    public void sendToAllClients(Object msg) {
-        // TODO implement here
-    }
 
-    /**
-     * @return
-     */
-    public final boolean isListening() {
-        // TODO implement here
-        return false;
-    }
+	/**
+	 * @return
+	 */
+	public final void listen() throws IOException{
+		if(!isListening) {
+			if(serverS == null) {
+				serverS = new ServerSocket(getPort,backlog);
+			}
+			serverS.setSoTimeout(timeout);
 
-    /**
-     * @return
-     */
-    public final boolean isClosed() {
-        // TODO implement here
-        return false;
-    }
+			connectionListener = new Thread(this);
+			connectionListener.start();
+		}
+	}
 
-    /**
-     * @param port 
-     * @return
-     */
-    public final void setPort(int port) {
-    	this.port = port;
-    }
+	/**
+	 * @return
+	 */
+	public final void stopListening() {
+		readyToStop = true;
+	}
 
-    /**
-     * @param timeout 
-     * @return
-     */
-    public final void setTimeout(int timeout) {
-    	this.timeout = timeout;
-    }
+	/**
+	 * @param msg 
+	 * @return
+	 */
+	public void sendToAllClients(Object msg) {
+		Thread[] clientThreads = getClientConnections();
 
-    /**
-     * @param backlog 
-     * @return
-     */
-    public final void setBackLog(int backlog) {
-        // TODO implement here
-    }
+		for(int i = 0; i<clientThreads.length;i++) {
+			try
+			{
+				((ConnectionToClient)clientThreads[i]).sendToClient(msg);
+			}
+			catch (Exception ex) {}
+		}
+	}
 
-    /**
-     * @param factory 
-     * @return
-     */
-    public final void setConnectionFactory(AbstractConnectionFactory factory) {
-        // TODO implement here
-    }
 
-    /**
-     * @return
-     */
-    public final void run() {
-        // TODO implement here
-    }
+	synchronized final public Thread[] getClientConnections() {
+		Thread[] clientThreads = new Thread[ClientTG.activeCount()];
+		ClientTG.enumerate(clientThreads);
 
-    /**
-     * @return
-     */
-    protected void clientConnected() {
-        // TODO implement here
-    }
+		return clientThreads;
+	}
 
-    /**
-     * @return
-     */
-    protected void clientDisconnected() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public final boolean isListening() {
+		return connectionListener!=null && connectionListener.isAlive();
+	}
 
-    /**
-     * @return
-     */
-    protected void serverStarted() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public final boolean isClosed() {
+		return (serverS==null);
+	}
 
-    /**
-     * @return
-     */
-    protected void serverStopped() {
-        // TODO implement here
-    }
+	/**
+	 * @param port 
+	 * @return
+	 */
+	public final void setPort(int port) {
+		this.port = port;
+	}
 
-    /**
-     * @return
-     */
-    protected void serverClosed() {
-        // TODO implement here
-    }
+	/**
+	 * @param timeout 
+	 * @return
+	 */
+	public final void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
 
-    /**
-     * @param msg 
-     * @param client ConnectionToClient 
-     * @return
-     */
-    public final void receiveMessageFromClient(Object msg,ConnectionToGameClient client) {
-        // TODO implement here
-    }
+	/**
+	 * @param backlog 
+	 * @return
+	 */
+	public final void setBackLog(int backlog) {
+		this.backlog=backlog;
+	}
 
-    /**
-     * @return
-     */
-    public final void close() {
-        // TODO implement here
-    }
+	/**
+	 * @param factory 
+	 * @return
+	 */
+	public final void setConnectionFactory(AbstractConnectionFactory factory) {
+		this.connectionFactory=factory;
+	}
 
-    /**
-     * @return
-     */
-    public final int getNumberOfClients() {
-        return 0;
-    }
+	/**
+	 * @return
+	 */
+	public final void run() {
+		readyToStop = false;
+		serverStarted();
 
-    /**
-     * @return
-     */
-    public final int getPort() {
-        return this.port;
-    }
+		try {
+			while(!readyToStop) {
+				try {
+					Socket clientS = serverS.accept();
 
-    /**
-     * @param exception 
-     * @return
-     */
-    protected void listeningException(Throwable exception) {
-        // TODO implement here
-    }
+					synchronized(this) {
+						if(!readyToStop) {
+							if(connectionFactory==null) {
+								new ConnectionToClient(this.ClientTG,clientS,this);
+							}else {
+								connectionFactory.createConnection(this.ClientTG,clientS,this);
+							}
+						}
+					}
+				}catch(InterruptedIOException exception) {}
+			}
+		}catch(IOException exception) {
+			if(!readyToStop) {
+				listeningException(exception);
+			}
+		}
+		finally {
+			readyToStop = true;
+			connectionListener = null;
+			
+			serverStopped();
+		}
 
-    /**
-     * @param msg 
-     * @param client 
-     * @return
-     */
-    protected abstract void handleMessageFromClient(Object msg, ConnectionToGameClient client);
+	}
+
+	/**
+	 * @return
+	 */
+	protected void clientConnected(ConnectionToClient client) {}
+
+	/**
+	 * @return
+	 */
+	protected void clientDisconnected(ConnectionToClient client) {}
+
+	/**
+	 * @return
+	 */
+	protected void serverStarted() {}
+
+	/**
+	 * @return
+	 */
+	protected void serverStopped() {}
+
+	/**
+	 * @return
+	 */
+	protected void serverClosed() {}
+
+	/**
+	 * @param msg 
+	 * @param client ConnectionToClient 
+	 * @return
+	 */
+	public final void receiveMessageFromClient(Object msg,ConnectionToGameClient client) {
+		this.handleMessageFromClient(msg, client);
+	}
+
+	/**
+	 * @return
+	 */
+	public final void close() throws IOException{
+		if(serverS == null) {
+			return;
+		}
+		stopListening();
+		
+		try {
+			serverSocket.close();
+		}finally {
+			synchronized(this) {
+				Thread[] clientThreads = getClientConnections();
+				for(int i=0;i<clientThreads.length;i++) {
+					try {
+						((ConnectionToClient)) clientThreads[i]).close();
+					}catch(Exception e) {}
+				}
+				serverS = null;
+			}
+			try {
+				connectionListener.join();
+			}catch(InterruptedException e) {}
+			catch(NullPointerException e) {}
+			
+			serverClosed();
+		}
+	}
+
+	/**
+	 * @return
+	 */
+	public final int getNumberOfClients() {
+		return ClientTG.activeCount();
+	}
+
+	/**
+	 * @return
+	 */
+	public final int getPort() {
+		return this.port;
+	}
+
+	/**
+	 * @param exception 
+	 * @return
+	 */
+	protected void listeningException(Throwable exception) {}
+
+	/**
+	 * @param msg 
+	 * @param client 
+	 * @return
+	 */
+	protected abstract void handleMessageFromClient(Object msg, ConnectionToGameClient client);
 
 }

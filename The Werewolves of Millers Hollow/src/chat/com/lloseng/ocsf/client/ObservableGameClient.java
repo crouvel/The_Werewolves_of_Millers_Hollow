@@ -9,10 +9,15 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class ObservableGameClient extends Observable {
 
+	public static final String CONNECTION_CLOSED = "#OC: Connection Closed";
+	public static final String CONNECTION_ESTABLISHED = "#OC: Connection Established";
+	
+	private AdaptableClient service;
     /**
      * Default constructor
      */
-    public ObservableGameClient() {
+    public ObservableGameClient(String host, int port) {
+    	service = new AdaptableClient(host,port,this);
     }
 
     /**
@@ -24,32 +29,38 @@ public class ObservableGameClient extends Observable {
     /**
      * @return
      */
-    public final void openConnection() {
-        // TODO implement here
+    public final void openConnection() throws IOException{
+        service.openConnection();
     }
+    
+    /**
+     * 
+     * @throws IOException
+     */
+    final public void closeConnection() throws IOException {
+		service.closeConnection();
+	}
 
     /**
      * @param message 
      * @return
      */
-    public final void sendToServer(Object message) {
-        // TODO implement here
+    public final void sendToServer(Object message) throws IOException{
+        service.sendToServer(message);
     }
 
     /**
      * @return
      */
     public final boolean isConnected() {
-        // TODO implement here
-        return false;
+        return service.isConnected();
     }
 
     /**
      * @return
      */
     public final int getPort() {
-        // TODO implement here
-        return 0;
+        return service.getPort();
     }
 
     /**
@@ -57,15 +68,14 @@ public class ObservableGameClient extends Observable {
      * @return
      */
     public final void setPort(int port) {
-        // TODO implement here
+       service.setPort(port);
     }
 
     /**
      * @return
      */
     public final String getHost() {
-        // TODO implement here
-        return "";
+        return service.getHost();
     }
 
     /**
@@ -73,15 +83,14 @@ public class ObservableGameClient extends Observable {
      * @return
      */
     public final void setHost(String host) {
-        // TODO implement here
+        service.setHost(host);
     }
 
     /**
      * @return
      */
     public final InetAddress getInetAddress() {
-        // TODO implement here
-        return null;
+        return service.getInetAddress();
     }
 
     /**
@@ -89,21 +98,24 @@ public class ObservableGameClient extends Observable {
      * @return
      */
     protected void handleMessageFromServer(Object message) {
-        // TODO implement here
+        setChanged();
+        notifyObservers(message);
     }
 
     /**
      * @return
      */
-    protected void connectionClosed() {
-        // TODO implement here
+    protected void connectionClosed(){
+        setChanged();
+        notifyObservers(CONNECTION_CLOSED);
     }
 
     /**
      * @return
      */
     protected void connectionEstablished() {
-        // TODO implement here
+    	setChanged();
+        notifyObservers(CONNECTION_ESTABLISHED);
     }
 
 }

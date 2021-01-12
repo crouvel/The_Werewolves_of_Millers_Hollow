@@ -10,107 +10,127 @@ import chat.com.lloseng.ocsf.server.ConnectionToGameClient;
 @SuppressWarnings("deprecation")
 public class EchoServerGame implements Observer {
 
-    /**
-     * Default constructor
-     */
-    public EchoServerGame() {
-    }
+	final public static int DEFAULT_PORT = 5555;
 
-    /**
-     * 
-     */
-    public User user_id;
+	GameController serverUI;
 
-    /**
-     * @param id 
-     * @param ConnectionToClient 
-     * @return
-     */
-    public void clientLogin(int id, ConnectionToGameClient client) {
-        // TODO implement here
-    }
+	ObservableOriginatorServer originServer;
 
-    /**
-     * @param msg 
-     * @param client 
-     * @return
-     */
-    public void handleMessageFromClient(Object msg, ConnectionToGameClient client) {
-        // TODO implement here
-    }
+	/**
+	 * Default constructor
+	 */
+	public EchoServerGame(int port, GameController serverUI() {
+		this.originServer = new ObservableOriginatorServer(port);
+		this.originServer.addObserver(this);
 
-    /**
-     * @return
-     */
-    protected void serverStarted() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    protected void serverStopped() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    protected void clientConnected() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void update() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void listen() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    protected void serverClosed() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    protected void clientDisconnected() {
-        // TODO implement here
-    }
-
-    /**
-     * @param client 
-     * @param exception 
-     * @return
-     */
-    protected final void clientException(ConnectionToGameClient client, String exception) {
-        // TODO implement here
-    }
-
-    /**
-     * @param exception 
-     * @return
-     */
-    protected void listeningException(String exception) {
-        // TODO implement here
-    }
+		this.serverUI = serverUI;
+	}
 
 	/**
 	 * 
 	 */
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	public User user_id;
+
+
+	/**
+	 * @param msg 
+	 * @param client 
+	 * @return
+	 */
+	public void handleMessageFromClient(Object msg, ConnectionToGameClient client) {
+		String message = msg.toString();
+		serverUI.display("Message received: " + msg + " from " + client);
+
+		this.originServer.sendToAllClients("> " + client.getInfo("id").toString() + " :" + msg);
 	}
+
+	/**
+	 * @return
+	 */
+	protected void serverStarted() {
+		serverUI.display("Server listening for connections on port " + this.originServer.getPort());
+	}
+
+	/**
+	 * @return
+	 */
+	protected void serverStopped() {
+		serverUI.display("Server has stopped listening for connections.");
+	}
+
+	/**
+	 * @return
+	 */
+	protected void clientConnected(ConnectionToClient client) {
+		serverUI.display("A client connected : " + client.toString());
+	}
+
+	/**
+	 * @return
+	 */
+	public void update(Observable o, Object arg) {
+
+		OriginatorMessage m=(OriginatorMessage) arg1;
+
+		String msg = (String) m.getMessage();
+		ConnectionToClient client = m.getOriginator();
+
+		if (msg.startsWith(ObservableServer.CLIENT_CONNECTED)) {
+			this.clientConnected(client);
+		} else if (msg.startsWith(ObservableServer.CLIENT_DISCONNECTED)) {
+			this.clientDisconnected(client);
+		} else if (msg.startsWith(ObservableServer.CLIENT_EXCEPTION)) {
+			this.clientException(client, msg);
+		} else if (msg.startsWith(ObservableServer.LISTENING_EXCEPTION)) {
+			this.listeningException(msg);
+		} else if (msg.startsWith(ObservableServer.SERVER_CLOSED)) {
+			this.serverClosed();
+		} else if (msg.startsWith(ObservableServer.SERVER_STARTED)) {
+			this.serverStarted();
+		} else  if (msg.startsWith(ObservableServer.SERVER_STOPPED)) {
+			this.serverStopped();
+		} else {
+			this.handleMessageFromClient(msg, client);
+		}
+	}
+
+	/**
+	 * @return
+	 */
+	public void listen() throws IOException {
+		this.originServer.listen();
+	}
+
+	/**
+	 * @return
+	 */
+	protected void serverClosed() {
+		serverUI.display("Server has closed.");
+	}
+
+	/**
+	 * @return
+	 */
+	protected void clientDisconnected(ConnectionToClient client) {
+		serverUI.display("A client disconnected : " + client.toString());
+
+		this.originServer.sendToAllClients("Server MSG> " + client.getInfo("id").toString() + " left");
+	}
+
+	/**
+	 * @param client 
+	 * @param exception 
+	 * @return
+	 */
+	protected final void clientException(ConnectionToGameClient client, String exception) {
+		serverUI.display("A client : " + client.toString() + " has encountered an exception : " + exception);
+	}
+
+	/**
+	 * @param exception 
+	 * @return
+	 */
+	protected void listeningException(String exception) {}
+
 
 }

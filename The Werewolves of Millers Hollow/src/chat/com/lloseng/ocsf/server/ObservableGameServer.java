@@ -8,150 +8,183 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class ObservableGameServer extends Observable {
 
-    /**
-     * Default constructor
-     */
-    public ObservableGameServer() {
-    }
+	public static final String CLIENT_CONNECTED= "#OS:Client has connected.";
+
+	public static final String CLIENT_DISCONNECTED= "#OS:Client has disconnected.";
+
+	public static final String CLIENT_EXCEPTION= "#OS:Client has an exception.";
+
+	public static final String LISTENING_EXCEPTION= "#OS:Listening exception.";
+
+	public static final String SERVER_CLOSED= "#OS:Server has closed.";
+
+	public static final String SERVER_STARTED= "#OS:Server has started.";
+
+	public static final String SERVER_STOPPED= "#OS:Server has stopped.";
+
+	private AdaptableServer service;
+
+	/**
+	 * Default constructor
+	 */
+	public ObservableGameServer(int port) {
+		service = new AdaptableServer(port, this);
+	}
 
 
-    /**
-     * @return
-     */
-    public final void listen() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public final void listen() throws IOException{
+		service.listen();
+	}
 
-    /**
-     * @return
-     */
-    public final void stopListening() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public final void stopListening() {
+		service.stopListening();
+	}
 
-    /**
-     * @return
-     */
-    public void close() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public void close() {
+		service.close();
+	}
 
-    /**
-     * @param msg 
-     * @return
-     */
-    public void sendToAllClients(Object msg) {
-        // TODO implement here
-    }
+	/**
+	 * @param msg 
+	 * @return
+	 */
+	public void sendToAllClients(Object msg) {
+		service.sendToAllClients(msg);
+	}
 
-    /**
-     * @return
-     */
-    public final boolean isListening() {
-        // TODO implement here
-        return false;
-    }
+	/**
+	 * @return
+	 */
+	public final boolean isListening() {
+		return service.isListening();
+	}
 
-    /**
-     * @return
-     */
-    public final int getNumberOfClients() {
-        // TODO implement here
-        return 0;
-    }
+	final public Thread[] getClientConnections()
+	{
+		return service.getClientConnections();
+	}
 
-    /**
-     * @return
-     */
-    public final int getPort() {
-        // TODO implement here
-        return 0;
-    }
+	/**
+	 * @return
+	 */
+	public final int getNumberOfClients() {
+		return service.getNumberOfClients();
+	}
 
-    /**
-     * @param int 
-     * @return
-     */
-    public final void setPort(int port) {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	public final int getPort() {
+		return service.getPort();
+	}
 
-    /**
-     * @param timeout 
-     * @return
-     */
-    public final void setTimeout(int timeout) {
-        // TODO implement here
-    }
+	/**
+	 * @param int 
+	 * @return
+	 */
+	public final void setPort(int port) {
+		service.setPort(port);
+	}
 
-    /**
-     * @param backlog
-     */
-    public final void setBackLog(int backlog) {
-        // TODO implement here
-    }
+	/**
+	 * @param timeout 
+	 * @return
+	 */
+	public final void setTimeout(int timeout) {
+		service.setTimeout(timeout);
+	}
 
-    /**
-     * @param client 
-     * @return
-     */
-    protected void clientConnected(ConnectionToGameClient client) {
-        // TODO implement here
-    }
+	/**
+	 * @param backlog
+	 */
+	public final void setBackLog(int backlog) {
+		service.setBacklog(backlog);
+	}
 
-    /**
-     * @param client 
-     * @return
-     */
-    protected void clientDisconnected(ConnectionToGameClient client) {
-        // TODO implement here
-    }
+	/**
+	 * @param client 
+	 * @return
+	 */
+	protected void clientConnected(ConnectionToGameClient client) {
+		setChanged();
+		notifyObservers(CLIENT_CONNECTED);
+	}
 
-    /**
-     * @param client 
-     * @param exception 
-     * @return
-     */
-    protected void clientException(ConnectionToGameClient client, Throwable exception) {
-        // TODO implement here
-    }
+	/**
+	 * @param client 
+	 * @return
+	 */
+	protected void clientDisconnected(ConnectionToGameClient client) {
+		setChanged();
+		notifyObservers(CLIENT_DISCONNECTED);
+	}
 
-    /**
-     * @param exception 
-     * @return
-     */
-    protected void listeningException(Throwable exception) {
-        // TODO implement here
-    }
+	/**
+	 * @param client 
+	 * @param exception 
+	 * @return
+	 */
+	protected void clientException(ConnectionToGameClient client, Throwable exception) {
+		setChanged();
+		notifyObservers(CLIENT_EXCEPTION);
+		try
+		{
+			client.close();
+		}
+		catch (Exception e) {}
+	}
 
-    /**
-     * @return
-     */
-    protected void serverStarted() {
-        // TODO implement here
-    }
+	/**
+	 * @param exception 
+	 * @return
+	 */
+	protected void listeningException(Throwable exception) {
+		setChanged();
+		notifyObservers(LISTENING_EXCEPTION);
+		stopListening();
+	}
 
-    /**
-     * @return
-     */
-    protected void serverStopped() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	protected void serverStarted() {
+		setChanged();
+		notifyObservers(SERVER_STOPPED);
+	}
 
-    /**
-     * @return
-     */
-    protected void serverClosed() {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	protected void serverStopped() {
+		setChanged();
+		notifyObservers(SERVER_CLOSED);
+	}
 
-    /**
-     * @param message 
-     * @param client 
-     * @return
-     */
-    protected void handleMessageFromClient(Object message, ConnectionToGameClient client) {
-        // TODO implement here
-    }
+	/**
+	 * @return
+	 */
+	protected void serverClosed() {
+		setChanged();
+		notifyObservers(SERVER_STARTED);
+	}
+
+	/**
+	 * @param message 
+	 * @param client 
+	 * @return
+	 */
+	protected void handleMessageFromClient(Object message, ConnectionToGameClient client) {
+		setChanged();
+		notifyObservers(message);
+	}
 
 }
