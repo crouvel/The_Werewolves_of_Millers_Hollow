@@ -21,7 +21,7 @@ import javafx.scene.control.TextArea;
 
 /**
  * 
- * @author Tiffany Dumaire
+ * @author Aaron Lazaroo
  *
  */
 public class ReportABugController  implements Initializable{
@@ -110,9 +110,6 @@ public class ReportABugController  implements Initializable{
 	
 	//Added Methods
 
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

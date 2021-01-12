@@ -11,6 +11,7 @@ import model.dao.mysql.FriendManagementDAO;
 public class FriendManagementFacade {
 
     /**
+     * Allows the player to send friend request
      * @param username1 
      * @param username2 
      * @return
@@ -27,6 +28,7 @@ public class FriendManagementFacade {
     }
 
     /**
+     * Allows the player to accept friend request
      * @param username1 
      * @param username2 
      * @return
@@ -43,6 +45,7 @@ public class FriendManagementFacade {
     }
 
     /**
+     * Allows the player to cancel friend request
      * @param username1 
      * @param username2 
      * @return
@@ -59,6 +62,7 @@ public class FriendManagementFacade {
     }
 
     /**
+     * Allows the player to delete friend request
      * @param username1 
      * @param username2 
      * @return
@@ -75,6 +79,7 @@ public class FriendManagementFacade {
     }
 
     /**
+     * Allows the player to refuse friend request
      * @param username1 
      * @param username2 
      * @return
@@ -91,6 +96,7 @@ public class FriendManagementFacade {
     }
 
     /**
+     * Search and return the arraylist of friend's player usernames
      * @param username 
      * @return
      * @throws SQLException
@@ -106,6 +112,7 @@ public class FriendManagementFacade {
     }
 
     /**
+     * Search and return the arraylist of potential friend's player usernames (received request)
      * @param username 
      * @return
      * @throws SQLException
@@ -121,6 +128,7 @@ public class FriendManagementFacade {
     }
     
     /**
+     * Search and return the arraylist of potential friend's player usernames (sent request)
      * @param username 
      * @return
      * @throws SQLException

@@ -24,7 +24,7 @@ public class GameManagementFacade {
 	public GameManagementFacade() {}
 
 	/**
-	 * 
+	 * Allows the player to create a game
 	 * @param numberOfPlayers 
 	 * @param status 
 	 * @return
@@ -41,7 +41,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Allows the player to delete a game by gameId
 	 * @param game_id 
 	 * @return
 	 */
@@ -57,7 +57,7 @@ public class GameManagementFacade {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to delete a game by creator username
 	 * @param game_id 
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Allows the player to invite a friend to play
 	 * @param game_id 
 	 * @param username 
 	 * @return
@@ -90,7 +90,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Allows the player to cancel his sent game requests
 	 * @param game_id 
 	 * @param username 
 	 * @return
@@ -107,7 +107,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Allows the creator of the game to kick player out of game
 	 * @param game_id 
 	 * @param username 
 	 * @return
@@ -124,7 +124,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Allows the creator to modify the game created
 	 * @param numberOfWerewolves 
 	 * @param hasWitch 
 	 * @param hasFortuneTeller 
@@ -145,7 +145,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Return the game which has the creator username in parameter
 	 * @param username
 	 * @return
 	 */
@@ -161,7 +161,7 @@ public class GameManagementFacade {
 	}
 	
 	/**
-	 * 
+	 * Return the game represented by the gameId
 	 * @param username
 	 * @return
 	 */
@@ -178,7 +178,7 @@ public class GameManagementFacade {
 
 
 	/**
-	 * 
+	 * Search and return the list of invited friends
 	 * @param username 
 	 * @return
 	 * @throws SQLException
@@ -194,7 +194,7 @@ public class GameManagementFacade {
 	}
 
 	/**
-	 * 
+	 * Return the list of player in the game
 	 * @param username 
 	 * @return
 	 * @throws SQLException
@@ -209,6 +209,11 @@ public class GameManagementFacade {
 		}   
 	}
 	
+	/**
+	 * Return true if the game exists, else false
+	 * @param creatorUsername
+	 * @return
+	 */
 	public boolean existsGameByUsername(String creatorUsername) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
 		try {
@@ -219,6 +224,13 @@ public class GameManagementFacade {
 		} 
 	}
 	
+	/**
+	 * Allows the game to modify the player in game
+	 * @param gameId
+	 * @param username
+	 * @param role
+	 * @return
+	 */
 	public boolean modifyPlayerInGame(int gameId, String username, String role) {
 		AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
 		try {

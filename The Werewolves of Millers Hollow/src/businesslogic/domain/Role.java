@@ -23,7 +23,7 @@ public enum Role {
 	private String name;
 
 	/**
-	 * 
+	 * Constructor of Role
 	 * @param string
 	 */
 	Role(String string) {

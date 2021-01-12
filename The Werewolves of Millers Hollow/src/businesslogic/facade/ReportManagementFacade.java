@@ -19,6 +19,7 @@ import businesslogic.domain.PlayerReport;
 public class ReportManagementFacade {
 
     /**
+     * Allows the admin to check a bug report
      * @param reportId 
      * @return
      */
@@ -27,6 +28,7 @@ public class ReportManagementFacade {
     }
 
     /**
+     * Allows the admin to check a player report
      * @param reportId 
      * @return
      */
@@ -35,6 +37,7 @@ public class ReportManagementFacade {
     }
 
     /**
+     * Return the list of bug reports in the database
      * @return
      */
     public ArrayList<BugReport> showBugReports() {
@@ -48,6 +51,7 @@ public class ReportManagementFacade {
     }
 
     /**
+     * Return the list of player reports in the database
      * @return
      */
     public ArrayList<PlayerReport> showPlayerReports() {
@@ -61,6 +65,7 @@ public class ReportManagementFacade {
     }
 
     /**
+     * Allows the admin to delete a report
      * @param reportId 
      * @return
      */
@@ -76,6 +81,7 @@ public class ReportManagementFacade {
     }
     
     /**
+     * Return true if the report exists, else false
      * @param reportId 
      * @return
      */

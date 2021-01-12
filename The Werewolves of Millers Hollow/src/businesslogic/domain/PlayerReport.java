@@ -2,12 +2,12 @@ package businesslogic.domain;
 
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class PlayerReport extends Report {
 
     /**
-     * 
+     * Constructor of Player Report
      * @param reportId
      * @param description
      * @param reportType

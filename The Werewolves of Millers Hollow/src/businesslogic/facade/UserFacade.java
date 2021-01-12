@@ -76,6 +76,7 @@ public class UserFacade {
     }
     
     /**
+     * Allows the player to modify his profile
      * @param username 
      * @param email 
      * @param password 
@@ -94,6 +95,7 @@ public class UserFacade {
     }
 
     /**
+     * Allows the administrator to modify his profile
      * @param email 
      * @param password 
      * @return
@@ -110,6 +112,7 @@ public class UserFacade {
     }
 
     /**
+     * Allows the user to delete his account
      * @param playerEmail 
      * @return
      */
@@ -124,6 +127,7 @@ public class UserFacade {
     }
 
     /**
+     * Allows the player to delete his account
      * @param username 
      * @return
      */
@@ -138,6 +142,7 @@ public class UserFacade {
     }
 
     /**
+     * Allows the administrator to delete his account
      * @param adminEmail
      * @return 
      */
@@ -152,6 +157,7 @@ public class UserFacade {
     }
 
     /**
+     * Allows a user to create a player account
      * @param username 
      * @param email 
      * @param password 
@@ -171,6 +177,7 @@ public class UserFacade {
     }
 
     /**
+     * Allows an administrator to create an administrator account
      * @param email 
      * @param password 
      * @return
@@ -222,7 +229,7 @@ public class UserFacade {
     }
     
     /**
-     * 
+     * Return the administrator
      * @param username
      * @param password
      * @return

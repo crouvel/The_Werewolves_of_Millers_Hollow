@@ -22,7 +22,7 @@ import javafx.scene.control.PasswordField;
 
 /**
  * 
- * @author Tiffany Dumaire
+ * @author Aaron Lazaroo
  *
  */
 public class AdministratorRegistrationController  implements Initializable{
@@ -44,7 +44,7 @@ public class AdministratorRegistrationController  implements Initializable{
 	//FXML Methods
 	
 	/**
-	 * 
+	 * Create an administrator account
 	 * @param event
 	 * @throws IOException
 	 */
@@ -81,7 +81,7 @@ public class AdministratorRegistrationController  implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Return to the administrator menu
 	 * @param event
 	 * @throws IOException
 	 */

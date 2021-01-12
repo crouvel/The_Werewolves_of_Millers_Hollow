@@ -52,7 +52,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
     }
 	
     /**
-     * 
+     * Allows the application to start
      * @param primaryStage
      */
 	@Override
@@ -75,7 +75,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
 	}
 	
 	/**
-	 * 
+	 * Allows the user to go to the admin menu
 	 * @param admin
 	 * @param resource
 	 * @throws IOException
@@ -93,7 +93,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
     }
 	
 	/**
-	 * 
+	 * Allows the user to go to the player menu
 	 * @param player
 	 * @param resource
 	 * @throws IOException
@@ -110,8 +110,8 @@ public class TheWerewolvesOfMillersHollow extends Application {
         TheWerewolvesOfMillersHollow.stage.setScene(scene);
     }
 	
-	   /**
-     * 
+	 /**
+     * Allows the user to go to the game management view with a generated game id
      * @param game
      * @param resource
      * @throws IOException
@@ -130,7 +130,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
     }
     
     /**
-     * 
+     * Allows the user to go to the game management view
      * @param game
      * @param resource
      * @throws IOException
@@ -149,7 +149,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
     }
 	
 	/**
-	 * 
+	 * Allows the user to go to the player stats view
 	 * @param player
 	 * @param resource
 	 * @throws IOException
@@ -167,7 +167,7 @@ public class TheWerewolvesOfMillersHollow extends Application {
     }
 	
 	/**
-	 * 
+	 * Main function
 	 * @param args
 	 */
 	public static void main(String[] args) {

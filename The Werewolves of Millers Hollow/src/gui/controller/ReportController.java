@@ -63,7 +63,7 @@ public class ReportController implements Initializable {
 	//FXML Methods
 	
 	/**
-	 * 
+	 * Allows the admin to delete a report
 	 * @param event
 	 * @throws IOException
 	 */
@@ -90,7 +90,7 @@ public class ReportController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Go to the block a player view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -100,7 +100,7 @@ public class ReportController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Go to the report management view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -110,7 +110,7 @@ public class ReportController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Returns to the administrator menu
 	 * @param event
 	 * @throws IOException
 	 */
@@ -120,10 +120,7 @@ public class ReportController implements Initializable {
 	}
 	
 	//Added Methods
-	
-	/**
-	 * 
-	 */
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		if(currentReport instanceof BugReport) {

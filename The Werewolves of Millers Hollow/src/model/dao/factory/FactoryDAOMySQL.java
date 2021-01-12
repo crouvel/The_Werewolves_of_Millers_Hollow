@@ -21,45 +21,32 @@ public class FactoryDAOMySQL extends AbstractFactoryDAO {
     	super();
     }
 
-    /**
-     * @return
-     * @throws SQLException
-     */
+    @Override
     public UserDAO createUserDAO() throws SQLException {
 		return new UserDAOMySQL();
     }
     
-    /**
-     * @return
-     */
+    @Override
     public ReportDAO createReportDAO() throws SQLException {
     	return new ReportDAOMySQL();
     }
 
-    /**
-     * @return
-     */
+    @Override
     public GameManagementDAO createGameManagementDAO() throws SQLException {
     	return new GameManagementDAOMySQL() ;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public PlayerInGameDAO createPlayerInGameDAO() throws SQLException {
     	return new PlayerInGameDAOMySQL() ;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public FriendManagementDAO createFriendManagementDAO() throws SQLException {
     	return new FriendManagementDAOMySQL();
     }
 
-    /**
-     * @return
-     */
+    @Override
     public SelectAndJoinAGameDAO createSelectAndJoinAGameDAO() throws SQLException {
     	return new SelectAndJoinAGameDAOMySQL();
     }

@@ -25,7 +25,7 @@ public class StartMenuController implements Initializable {
 	//FXML Methods
 	
 	/**
-	 * 
+	 * Go to the login view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -35,7 +35,7 @@ public class StartMenuController implements Initializable {
     }
 	
 	/**
-	 * 
+	 * Go to the player register view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -45,10 +45,7 @@ public class StartMenuController implements Initializable {
     }
 
 	//Added Methods 
-	
-	/**
-	 * 
-	 */
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

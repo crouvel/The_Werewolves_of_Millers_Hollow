@@ -67,7 +67,7 @@ public abstract class SelectAndJoinAGameDAO {
 	public abstract boolean existsPlayerInGame(int gameid, String username) throws SQLException;
 
 	/**
-	 * 
+	 * Returns the player in game corresponding to the parameters
 	 * @param username
 	 * @return
 	 * @throws SQLException

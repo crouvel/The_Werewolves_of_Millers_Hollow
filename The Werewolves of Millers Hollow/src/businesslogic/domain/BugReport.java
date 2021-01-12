@@ -7,7 +7,7 @@ package businesslogic.domain;
 public class BugReport extends Report {
 
 	/**
-	 * 
+	 * Constructor of BugReport
 	 * @param reportId
 	 * @param subject
 	 * @param description
@@ -20,29 +20,34 @@ public class BugReport extends Report {
     }
 
     /**
-     * 
+     * Attribute which contains the subject
      */
     private String subject;
 
     /**
-     * 
+     * Attribute which contains the attachment link
      */
     private String attachment;
 
     /**
-     * @return
+     * getter of the subject
+     * @return the subject
      */
     public String getSubject() {
         return this.subject;
     }
 
     /**
-     * @return
+     * Getter of attachment link
+     * @return the attachment 
      */
     public String getAttachment() {
         return this.attachment;
     }
     
+    /**
+     * @return a string which contains the bugReport informations
+     */
     public String toString() {
     	if(attachment != null) {
     		return getReportId() + " : " + getSubject() + " (with attached file)";

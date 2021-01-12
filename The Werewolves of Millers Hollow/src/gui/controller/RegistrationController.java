@@ -64,7 +64,7 @@ public class RegistrationController implements Initializable {
 	private RadioButton choiceFemale;
   
 	/**
-	 * 
+	 * Allows the user to register an player account
 	 * @param event
 	 * @throws Exception 
 	 */
@@ -120,7 +120,7 @@ public class RegistrationController implements Initializable {
 	}
 
 	/**
-	 * 
+	 * Returns to the start menu of the application
 	 * @param event
 	 * @throws IOException
 	 */
@@ -129,11 +129,8 @@ public class RegistrationController implements Initializable {
 		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/StartMenuView.fxml"));
 	}
 
-	//Methodes ajoutees
+	//Added methods
 
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		countryChoice.getItems().add("France");

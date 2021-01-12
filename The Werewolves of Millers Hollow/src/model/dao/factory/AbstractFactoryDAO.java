@@ -28,7 +28,7 @@ public abstract class AbstractFactoryDAO {
     private static Connection connection=null;
 
     /**
-     * 
+     * Constructor of AbstractFactoryDAO
      */
     public AbstractFactoryDAO() {
     	if(getConnection()==null) {
@@ -62,11 +62,13 @@ public abstract class AbstractFactoryDAO {
     }
 
     /**
+     * Create a userDAO
      * @return
      */
     public abstract UserDAO createUserDAO() throws SQLException;
 
     /**
+     * Create a reportDAO
      * @return
      * @throws SQLException 
      */
@@ -74,30 +76,35 @@ public abstract class AbstractFactoryDAO {
 
 
     /**
+     * Create a gameManagementDAO
      * @return
      * @throws SQLException 
      */
     public abstract GameManagementDAO createGameManagementDAO() throws SQLException;
     
     /**
+     * create a gameDAO
      * @return
      * @throws SQLException 
      */
     public abstract GameDAO createGameDAO() throws SQLException;
 
     /**
+     * Create a playerInGameDAO
      * @return
      * @throws SQLException 
      */
     public abstract PlayerInGameDAO createPlayerInGameDAO() throws SQLException;
 
     /**
+     * Create a friendManagementDAO
      * @return
      * @throws SQLException 
      */
     public abstract FriendManagementDAO createFriendManagementDAO() throws SQLException;
 
     /**
+     * Create a selectAndJoinAGameDAO
      * @return
      * @throws SQLException 
      */

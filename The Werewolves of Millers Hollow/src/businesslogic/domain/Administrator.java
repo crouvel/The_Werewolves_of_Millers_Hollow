@@ -10,7 +10,7 @@ package businesslogic.domain;
 public class Administrator extends User {
 
     /**
-     * 
+     * Constructor of Administrator
      * @param userId
      * @param email
      * @param password

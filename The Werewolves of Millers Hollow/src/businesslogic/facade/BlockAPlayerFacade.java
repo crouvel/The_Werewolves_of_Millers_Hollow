@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class BlockAPlayerFacade {
 
@@ -29,8 +29,9 @@ public class BlockAPlayerFacade {
     private Administrator currentAdmin;
 
     /**
+     * Allows the administrator to block a player
      * @param username 
-     * @return
+     * @return true if it's done, else false
      */
     public boolean blockAPlayer(String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -44,9 +45,9 @@ public class BlockAPlayerFacade {
     }
     
     /**
-     * 
+     * Search and return if the Player exists
      * @param username
-     * @return
+     * @return true if exists, else false
      */
     public boolean existsPlayer(String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
