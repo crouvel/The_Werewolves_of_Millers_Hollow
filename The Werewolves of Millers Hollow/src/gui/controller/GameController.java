@@ -186,7 +186,7 @@ public class GameController implements Initializable{
 	/**
 	 * 
 	 */
-	public void displayMessage() {
+	public void display(String message) {
 		
 	}
 	

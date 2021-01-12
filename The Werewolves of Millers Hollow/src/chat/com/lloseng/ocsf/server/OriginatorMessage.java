@@ -2,7 +2,7 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-package com.lloseng.ocsf.server;
+package chat.com.lloseng.ocsf.server;
 
 /**
  * A message class used by the Observable layer of the OCSF in order to conserve
@@ -16,7 +16,7 @@ public class OriginatorMessage
   /**
    * The connection that originated the message
    */
-  private ConnectionToClient originator;
+  private ConnectionToGameClient originator;
 
   /**
    * The message.
@@ -31,7 +31,7 @@ public class OriginatorMessage
    * @param originator The client who created this message
    * @param message The contents of the message
    */
-  public OriginatorMessage(ConnectionToClient originator, Object message)
+  public OriginatorMessage(ConnectionToGameClient originator, Object message)
   {
     this.originator = originator;
     this.message = message;
@@ -44,7 +44,7 @@ public class OriginatorMessage
    *
    * @return The connection from which the message originated.
    */
-  public ConnectionToClient getOriginator()
+  public ConnectionToGameClient getOriginator()
   {
     return originator;
   }

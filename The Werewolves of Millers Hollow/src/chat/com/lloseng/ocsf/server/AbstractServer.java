@@ -1,5 +1,10 @@
 package chat.com.lloseng.ocsf.server;
 
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
  * 
  */
@@ -12,7 +17,7 @@ public abstract class AbstractServer implements Runnable{
 		this.port = port;
 		this.ClientTG = new ThreadGroup("Client threads") {
 			public void uncaughtException(Thread thread, Throwable exception) {
-				clientException((ConnectionToClient)thread,exception);
+				clientException((ConnectionToGameClient) thread,exception);
 			}
 		}
 	}
@@ -53,9 +58,9 @@ public abstract class AbstractServer implements Runnable{
 	 * @return
 	 */
 	public final void listen() throws IOException{
-		if(!isListening) {
+		if(!isListening()) {
 			if(serverS == null) {
-				serverS = new ServerSocket(getPort,backlog);
+				serverS = new ServerSocket(getPort(),backlog);
 			}
 			serverS.setSoTimeout(timeout);
 
@@ -81,7 +86,7 @@ public abstract class AbstractServer implements Runnable{
 		for(int i = 0; i<clientThreads.length;i++) {
 			try
 			{
-				((ConnectionToClient)clientThreads[i]).sendToClient(msg);
+				((ConnectionToGameClient)clientThreads[i]).sendToClient(msg);
 			}
 			catch (Exception ex) {}
 		}
@@ -156,7 +161,7 @@ public abstract class AbstractServer implements Runnable{
 					synchronized(this) {
 						if(!readyToStop) {
 							if(connectionFactory==null) {
-								new ConnectionToClient(this.ClientTG,clientS,this);
+								new ConnectionToGameClient(this.ClientTG,clientS,this);
 							}else {
 								connectionFactory.createConnection(this.ClientTG,clientS,this);
 							}
@@ -181,12 +186,12 @@ public abstract class AbstractServer implements Runnable{
 	/**
 	 * @return
 	 */
-	protected void clientConnected(ConnectionToClient client) {}
+	protected void clientConnected(ConnectionToGameClient client) {}
 
 	/**
 	 * @return
 	 */
-	protected void clientDisconnected(ConnectionToClient client) {}
+	protected void clientDisconnected(ConnectionToGameClient client) {}
 
 	/**
 	 * @return
@@ -222,13 +227,13 @@ public abstract class AbstractServer implements Runnable{
 		stopListening();
 		
 		try {
-			serverSocket.close();
+			serverS.close();
 		}finally {
 			synchronized(this) {
 				Thread[] clientThreads = getClientConnections();
 				for(int i=0;i<clientThreads.length;i++) {
 					try {
-						((ConnectionToClient)) clientThreads[i]).close();
+						((ConnectionToGameClient) clientThreads[i]).close();
 					}catch(Exception e) {}
 				}
 				serverS = null;

@@ -1,13 +1,14 @@
 package chat.client;
 
+import java.io.IOException;
 import java.util.*;
 import businesslogic.domain.PlayerInGame;
 import java.util.Observable;
 import java.util.Observer;
 import gui.controller.GameController;
 
-import com.lloseng.ocsf.client.ObservableClient;
-import com.lloseng.ocsf.client.ObservableSWRClient;
+import chat.com.lloseng.ocsf.client.ObservableGameClient;
+import chat.com.lloseng.ocsf.client.ObservableSWRClient;
 
 /**
  * 
@@ -30,10 +31,9 @@ public class ChatGameClient implements Observer {
     	
     	this.idC = id;
     	
-    	try {
-			this.swrC.openConnection();
-		} catch (Exception e) {
-		}
+
+    	this.swrC.openConnection();
+		
     }
 
 
@@ -57,7 +57,7 @@ public class ChatGameClient implements Observer {
 		} else if (msg.startsWith(ObservableSWRClient.CONNECTION_ESTABLISHED)) {
 			this.connectionEstablished();
 		} else {
-			this.handleMessageFromServer(arg1);
+			this.handleMessageFromServer(a1);
 		}
     }
 

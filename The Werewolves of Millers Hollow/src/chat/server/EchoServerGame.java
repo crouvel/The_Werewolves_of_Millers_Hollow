@@ -1,8 +1,12 @@
 package chat.server;
 
 import java.util.*;
+
+import chat.com.lloseng.ocsf.server.ObserverOriginatorServer;
+
 import businesslogic.domain.User;
 import chat.com.lloseng.ocsf.server.ConnectionToGameClient;
+import gui.controller.GameController;
 
 /**
  * 
@@ -14,15 +18,14 @@ public class EchoServerGame implements Observer {
 
 	GameController serverUI;
 
-	ObservableOriginatorServer originServer;
+	ObserverOriginatorServer originServer;
 
 	/**
 	 * Default constructor
 	 */
-	public EchoServerGame(int port, GameController serverUI() {
-		this.originServer = new ObservableOriginatorServer(port);
+	public EchoServerGame(int port, GameController serverUI) {
+		this.originServer = new ObserverOriginatorServer(port);
 		this.originServer.addObserver(this);
-
 		this.serverUI = serverUI;
 	}
 

@@ -2,7 +2,6 @@ package chat.com.lloseng.ocsf.client;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 /**
  * 
@@ -88,14 +87,15 @@ public abstract class AbstractClient {
 	    } finally {
 	    
 	        clientT = null; 
-	        connectionClosed();   
+	        connnectionClosed();   
 	    }
 	}
 
 	/**
 	 * @return
+	 * @throws IOException 
 	 */
-	public final void openConnection() {
+	public final void openConnection() throws IOException {
 		// Do not do anything if the connection is already open
 		if(isConnected())
 			return;
@@ -118,7 +118,7 @@ public abstract class AbstractClient {
 			throw e; 
 		}
 
-		clientT = new Thread(this);  
+		clientT = new Thread(clientT);  
 		stop = false;
 		clientT.start(); 
 	}
@@ -126,12 +126,12 @@ public abstract class AbstractClient {
 	/**
 	 * @param message 
 	 * @return
+	 * @throws IOException 
 	 */
-	public void sendToServer(Object message) {
+	public void sendToServer(Object message) throws IOException {
 		if (clientS == null || out == null) {
 			throw new SocketException("this socket does not exist");
 		}
-
 		out.writeObject(message);
 	}
 
@@ -197,27 +197,27 @@ public abstract class AbstractClient {
 
 	/**
 	 * @return
+	 * @throws IOException 
 	 */
-	private final void closeAll() {
+	private final void closeAll() throws IOException {
 
-	    try
-	    {
-	      if (clientS != null)
-	        clientS.close();
+		try
+		{
+			if (clientS != null)
+				clientS.close();
 
-	      if (out != null)
-	        out.close();
+			if (out != null)
+				out.close();
 
-	      if (in != null)
-	        in.close();
-	    }
-	    finally
-	    {
-	      out = null;
-	      in = null;
-	      clientS = null;
-	    }
-	  }
+			if (in != null)
+				in.close();
+		}
+		finally
+		{
+			out = null;
+			in = null;
+			clientS = null;
+		}
 	}
 
 	/**

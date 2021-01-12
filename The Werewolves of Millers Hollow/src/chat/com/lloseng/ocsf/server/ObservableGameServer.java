@@ -1,5 +1,6 @@
 package chat.com.lloseng.ocsf.server;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -48,8 +49,9 @@ public class ObservableGameServer extends Observable {
 
 	/**
 	 * @return
+	 * @throws IOException 
 	 */
-	public void close() {
+	public void close() throws IOException {
 		service.close();
 	}
 
@@ -107,7 +109,7 @@ public class ObservableGameServer extends Observable {
 	 * @param backlog
 	 */
 	public final void setBackLog(int backlog) {
-		service.setBacklog(backlog);
+		service.setBackLog(backlog);
 	}
 
 	/**

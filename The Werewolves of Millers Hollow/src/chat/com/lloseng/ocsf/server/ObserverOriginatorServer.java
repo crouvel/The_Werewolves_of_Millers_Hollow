@@ -2,7 +2,7 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-package com.lloseng.ocsf.server;
+package chat.com.lloseng.ocsf.server;
 
 /**
 * The <code> ObservableOriginatorServer </code> is a subclass
@@ -21,7 +21,7 @@ package com.lloseng.ocsf.server;
 * @version February 2001 (2.12)
 * @see com.lloseng.ocsf.server.OriginatorMessage
 */
-public class ObservableOriginatorServer extends ObservableServer
+public class ObserverOriginatorServer extends ObservableGameServer
 {
   // Constructor ******************************************************
 
@@ -30,7 +30,7 @@ public class ObservableOriginatorServer extends ObservableServer
    *
    * @param port the port on which to listen.
    */
-  public ObservableOriginatorServer(int port)
+  public ObserverOriginatorServer(int port)
   {
     super(port);
   }
@@ -46,8 +46,9 @@ public class ObservableOriginatorServer extends ObservableServer
    * @param message The message received from the client.
    * @param client The connection to the client.
    */
-  protected synchronized void handleMessageFromClient
-    (Object message, ConnectionToClient client)
+  @SuppressWarnings("deprecation")
+protected synchronized void handleMessageFromClient
+    (Object message, ConnectionToGameClient client)
   {
     setChanged();
     notifyObservers(new OriginatorMessage(client, message));
@@ -62,7 +63,8 @@ public class ObservableOriginatorServer extends ObservableServer
    *
    * @param client the connection connected to the client.
    */
-  protected synchronized void clientConnected(ConnectionToClient client)
+  @SuppressWarnings("deprecation")
+protected synchronized void clientConnected(ConnectionToGameClient client)
   {
     setChanged();
     notifyObservers(new OriginatorMessage(client, CLIENT_CONNECTED));
@@ -77,7 +79,8 @@ public class ObservableOriginatorServer extends ObservableServer
    *
    * @param client the connection connected to the client.
    */
-  synchronized protected void clientDisconnected(ConnectionToClient client)
+  @SuppressWarnings("deprecation")
+synchronized protected void clientDisconnected(ConnectionToGameClient client)
   {
     setChanged();
     notifyObservers(new OriginatorMessage(client, CLIENT_DISCONNECTED));
@@ -96,8 +99,9 @@ public class ObservableOriginatorServer extends ObservableServer
    * @param client the client that raised the exception.
    * @param Throwable the exception thrown.
    */
-  synchronized protected void clientException(
-    ConnectionToClient client, Throwable exception)
+  @SuppressWarnings("deprecation")
+synchronized protected void clientException(
+    ConnectionToGameClient client, Throwable exception)
   {
     setChanged();
     notifyObservers(
@@ -116,7 +120,8 @@ public class ObservableOriginatorServer extends ObservableServer
    *
    * @param exception the exception raised.
    */
-  protected synchronized void listeningException(Throwable exception)
+  @SuppressWarnings("deprecation")
+protected synchronized void listeningException(Throwable exception)
   {
     setChanged();
     notifyObservers(
@@ -131,7 +136,8 @@ public class ObservableOriginatorServer extends ObservableServer
    * containing the message defined by the static variable SERVER_STARTED.
    * The originator is set to null.
    */
-  protected synchronized void serverStarted()
+  @SuppressWarnings("deprecation")
+protected synchronized void serverStarted()
   {
     setChanged();
     notifyObservers(new OriginatorMessage(null, SERVER_STARTED));
@@ -144,7 +150,8 @@ public class ObservableOriginatorServer extends ObservableServer
    * containing the message defined by the static variable SERVER_STOPPED.
    * The originator is set to null.
    */
-  synchronized protected void serverStopped()
+  @SuppressWarnings("deprecation")
+synchronized protected void serverStopped()
   {
     setChanged();
     notifyObservers(new OriginatorMessage(null, SERVER_STOPPED));
@@ -157,7 +164,8 @@ public class ObservableOriginatorServer extends ObservableServer
    * containing the message defined by the static variable SERVER_CLOSED.
    * The originator is set to null.
    */
-  synchronized protected void serverClosed()
+  @SuppressWarnings("deprecation")
+synchronized protected void serverClosed()
   {
     setChanged();
     notifyObservers(new OriginatorMessage(null, SERVER_CLOSED));

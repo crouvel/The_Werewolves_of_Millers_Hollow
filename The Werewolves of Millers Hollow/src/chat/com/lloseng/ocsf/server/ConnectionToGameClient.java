@@ -1,6 +1,12 @@
 package chat.com.lloseng.ocsf.server;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.HashMap;
 
 /**
  * 
@@ -50,12 +56,12 @@ public class ConnectionToGameClient extends Thread{
     /**
      * @param message 
      * @return
+     * @throws IOException 
      */
-    public void sendToClient(Object message) {
+    public void sendToClient(Object message) throws IOException {
     	if (clientS == null || out == null)
     	      throw new SocketException("socket does not exist");
-
-    	    out.writeObject(msg);
+    	    out.writeObject(message);
     }
 
     /**
@@ -83,8 +89,9 @@ public class ConnectionToGameClient extends Thread{
 
     /**
      * @return
+     * @throws IOException 
      */
-    private final void closeAll() {
+    private final void closeAll() throws IOException {
     	try{
           if (clientS!= null) {
         	  clientS.close();
@@ -142,7 +149,7 @@ public class ConnectionToGameClient extends Thread{
      * @return
      */
     public void setInfo(String infotype, Object info) {
-    	info.put(infoType, info);
+    	info.put(infotype, info);
     }
 
     /**

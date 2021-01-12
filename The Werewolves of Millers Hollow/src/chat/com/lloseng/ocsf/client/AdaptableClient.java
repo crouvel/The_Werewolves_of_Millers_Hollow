@@ -1,22 +1,17 @@
 package chat.com.lloseng.ocsf.client;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-
-
 
 /**
  * 
  */
 public class AdaptableClient extends AbstractClient {
 	
-	private ObservableClient client;
+	private ObservableGameClient client;
 
     /**
      * Default constructor
      */
-	public AdaptableClient(String host, int port, ObservableClient client) {
+	public AdaptableClient(String host, int port, ObservableGameClient client) {
 		super(host, port);
 		this.client = client;
 	}
@@ -43,14 +38,6 @@ public class AdaptableClient extends AbstractClient {
      */
     protected final void handleMessageFromServer(Object msg) {
     	client.handleMessageFromServer(msg);
-    }
-
-    /**
-     * @param exception 
-     * @return
-     */
-    protected final void connectionException(Exception exception) {
-    	client.connectionException(exception);
     }
 
 }

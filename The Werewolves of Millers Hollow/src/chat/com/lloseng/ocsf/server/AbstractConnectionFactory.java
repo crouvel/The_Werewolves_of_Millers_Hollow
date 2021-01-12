@@ -1,5 +1,8 @@
 package chat.com.lloseng.ocsf.server;
 
+import java.io.IOException;
+import java.net.Socket;
+
 /**
  * 
  */

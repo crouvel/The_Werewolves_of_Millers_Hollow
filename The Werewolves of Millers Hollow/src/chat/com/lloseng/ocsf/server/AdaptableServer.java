@@ -10,7 +10,7 @@ public class AdaptableServer extends AbstractServer {
     /**
      * Default constructor
      */
-    public AdaptableServer(int port, ObservableServer server) {
+    public AdaptableServer(int port, ObservableGameServer server) {
     	super(port);
     	this.server=server;
     }
@@ -19,14 +19,14 @@ public class AdaptableServer extends AbstractServer {
     /**
      * @return
      */
-    protected final void clientConnected(ConnectionToClient client) {
+    protected final void clientConnected(ConnectionToGameClient client) {
     	server.clientConnected(client);
     }
 
     /**
      * @return
      */
-    protected final void clientDisconnected(ConnectionToClient client) {
+    protected final void clientDisconnected(ConnectionToGameClient client) {
     	server.clientDisconnected(client);
     }
 
@@ -75,5 +75,6 @@ public class AdaptableServer extends AbstractServer {
     protected final void listeningException(Throwable exception) {
     	server.listeningException(exception);
     }
+
 
 }

@@ -2,7 +2,7 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-package com.lloseng.ocsf.client;
+package chat.com.lloseng.ocsf.client;
 
 import java.util.*;
 import java.io.*;
@@ -59,7 +59,7 @@ public class ObservableSWRClient extends ObservableGameClient {
 	 * @return true if successfully connected.
 	 * @exception IOException if an I/O error occurs when connecting.
 	 */
-	public synchronized boolean connectAndWait() throws Exception {
+	public synchronized boolean connectAndWait() throws IOException {
 		clearAll();
 		expected.add(CONNECTION_ESTABLISHED);
 
