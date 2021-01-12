@@ -11,6 +11,7 @@ import java.util.*;
 
 import businesslogic.domain.PlayerInGame;
 import model.dao.factory.AbstractFactoryDAO;
+import model.dao.mysql.GameDAO;
 import model.dao.mysql.PlayerInGameDAO;
 import model.dao.mysql.ReportDAO;
 
@@ -42,9 +43,9 @@ public class GameFacade {
     }
 
     /**
-     * 
+     * Allows the user to candidate to the sheriff post.
      * @param username 
-     * @return
+     * @return true if it's done, else false
      */
     public boolean proposeAsASheriff(int gameId, String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -56,34 +57,62 @@ public class GameFacade {
 			return false;
 		}  
     }
+    
+    /**
+     * Remove player of the game
+     * @param username 
+     * @return true if it's done, else false
+     */
+    public boolean removePlayerInGame(int gameId, String username) {
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			PlayerInGameDAO playerInGameDAO  = factory.createPlayerInGameDAO();	
+			return playerInGameDAO.removePlayerInGame(gameId, username);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}  
+    }
 
     /**
-     * 
+     * Make a vote from username 1 voted for username2 in the game of game_id
      * @param username1 
      * @param username2 
      * @param game_id 
-     * @return
+     * @return true if it's done, else false
      */
     public boolean makeAVote(String username1, String username2, int game_id) {
-        // TODO implement here
-        return false;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameDAO gameDAO  = factory.createGameDAO();	
+			return gameDAO.sendVote(username1, username2,game_id);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return false;
+		}  
     }
 
     /**
-     * 
+     * Search and return the list of usernames for which the players are voted.
      * @param game_id 
-     * @return
+     * @return all the username voted
      */
     public ArrayList<String> getAllVotes(int game_id) {
-        // TODO implement here
-        return null;
+    	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
+		try {
+			GameDAO gameDAO  = factory.createGameDAO();	
+			return gameDAO.getAllVotes(game_id);
+		}catch(SQLException e) {
+			e.getStackTrace();
+			return null;
+		}  
     }
     
     /**
-     * 
+     * Return the player in game with the username in parameter who played in the game of gameId in parameter
      * @param gameId
      * @param username
-     * @return
+     * @return a PlayerInGame
      */
     public PlayerInGame getPlayerInGame(int gameId,String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -97,10 +126,10 @@ public class GameFacade {
     }
 
     /**
-     * 
+     * Allows two player in game to become lover
      * @param gameId
      * @param username
-     * @return
+     * @return true if it's done, else false
      */
     public boolean becomeLover(int gameId, String username) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -130,9 +159,9 @@ public class GameFacade {
     }
     
     /**
-     * 
+     * Return an arraylist of string (all the player username in the game)
      * @param game_id 
-     * @return
+     * @return an arraylist of string
      */
     public ArrayList<String> getPlayerList(int gameId) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -146,9 +175,9 @@ public class GameFacade {
     }
     
     /**
-     * 
+     * Returns the arraylist of usernames of lovers.
      * @param gameId
-     * @return
+     * @return an arraylist of string
      */
     public ArrayList<String> getPlayerInLove(int gameId) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
@@ -162,9 +191,9 @@ public class GameFacade {
     }
     
     /**
-     * 
+     * Returns the arraylist of player in game in the game.
      * @param game_id 
-     * @return
+     * @return an arraylist of player in game
      */
     public ArrayList<PlayerInGame> getPlayerInGameList(int gameId) {
     	AbstractFactoryDAO factory = AbstractFactoryDAO.getInstance();
