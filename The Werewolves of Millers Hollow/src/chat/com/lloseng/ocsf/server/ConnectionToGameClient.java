@@ -5,12 +5,45 @@ import java.net.InetAddress;
 /**
  * 
  */
-public class ConnectionToGameClient {
+public class ConnectionToGameClient extends Thread{
+	
+	private AbstractServer server;
+	private Socket clientS;
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
+	
+	private boolean stop;
+	private HashMap info = new HashMap(10);
 
     /**
      * Default constructor
      */
-    public ConnectionToGameClient() {
+    public ConnectionToGameClient(ThreadGroup group, Socket clientS,AbstractServer server) throws IOException {
+    	super(group,(Runnable)null);
+        this.clientS = clientS;
+        this.server = server;
+
+        clientS.setSoTimeout(0); 
+
+        //Initialize the objects streams
+        try
+        {
+          in = new ObjectInputStream(clientS.getInputStream());
+          out = new ObjectOutputStream(clientS.getOutputStream());
+        }
+        catch (IOException ex)
+        {
+          try
+          {
+            closeAll();
+          }
+          catch (Exception exc) { }
+
+          throw ex;  // Rethrow the exception.
+        }
+
+        stop = false;
+        start();
     }
 
 
@@ -19,14 +52,18 @@ public class ConnectionToGameClient {
      * @return
      */
     public void sendToClient(Object message) {
-        // TODO implement here
+    	if (clientS == null || out == null)
+    	      throw new SocketException("socket does not exist");
+
+    	    out.writeObject(msg);
     }
 
     /**
      * @return
      */
-    public final void close() {
-        // TODO implement here
+    public final void close() throws IOException{
+    	stop = true;
+        closeAll();
     }
 
     /**
@@ -41,38 +78,62 @@ public class ConnectionToGameClient {
      * @return
      */
     protected boolean handleMessageFromClient(Object message) {
-        // TODO implement here
-        return false;
+    	return true;
     }
 
     /**
      * @return
      */
     private final void closeAll() {
-        // TODO implement here
+    	try{
+          if (clientS!= null) {
+        	  clientS.close();
+          }
+
+          // Close the output stream
+          if (out != null) {
+        	  out.close();
+          }
+
+          // Close the input stream
+          if (in != null) {
+        	  in.close();
+          }
+        }
+        finally
+        {
+          // Set the streams and the sockets to NULL no matter what
+          // Doing so allows, but does not require, any finalizers
+          // of these objects to reclaim system resources if and
+          // when they are garbage collected.
+          out = null;
+          in = null;
+          clientS = null;
+        }
     }
 
     /**
      * @return
      */
     protected void finalize() {
-        // TODO implement here
+    	try{
+          closeAll();
+        }
+        catch(IOException e) {}
     }
 
     /**
      * @return
      */
     public final InetAddress getInetAddress() {
-        // TODO implement here
-        return null;
+    	return clientS == null ? null : clientS.getInetAddress();
     }
 
     /**
      * @return
      */
     public String toString() {
-        // TODO implement here
-        return "";
+    	return clientS == null ? null : clientS.getInetAddress().getHostName() +" (" + clientS.getInetAddress().getHostAddress() + ")";
     }
 
     /**
@@ -81,7 +142,7 @@ public class ConnectionToGameClient {
      * @return
      */
     public void setInfo(String infotype, Object info) {
-        // TODO implement here
+    	info.put(infoType, info);
     }
 
     /**
@@ -89,8 +150,7 @@ public class ConnectionToGameClient {
      * @return
      */
     public Object getInfo(String infoType) {
-        // TODO implement here
-        return null;
+    	return info.get(infoType);
     }
 
 }

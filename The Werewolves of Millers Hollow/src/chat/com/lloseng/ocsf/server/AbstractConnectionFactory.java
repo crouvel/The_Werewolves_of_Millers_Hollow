@@ -3,7 +3,7 @@ package chat.com.lloseng.ocsf.server;
 /**
  * 
  */
-public class AbstractConnectionFactory {
+public abstract class AbstractConnectionFactory {
 
     /**
      * Default constructor
@@ -14,8 +14,6 @@ public class AbstractConnectionFactory {
     /**
      * 
      */
-    public void createConnection() {
-        // TODO implement here
-    }
+    public abstract ConnectionToGameClient createConnection(ThreadGroup group, Socket clientS, AbstractServer server) throws IOException;
 
 }
