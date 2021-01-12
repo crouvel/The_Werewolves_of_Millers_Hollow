@@ -77,31 +77,31 @@ public class GameController implements Initializable{
 	//Report Part
 	
 	/**
-	 * 
+	 * Attribute that represents the report a player area in the view.
 	 */
 	@FXML
 	private Pane reportPlayerPane;
 	
 	/**
-	 * 
+	 * Attribute that defines the username of the PlayerInGame to report
 	 */
 	@FXML
 	private ComboBox<String> badPlayerUsername;
 	
 	/**
-	 * 
+	 * Attribute that defines the reasons of the player report.
 	 */
 	@FXML
 	private ComboBox<String> reason;
 	
 	/**
-	 * 
+	 * Attribute that defines the description of the report. 
 	 */
 	@FXML
 	private TextArea description;
 	
 	/**
-	 * 
+	 * Cancels the player report by erasing the information entered by the PlayerInGame in the report.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -113,17 +113,34 @@ public class GameController implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Gets the information put by the player in the report form and send the report.
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void sendReport(ActionEvent event)  throws IOException {
-		
+		GameFacade gameFacade = new GameFacade();
+		String username = badPlayerUsername.getValue();
+		String motive = reason.getValue();
+		String descr = description.getText();
+		if(username == null || motive == null|| descr.equals("")) {
+			InfoBox.infoBoxW("Please complete all the report information.", "Missing information.", "Bad manipulation");
+		}else {
+			if(username.equals(GameManagementController.getCurrentPlayerInGame().getUsername())) {
+				InfoBox.infoBoxW("You cannot report yourself.", "Bad Manipulation", "Operation not allowed");
+			}else {
+				boolean isDone = gameFacade.sendPlayerReport(username, motive, descr);
+				if(isDone) {
+					TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameView.fxml"));
+				}else {
+					InfoBox.infoBoxW("Please try to report the player later.", "Connection Problem.", "Incorrect information");
+				}
+			}
+		}
 	}
 	
 	/**
-	 * 
+	 * Finishes the report a player process.
 	 * @param event
 	 * @throws IOException
 	 */
