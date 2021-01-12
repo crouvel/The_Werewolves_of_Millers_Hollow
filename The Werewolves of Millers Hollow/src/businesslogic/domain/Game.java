@@ -1,38 +1,27 @@
 package businesslogic.domain;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 
 
 public class Game {
-	
     
-	
-	
-	private boolean availableGame;
-
-	/**
-     * Default constructor
-     */
-  
-    
-
-	
     /**
-     * 
-     * @return
+     * Constructor of Game
+     * @param numberOfPlayers
+     * @param status
+     * @param numberOfWerewolves
+     * @param hasWitch
+     * @param hasLittleGirl
+     * @param hasCupid
+     * @param hasHunter
+     * @param hasFortuneTeller
+     * @param finish
+     * @param currentPhase
+     * @param availableGame
+     * @param creator
      */
-    public boolean isHasHunter() {
-		return hasHunter;
-	}
-
-    public Game() {
-    
-    	
-    }
-    
-    
     public Game(int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch,
     		boolean hasLittleGirl, boolean hasCupid, boolean hasHunter, boolean hasFortuneTeller, boolean finish,
 			Phase currentPhase, boolean availableGame, String creator) {
@@ -52,6 +41,21 @@ public class Game {
 	
 	}
     
+    /**
+     * Constructor of Game
+     * @param game_id
+     * @param numberOfPlayers
+     * @param status
+     * @param numberOfWerewolves
+     * @param hasWitch
+     * @param hasLittleGirl
+     * @param hasCupid
+     * @param hasHunter
+     * @param hasFortuneTeller
+     * @param finish
+     * @param currentPhase
+     * @param availableGame
+     */
     public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
 			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame) {
 		super();
@@ -70,10 +74,22 @@ public class Game {
 		
 	}
     
-    
-    public Game(int numberOfWerewolves, int status) {
-    	
-    }
+    /**
+     * Constructor of Game
+     * @param game_id
+     * @param numberOfPlayers
+     * @param status
+     * @param numberOfWerewolves
+     * @param hasWitch
+     * @param hasLittleGirl
+     * @param hasCupid
+     * @param hasHunter
+     * @param hasFortuneTeller
+     * @param finish
+     * @param currentPhase
+     * @param availableGame
+     * @param creatorUsername
+     */
 	public Game(int game_id, int numberOfPlayers, boolean status, int numberOfWerewolves, boolean hasWitch, boolean hasLittleGirl, boolean hasCupid,
 			boolean hasHunter, boolean hasFortuneTeller, boolean finish, Phase currentPhase, boolean availableGame,
 			String creatorUsername) {
@@ -268,13 +284,24 @@ public class Game {
 	}
 	
 	/**
-	 * 
+	 * @return the information of the game
 	 */
 	public String toString() {
 		return creatorUsername;
 	}
 
+	/**
+	 * Attribute which contains if it's an available game or not
+	 */
+	private boolean availableGame;
 
+	
+    /**
+     * @return the hasHunter attribute
+     */
+    public boolean isHasHunter() {
+		return hasHunter;
+	}
 
 	/**
      * 

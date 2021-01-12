@@ -5,8 +5,7 @@ package businesslogic.domain;
 
 /**
  * 
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
- *
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public enum PlayerReportType {
 	INAPPROPRIATE_BEHAVIOR("INAPPROPRIATE BEHAVIOR"),
@@ -19,7 +18,7 @@ public enum PlayerReportType {
 	private String name;
 
 	/**
-	 * 
+	 * Constructor of Player Report Type
 	 * @param string
 	 */
 	PlayerReportType(String string) {

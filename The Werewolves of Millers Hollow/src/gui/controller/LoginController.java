@@ -101,9 +101,6 @@ public class LoginController implements Initializable {
 	
 	//Methodes ajoutees
 	
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

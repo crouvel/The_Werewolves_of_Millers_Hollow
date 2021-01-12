@@ -216,9 +216,6 @@ public class FriendManagementController implements Initializable {
 	
 	//Added Methods 
 
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		FriendManagementFacade friendManagementFacade = new FriendManagementFacade();

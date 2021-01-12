@@ -31,20 +31,17 @@ public class PlayerMenuController implements Initializable {
 	private static Player currentPlayer;	
 	
 	/**
-	 * 
+	 * Allows the player to create a game
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void createAGame(ActionEvent event) throws IOException{
-		
-			TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));
-		
-			
+		TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/GameManagementView.fxml"));		
 	}
 	
 	/**
-	 * 
+	 * Allows the player to go to the join a game view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -54,7 +51,7 @@ public class PlayerMenuController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to go the search player stats view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -64,7 +61,7 @@ public class PlayerMenuController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to go to the bug report view
 	 * @param event
 	 * @throws IOException
 	 */
@@ -74,7 +71,7 @@ public class PlayerMenuController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to view his profile
 	 * @param event
 	 * @throws IOException
 	 */
@@ -84,7 +81,7 @@ public class PlayerMenuController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to view his friends list
 	 * @param event
 	 * @throws IOException
 	 */
@@ -94,7 +91,7 @@ public class PlayerMenuController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Allows the player to sign out
 	 * @param event
 	 * @throws IOException
 	 */

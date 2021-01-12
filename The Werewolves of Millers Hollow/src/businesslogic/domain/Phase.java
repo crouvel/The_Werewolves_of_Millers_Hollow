@@ -1,7 +1,7 @@
 package businesslogic.domain;
 
 /**
- * 
+ * @author Tiffany Dumaire
  */
 public enum Phase {
     SET_UP("SET UP"),
@@ -10,6 +10,10 @@ public enum Phase {
     
 	private String name;
 	
+	/**
+	 * Constructor of Phase
+	 * @param string
+	 */
 	Phase(String string) {
 		this.name = string;
 	}
@@ -22,9 +26,9 @@ public enum Phase {
 	}
 
 	/**
-	 * 
+	 * Phase getter
 	 * @param string
-	 * @return
+	 * @return 
 	 */
 	public static Phase get(String string) {
 		if(string.equals(SET_UP.getName())) {

@@ -17,6 +17,14 @@ public class User {
     	this.isLockedAccount = false;
     }
     
+    /**
+     * Constructor of User
+     * @param userId
+     * @param email
+     * @param password
+     * @param isAdmin
+     * @param isLockedAccount
+     */
     public User(int userId,String email, String password,int isAdmin,boolean isLockedAccount) {
     	this(userId,email,password,isAdmin);
     	this.isLockedAccount = isLockedAccount;

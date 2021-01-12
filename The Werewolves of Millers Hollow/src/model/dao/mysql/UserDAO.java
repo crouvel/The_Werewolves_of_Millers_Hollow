@@ -64,7 +64,7 @@ public abstract class UserDAO {
     public abstract boolean existsUsername(String username) throws SQLException;
 
     /**
-     * 
+     * Allows to delete a user
      * @param email 
      * @return
      * @throws SQLException 
@@ -72,7 +72,7 @@ public abstract class UserDAO {
     public abstract boolean deleteUserByEmail(String email) throws SQLException;
 
     /**
-     * 
+     * Allows to delete a player
      * @param username 
      * @return
      * @throws SQLException 
@@ -80,7 +80,7 @@ public abstract class UserDAO {
     public abstract boolean deletePlayerByUsername(String username) throws SQLException;
 
     /**
-     * 
+     * Allows to udpdate an administrator profile
      * @param email 
      * @param password 
      * @return
@@ -89,7 +89,7 @@ public abstract class UserDAO {
     public abstract boolean updateAdministratorProfile(String email, String password) throws SQLException;
 
     /**
-     * 
+     * Allows to block a player in the database
      * @param username 
      * @return
      * @throws SQLException 
@@ -97,7 +97,7 @@ public abstract class UserDAO {
     public abstract boolean updateBlockPlayer(String username) throws SQLException;
 
     /**
-     * 
+     * Allows the update of the player profile in the database
      * @param username 
      * @param email 
      * @param password 
@@ -108,7 +108,7 @@ public abstract class UserDAO {
     public abstract boolean updatePlayerProfile(String username, String email, String password, String country) throws SQLException;
 
     /**
-     * 
+     * Allows to add a player (creation of a player)
      * @param username 
      * @param email 
      * @param password 

@@ -19,9 +19,8 @@ import businesslogic.facade.ReportManagementFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
+import util.InfoBox;
 
 /**
  * 
@@ -50,7 +49,7 @@ public class ReportManagementController implements Initializable {
 	void checkBugReport(ActionEvent event) throws IOException{
 		BugReport report = bugReports.getSelectionModel().getSelectedItem();
 		if(report==null) {
-			infoBoxWarning("Please select a bug report before check.","Missing report.","Missing informations");
+			InfoBox.infoBoxW("Please select a bug report before check.","Missing report.","Missing informations");
 		}else {
 			ReportManagementFacade reportManagementFacade = new ReportManagementFacade();
 			boolean exists = reportManagementFacade.existsReport(report.getReportId());
@@ -58,7 +57,7 @@ public class ReportManagementController implements Initializable {
 				ReportController.setCurrentReport(report);
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportView.fxml"));
 			}else {
-				infoBoxError("Retry to check the bug report later.","Incorrect information.", "Connection problem");
+				InfoBox.infoBoxE("Retry to check the bug report later.","Incorrect information.", "Connection problem");
 			}
 		}
 	}
@@ -73,7 +72,7 @@ public class ReportManagementController implements Initializable {
 	void checkPlayerReport(ActionEvent event) throws IOException{
 		PlayerReport report = playerReports.getSelectionModel().getSelectedItem();
 		if(report==null) {
-			infoBoxWarning("Please select a player report before check.","Missing report.","Missing informations");
+			InfoBox.infoBoxW("Please select a player report before check.","Missing report.","Missing informations");
 		}else {
 			ReportManagementFacade reportManagementFacade = new ReportManagementFacade();
 			boolean exists = reportManagementFacade.existsReport(report.getReportId());
@@ -81,7 +80,7 @@ public class ReportManagementController implements Initializable {
 				ReportController.setCurrentReport(report);
 				TheWerewolvesOfMillersHollow.setScene(getClass().getResource("../view/ReportView.fxml"));
 			}else {
-				infoBoxError("Retry to check the player report later.","Incorrect information.", "Connection problem");
+				InfoBox.infoBoxE("Retry to check the player report later.","Incorrect information.", "Connection problem");
 			}
 		}
 	}
@@ -97,36 +96,7 @@ public class ReportManagementController implements Initializable {
 	}
 	
 	//Added Methods
-	
-	/**
-	 * Open an warning box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxWarning(String message, String head, String title){
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setContentText(message);
-        alert.setTitle(title);
-        alert.setHeaderText(head);
-        alert.showAndWait();
-    }
 
-	/**
-	 * Open an error box.
-	 * @param message
-	 * @param head
-	 * @param title
-	 */
-	public static void infoBoxError(String message, String head, String title){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(message);
-        alert.setTitle(title);
-	}
-
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ReportManagementFacade reportManagementFacade = new ReportManagementFacade();

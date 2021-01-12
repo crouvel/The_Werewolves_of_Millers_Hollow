@@ -4,7 +4,7 @@
 package gui.controller;
 
 /**
- * 
+ * @author Aaron Lazaroo
  */
 import java.io.IOException;
 import java.net.URL;
@@ -70,7 +70,7 @@ public class PlayerProfileController  implements Initializable{
 	//FXML Methods
 
 	/**
-	 * 
+	 * Allows the player to modify his username
 	 * @param event
 	 * @throws IOException
 	 */
@@ -108,7 +108,7 @@ public class PlayerProfileController  implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Allows the player to modify his email
 	 * @param event
 	 * @throws IOException
 	 */
@@ -146,7 +146,7 @@ public class PlayerProfileController  implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Allows the player to modify his password
 	 * @param event
 	 * @throws IOException
 	 */
@@ -185,7 +185,7 @@ public class PlayerProfileController  implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Allows the player to modify his country
 	 * @param event
 	 * @throws IOException
 	 */
@@ -214,7 +214,7 @@ public class PlayerProfileController  implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Allows the player to save all modifications
 	 * @param event
 	 * @throws IOException
 	 */
@@ -277,7 +277,7 @@ public class PlayerProfileController  implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Allows the player to delete his account
 	 * @param event
 	 * @throws IOException
 	 */
@@ -300,7 +300,7 @@ public class PlayerProfileController  implements Initializable{
 	}
 
 	/**
-	 * 
+	 * Returns to the player Menu
 	 * @param event
 	 * @throws IOException
 	 */
@@ -311,9 +311,6 @@ public class PlayerProfileController  implements Initializable{
 
 	//Added Methods
 
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {

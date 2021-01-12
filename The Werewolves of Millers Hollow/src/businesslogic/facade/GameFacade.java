@@ -143,7 +143,7 @@ public class GameFacade {
     }
     
     /**
-     * 
+     * Search and return the list of roles present in the game
      * @param game_id 
      * @return
      */

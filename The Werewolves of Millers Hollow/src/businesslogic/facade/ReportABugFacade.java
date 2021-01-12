@@ -26,6 +26,7 @@ public class ReportABugFacade {
 
 
     /**
+     * Allows the player to create a bug report
      * @param subject 
      * @param description 
      * @param attachment 

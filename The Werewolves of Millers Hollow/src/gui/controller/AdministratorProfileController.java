@@ -23,7 +23,7 @@ import util.InfoBox;
 
 /**
  * 
- * @author Tiffany Dumaire
+ * @author Aaron Lazaroo
  *
  */
 public class AdministratorProfileController  implements Initializable{
@@ -45,7 +45,7 @@ public class AdministratorProfileController  implements Initializable{
 	//FXML Methods
 	
 	/**
-	 * 
+	 * return to the administrator menu
 	 * @param event
 	 * @throws IOException
 	 */
@@ -55,7 +55,7 @@ public class AdministratorProfileController  implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Save the modifications effected
 	 * @param event
 	 * @throws IOException
 	 */
@@ -103,7 +103,7 @@ public class AdministratorProfileController  implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Delete the administrator account
 	 * @param event
 	 * @throws IOException
 	 */
@@ -124,7 +124,7 @@ public class AdministratorProfileController  implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Modify the email
 	 * @param event
 	 * @throws IOException
 	 */
@@ -160,7 +160,7 @@ public class AdministratorProfileController  implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Modify the password
 	 * @param event
 	 * @throws IOException
 	 */

@@ -27,7 +27,7 @@ public class Player extends User {
     }
     
    /**
-    * 
+    * Constructor of player
     * @param userId
     * @param email
     * @param password
@@ -51,7 +51,7 @@ public class Player extends User {
     }
     
     /**
-     * 
+     * Constructor of player
      * @param userId
      * @param email
      * @param password

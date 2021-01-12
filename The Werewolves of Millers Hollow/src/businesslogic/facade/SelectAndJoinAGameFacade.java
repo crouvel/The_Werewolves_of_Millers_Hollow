@@ -28,7 +28,7 @@ public class SelectAndJoinAGameFacade {
     public SelectAndJoinAGameFacade() {}
 
     /**
-     * 
+     * Return the game representing by the game Id in parameter
      * @param gameId
      * @return
      */
@@ -43,7 +43,7 @@ public class SelectAndJoinAGameFacade {
     }
 
     /**
-     * 
+     * Return the list of available games
      * @return
      */
     public ArrayList<Game> getGamesList() {
@@ -57,7 +57,7 @@ public class SelectAndJoinAGameFacade {
     }
     
     /**
-     * 
+     * Allows the player to join a game
      * @param game_id 
      * @return
      * @throws IOException 
@@ -73,7 +73,7 @@ public class SelectAndJoinAGameFacade {
     }
     
     /**
-     * 
+     * Allows the game creator to join his created game
      * @param game_id 
      * @return
      * @throws IOException 
@@ -88,6 +88,12 @@ public class SelectAndJoinAGameFacade {
     	}
     }
     
+    /**
+     * Returns a player in game corresponding to the parameters
+     * @param gameId
+     * @param username
+     * @return
+     */
     public PlayerInGame getPlayerInGame(int gameId, String username) {
     	AbstractFactoryDAO factoryTest = AbstractFactoryDAO.getInstance();
     	try {

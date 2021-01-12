@@ -40,7 +40,7 @@ public class BlockAPlayerController implements Initializable {
 	//FXML Methods
 	
 	/**
-	 * 
+	 * Permit the admin to block a player
 	 * @param event
 	 * @throws IOException
 	 */
@@ -71,7 +71,7 @@ public class BlockAPlayerController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Return to the administrator menu
 	 * @param event
 	 * @throws IOException
 	 */
@@ -82,9 +82,6 @@ public class BlockAPlayerController implements Initializable {
 	
 	//Added Methods
 
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

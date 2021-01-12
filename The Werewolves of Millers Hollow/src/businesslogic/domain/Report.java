@@ -1,12 +1,12 @@
 package businesslogic.domain;
 
 /**
- * @author Tiffany Dumaire - Aaron Lazaroo - Clarence Rouvel
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  */
 public class Report {
 
     /**
-     * 
+     * Constructor of Report
      * @param reportId
      * @param description
      */

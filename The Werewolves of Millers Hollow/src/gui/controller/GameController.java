@@ -46,7 +46,7 @@ import util.InfoBox;
 
 /**
  * 
- * @author Tiffany Dumaire
+ * @author Tiffany Dumaire, Aaron Lazaroo, Clarence Rouvel
  *
  */
 public class GameController implements Initializable{
@@ -174,7 +174,7 @@ public class GameController implements Initializable{
 	private TextField message;
 	
 	/**
-	 * 
+	 * Send message
 	 * @param event
 	 * @throws IOException
 	 */
@@ -184,7 +184,7 @@ public class GameController implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Display message
 	 */
 	public void display(String message) {
 		
@@ -205,7 +205,7 @@ public class GameController implements Initializable{
 	private ListView<Text> playerVoteList;
 	
 	/**
-	 * 
+	 * Send vote
 	 * @param event
 	 * @throws IOException
 	 */
@@ -229,7 +229,7 @@ public class GameController implements Initializable{
 	private TextField speech;
 	
 	/**
-	 * 
+	 * No candidate to be a sheriff
 	 * @param event
 	 * @throws IOException
 	 */
@@ -239,7 +239,7 @@ public class GameController implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Send the player candidacy for sheriff 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -277,7 +277,7 @@ public class GameController implements Initializable{
 	//Quit Part
 	
 	/**
-	 * 
+	 * Returns to the player menu
 	 * @param event
 	 * @throws IOException
 	 */
@@ -327,7 +327,7 @@ public class GameController implements Initializable{
 	private ComboBox<String> secondPlayerInLove;
 	
 	/**
-	 * 
+	 * Allows cupid to choose the lovers
 	 * @param event
 	 * @throws IOException
 	 */
@@ -355,9 +355,6 @@ public class GameController implements Initializable{
 	
 	//Other functions
 	
-	/**
-	 * 
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
@@ -633,7 +630,7 @@ public class GameController implements Initializable{
 	}
 	
 	/**
-	 * 
+	 * Returns the final vote
 	 * @return
 	 */
 	public String finalVote() {
