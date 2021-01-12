@@ -8,12 +8,14 @@ package gui.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.TheWerewolvesOfMillersHollow;
 import businesslogic.domain.Game;
 import businesslogic.domain.PlayerInGame;
+import businesslogic.domain.PlayerReportType;
 import businesslogic.domain.Role;
 import businesslogic.facade.GameFacade;
 import businesslogic.facade.GameManagementFacade;
@@ -395,7 +397,20 @@ public class GameController implements Initializable{
 		GameManagementFacade gameManagementFacade = new GameManagementFacade();
 		try {
 			Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
-			GameController.setGame(game);
+			GameController.setGame(game);	
+			ArrayList<String> ListPlayers;
+			try {
+				ListPlayers = gameManagementFacade.getPlayerList(GameManagementController.getCurrentGame().getGame_id());
+				for(String i : ListPlayers) {
+					badPlayerUsername.getItems().add(i);
+				}
+
+				reason.getItems().add(PlayerReportType.DISOBEYING_RULES.getName());
+				reason.getItems().add(PlayerReportType.INAPPROPRIATE_BEHAVIOR.getName());
+				reason.getItems().add(PlayerReportType.PROFANITY.getName());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			ArrayList<String> role = gameFacade.getRoleList(GameController.getGame().getGame_id());
 			this.setRoleList(role);
 			PlayerInGame player = gameFacade.getPlayerInGame(GameController.getGame().getGame_id(), GameManagementController.getCurrentPlayerInGame().getUsername());
