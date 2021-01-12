@@ -211,7 +211,23 @@ public class GameController implements Initializable{
 	 */
 	@FXML
 	void sendVote(ActionEvent event)  throws IOException {
-		//Label vote = playerVoteList.getValue();
+		String vote = playerVoteList.getSelectionModel().getSelectedItem().getText();
+		if(vote==null) {
+			InfoBox.infoBoxW("Please select a player before try to vote.","Selected player missing","Missing Information");
+		}else {
+			GameFacade gameFacade = new GameFacade();
+			boolean isDone = gameFacade.makeAVote(GameController.getCurrentPlayer().getUsername(),vote, GameController.getGame().getGame_id());
+			if(isDone) {
+				votePane.setVisible(false);
+				Text voteEmission = new Text();
+				voteEmission.setText(" Game Message - You voted for "+vote+"!\n\n");
+				voteEmission.setFont(new Font("Arial", 15));
+				voteEmission.setFill(Color.WHITE);
+				chat.getChildren().add(voteEmission);	
+			}else {
+				InfoBox.infoBoxW("Please try later.","Bad connection / inexistant player","Connection problem or inexistant player");
+			}
+		}
 	}
 	
 	//Propose As A Sheriff Part
@@ -552,10 +568,10 @@ public class GameController implements Initializable{
 					Platform.runLater(() -> {
 						votePane.setVisible(false);
 					});
-							
+					String vote = finalVote();
 					Platform.runLater(() -> {
 						Text sheriffVote = new Text();
-						sheriffVote.setText(" Game Message - !\n\n");
+						sheriffVote.setText(" Game Message - "+ vote +"!\n\n");
 						sheriffVote.setFont(new Font("Arial", 15));
 						sheriffVote.setFill(Color.WHITE);
 						chat.getChildren().add(sheriffVote);
@@ -567,13 +583,30 @@ public class GameController implements Initializable{
 						GameController.setCurrentPlayer(player);
 						Game game = gameManagementFacade.getGame(GameManagementController.getCurrentGame().getGame_id());
 						GameController.setGame(game);
+						if(GameController.getCurrentPlayer().getRole()==Role.WEREWOLF) {
+							Platform.runLater(() -> {
+								votePane.setVisible(true);
+								Text sheriffVote = new Text();
+								sheriffVote.setText(" Game Message - Now you can vote for a victim!\n\n");
+								sheriffVote.setFont(new Font("Arial", 15));
+								sheriffVote.setFill(Color.WHITE);
+								chat.getChildren().add(sheriffVote);
+							});
+							Thread.sleep(60000);
+							String victimVote = finalVote();
+							Platform.runLater(() -> {
+								votePane.setVisible(false);
+							});
+							Platform.runLater(() -> {
+								Text sheriffVote = new Text();
+								sheriffVote.setText(" Game Message - Your voted for the "+ victimVote +"!\n\n");
+								sheriffVote.setFont(new Font("Arial", 15));
+								sheriffVote.setFill(Color.WHITE);
+								chat.getChildren().add(sheriffVote);
+							});
+						}
 						
-						
-						
-						
-						
-						
-						
+						//suite deroulement non termine
 						
 					}while(!GameController.getGame().isFinish());
 					return true;
