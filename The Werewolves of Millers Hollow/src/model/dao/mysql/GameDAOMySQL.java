@@ -31,7 +31,15 @@ public class GameDAOMySQL extends GameDAO {
 
     @Override
     public ArrayList<String> getAllVotes(int game_id) throws SQLException {
-        return null;
+    	String sqlRequest = "SELECT * FROM Vote WHERE gameId=?";
+    	PreparedStatement request = AbstractFactoryDAO.getConnection().prepareStatement(sqlRequest);
+    	request.setInt(1,game_id);
+    	ResultSet resultSet = request.executeQuery();
+    	ArrayList<String> player = new ArrayList<String>();
+    	while(resultSet.next()) {
+    		player.add(resultSet.getString("votedUsername"));
+    	}
+    	return player;
     }
 
     @Override
