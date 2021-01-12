@@ -6,7 +6,6 @@ package chat.com.lloseng.ocsf.client;
 
 import java.util.*;
 import java.io.*;
-import java.net.*;
 
 /**
  * This class acts as a subclass of <code>AbstractClient</code> and is also an
@@ -17,7 +16,7 @@ import java.net.*;
  * @author Dr Robert Lagani&egrave;re
  * @version April 2002
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation","rawtypes"}) 
 public class ObservableSWRClient extends ObservableGameClient {
 	// Instance variables **********************************************
 
@@ -57,9 +56,10 @@ public class ObservableSWRClient extends ObservableGameClient {
 	 * notify its observers with the WAITING_FOR_REPLY message.
 	 *
 	 * @return true if successfully connected.
-	 * @exception IOException if an I/O error occurs when connecting.
+	 * @throws Exception 
 	 */
-	public synchronized boolean connectAndWait() throws IOException {
+	@SuppressWarnings("unchecked")
+	public synchronized boolean connectAndWait() throws Exception {
 		clearAll();
 		expected.add(CONNECTION_ESTABLISHED);
 
@@ -93,6 +93,7 @@ public class ObservableSWRClient extends ObservableGameClient {
 	 * @return the object received.
 	 * @exception IOException if an I/O error occurs.
 	 */
+	@SuppressWarnings("unchecked")
 	public synchronized Object sendAndWaitForReply(Object message, Object expectedObject) throws Exception {
 		clearAll();
 		expected.add(expectedObject);
@@ -112,7 +113,8 @@ public class ObservableSWRClient extends ObservableGameClient {
 	 * @return the object received.
 	 * @exception IOException if an I/O error occurs.
 	 */
-	public synchronized Object sendAndWaitForReply(Object message, List expectedListOfObject) throws Exception {
+	@SuppressWarnings("unchecked")
+	public synchronized Object sendAndWaitForReply(Object message,List expectedListOfObject) throws Exception {
 
 		if (expectedListOfObject != null) {
 			clearAll();

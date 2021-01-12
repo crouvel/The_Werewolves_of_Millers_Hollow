@@ -1,11 +1,13 @@
 package chat.server;
 
+import java.io.IOException;
 import java.util.*;
 
 import chat.com.lloseng.ocsf.server.ObserverOriginatorServer;
-
+import chat.com.lloseng.ocsf.server.OriginatorMessage;
 import businesslogic.domain.User;
 import chat.com.lloseng.ocsf.server.ConnectionToGameClient;
+import chat.com.lloseng.ocsf.server.ObservableGameServer;
 import gui.controller.GameController;
 
 /**
@@ -42,9 +44,9 @@ public class EchoServerGame implements Observer {
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToGameClient client) {
 		String message = msg.toString();
-		serverUI.display("Message received: " + msg + " from " + client);
+		serverUI.display("Message received: " + message + " from " + client);
 
-		this.originServer.sendToAllClients("> " + client.getInfo("id").toString() + " :" + msg);
+		this.originServer.sendToAllClients("> " + client.getInfo("id").toString() + " :" + message);
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class EchoServerGame implements Observer {
 	/**
 	 * @return
 	 */
-	protected void clientConnected(ConnectionToClient client) {
+	protected void clientConnected(ConnectionToGameClient client) {
 		serverUI.display("A client connected : " + client.toString());
 	}
 
@@ -73,24 +75,24 @@ public class EchoServerGame implements Observer {
 	 */
 	public void update(Observable o, Object arg) {
 
-		OriginatorMessage m=(OriginatorMessage) arg1;
+		OriginatorMessage m=(OriginatorMessage) arg;
 
 		String msg = (String) m.getMessage();
-		ConnectionToClient client = m.getOriginator();
+		ConnectionToGameClient client = m.getOriginator();
 
-		if (msg.startsWith(ObservableServer.CLIENT_CONNECTED)) {
+		if (msg.startsWith(ObservableGameServer.CLIENT_CONNECTED)) {
 			this.clientConnected(client);
-		} else if (msg.startsWith(ObservableServer.CLIENT_DISCONNECTED)) {
+		} else if (msg.startsWith(ObservableGameServer.CLIENT_DISCONNECTED)) {
 			this.clientDisconnected(client);
-		} else if (msg.startsWith(ObservableServer.CLIENT_EXCEPTION)) {
+		} else if (msg.startsWith(ObservableGameServer.CLIENT_EXCEPTION)) {
 			this.clientException(client, msg);
-		} else if (msg.startsWith(ObservableServer.LISTENING_EXCEPTION)) {
+		} else if (msg.startsWith(ObservableGameServer.LISTENING_EXCEPTION)) {
 			this.listeningException(msg);
-		} else if (msg.startsWith(ObservableServer.SERVER_CLOSED)) {
+		} else if (msg.startsWith(ObservableGameServer.SERVER_CLOSED)) {
 			this.serverClosed();
-		} else if (msg.startsWith(ObservableServer.SERVER_STARTED)) {
+		} else if (msg.startsWith(ObservableGameServer.SERVER_STARTED)) {
 			this.serverStarted();
-		} else  if (msg.startsWith(ObservableServer.SERVER_STOPPED)) {
+		} else  if (msg.startsWith(ObservableGameServer.SERVER_STOPPED)) {
 			this.serverStopped();
 		} else {
 			this.handleMessageFromClient(msg, client);
@@ -114,7 +116,7 @@ public class EchoServerGame implements Observer {
 	/**
 	 * @return
 	 */
-	protected void clientDisconnected(ConnectionToClient client) {
+	protected void clientDisconnected(ConnectionToGameClient client) {
 		serverUI.display("A client disconnected : " + client.toString());
 
 		this.originServer.sendToAllClients("Server MSG> " + client.getInfo("id").toString() + " left");

@@ -1,5 +1,6 @@
 package chat.com.lloseng.ocsf.client;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.*;
 
@@ -21,12 +22,6 @@ public class ObservableGameClient extends Observable {
     }
 
     /**
-     * 
-     */
-    public String CONNECTION_ESTABLISHED;
-
-
-    /**
      * @return
      */
     public final void openConnection() throws IOException{
@@ -38,7 +33,7 @@ public class ObservableGameClient extends Observable {
      * @throws IOException
      */
     final public void closeConnection() throws IOException {
-		service.closeConnection();
+		service.connnectionClosed();;
 	}
 
     /**

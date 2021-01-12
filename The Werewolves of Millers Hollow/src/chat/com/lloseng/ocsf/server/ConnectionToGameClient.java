@@ -11,13 +11,16 @@ import java.util.HashMap;
 /**
  * 
  */
+@SuppressWarnings("rawtypes")
 public class ConnectionToGameClient extends Thread{
 	
+	@SuppressWarnings("unused")
 	private AbstractServer server;
 	private Socket clientS;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	
+	@SuppressWarnings("unused")
 	private boolean stop;
 	private HashMap info = new HashMap(10);
 
@@ -148,8 +151,9 @@ public class ConnectionToGameClient extends Thread{
      * @param info 
      * @return
      */
-    public void setInfo(String infotype, Object info) {
-    	info.put(infotype, info);
+    @SuppressWarnings({ "unchecked" })
+	public void setInfo(String infotype, Object info) {
+    	((HashMap) info).put(infotype, info);
     }
 
     /**

@@ -1,13 +1,11 @@
 package chat.client;
 
 import java.io.IOException;
-import java.util.*;
 import businesslogic.domain.PlayerInGame;
 import java.util.Observable;
 import java.util.Observer;
 import gui.controller.GameController;
 
-import chat.com.lloseng.ocsf.client.ObservableGameClient;
 import chat.com.lloseng.ocsf.client.ObservableSWRClient;
 
 /**
@@ -75,7 +73,7 @@ public class ChatGameClient implements Observer {
      */
     public void handleMessageFromClientUI(String msg) {
     	try {
-			this.swrC.sendToServer(message);
+			this.swrC.sendToServer(msg);
 		} catch (IOException e) {
 			clientUI.display("Could not send message to server.  Terminating client.");
 			quit();

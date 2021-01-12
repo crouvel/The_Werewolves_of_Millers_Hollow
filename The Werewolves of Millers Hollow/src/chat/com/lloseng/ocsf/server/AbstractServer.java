@@ -5,6 +5,7 @@ import java.io.InterruptedIOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
 /**
  * 
  */
@@ -17,9 +18,9 @@ public abstract class AbstractServer implements Runnable{
 		this.port = port;
 		this.ClientTG = new ThreadGroup("Client threads") {
 			public void uncaughtException(Thread thread, Throwable exception) {
-				clientException((ConnectionToGameClient) thread,exception);
+				uncaughtException((ConnectionToGameClient) thread,exception);
 			}
-		}
+		};
 	}
 
 	/**
