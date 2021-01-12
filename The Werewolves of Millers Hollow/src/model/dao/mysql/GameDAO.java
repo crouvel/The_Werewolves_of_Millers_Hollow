@@ -20,12 +20,12 @@ public abstract class GameDAO {
      * Default constructor
      */
     public GameDAO() {}
-
+     
     /**
      * Search and returns the list of players in game corresponding to game_id.
-     * @param game_id 
+     * @param game_id
      * @return the list of present players in the game.
-     * @throws SQLException 
+     * @throws SQLException
      */
     public abstract ArrayList<PlayerInGame> getPlayerInGameList(int game_id) throws SQLException;
 
@@ -36,14 +36,14 @@ public abstract class GameDAO {
      * @throws SQLException 
      */
     public abstract ArrayList<String> getAllVotes(int game_id) throws SQLException;
-
+    
     /**
      * Sends vote of username1, voting for username2 in the game corresponding to game_id.
-     * @param username1 
-     * @param username2 
-     * @param game_id 
+     * @param username1
+     * @param username2
+     * @param game_id
      * @return true if sending the vote is successful, else false.
-     * @throws SQLException 
+     * @throws SQLException
      */
     public abstract boolean sendVote(String username1, String username2, int game_id) throws SQLException;
 
